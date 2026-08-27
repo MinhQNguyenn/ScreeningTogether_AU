@@ -16,6 +16,15 @@ pip install -r requirements.txt
 
 Copy contents of `.env.example` to `.env` and fill in real values (`.env` is gitignored).
 
+### Adding a new API key or secret value
+
+1. In `config.py`, add a typed field to the `Settings` class, using a meaningful name for the key:
+   ```python
+   api_key_1: SecretStr
+   ```
+2. Add the key to your local `.env` with a real value.
+3. Add the same key to `.env.example` with a blank value, so the key name is documented for everyone's local `.env`.
+
 ## Run
 
 From the `backend/` folder:
