@@ -8,7 +8,7 @@
         <a href="/#stats" @click="closeMenu">The numbers</a>
         <RouterLink to="/resources" @click="closeMenu">Resources</RouterLink>
       </nav>
-      <a href="/#learn" class="header-cta">Take the first step <span>↗</span></a>
+      <RouterLink to="/game" class="header-cta">Learn through the game<span>↗</span></RouterLink>
       <button class="menu-toggle" aria-label="Toggle menu" @click="toggleMenu"><span></span><span></span></button>
     </header>
     <RouterView />
