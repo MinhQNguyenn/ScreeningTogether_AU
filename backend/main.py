@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="ScreeningTogether API")
+app = FastAPI(title="ScreeningTogether API", docs_url=None, redoc_url=None, openapi_url=None)
 
 origins = [
     "http://localhost:5173",
