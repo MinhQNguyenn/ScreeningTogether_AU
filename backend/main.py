@@ -3,12 +3,12 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="ScreeningTogether API")
 
-# only used for local dev
 origins = [
     "http://localhost:5173",
     "http://localhost:5174",
     "http://127.0.0.1:5173",
-    "http://127.0.0.1:5174"
+    "http://127.0.0.1:5174",
+    "https://d3dsx64353i3rp.cloudfront.net"
 ]
 
 app.add_middleware(
