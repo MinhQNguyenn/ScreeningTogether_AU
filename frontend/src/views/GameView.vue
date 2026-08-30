@@ -83,12 +83,17 @@ const toggleFullscreen = async () => {
 <style scoped>
 .game-page {
   background: #fffaf8;
-  min-height: calc(100vh - 78px);
+  height: calc(100dvh - 180px);
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   color: #302a2d;
 }
 .game-frame {
-  height: calc(100vh - 360px);
-  min-height: 390px;
+  height: auto;
+  min-height: 0;
+  flex: 1 1 auto;
   background: #f1f0f0;
   position: relative;
   display: flex;
@@ -147,7 +152,8 @@ const toggleFullscreen = async () => {
   font-size: clamp(80px, 14vw, 180px);
 }
 .game-info {
-  padding: 20px max(6.5vw, 28px) 50px;
+  flex: 0 0 218px;
+  padding: 16px max(6.5vw, 28px) 24px;
 }
 .game-switcher {
   display: flex;
@@ -200,10 +206,11 @@ const toggleFullscreen = async () => {
 }
 @media (max-width: 760px) {
   .game-frame {
-    height: calc(100vh - 400px);
-    min-height: 320px;
+    height: auto;
+    min-height: 0;
   }
   .game-info {
+    flex-basis: 240px;
     padding-top: 18px;
   }
   .game-copy {
@@ -214,6 +221,18 @@ const toggleFullscreen = async () => {
   }
   .game-switcher {
     margin-bottom: 25px;
+  }
+}
+@media (max-width: 760px) {
+  .game-page {
+    height: calc(100dvh - 220px);
+  }
+  .game-frame {
+    height: auto;
+    min-height: 0;
+  }
+  .game-info {
+    flex-basis: 220px;
   }
 }
 </style>
