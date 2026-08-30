@@ -10,7 +10,6 @@ const router = createRouter({
     { path: '/resources', component: PlaceholderView },
     { path: '/game', component: EducationGame },
   ],
-  scrollBehavior: (to) => ({ el: to.hash || '#top', behavior: 'smooth' }),
 })
 
 export default router
