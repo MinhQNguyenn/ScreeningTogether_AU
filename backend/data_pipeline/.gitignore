@@ -1,1 +1,1 @@
-echo "backend/data_pipeline/data/*.xlsx" 
+backend/data_pipeline/data/*.xlsx 
