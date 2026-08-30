@@ -9,3 +9,22 @@ from pydantic import BaseModel, ConfigDict
 #   class GPResponse(GPBase):              # response
 #       model_config = ConfigDict(from_attributes=True)
 #       id: str
+
+
+class ScreeningStatsBase(BaseModel):
+    state: str
+    reporting_period: str  # e.g. "2018-2022", a rolling 5-year window, not a calendar year
+
+
+class ScreeningStatsQuery(BaseModel):
+    state: str | None = None
+    reporting_period: str | None = None
+
+
+class ScreeningStatsResponse(ScreeningStatsBase):
+    model_config = ConfigDict(from_attributes=True)
+
+    age_group: str
+    number: int
+    crude_rate: float
+    as_rate: float | None = None

@@ -27,5 +27,6 @@ dist/
 # Logs
 *.log
 
-# Data files (raw CSVs)
+# Local-only raw data, kept out of the repo until there's a real pipeline
+data/
 *.csv
