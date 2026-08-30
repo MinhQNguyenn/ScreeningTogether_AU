@@ -1,2 +1,1 @@
-echo "*.xlsx"
-echo "*.csv" 
+echo "data_pipeline/data/*.xlsx" 
