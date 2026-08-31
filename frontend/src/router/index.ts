@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import PlaceholderView from '../views/PlaceholderView.vue'
 import EducationGame from '../views/GameView.vue'
+import HomeView from '../views/HomeView.vue'
+import GpFinder from '../views/GpFinderView.vue'
+
 
 const router = createRouter({
   history: createWebHistory(),
@@ -9,6 +11,7 @@ const router = createRouter({
     { path: '/', component: HomeView },
     { path: '/resources', component: PlaceholderView },
     { path: '/game', component: EducationGame },
+    {path: '/gpfinder', component: GpFinder},
   ],
 })
 
