@@ -1,11 +1,26 @@
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, Field
 
 # Schema layout convention:
 # Group models by api function (e.g. GP)
-# Within each resource group, order as: shared base -> request model(s) -> response model(s).
+# Within each resource group, order as: base model -> request model(s) -> response model(s).
 # e.g.
-#   class GPBase(BaseModel): ...
-#   class GPQuery(GPBase): ...             # request (e.g. search params for healthdirect lookup)
-#   class GPResponse(GPBase):              # response
-#       model_config = ConfigDict(from_attributes=True)
-#       id: str
+#   class GPBase(BaseModel): ...    # base model
+#   class GPQuery(GPBase): ...      # request
+#   class GPResponse(GPBase): ...   # response
+
+
+class GPBase(BaseModel):
+    postcode: str = Field(pattern=r"^\d{4}$")
+
+
+class GPQuery(GPBase):
+    pass
+
+
+class GPResponse(GPBase):
+    name: str
+    address: str
+    suburb: str
+    state: str
+    latitude: float | None = None
+    longitude: float | None = None
