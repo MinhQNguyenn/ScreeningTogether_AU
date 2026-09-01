@@ -1,11 +1,11 @@
 <template>
   <main class="game-page">
     <section ref="gameFrame" class="game-frame" aria-label="Educational game area">
-      <div class="game-placeholder">
-        <span class="game-kicker">ScreeningTogether AU</span>
-        <h1>GAME</h1>
-        <p>Interactive learning space</p>
-      </div>
+        <iframe 
+         class="game_1" 
+          src="/public/godot/screening-game/index.html" 
+          allowfullscreen
+        ></iframe>
       <button
         class="fullscreen-button"
         type="button"
@@ -250,5 +250,9 @@ const toggleFullscreen = async () => {
   width: 100%;
   height: 100%;
   object-fit: contain; /* Keeps expand.png proportioned correctly */
+}
+.game_1 {
+  width: 150%;
+  height: 100%;
 }
 </style>
