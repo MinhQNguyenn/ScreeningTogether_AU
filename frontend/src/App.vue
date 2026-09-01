@@ -11,7 +11,9 @@
           <a href="/#screening-info" @click="closeMenu">FAQ</a>
           <a href="/#stats" @click="closeMenu">The numbers</a>
         </template>
+        <!-- This section will be implemented when GP finder feature is ready (Iteration 2)
         <RouterLink to="/gpfinder" @click="closeMenu">GP Finder</RouterLink>
+        -->
       </nav>
       <RouterLink to="/game" class="header-cta">Learn through the game<span>↗</span></RouterLink>
       <button class="menu-toggle" aria-label="Toggle menu" @click="toggleMenu">

@@ -175,6 +175,7 @@
       </div>
     </section>
 
+    <!-- This section will be implemented when GP finder feature is ready (Iteration 2)
     <section class="closing-section">
       <div class="closing-bloom"></div>
       <div class="section-label">04 / Your next step</div>
@@ -184,6 +185,7 @@
         >Check your nearest GP <span>↗</span></RouterLink
       >
     </section>
+    -->
   </main>
 </template>
 
