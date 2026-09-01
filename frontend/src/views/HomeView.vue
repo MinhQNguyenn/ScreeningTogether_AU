@@ -137,10 +137,6 @@
             >State<select v-model="selectedState">
               <option v-for="state in states" :key="state" :value="state">{{ state }}</option>
             </select></label
-          ><label
-            >Year<select v-model="selectedYear">
-              <option v-for="year in years" :key="year" :value="year">{{ year }}</option>
-            </select></label
           >
         </div>
       </div>
@@ -173,7 +169,7 @@
             <circle cx="560" cy="20" r="6" class="chart-dot" />
           </svg>
           <div class="chart-labels">
-            <span>2020</span><span>2023</span><span>2026</span><span>2030</span>
+            <span>2017</span><span>2020</span><span>2023</span><span>2026</span>
           </div>
         </div>
       </div>
@@ -196,8 +192,7 @@ import '../assets/homeView.css'
 
 import { ref } from 'vue'
 
-const states = ['All states', 'Victoria', 'New South Wales', 'Queensland', 'Western Australia']
-const years = ['2024', '2023', '2022', '2021']
+const states = ['All states', 'Victoria', 'New South Wales', 'Queensland', 'Western Australia', 'South Australia', 'Tasmania']
 const selectedState = ref(states[0])
-const selectedYear = ref(years[0])
 </script>
+
