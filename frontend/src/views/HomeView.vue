@@ -5,11 +5,10 @@
         <p class="eyebrow"><span class="eyebrow-dot"></span> Prevention is powerful</p>
         <h1>Your health<br /><em>deserves a voice.</em></h1>
         <p class="hero-text">
-          Cervical cancer is preventable. Learn the simple steps that help you protect your future
-          and the women you love.
+          No matter your culture, language, or background, you deserve to feel informed and confident about cervical screening. Cervical cancer is preventable—take a simple step today to protect your future.
         </p>
         <div class="hero-actions">
-          <RouterLink to="/game" class="button button-primary" @click="closeMenu"
+          <RouterLink to="/gprunner" class="button button-primary" @click="closeMenu"
             >Start learning <span>↗</span></RouterLink
           >
           <a href="#stats" class="text-link">See the numbers <span>↓</span></a>
@@ -45,7 +44,7 @@
           <span class="step-number">01</span>
           <div class="step-icon icon-shield">♡</div>
           <h3>HPV vaccination</h3>
-          <p>Protects against the HPV types that cause most cervical cancers.</p>
+          <p>HPV (human papillomavirus) is a common virus that can cause cervical cancer. Vaccination helps prevent HPV infection.</p>
         </article>
         <article class="step-card featured">
           <span class="step-number">02</span>
@@ -119,9 +118,10 @@
             Choose a healthcare provider for a clinician-collected test, or ask if self-collection
             is available for you. Both options check for HPV.
           </p>
+          <!-- This section will be implemented when GP finder feature is ready (Iteration 2)
           <RouterLink to="/gpfinder" class="arrow-link"
             >Look for GP near you <span>→</span></RouterLink
-          >
+          > -->
         </article>
       </div>
     </section>
