@@ -4,7 +4,7 @@ import PlaceholderView from '../views/PlaceholderView.vue'
 import EducationGame from '../views/GameView.vue'
 import HomeView from '../views/HomeView.vue'
 import GpFinder from '../views/GpFinderView.vue'
-import GPRunnerGameView from '../views/GPRunnerGameView.vue'
+import GPRunnerGameView from '../views/GpRunnerGameView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
