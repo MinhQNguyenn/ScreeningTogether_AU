@@ -29,3 +29,6 @@ dist/
 
 # Data files (raw CSVs)
 *.csv
+
+#Data files (raw xlsx)
+*.xlsx
