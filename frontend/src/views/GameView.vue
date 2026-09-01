@@ -53,7 +53,8 @@ const games = [
     title: 'Break Through the Barriers',
     description:
       'Navigate common hurdles, fears and stigma around cancer screening to build confidence and take the next step towards getting screened.',
-  },
+  }
+  /*,
   {
     number: 2,
     title: 'Your Screening Journey',
@@ -66,6 +67,7 @@ const games = [
     description:
       'Learn about the steps and support available after a cancer diagnosis, including treatment, follow-up care and other ways to manage your health.',
   },
+  */
 ]
 const currentGame = computed(
   () => games.find((game) => game.number === selectedGame.value) ?? games[0],

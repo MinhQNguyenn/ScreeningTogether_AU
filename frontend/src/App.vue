@@ -1,22 +1,24 @@
 <template>
   <div class="site-shell">
-    <header :class="['site-header', { 'header-hidden': !headerVisible }]">
+    <header class="site-header">
       <RouterLink to="/" class="brand"
         ><span class="brand-mark">✳</span> ScreeningTogether AU</RouterLink
       >
       <nav :class="['main-nav', { open: menuOpen }]" aria-label="Main navigation">
-        <RouterLink to="/" @click="closeMenu">Home</RouterLink>
+        <RouterLink to="/">Home</RouterLink>
+
         <template v-if="isHomePage">
-          <a href="/#learn" @click="closeMenu">Learn</a>
-          <a href="/#screening-info" @click="closeMenu">FAQ</a>
-          <a href="/#stats" @click="closeMenu">The numbers</a>
+          <a href="/#learn">Learn</a>
+          <a href="/#screening-info">FAQ</a>
+          <a href="/#stats">The numbers</a>
         </template>
-        <RouterLink to="/gpfinder" @click="closeMenu">GP Finder</RouterLink>
+        <!-- This section will be implemented when GP finder feature is ready (Iteration 2)
+                <RouterLink to="/gpfinder" @click="closeMenu">GP Finder</RouterLink>
+                -->
       </nav>
-      <RouterLink to="/game" class="header-cta">Learn through the game<span>↗</span></RouterLink>
-      <button class="menu-toggle" aria-label="Toggle menu" @click="toggleMenu">
-        <span></span><span></span>
-      </button>
+      <RouterLink to="/gprunner" class="header-cta">
+        Learn through the game<span>↗</span>
+      </RouterLink>
     </header>
     <RouterView />
     <footer class="site-footer">
@@ -31,8 +33,7 @@ import { onMounted, onUnmounted, ref, computed } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 
 const menuOpen = ref(true)
-const headerVisible = ref(true)
-let previousScrollY = 0
+
 
 const route = useRoute()
 const isHomePage = computed(() => route.path === '/')
@@ -40,20 +41,10 @@ const isHomePage = computed(() => route.path === '/')
 const toggleMenu = () => {
   menuOpen.value = !menuOpen.value
 }
-
 const closeMenu = () => {
   menuOpen.value = false
 }
 
-const updateHeaderVisibility = () => {
-  const currentScrollY = window.scrollY
-  headerVisible.value = currentScrollY < 12 || currentScrollY < previousScrollY
-  previousScrollY = currentScrollY
-}
-
-onMounted(() => window.addEventListener('scroll', updateHeaderVisibility, { passive: true }))
-
-onUnmounted(() => window.removeEventListener('scroll', updateHeaderVisibility))
 </script>
 
 <style scoped>
@@ -177,6 +168,94 @@ onUnmounted(() => window.removeEventListener('scroll', updateHeaderVisibility))
     flex-direction: column;
     gap: 13px;
     align-items: flex-start;
+  }
+}
+@media (max-width: 900px) {
+  .site-header {
+    padding: 0 20px;
+  }
+  .main-nav {
+    display: none !important;
+    position: absolute;
+    top: 78px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: #fffaf8;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 10px 20px #0000000c;
+  }
+  .main-nav.open {
+    display: flex !important;
+  }
+  .header-cta {
+    display: none;
+  }
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    background: transparent;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 23px;
+    height: 2px;
+    background: #302a2d;
+  }
+}
+@media (max-width: 420px) {
+  .site-header {
+    padding: 0 14px;
+  }
+  .brand {
+    font-size: 15px;
+  }
+  .brand-mark {
+    font-size: 18px;
+    margin-right: 3px;
+  }
+  .main-nav {
+    padding: 18px 16px;
+  }
+}
+@media (max-width: 900px) {
+  .header-cta {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 9px 12px;
+    font-size: 10px;
+  }
+  .header-cta span {
+    font-size: 13px;
+    margin-left: 6px;
+  }
+  .menu-toggle {
+    margin-left: 8px;
+  }
+}
+@media (max-width: 520px) {
+  .brand {
+    font-size: 14px;
+  }
+  .brand-mark {
+    font-size: 17px;
+  }
+  .header-cta {
+    padding: 8px 9px;
+    font-size: 9px;
+  }
+  .header-cta span {
+    font-size: 12px;
+    margin-left: 4px;
+  }
+  .menu-toggle {
+    margin-left: 3px;
   }
 }
 </style>
