@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/support_pickup.gd" id="1"]
+
+[sub_resource type="CircleShape2D" id="Pickup_shape"]
+radius = 38.0
+
+[node name="SupportPickup" type="Area2D"]
+z_index = 9
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Glow" type="Polygon2D" parent="Visual"]
+polygon = PackedVector2Array(0, -48, 34, -34, 48, 0, 34, 34, 0, 48, -34, 34, -48, 0, -34, -34)
+color = Color(1, 0.95, 0.55, 0.35)
+
+[node name="Token" type="Polygon2D" parent="Visual"]
+polygon = PackedVector2Array(0, -35, 25, -25, 35, 0, 25, 25, 0, 35, -25, 25, -35, 0, -25, -25)
+color = Color(0.36, 0.67, 0.49, 1)
+
+[node name="Icon" type="Label" parent="Visual"]
+offset_left = -28.0
+offset_top = -30.0
+offset_right = 28.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(1, 1, 0.93, 1)
+theme_override_font_sizes/font_size = 35
+text = "i"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Caption" type="Label" parent="Visual"]
+offset_left = -86.0
+offset_top = 48.0
+offset_right = 86.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0.12, 0.26, 0.17, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 0.88, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 15
+text = "Trusted information"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Pickup_shape")
+
