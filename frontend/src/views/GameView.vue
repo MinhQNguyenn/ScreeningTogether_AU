@@ -1,18 +1,20 @@
 <template>
   <main class="game-page">
     <section ref="gameFrame" class="game-frame" aria-label="Educational game area">
-      <div class="game-placeholder">
-        <span class="game-kicker">ScreeningTogether AU</span>
-        <h1>GAME</h1>
-        <p>Interactive learning space</p>
-      </div>
+        <iframe 
+         class="game_1" 
+          src="/public/godot/screening-game/index.html" 
+          allowfullscreen
+        ></iframe>
       <button
         class="fullscreen-button"
         type="button"
         aria-label="Open game fullscreen"
         @click="toggleFullscreen"
       >
-        <span>{{ isFullscreen ? '↙' : '↗' }}</span>
+        <span class="icon-wrapper">
+          <img src="../assets/expand.png" alt="Expand icon" class="fullscreen-icon" />
+        </span>
       </button>
     </section>
     <section class="game-info">
@@ -83,12 +85,17 @@ const toggleFullscreen = async () => {
 <style scoped>
 .game-page {
   background: #fffaf8;
-  min-height: calc(100vh - 78px);
+  height: calc(100dvh - 180px);
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   color: #302a2d;
 }
 .game-frame {
-  height: calc(100vh - 360px);
-  min-height: 390px;
+  height: auto;
+  min-height: 0;
+  flex: 1 1 auto;
   background: #f1f0f0;
   position: relative;
   display: flex;
@@ -131,10 +138,12 @@ const toggleFullscreen = async () => {
   color: #302a2d;
   border: 0;
   border-radius: 50%;
-  font-size: 21px;
-  line-height: 1;
   box-shadow: 0 3px 12px #302a2d18;
   transition: transform 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .fullscreen-button:hover {
   transform: scale(1.08);
@@ -147,7 +156,8 @@ const toggleFullscreen = async () => {
   font-size: clamp(80px, 14vw, 180px);
 }
 .game-info {
-  padding: 20px max(6.5vw, 28px) 50px;
+  flex: 0 0 218px;
+  padding: 16px max(6.5vw, 28px) 24px;
 }
 .game-switcher {
   display: flex;
@@ -200,10 +210,11 @@ const toggleFullscreen = async () => {
 }
 @media (max-width: 760px) {
   .game-frame {
-    height: calc(100vh - 400px);
-    min-height: 320px;
+    height: auto;
+    min-height: 0;
   }
   .game-info {
+    flex-basis: 240px;
     padding-top: 18px;
   }
   .game-copy {
@@ -215,5 +226,33 @@ const toggleFullscreen = async () => {
   .game-switcher {
     margin-bottom: 25px;
   }
+}
+@media (max-width: 760px) {
+  .game-page {
+    height: calc(100dvh - 220px);
+  }
+  .game-frame {
+    height: auto;
+    min-height: 0;
+  }
+  .game-info {
+    flex-basis: 220px;
+  }
+}
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%; /* Controls how much padding is inside the button */
+  height: 60%;
+}
+.fullscreen-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Keeps expand.png proportioned correctly */
+}
+.game_1 {
+  width: 150%;
+  height: 100%;
 }
 </style>
