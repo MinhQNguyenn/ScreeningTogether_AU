@@ -20,12 +20,27 @@ const router = createRouter({
   },
 
   routes: [
-    { path: '/', component: HomeView },
-    { path: '/resources', component: PlaceholderView },
-    { path: '/game', component: EducationGame },
-    { path: '/gpfinder', component: GpFinder },
-    { path: '/gprunner', component: GPRunnerGameView },
+    { path: '/', component: HomeView, meta: { title: 'Home | ScreeningTogether AU' } },
+    {
+      path: '/resources',
+      component: PlaceholderView,
+      meta: { title: 'Coming Soon | ScreeningTogether AU' },
+    },
+    { path: '/game', component: EducationGame, meta: { title: 'Games | ScreeningTogether AU' } },
+    { path: '/gpfinder', component: GpFinder, meta: { title: 'GP Finder | ScreeningTogether AU' } },
+    {
+      path: '/gprunner',
+      component: GPRunnerGameView,
+      meta: { title: 'Screening Pathways | ScreeningTogether AU' },
+    },
   ],
+})
+
+router.afterEach((to) => {
+  console.log('Current route:', to.path)
+  console.log('Title:', to.meta.title)
+
+  document.title = (to.meta.title as string) || 'ScreeningTogether AU'
 })
 
 export default router
