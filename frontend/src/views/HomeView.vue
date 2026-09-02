@@ -5,7 +5,9 @@
         <p class="eyebrow"><span class="eyebrow-dot"></span> Prevention is powerful</p>
         <h1>Your health<br /><em>deserves a voice.</em></h1>
         <p class="hero-text">
-          No matter your culture, language, or background, you deserve to feel informed and confident about cervical screening. Cervical cancer is preventable—take a simple step today to protect your future.
+          No matter your culture, language, or background, you deserve to feel informed and
+          confident about cervical screening. Cervical cancer is preventable—take a simple step
+          today to protect your future.
         </p>
         <div class="hero-actions">
           <RouterLink to="/gprunner" class="button button-primary" @click="closeMenu"
@@ -44,7 +46,10 @@
           <span class="step-number">01</span>
           <div class="step-icon icon-shield">♡</div>
           <h3>HPV vaccination</h3>
-          <p>HPV (human papillomavirus) is a common virus that can cause cervical cancer. Vaccination helps prevent HPV infection.</p>
+          <p>
+            HPV (human papillomavirus) is a common virus that can cause cervical cancer. Vaccination
+            helps prevent HPV infection.
+          </p>
         </article>
         <article class="step-card featured">
           <span class="step-number">02</span>
@@ -142,7 +147,14 @@
       </div>
       <div class="stats-layout">
         <div class="big-stat">
-          <strong>90<span>%</span></strong>
+          <template v-if="loadingStats"> — </template>
+
+          <template v-else-if="latestScreeningRate !== null">
+            {{ latestScreeningRate }}<span>%</span>
+          </template>
+
+          <template v-else> — </template>
+
           <p>of cervical cancer cases are linked to HPV.</p>
           <div class="stat-rule"></div>
           <small>World Health Organization</small>
@@ -150,26 +162,31 @@
         <div class="chart-card">
           <div class="chart-top">
             <h3>Prevention impact</h3>
-            <span>2020 — 2030</span>
+            <span>{{ chartPeriodRange }}</span>
           </div>
           <svg
             viewBox="0 0 560 220"
             role="img"
-            aria-label="Line chart showing prevention impact increasing over time"
+            aria-label="Line chart showing cervical screening participation over time"
           >
             <path class="grid-line" d="M0 180H560M0 125H560M0 70H560M0 15H560" />
-            <path
-              class="chart-area"
-              d="M0 180 C70 175 80 155 140 160 S210 130 270 138 S345 80 405 91 S470 44 560 20 V180Z"
+
+            <path class="chart-area" :d="chartAreaPath" />
+
+            <path class="chart-line" :d="chartLinePath" />
+
+            <circle
+              v-if="chartPoints.length"
+              :cx="chartPoints[chartPoints.length - 1].x"
+              :cy="chartPoints[chartPoints.length - 1].y"
+              r="6"
+              class="chart-dot"
             />
-            <path
-              class="chart-line"
-              d="M0 180 C70 175 80 155 140 160 S210 130 270 138 S345 80 405 91 S470 44 560 20"
-            />
-            <circle cx="560" cy="20" r="6" class="chart-dot" />
           </svg>
           <div class="chart-labels">
-            <span>2017</span><span>2020</span><span>2023</span><span>2026</span>
+            <span v-for="stat in chartStats" :key="stat.reporting_period">
+              {{ stat.reporting_period }}
+            </span>
           </div>
         </div>
       </div>
@@ -189,12 +206,144 @@
   </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import '../assets/homeView.css'
 
-import { ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
+import { getCervicalScreeningStats, type ScreeningStats } from '../api/stats'
 
-const states = ['All states', 'Victoria', 'New South Wales', 'Queensland', 'Western Australia', 'South Australia', 'Tasmania']
+const states = [
+  'All states',
+  'Victoria',
+  'New South Wales',
+  'Queensland',
+  'Western Australia',
+  'South Australia',
+  'Tasmania',
+]
+
 const selectedState = ref(states[0])
-</script>
 
+const screeningStats = ref<ScreeningStats[]>([])
+const loadingStats = ref(false)
+const statsError = ref('')
+
+async function loadScreeningStats() {
+  loadingStats.value = true
+  statsError.value = ''
+
+  try {
+    const state = selectedState.value === 'All states' ? undefined : selectedState.value
+
+    screeningStats.value = await getCervicalScreeningStats(state)
+  } catch (error) {
+    console.error(error)
+    statsError.value = 'Unable to load screening statistics.'
+    screeningStats.value = []
+  } finally {
+    loadingStats.value = false
+  }
+}
+
+onMounted(() => {
+  loadScreeningStats()
+})
+
+watch(selectedState, () => {
+  loadScreeningStats()
+})
+
+const latestScreeningRate = computed(() => {
+  if (screeningStats.value.length === 0) {
+    return null
+  }
+
+  const latest = screeningStats.value[screeningStats.value.length - 1]
+
+  return latest.as_rate
+})
+
+const chartStats = computed(() => {
+  return screeningStats.value.slice(-4)
+})
+
+const chartPoints = computed(() => {
+  const stats = chartStats.value
+
+  if (stats.length === 0) {
+    return []
+  }
+
+  const width = 560
+  const height = 165
+
+  const rates = stats.map((stat) => stat.as_rate ?? 0)
+
+  const minRate = Math.min(...rates)
+  const maxRate = Math.max(...rates)
+
+  const range = maxRate - minRate || 1
+
+  return stats.map((stat, index) => {
+    const x = stats.length === 1 ? width / 2 : (index / (stats.length - 1)) * width
+
+    const y = height - (((stat.as_rate ?? 0) - minRate) / range) * height
+
+    return {
+      x,
+      y,
+      rate: stat.as_rate,
+      period: stat.reporting_period,
+    }
+  })
+})
+
+const chartLinePath = computed(() => {
+  if (chartPoints.value.length === 0) {
+    return ''
+  }
+
+  return chartPoints.value
+    .map((point, index) => {
+      return `${index === 0 ? 'M' : 'L'}${point.x} ${point.y}`
+    })
+    .join(' ')
+})
+
+const chartAreaPath = computed(() => {
+  if (chartPoints.value.length === 0) {
+    return ''
+  }
+
+  const points = chartPoints.value
+
+  const line = points
+    .map((point, index) => {
+      return `${index === 0 ? 'M' : 'L'}${point.x} ${point.y}`
+    })
+    .join(' ')
+
+  return `${line} L${points[points.length - 1].x} 180 L${points[0].x} 180 Z`
+})
+
+const chartPeriodRange = computed(() => {
+  if (chartStats.value.length === 0) {
+    return '—'
+  }
+
+  const periods = chartStats.value.map(stat => stat.reporting_period)
+
+  const startYears = periods.map(period =>
+    Number(period.split('-')[0])
+  )
+
+  const endYears = periods.map(period =>
+    Number(period.split('-')[1])
+  )
+
+  const startYear = Math.min(...startYears)
+  const endYear = Math.max(...endYears)
+
+  return `${startYear} — ${endYear}`
+})
+</script>
