@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://vsh5k7vodm17" path="res://scripts/main.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/clinic_finish.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://lf0px1myvlbe" path="res://scenes/api_client.tscn" id="4_jyhfs"]
 
 [sub_resource type="StyleBoxFlat" id="Panel_style"]
 bg_color = Color(0.96, 0.93, 0.77, 0.97)
@@ -17,6 +16,22 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxFlat" id="Controls_group_style"]
+bg_color = Color(0.9, 0.9, 0.76, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.42, 0.55, 0.4, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+
 [node name="Main" type="Node2D" unique_id=2047231791]
 script = ExtResource("1")
 
@@ -26,8 +41,6 @@ script = ExtResource("1")
 
 [node name="Destination" parent="." unique_id=2075738844 instance=ExtResource("3")]
 position = Vector2(0, -15000)
-
-[node name="api_client" parent="." unique_id=1147773525 instance=ExtResource("4_jyhfs")]
 
 [node name="Interface" type="CanvasLayer" parent="." unique_id=2134147226]
 
@@ -117,16 +130,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -275.0
-offset_top = -245.0
+offset_top = -330.0
 offset_right = 275.0
-offset_bottom = 245.0
+offset_bottom = 330.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("Panel_style")
 
 [node name="Content" type="VBoxContainer" parent="Interface/StartScreen/Panel" unique_id=1754202413]
 layout_mode = 2
-theme_override_constants/separation = 28
+theme_override_constants/separation = 18
 alignment = 1
 
 [node name="Title" type="Label" parent="Interface/StartScreen/Panel/Content" unique_id=148064177]
@@ -145,12 +158,77 @@ text = "A cervical screening awareness journey"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="ControlsHeading" type="Label" parent="Interface/StartScreen/Panel/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.31, 0.24, 1)
+theme_override_font_sizes/font_size = 22
+text = "CONTROLS"
+horizontal_alignment = 1
+
+[node name="ControlGroups" type="HBoxContainer" parent="Interface/StartScreen/Panel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="WasdGroup" type="PanelContainer" parent="Interface/StartScreen/Panel/Content/ControlGroups"]
+custom_minimum_size = Vector2(235, 130)
+layout_mode = 2
+theme_override_styles/panel = SubResource("Controls_group_style")
+
+[node name="Content" type="VBoxContainer" parent="Interface/StartScreen/Panel/Content/ControlGroups/WasdGroup"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Heading" type="Label" parent="Interface/StartScreen/Panel/Content/ControlGroups/WasdGroup/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16, 0.31, 0.2, 1)
+theme_override_font_sizes/font_size = 20
+text = "WASD KEYS"
+horizontal_alignment = 1
+
+[node name="Keys" type="Label" parent="Interface/StartScreen/Panel/Content/ControlGroups/WasdGroup/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.31, 0.24, 1)
+theme_override_font_sizes/font_size = 17
+text = "W   Jump\nA   Left     D   Right"
+horizontal_alignment = 1
+
+[node name="ArrowGroup" type="PanelContainer" parent="Interface/StartScreen/Panel/Content/ControlGroups"]
+custom_minimum_size = Vector2(235, 130)
+layout_mode = 2
+theme_override_styles/panel = SubResource("Controls_group_style")
+
+[node name="Content" type="VBoxContainer" parent="Interface/StartScreen/Panel/Content/ControlGroups/ArrowGroup"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Heading" type="Label" parent="Interface/StartScreen/Panel/Content/ControlGroups/ArrowGroup/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16, 0.31, 0.2, 1)
+theme_override_font_sizes/font_size = 20
+text = "ARROW KEYS"
+horizontal_alignment = 1
+
+[node name="Keys" type="Label" parent="Interface/StartScreen/Panel/Content/ControlGroups/ArrowGroup/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.31, 0.24, 1)
+theme_override_font_sizes/font_size = 17
+text = "↑   Jump\n←   Left     →   Right"
+horizontal_alignment = 1
+
+[node name="SpaceControl" type="Label" parent="Interface/StartScreen/Panel/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.31, 0.24, 1)
+theme_override_font_sizes/font_size = 18
+text = "[ SPACE ]   Start / Continue"
+horizontal_alignment = 1
+
 [node name="StartButton" type="Button" parent="Interface/StartScreen/Panel/Content" unique_id=1502617516]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.94, 1)
 theme_override_font_sizes/font_size = 28
-text = "START"
+text = "START  [SPACE]"
 
 [node name="Credit" type="Label" parent="Interface/StartScreen/Panel/Content" unique_id=308258148]
 layout_mode = 2
@@ -215,7 +293,7 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.94, 1)
 theme_override_font_sizes/font_size = 26
-text = "TRY AGAIN"
+text = "TRY AGAIN  [SPACE]"
 
 [node name="CompletionScreen" type="ColorRect" parent="Interface" unique_id=1414650624]
 visible = false
@@ -275,4 +353,4 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.94, 1)
 theme_override_font_sizes/font_size = 26
-text = "PLAY AGAIN"
+text = "PLAY AGAIN  [SPACE]"
