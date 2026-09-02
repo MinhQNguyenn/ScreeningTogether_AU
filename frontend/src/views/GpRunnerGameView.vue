@@ -18,7 +18,7 @@
             <article>
               <span>02</span>
               <h3>Rule</h3>
-              <p>Try to avoid obstacles and your 3 healths before reaching GP. Hitting each obstacle costs one health.</p>
+              <p>Try to avoid obstacles and keep at least 1 health before reaching GP. Hitting each obstacle costs one health.</p>
             </article>
             <article>
               <span>03</span>
@@ -27,7 +27,8 @@
             </article>
           </div>
         </section>
-        <div class="game-switcher" aria-label="Choose a game">
+        <!-- This part will be implemented when more game is available
+         <div class="game-switcher" aria-label="Choose a game">
           <button
             v-for="game in games"
             :key="game.number"
@@ -38,7 +39,7 @@
           >
             {{ game.number }}
           </button>
-        </div>
+        </div> -->
       </div>
       <section ref="gameFrame" class="game-frame" aria-label="Educational game area">
         <iframe 
@@ -71,7 +72,7 @@ const games = [
     number: 1,
     title: 'Know your body',
     description:
-      'Cultural beliefs, embarrassment, language barriers, and fear of judgement can make cervical screening difficult to talk about. Let’s break the stigma and make screening conversations easier for everyone.',
+      'Cultural beliefs, embarrassment, language barriers and fear of judgement can make cervical screening difficult to talk about. Let’s break the stigma and make screening conversations easier for everyone.',
   },
 // The numbering will be hidden until the game is implemented
 //   {

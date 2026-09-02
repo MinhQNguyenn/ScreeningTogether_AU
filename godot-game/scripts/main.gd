@@ -10,9 +10,6 @@ const SUPPORT_PICKUP := preload("res://scenes/support_pickup.tscn")
 
 const SUPPORT_POPUP := preload("res://scenes/support_popup.tscn")
 
-const SUPPORT_API_URL := "https://services.ga.gov.au/gis/rest/services/National_HealthDirect_Health_Facilities/MapServer/0/query"
-var postcode := 3168
-
 # basic level settings
 const SEGMENT_HEIGHT := 640.0
 const SEGMENTS_AHEAD := 7
@@ -91,9 +88,6 @@ var current_support_popup: SupportPopup = null
 	$Interface/CompletionScreen/Panel/Content/FinalScore
 )
 
-@onready var api_service: ApiClient = $api_client
-
-
 func _ready() -> void:
 	# hook up buttons and game events when the scene loads
 	rng.randomize()
@@ -109,12 +103,23 @@ func _ready() -> void:
 	$Interface/CompletionScreen/Panel/Content/RestartButton.pressed.connect(
 		_restart_game
 	)
-	
-	api_service.request_succeeded.connect(_on_support_api_succeeded)
-	api_service.request_failed.connect(_on_support_api_failed)
-
 	_build_initial_track()
 	_update_hud()
+
+
+func _input(event: InputEvent) -> void:
+	if not event.is_action_pressed("interact"):
+		return
+	if event is InputEventKey and event.echo:
+		return
+
+	get_viewport().set_input_as_handled()
+	if is_instance_valid(current_support_popup):
+		current_support_popup.close_popup()
+	elif start_screen.visible:
+		_start_game()
+	elif game_over_screen.visible or completion_screen.visible:
+		_restart_game()
 
 
 func _process(_delta: float) -> void:
@@ -327,10 +332,8 @@ func _on_support_collected(support_name: String) -> void:
 	# Apply the gameplay effect first.
 	confidence = mini(MAX_CONFIDENCE, confidence + 1)
 	
-	# Make the popup first so it cannot miss a quick API response.
-	await _open_support_popup(support_name)
-	_request_support_information()
-	
+	# Pause the run and show a local screening fact.
+	await _open_support_popup()
 
 	var feedback_message := (
 		"%s cleared the barrier row" % support_name
@@ -404,7 +407,7 @@ func _show_feedback(message_text: String, duration: float = 2.5) -> void:
 	feedback_label.text = ""
 	feedback_label.modulate = Color.WHITE
 
-func _open_support_popup(support_name: String) -> void:
+func _open_support_popup() -> void:
 	# Stop gameplay while the user reads the popup.
 	is_playing = false
 	player.stop_run()
@@ -427,34 +430,11 @@ func _open_support_popup(support_name: String) -> void:
 	current_support_popup.closed.connect(
 		_on_support_popup_closed
 	)
-	current_support_popup.show_loading(support_name)
-
-
-func _request_support_information() -> void:
-	var request_url := (
-		(
-			"%s?where=postcode=%s&outFields="
-			+ "organisation_name,address,suburb,state,postcode"
-			+ "&returnGeometry=false&resultRecordCount=1&f=json"
-		) % [
-			SUPPORT_API_URL,
-			postcode
-		]
+	var fact_index: int = rng.randi_range(
+		0,
+		SupportPopup.SCREENING_FACTS.size() - 1,
 	)
-	postcode += 1
-
-
-	api_service.get_json(request_url)
-
-
-func _on_support_api_succeeded(data: Variant) -> void:
-	if is_instance_valid(current_support_popup):
-		current_support_popup.show_data(data)
-
-
-func _on_support_api_failed(message: String) -> void:
-	if is_instance_valid(current_support_popup):
-		current_support_popup.show_error(message)
+	current_support_popup.show_fact(fact_index)
 
 
 func _on_support_popup_closed() -> void:
