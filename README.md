@@ -1,216 +1,167 @@
-# ScreeningTogether AU - UI Branch
+# ScreeningTogether AU
 
-## 1. Branch Overview
+## 1. Main Branch Overview
 
-The **UI** branch contains the frontend implementation of ScreeningTogether AU.
+The `main` branch contains the complete ScreeningTogether AU application, consisting of three main parts:
 
-This branch is responsible for building the user interface and user-facing interactions of the application, including:
+* **Frontend** — Vue 3 + TypeScript + Vite web application.
+* **Backend** — FastAPI API providing backend services and data access.
+* **Godot Game** — Godot 4.7 educational game prototype focused on cervical cancer screening awareness.
 
-* Landing page and cervical cancer screening information
-* Dynamic cervical screening statistics
-* Frequently Asked Questions (FAQ)
-* GP finder interface
-* Educational game interfaces
-* Screening Pathways game
-* Temporary placeholder pages
-* Frontend routing and navigation
-* Frontend development, testing, linting, and type checking
-
-The frontend is built using **Vue 3, TypeScript, and Vite**.
+```text
+FIT5120_Luna_ScreeningTogether_AU/
+├── frontend/
+├── backend/
+└── godot-game/
+```
 
 ---
 
-## 2. Frontend Folder Structure
+## 2. Folder Structure
 
-The main frontend structure is organised as follows:
+### `frontend/`
 
-```text
-frontend/
-├── public/
-├── src/
-│   ├── assets/
-│   │   └── ...
-│   │
-│   ├── components/
-│   │   └── ...
-│   │
-│   ├── views/
-│   │   ├── HomeView.vue
-│   │   ├── GameView.vue
-│   │   ├── GPFinderView.vue
-│   │   ├── GpRunnerGameView.vue
-│   │   └── Placeholder.vue
-│   │
-│   ├── router/
-│   │   └── ...
-│   │
-│   ├── App.vue
-│   └── main.ts
-│
-├── package.json
-├── vite.config.ts
-├── tsconfig.json
-├── eslint.config.ts
-└── ...
-```
+Contains the web application's user interface, navigation, pages, games interface, GP finder, cervical cancer information, statistics, and FAQs.
 
-### Main Views
+Main technologies:
 
-| View                   | Purpose                                                                                                                        |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `HomeView.vue`         | Landing page containing information about cervical cancer, dynamic statistics, and FAQs about cervical cancer.                 |
-| `GameView.vue`         | Gaming page that provides access to the project's educational games.                                                           |
-| `GPFinderView.vue`     | GP finder page where users can find a GP near them for cervical cancer screening.                                              |
-| `GpRunnerGameView.vue` | First educational game, **Screening Pathways**, where the player controls a character moving through hurdles and stigmas to reach a GP. |
-| `Placeholder.vue`      | Temporary "Coming Soon" page used for features that are not yet implemented.                                                   |
+* Vue 3
+* TypeScript
+* Vite
+* Vue Router
+* Tailwind CSS
+
+Main views include:
+
+* `HomeView.vue` — Landing page with cervical cancer information, dynamic statistics, and FAQs.
+* `GameView.vue` — Educational games page.
+* `GPFinderView.vue` — GP finder for locating a GP for cervical screening.
+* `GpRunnerGameView.vue` — Interface for the GP Runner educational game.
+* `Placeholder.vue` — Temporary coming-soon page.
+
+### `backend/`
+
+Contains the FastAPI backend and API services used by the frontend.
+
+Key dependencies:
+
+* FastAPI
+* Uvicorn
+* Pydantic
+* Pydantic Settings
+* SQLAlchemy
+* PostgreSQL (`psycopg2-binary`)
+* HTTPX
+
+### `godot-game/`
+
+Contains the Godot 4.7 educational game prototype.
+
+The current prototype is a **720 × 1280 endless-runner-style game** focused on cervical cancer screening awareness.
+
+Key scenes include:
+
+* `main.tscn` — Game state, HUD, scoring, start/game-over screens, and level lifecycle.
+* `player.tscn` — Player movement, jumping, camera, keyboard, and touch controls.
+* `track_segment.tscn` — Reusable path sections.
+* `obstacle.tscn` — Stigma and misconception barriers.
+* `npc.tscn` — Community voices and misconception messages.
+* `support_pickup.tscn` — Trusted-information and support pickups.
+* `support_popup.tscn` — Screening facts.
+* `clinic_finish.tscn` — Health-service destination and finish trigger.
+
+The game supports keyboard and touch controls and can be exported for Web using the Web export preset.
 
 ---
 
 ## 3. Dependencies
 
-The UI branch uses Vue 3 with TypeScript and Vite.
+### Frontend
 
-### Core Frontend
+The frontend uses:
 
-| Dependency           |  Version | Purpose                                    |
-| -------------------- | -------: | ------------------------------------------ |
-| `vue`                | `3.5.18` | Frontend framework                         |
-| `vue-router`         |  `4.6.4` | Client-side page routing                   |
-| `typescript`         |  `5.8.3` | Type-safe JavaScript development           |
-| `vite`               |  `7.0.6` | Frontend development server and build tool |
-| `@vitejs/plugin-vue` |  `6.0.1` | Vue support for Vite                       |
-| `vue-tsc`            | `2.2.12` | Type checking for Vue + TypeScript         |
+* Vue `3.5.18`
+* Vite `7.0.6`
+* TypeScript `5.8.3`
+* Vue Router `4.6.4`
+* Tailwind CSS `3.4.17`
+* Vue TypeScript Checker `2.2.12`
+* Vitest `3.2.4`
+* ESLint `9.32.0`
+* Prettier `3.5.3`
 
-### CSS and Build Tools
-
-| Dependency     |   Version | Purpose                           |
-| -------------- | --------: | --------------------------------- |
-| `tailwindcss`  |  `3.4.17` | Utility-first CSS framework       |
-| `postcss`      |   `8.5.6` | CSS transformation and processing |
-| `autoprefixer` | `10.4.21` | Adds vendor prefixes to CSS       |
-
-### Testing
-
-| Dependency              |  Version | Purpose                            |
-| ----------------------- | -------: | ---------------------------------- |
-| `vitest`                |  `3.2.4` | Unit and component testing         |
-| `@vue/test-utils`       |  `2.4.6` | Vue component testing utilities    |
-| `jsdom`                 | `26.1.0` | Browser-like environment for tests |
-| `@types/jsdom`          | `21.1.7` | TypeScript types for jsdom         |
-| `@vitest/eslint-plugin` |  `1.3.4` | ESLint integration for Vitest      |
-
-### Code Quality
-
-| Dependency                      |  Version | Purpose                         |
-| ------------------------------- | -------: | ------------------------------- |
-| `eslint`                        | `9.32.0` | JavaScript/TypeScript linting   |
-| `eslint-plugin-vue`             | `10.2.0` | Vue-specific ESLint rules       |
-| `prettier`                      |  `3.5.3` | Code formatting                 |
-| `@vue/eslint-config-prettier`   | `10.2.0` | ESLint and Prettier integration |
-| `@vue/eslint-config-typescript` | `14.6.0` | TypeScript ESLint configuration |
-
-### Development Utilities
-
-| Dependency                 |   Version | Purpose                                                 |
-| -------------------------- | --------: | ------------------------------------------------------- |
-| `vite-plugin-vue-devtools` |   `7.7.7` | Vue development tools integration                       |
-| `npm-run-all2`             |   `8.0.4` | Running multiple npm scripts                            |
-| `jiti`                     |   `2.5.1` | Runtime support for JavaScript/TypeScript configuration |
-| `@types/node`              | `22.17.0` | Node.js TypeScript definitions                          |
-| `@tsconfig/node22`         |  `22.0.2` | Node.js 22 TypeScript configuration                     |
-| `@vue/tsconfig`            |   `0.7.0` | Recommended TypeScript configuration for Vue            |
-
----
-
-## 4. Start Up
-
-### Prerequisites
-
-Make sure the following are installed:
-
-* Node.js
-* npm
-* Git
-
-### 1. Navigate to the frontend
-
-From the project root:
-
-```powershell
-cd frontend
-```
-
-### 2. Install dependencies
-
-If dependencies have not been installed yet:
-
-```powershell
-npm install
-```
-
-### 3. Start the development server
-
-```powershell
-npm run dev
-```
-
-Vite will display the local development URL in the terminal, normally similar to:
+### Backend
 
 ```text
-http://localhost:5173/
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+sqlalchemy
+psycopg2-binary
+httpx
 ```
 
-Open the displayed URL in a browser.
+### Godot
 
-### 4. Type Check
-
-To check the Vue and TypeScript code:
-
-```powershell
-npm run type-check
-```
-
-### 5. Build for Production
-
-```powershell
-npm run build
-```
-
-### 6. Preview the Production Build
-
-```powershell
-npm run preview
-```
+* Godot `4.7`
+* Web-compatible GL Compatibility renderer
+* Web export preset
 
 ---
 
-## 5. Development Workflow
+## 4. Startup
 
-For frontend development:
-
-1. Switch to the `UI` branch.
-2. Navigate to the `frontend` directory.
-3. Install dependencies if required.
-4. Run the Vite development server.
-5. Make changes to the Vue components, views, assets, or routing.
-6. Run type checking before committing changes.
-7. Build the frontend to verify that the production build succeeds.
-
-Example:
+### Frontend
 
 ```powershell
-git checkout UI
-
 cd frontend
-
 npm install
-
 npm run dev
 ```
 
-Before committing:
+Vite will provide the local development URL in the terminal.
+
+### Backend
+
+Create and activate the Python virtual environment, install the dependencies, then start the FastAPI server:
 
 ```powershell
-npm run type-check
-npm run build
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload
 ```
+
+### Godot Game
+
+Open the `godot-game` folder containing `project.godot` in **Godot 4.7**, then run the project.
+
+For a web build, use the included Web export preset.
+
+---
+
+## 5. Development
+
+The three parts can be developed independently:
+
+```text
+Frontend
+   │
+   ├── Website UI
+   ├── Statistics
+   ├── Cervical screening information
+   ├── GP Finder
+   └── Game interface
+          │
+          ▼
+     Godot Game
+
+Frontend
+   │
+   ▼
+Backend (FastAPI)
+   │
+   └── API services and data
+```
+
+The `main` branch represents the integrated application containing the frontend, backend, and Godot game.
