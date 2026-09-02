@@ -1,43 +1,167 @@
-# Screening Pathways Prototype
+# ScreeningTogether AU
 
-A small Godot 4 endless-runner prototype for cervical cancer screening awareness. The project is designed around a 720 x 1280 virtual viewport, scalable UI, touch gestures, and the Web-compatible GL Compatibility renderer.
+## 1. Main Branch Overview
 
-## Scene structure
+The `main` branch contains the complete ScreeningTogether AU application, consisting of three main parts:
 
-- `scenes/main.tscn`: run state, HUD, start/game-over screens, scoring, and procedural segment lifecycle.
-- `scenes/player.tscn`: player body, supplied Sprout Lands character animation, following camera, lane movement, jumping, keyboard input, and swipe input.
-- `scenes/track_segment.tscn`: reusable 640-pixel path section with generated lane markings and supplied Sprout Lands vegetation.
-- `scenes/obstacle.tscn`: reusable symbolic sign obstacle with collision and a data-provided barrier label.
-- `scenes/npc.tscn`: side-of-path community voices with respectful, data-provided misconception messages.
-- `scenes/support_pickup.tscn`: trusted-information and support pickups that build confidence and clear an upcoming stigma barrier.
-- `scenes/support_popup.tscn`: a random screening fact shown after collecting support.
-- `scenes/clinic_finish.tscn`: the fixed health-service destination and finish trigger.
+* **Frontend** — Vue 3 + TypeScript + Vite web application.
+* **Backend** — FastAPI API providing backend services and data access.
+* **Godot Game** — Godot 4.7 educational game prototype focused on cervical cancer screening awareness.
 
-Scripts mirror those scene names under `scripts/`. Barrier names and display colours are data entries in `scripts/main.gd`, leaving room for later translation resources and educational message data.
+```text
+FIT5120_Luna_ScreeningTogether_AU/
+├── frontend/
+├── backend/
+└── godot-game/
+```
 
-## Coding style
+---
 
-PEP 8 is a Python style guide, while Godot uses GDScript for this project. The scripts follow the corresponding conventions: `snake_case` functions and variables, `UPPER_CASE` constants, descriptive names, focused functions, blank lines between functions, and lines kept to 88 characters where practical. Indentation uses tabs because that is the Godot GDScript convention.
+## 2. Folder Structure
 
-## Controls
+### `frontend/`
 
-- Desktop: Left/Right arrows or A/D change lanes. Up arrow or W jumps.
-- Space starts the game, continues fact popups, and restarts after an ending.
-- Touch: swipe left/right to change lanes and swipe up to jump.
+Contains the web application's user interface, navigation, pages, games interface, GP finder, cervical cancer information, statistics, and FAQs.
 
-## Level-one gameplay
+Main technologies:
 
-The first route focuses on stigma, shame, misconceptions, and social pressure. The player has three lives and a short invulnerability period after a hit. Every NPC speech bubble animates into a physical quote barrier after the player has time to read it. Each support pickup appears before a three-lane barrier row and clears that complete row when collected. A missed pickup leaves jumping as the avoidance option. The finite 1500 m route ends at a health service with the message, "You made an informed choice."
+* Vue 3
+* TypeScript
+* Vite
+* Vue Router
+* Tailwind CSS
 
-## Reused assets
+Main views include:
 
-- `assets/sprout_lands/character.png`: player and NPC character animation.
-- `assets/sprout_lands/grass_scenery.png`: repeated verge vegetation.
-- `assets/sprout_lands/clinic_building.png`: clinic destination artwork.
-- The pack's palette and pixel-art proportions guide the generated path and signs.
+* `HomeView.vue` — Landing page with cervical cancer information, dynamic statistics, and FAQs.
+* `GameView.vue` — Educational games page.
+* `GPFinderView.vue` — GP finder for locating a GP for cervical screening.
+* `GpRunnerGameView.vue` — Interface for the GP Runner educational game.
+* `Placeholder.vue` — Temporary coming-soon page.
 
-Sprout Lands assets are by Cup Nooble and are used under the terms in `assets/sprout_lands/LICENSE.txt`.
+### `backend/`
 
-## Running
+Contains the FastAPI backend and API services used by the frontend.
 
-Open the folder containing `project.godot` in Godot 4.7 and run the project. For a Web build, use the included Web export preset; no filesystem, threading, native extension, external API, or non-Web renderer features are required by the prototype.
+Key dependencies:
+
+* FastAPI
+* Uvicorn
+* Pydantic
+* Pydantic Settings
+* SQLAlchemy
+* PostgreSQL (`psycopg2-binary`)
+* HTTPX
+
+### `godot-game/`
+
+Contains the Godot 4.7 educational game prototype.
+
+The current prototype is a **720 × 1280 endless-runner-style game** focused on cervical cancer screening awareness.
+
+Key scenes include:
+
+* `main.tscn` — Game state, HUD, scoring, start/game-over screens, and level lifecycle.
+* `player.tscn` — Player movement, jumping, camera, keyboard, and touch controls.
+* `track_segment.tscn` — Reusable path sections.
+* `obstacle.tscn` — Stigma and misconception barriers.
+* `npc.tscn` — Community voices and misconception messages.
+* `support_pickup.tscn` — Trusted-information and support pickups.
+* `support_popup.tscn` — Screening facts.
+* `clinic_finish.tscn` — Health-service destination and finish trigger.
+
+The game supports keyboard and touch controls and can be exported for Web using the Web export preset.
+
+---
+
+## 3. Dependencies
+
+### Frontend
+
+The frontend uses:
+
+* Vue `3.5.18`
+* Vite `7.0.6`
+* TypeScript `5.8.3`
+* Vue Router `4.6.4`
+* Tailwind CSS `3.4.17`
+* Vue TypeScript Checker `2.2.12`
+* Vitest `3.2.4`
+* ESLint `9.32.0`
+* Prettier `3.5.3`
+
+### Backend
+
+```text
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+sqlalchemy
+psycopg2-binary
+httpx
+```
+
+### Godot
+
+* Godot `4.7`
+* Web-compatible GL Compatibility renderer
+* Web export preset
+
+---
+
+## 4. Startup
+
+### Frontend
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+Vite will provide the local development URL in the terminal.
+
+### Backend
+
+Create and activate the Python virtual environment, install the dependencies, then start the FastAPI server:
+
+```powershell
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
+
+### Godot Game
+
+Open the `godot-game` folder containing `project.godot` in **Godot 4.7**, then run the project.
+
+For a web build, use the included Web export preset.
+
+---
+
+## 5. Development
+
+The three parts can be developed independently:
+
+```text
+Frontend
+   │
+   ├── Website UI
+   ├── Statistics
+   ├── Cervical screening information
+   ├── GP Finder
+   └── Game interface
+          │
+          ▼
+     Godot Game
+
+Frontend
+   │
+   ▼
+Backend (FastAPI)
+   │
+   └── API services and data
+```
+
+The `main` branch represents the integrated application containing the frontend, backend, and Godot game.

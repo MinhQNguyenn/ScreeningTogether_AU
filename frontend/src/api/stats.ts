@@ -1,31 +1,43 @@
-export interface ScreeningStats {
-  state: string
-  reporting_period: string
-  age_group: string
-  number: number
-  crude_rate: number
-  as_rate: number | null
+export interface ParticipationPercentage {
+  percent: number
+  year_start: number
+  year_end: number
 }
 
-const API_BASE_URL = 'https://api.screeningtogether.app/'
+export interface ParticipationGraphPoint {
+  year_start: number
+  year_end: number
+  percent: number
+}
 
-export async function getCervicalScreeningStats(
-  state?: string
-): Promise<ScreeningStats[]> {
-  const params = new URLSearchParams()
+export interface ParticipationGraph {
+  state: string
+  points: ParticipationGraphPoint[]
+}
 
-  if (state) {
-    params.append('state', state)
-  }
+const API_BASE_URL = 'https://api.screeningtogether.app'
 
-  const query = params.toString()
-
+export async function getParticipationPercentage(): Promise<ParticipationPercentage> {
   const response = await fetch(
-    `${API_BASE_URL}/stats/cervical-screening${query ? `?${query}` : ''}`
+    `${API_BASE_URL}/stats/participation-percentage`
   )
 
   if (!response.ok) {
-    throw new Error('Failed to fetch cervical screening statistics')
+    throw new Error('Failed to fetch participation percentage')
+  }
+
+  return response.json()
+}
+
+export async function getParticipationGraph(
+  state: string
+): Promise<ParticipationGraph> {
+  const response = await fetch(
+    `${API_BASE_URL}/stats/participation-graph?state=${encodeURIComponent(state)}`
+  )
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch participation graph')
   }
 
   return response.json()

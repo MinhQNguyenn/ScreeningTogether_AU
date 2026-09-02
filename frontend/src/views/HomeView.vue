@@ -10,7 +10,7 @@
           today to protect your future.
         </p>
         <div class="hero-actions">
-          <RouterLink to="/gprunner" class="button button-primary" @click="closeMenu"
+          <RouterLink to="/gprunner" class="button button-primary"
             >Start learning <span>↗</span></RouterLink
           >
           <a href="#stats" class="text-link">See the numbers <span>↓</span></a>
@@ -135,57 +135,128 @@
       <div class="stats-heading">
         <div>
           <div class="section-label light">03 / The bigger picture</div>
-          <h2>Progress is<br /><em>possible.</em></h2>
+          <h2>Every<br /><em>Screening counts.</em></h2>
         </div>
         <div class="stats-filters">
-          <label
-            >State<select v-model="selectedState">
-              <option v-for="state in states" :key="state" :value="state">{{ state }}</option>
-            </select></label
-          >
+          <label>
+            State
+            <select v-model="selectedState">
+              <option v-for="state in states" :key="state.value" :value="state.value">
+                {{ state.label }}
+              </option>
+            </select>
+          </label>
         </div>
       </div>
       <div class="stats-layout">
         <div class="big-stat">
-          <template v-if="loadingStats"> — </template>
+          <strong v-if="percentageLoading"> — </strong>
 
-          <template v-else-if="latestScreeningRate !== null">
-            {{ latestScreeningRate }}<span>%</span>
-          </template>
+          <strong v-else-if="headlinePercent !== null">
+            {{ headlinePercent }}<span>%</span>
+          </strong>
 
-          <template v-else> — </template>
+          <strong v-else> — </strong>
 
-          <p>of cervical cancer cases are linked to HPV.</p>
+          <p>Every screening helps move Australia closer to eliminating cervical cancer.</p>
+
           <div class="stat-rule"></div>
-          <small>World Health Organization</small>
+
+          <small v-if="participationPercentage">
+            {{ headlinePeriod }}
+          </small>
+
+          <small v-else> — </small>
         </div>
         <div class="chart-card">
           <div class="chart-top">
-            <h3>Prevention impact</h3>
+            <h3>Screening Participation Rate</h3>
             <span>{{ chartPeriodRange }}</span>
           </div>
+
+          <div v-if="participationChange !== null" class="trend-indicator">
+            <span>↓</span>
+            {{ Math.abs(participationChange).toFixed(1) }} % participation rate
+          </div>
+
           <svg
-            viewBox="0 0 560 220"
+            viewBox="0 0 600 220"
             role="img"
             aria-label="Line chart showing cervical screening participation over time"
           >
-            <path class="grid-line" d="M0 180H560M0 125H560M0 70H560M0 15H560" />
+            <!-- Grid lines -->
+            <path
+              class="grid-line"
+              d="M40 15H560M40 56.25H560M40 97.5H560M40 138.75H560M40 180H560"
+            />
 
-            <path class="chart-area" :d="chartAreaPath" />
+            <!-- Chart -->
+            <path
+              v-if="!graphLoading && svgChartPoints.length"
+              class="chart-area"
+              :d="chartAreaPath"
+            />
 
-            <path class="chart-line" :d="chartLinePath" />
+            <path
+              v-if="!graphLoading && svgChartPoints.length"
+              class="chart-line"
+              :d="chartLinePath"
+            />
+
+            <!-- Data points -->
+            <circle
+              v-for="(point, index) in svgChartPoints"
+              :key="`hit-${point.year}`"
+              :cx="point.x"
+              :cy="point.y"
+              r="18"
+              fill="transparent"
+              class="chart-hit-area"
+              @mouseenter="hoveredPoint = index"
+              @mouseleave="hoveredPoint = null"
+            />
 
             <circle
-              v-if="chartPoints.length"
-              :cx="chartPoints[chartPoints.length - 1].x"
-              :cy="chartPoints[chartPoints.length - 1].y"
-              r="6"
+              v-for="point in svgChartPoints"
+              :key="`${point.year}-${point.percent}`"
+              :cx="point.x"
+              :cy="point.y"
+              r="5"
               class="chart-dot"
             />
+
+            <g v-if="hoveredPoint !== null" class="chart-tooltip">
+              <line
+                :x1="svgChartPoints[hoveredPoint].x"
+                :x2="svgChartPoints[hoveredPoint].x"
+                :y1="svgChartPoints[hoveredPoint].y"
+                y2="180"
+                class="chart-hover-line"
+              />
+
+              <rect
+                :x="svgChartPoints[hoveredPoint].x - 48"
+                :y="svgChartPoints[hoveredPoint].y - 48"
+                width="96"
+                height="36"
+                rx="6"
+                class="chart-tooltip-box"
+              />
+
+              <text
+                :x="svgChartPoints[hoveredPoint].x"
+                :y="svgChartPoints[hoveredPoint].y - 30"
+                text-anchor="middle"
+                dominant-baseline="middle"
+                class="chart-tooltip-text"
+              >
+                {{ svgChartPoints[hoveredPoint].percent }}%
+              </text>
+            </g>
           </svg>
           <div class="chart-labels">
-            <span v-for="stat in chartStats" :key="stat.reporting_period">
-              {{ stat.reporting_period }}
+            <span v-for="point in chartPoints" :key="`${point.year}-${point.percent}`">
+              {{ point.year }}
             </span>
           </div>
         </div>
@@ -210,140 +281,209 @@
 import '../assets/homeView.css'
 
 import { computed, onMounted, ref, watch } from 'vue'
-import { getCervicalScreeningStats, type ScreeningStats } from '../api/stats'
+
+import {
+  getParticipationGraph,
+  getParticipationPercentage,
+  type ParticipationGraph,
+  type ParticipationPercentage,
+} from '../api/stats'
 
 const states = [
-  'All states',
-  'Victoria',
-  'New South Wales',
-  'Queensland',
-  'Western Australia',
-  'South Australia',
-  'Tasmania',
+  { label: 'All states', value: 'Australia' },
+  { label: 'Victoria', value: 'Vic' },
+  { label: 'New South Wales', value: 'NSW' },
+  { label: 'Queensland', value: 'Qld' },
+  { label: 'Western Australia', value: 'WA' },
+  { label: 'South Australia', value: 'SA' },
+  { label: 'Tasmania', value: 'Tas' },
+  { label: 'Australian Capital Territory', value: 'ACT' },
+  { label: 'Northern Territory', value: 'NT' },
 ]
 
-const selectedState = ref(states[0])
+const selectedState = ref(states[0].value)
 
-const screeningStats = ref<ScreeningStats[]>([])
-const loadingStats = ref(false)
-const statsError = ref('')
+const participationPercentage = ref<ParticipationPercentage | null>(null)
+const participationGraph = ref<ParticipationGraph | null>(null)
 
-async function loadScreeningStats() {
-  loadingStats.value = true
-  statsError.value = ''
+const percentageLoading = ref(false)
+const graphLoading = ref(false)
+
+const percentageError = ref('')
+const graphError = ref('')
+
+async function loadParticipationPercentage() {
+  percentageLoading.value = true
+  percentageError.value = ''
 
   try {
-    const state = selectedState.value === 'All states' ? undefined : selectedState.value
-
-    screeningStats.value = await getCervicalScreeningStats(state)
+    participationPercentage.value = await getParticipationPercentage()
   } catch (error) {
     console.error(error)
-    statsError.value = 'Unable to load screening statistics.'
-    screeningStats.value = []
+    percentageError.value = 'Unable to load participation percentage.'
   } finally {
-    loadingStats.value = false
+    percentageLoading.value = false
+  }
+}
+
+async function loadParticipationGraph() {
+  graphLoading.value = true
+  graphError.value = ''
+
+  try {
+    participationGraph.value = await getParticipationGraph(selectedState.value)
+  } catch (error) {
+    console.error(error)
+    graphError.value = 'Unable to load participation graph.'
+    participationGraph.value = null
+  } finally {
+    graphLoading.value = false
   }
 }
 
 onMounted(() => {
-  loadScreeningStats()
+  loadParticipationPercentage()
+  loadParticipationGraph()
 })
 
 watch(selectedState, () => {
-  loadScreeningStats()
+  loadParticipationGraph()
 })
 
-const latestScreeningRate = computed(() => {
-  if (screeningStats.value.length === 0) {
-    return null
+const hoveredPoint = ref<number | null>(null)
+
+// Headline percentage
+const headlinePercent = computed(() => {
+  return participationPercentage.value?.percent ?? null
+})
+
+const headlinePeriod = computed(() => {
+  if (!participationPercentage.value) {
+    return '—'
   }
 
-  const latest = screeningStats.value[screeningStats.value.length - 1]
-
-  return latest.as_rate
+  return `${participationPercentage.value.year_start} — ${participationPercentage.value.year_end}`
 })
 
-const chartStats = computed(() => {
-  return screeningStats.value.slice(-4)
-})
-
+/*
+ * Convert the API's three rolling periods into
+ * the three chart years:
+ *
+ * 2018-2022 → 2018
+ * 2019-2023 → 2021
+ * 2020-2024 → 2024
+ */
 const chartPoints = computed(() => {
-  const stats = chartStats.value
-
-  if (stats.length === 0) {
+  if (!participationGraph.value) {
     return []
   }
 
-  const width = 560
-  const height = 165
+  return participationGraph.value.points.map((point) => {
+    let year: number
 
-  const rates = stats.map((stat) => stat.as_rate ?? 0)
-
-  const minRate = Math.min(...rates)
-  const maxRate = Math.max(...rates)
-
-  const range = maxRate - minRate || 1
-
-  return stats.map((stat, index) => {
-    const x = stats.length === 1 ? width / 2 : (index / (stats.length - 1)) * width
-
-    const y = height - (((stat.as_rate ?? 0) - minRate) / range) * height
+    // First point → lowest starting year
+    if (point === participationGraph.value?.points[0]) {
+      year = point.year_start
+    }
+    // Last point → highest ending year
+    else if (
+      point === participationGraph.value?.points[participationGraph.value.points.length - 1]
+    ) {
+      year = point.year_end
+    }
+    // Middle point → middle year of the period
+    else {
+      year = Math.floor((point.year_start + point.year_end) / 2)
+    }
 
     return {
-      x,
-      y,
-      rate: stat.as_rate,
-      period: stat.reporting_period,
+      year,
+      percent: point.percent,
     }
   })
 })
 
-const chartLinePath = computed(() => {
-  if (chartPoints.value.length === 0) {
-    return ''
+const participationChange = computed(() => {
+  const points = chartPoints.value
+
+  if (points.length < 2) {
+    return null
   }
 
-  return chartPoints.value
+  return points[points.length - 1].percent - points[0].percent
+})
+
+//Convert the three data points into SVG coordinates.
+const svgChartPoints = computed(() => {
+  const points = chartPoints.value
+
+  if (points.length === 0) {
+    return []
+  }
+
+  const width = 520
+  const chartTop = 15
+  const chartBottom = 180
+  const chartHeight = chartBottom - chartTop
+
+  const minPercent = 70
+  const maxPercent = 85
+
+  return points.map((point, index) => {
+    const x = points.length === 1 ? 300 : 40 + (index / (points.length - 1)) * width
+
+    const y = chartBottom - ((point.percent - minPercent) / (maxPercent - minPercent)) * chartHeight
+
+    return {
+      x,
+      y,
+      year: point.year,
+      percent: point.percent,
+    }
+  })
+})
+
+// SVG line path.
+const chartLinePath = computed(() => {
+  return svgChartPoints.value
     .map((point, index) => {
-      return `${index === 0 ? 'M' : 'L'}${point.x} ${point.y}`
+      return `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
     })
     .join(' ')
 })
 
+//SVG filled area underneath the line.
 const chartAreaPath = computed(() => {
-  if (chartPoints.value.length === 0) {
+  const points = svgChartPoints.value
+
+  if (points.length === 0) {
     return ''
   }
-
-  const points = chartPoints.value
 
   const line = points
     .map((point, index) => {
-      return `${index === 0 ? 'M' : 'L'}${point.x} ${point.y}`
+      return `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
     })
     .join(' ')
 
-  return `${line} L${points[points.length - 1].x} 180 L${points[0].x} 180 Z`
+  const lastPoint = points[points.length - 1]
+  const firstPoint = points[0]
+
+  return `${line} L ${lastPoint.x} 180 L ${firstPoint.x} 180 Z`
 })
 
+//Range shown in the chart header.
 const chartPeriodRange = computed(() => {
-  if (chartStats.value.length === 0) {
+  const points = participationGraph.value?.points
+
+  if (!points || points.length === 0) {
     return '—'
   }
 
-  const periods = chartStats.value.map(stat => stat.reporting_period)
+  const firstYear = Math.min(...points.map((point) => point.year_start))
 
-  const startYears = periods.map(period =>
-    Number(period.split('-')[0])
-  )
+  const lastYear = Math.max(...points.map((point) => point.year_end))
 
-  const endYears = periods.map(period =>
-    Number(period.split('-')[1])
-  )
-
-  const startYear = Math.min(...startYears)
-  const endYear = Math.max(...endYears)
-
-  return `${startYear} — ${endYear}`
+  return `${firstYear} — ${lastYear}`
 })
 </script>
