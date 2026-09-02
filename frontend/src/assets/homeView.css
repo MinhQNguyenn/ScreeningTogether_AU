@@ -635,3 +635,35 @@
     width: 100%;
   }
 }
+
+.chart-tooltip-box {
+  fill: #fffaf6;
+  stroke: #d39a9a;
+  stroke-width: 1;
+}
+
+.chart-tooltip-text {
+  fill: #73484e;
+  font-size: 13px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.chart-hover-line {
+  stroke: #d39a9a;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+  opacity: 0.7;
+}
+
+.trend-indicator {
+  color: #d39a9a;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.trend-indicator span {
+  font-size: 18px;
+  margin-right: 4px;
+}
