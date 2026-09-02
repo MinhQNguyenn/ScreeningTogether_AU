@@ -27,7 +27,8 @@
             </article>
           </div>
         </section>
-        <div class="game-switcher" aria-label="Choose a game">
+        <!-- This part will be implemented when more game is available
+         <div class="game-switcher" aria-label="Choose a game">
           <button
             v-for="game in games"
             :key="game.number"
@@ -38,7 +39,7 @@
           >
             {{ game.number }}
           </button>
-        </div>
+        </div> -->
       </div>
       <section ref="gameFrame" class="game-frame" aria-label="Educational game area">
         <iframe 
