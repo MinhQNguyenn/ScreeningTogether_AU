@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routers import stats
+# import routers here:
+from routers import gp, stats
 
 app = FastAPI(title="ScreeningTogether API", docs_url=None, redoc_url=None, openapi_url=None)
 
@@ -26,4 +27,6 @@ app.add_middleware(
 def health_check():
     return {"status": "ok"}
 
+# include routers here:
+app.include_router(gp.router)
 app.include_router(stats.router)

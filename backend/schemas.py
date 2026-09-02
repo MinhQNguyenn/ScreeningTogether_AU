@@ -1,30 +1,53 @@
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, Field
 
 # Schema layout convention:
 # Group models by api function (e.g. GP)
-# Within each resource group, order as: shared base -> request model(s) -> response model(s).
+# Within each resource group, order as: base model -> request model(s) -> response model(s).
 # e.g.
-#   class GPBase(BaseModel): ...
-#   class GPQuery(GPBase): ...             # request (e.g. search params for healthdirect lookup)
-#   class GPResponse(GPBase):              # response
-#       model_config = ConfigDict(from_attributes=True)
-#       id: str
+#   class GPBase(BaseModel): ...    # base model
+#   class GPQuery(GPBase): ...      # request
+#   class GPResponse(GPBase): ...   # response
 
 
-class ScreeningStatsBase(BaseModel):
+class GPBase(BaseModel):
+    postcode: str = Field(pattern=r"^\d{4}$")
+
+
+class GPQuery(GPBase):
+    pass
+
+
+class GPResponse(GPBase):
+    name: str
+    address: str
+    suburb: str
     state: str
-    reporting_period: str  # e.g. "2018-2022", a rolling 5-year window, not a calendar year
+    latitude: float | None = None
+    longitude: float | None = None
 
 
-class ScreeningStatsQuery(BaseModel):
-    state: str | None = None
-    reporting_period: str | None = None
+class ParticipationBase(BaseModel):
+    # geo_code: "Australia" (national) or a state/territory (NSW, Vic, Qld, WA, SA, Tas, ACT, NT).
+    state: str = "Australia"
 
 
-class ScreeningStatsResponse(ScreeningStatsBase):
-    model_config = ConfigDict(from_attributes=True)
+class ParticipationQuery(ParticipationBase):
+    pass
 
-    age_group: str
-    number: int
-    crude_rate: float
-    as_rate: float | None = None
+
+# most recent national participation % across all states, 25-74 age total. No filters.
+class ParticipationPercentageResponse(BaseModel):
+    percent: float
+    year_start: int
+    year_end: int
+
+
+# participation % for the 25-74 total. Filterable by state or all of Australia.
+class ParticipationGraphPoint(BaseModel):
+    year_start: int
+    year_end: int
+    percent: float
+
+
+class ParticipationGraphResponse(ParticipationBase):
+    points: list[ParticipationGraphPoint]

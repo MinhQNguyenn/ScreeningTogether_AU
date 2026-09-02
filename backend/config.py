@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
-    # Postgres connection string, e.g. postgresql+psycopg2://user:password@localhost:5432/screeningtogether
+    # Postgres connection address
     database_url: SecretStr
 
     # add api keys here

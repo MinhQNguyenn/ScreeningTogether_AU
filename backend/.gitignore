@@ -30,3 +30,6 @@ dist/
 # Local-only raw data, kept out of the repo until there's a real pipeline
 data/
 *.csv
+
+#Data files (raw xlsx)
+*.xlsx
