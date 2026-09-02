@@ -24,3 +24,30 @@ class GPResponse(GPBase):
     state: str
     latitude: float | None = None
     longitude: float | None = None
+
+
+class ParticipationBase(BaseModel):
+    # geo_code: "Australia" (national) or a state/territory (NSW, Vic, Qld, WA, SA, Tas, ACT, NT).
+    state: str = "Australia"
+
+
+class ParticipationQuery(ParticipationBase):
+    pass
+
+
+# most recent national participation % across all states, 25-74 age total. No filters.
+class ParticipationPercentageResponse(BaseModel):
+    percent: float
+    year_start: int
+    year_end: int
+
+
+# participation % for the 25-74 total. Filterable by state or all of Australia.
+class ParticipationGraphPoint(BaseModel):
+    year_start: int
+    year_end: int
+    percent: float
+
+
+class ParticipationGraphResponse(ParticipationBase):
+    points: list[ParticipationGraphPoint]
