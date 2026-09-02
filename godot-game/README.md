@@ -10,8 +10,7 @@ A small Godot 4 endless-runner prototype for cervical cancer screening awareness
 - `scenes/obstacle.tscn`: reusable symbolic sign obstacle with collision and a data-provided barrier label.
 - `scenes/npc.tscn`: side-of-path community voices with respectful, data-provided misconception messages.
 - `scenes/support_pickup.tscn`: trusted-information and support pickups that build confidence and clear an upcoming stigma barrier.
-- `scenes/support_popup.tscn`: a formatted nearby health-service result shown after collecting support.
-- `scenes/api_client.tscn`: the small HTTP client used by the support popup.
+- `scenes/support_popup.tscn`: a random screening fact shown after collecting support.
 - `scenes/clinic_finish.tscn`: the fixed health-service destination and finish trigger.
 
 Scripts mirror those scene names under `scripts/`. Barrier names and display colours are data entries in `scripts/main.gd`, leaving room for later translation resources and educational message data.
@@ -22,7 +21,8 @@ PEP 8 is a Python style guide, while Godot uses GDScript for this project. The s
 
 ## Controls
 
-- Desktop: Left/Right arrows or A/D change lanes. Up arrow, W, or Space jumps.
+- Desktop: Left/Right arrows or A/D change lanes. Up arrow or W jumps.
+- Space starts the game, continues fact popups, and restarts after an ending.
 - Touch: swipe left/right to change lanes and swipe up to jump.
 
 ## Level-one gameplay
@@ -40,4 +40,4 @@ Sprout Lands assets are by Cup Nooble and are used under the terms in `assets/sp
 
 ## Running
 
-Open the folder containing `project.godot` in Godot 4.7 and run the project. For a Web build, add a Web export preset in the editor; no filesystem, threading, native extension, or non-Web renderer features are used by the prototype. The Web build calls an external health-service endpoint, so the hosting site must allow that address in its Content Security Policy and the endpoint must allow browser cross-origin requests.
+Open the folder containing `project.godot` in Godot 4.7 and run the project. For a Web build, use the included Web export preset; no filesystem, threading, native extension, external API, or non-Web renderer features are required by the prototype.

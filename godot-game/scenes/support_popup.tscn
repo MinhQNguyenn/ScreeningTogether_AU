@@ -45,7 +45,7 @@ color = Color(0.05882353, 0.10980392, 0.08627451, 0.7490196)
 script = ExtResource("1_caqws")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1840277371]
-custom_minimum_size = Vector2(620, 760)
+custom_minimum_size = Vector2(620, 560)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -53,9 +53,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -310.0
-offset_top = -380.0
+offset_top = -280.0
 offset_right = 310.0
-offset_bottom = 380.0
+offset_bottom = 280.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_caqws")
@@ -68,7 +68,7 @@ theme_override_constants/separation = 18
 layout_mode = 2
 theme_override_colors/font_color = Color(0.15686275, 0.30980393, 0.20784314, 1)
 theme_override_font_sizes/font_size = 30
-text = "INFORMATION"
+text = "SCREENING FACT"
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -76,23 +76,24 @@ autowrap_mode = 3
 layout_mode = 2
 theme_override_colors/font_color = Color(0.39215687, 0.44705883, 0.40392157, 1)
 theme_override_font_sizes/font_size = 18
-text = "Finding nearby health services..."
+text = "DID YOU KNOW?"
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="data_label" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=2005892245]
-custom_minimum_size = Vector2(0, 520)
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0.14117648, 0.19215687, 0.15294118, 1)
 theme_override_constants/line_separation = 6
-theme_override_font_sizes/normal_font_size = 19
+theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 19
 theme_override_font_sizes/bold_italics_font_size = 19
 theme_override_font_sizes/italics_font_size = 19
 theme_override_font_sizes/mono_font_size = 19
 scroll_active = true
 scroll_following = true
+text = "In Australia, more than 70% of cervical cancers occurred in women who had never screened or were overdue for screening."
 
 [node name="close_button" type="Button" parent="PanelContainer/VBoxContainer" unique_id=568841710]
 custom_minimum_size = Vector2(0, 58)
@@ -102,4 +103,4 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_4f0ha")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_x5e5e")
 theme_override_styles/hover = SubResource("StyleBoxFlat_mljm8")
-text = "CONTINUE"
+text = "CONTINUE  [SPACE]"
