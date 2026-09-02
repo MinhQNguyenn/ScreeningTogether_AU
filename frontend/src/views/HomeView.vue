@@ -5,10 +5,12 @@
         <p class="eyebrow"><span class="eyebrow-dot"></span> Prevention is powerful</p>
         <h1>Your health<br /><em>deserves a voice.</em></h1>
         <p class="hero-text">
-          No matter your culture, language, or background, you deserve to feel informed and confident about cervical screening. Cervical cancer is preventable—take a simple step today to protect your future.
+          No matter your culture, language, or background, you deserve to feel informed and
+          confident about cervical screening. Cervical cancer is preventable—take a simple step
+          today to protect your future.
         </p>
         <div class="hero-actions">
-          <RouterLink to="/gprunner" class="button button-primary" @click="closeMenu"
+          <RouterLink to="/gprunner" class="button button-primary"
             >Start learning <span>↗</span></RouterLink
           >
           <a href="#stats" class="text-link">See the numbers <span>↓</span></a>
@@ -44,7 +46,10 @@
           <span class="step-number">01</span>
           <div class="step-icon icon-shield">♡</div>
           <h3>HPV vaccination</h3>
-          <p>HPV (human papillomavirus) is a common virus that can cause cervical cancer. Vaccination helps prevent HPV infection.</p>
+          <p>
+            HPV (human papillomavirus) is a common virus that can cause cervical cancer. Vaccination
+            helps prevent HPV infection.
+          </p>
         </article>
         <article class="step-card featured">
           <span class="step-number">02</span>
@@ -130,46 +135,129 @@
       <div class="stats-heading">
         <div>
           <div class="section-label light">03 / The bigger picture</div>
-          <h2>Progress is<br /><em>possible.</em></h2>
+          <h2>Every<br /><em>Screening counts.</em></h2>
         </div>
         <div class="stats-filters">
-          <label
-            >State<select v-model="selectedState">
-              <option v-for="state in states" :key="state" :value="state">{{ state }}</option>
-            </select></label
-          >
+          <label>
+            State
+            <select v-model="selectedState">
+              <option v-for="state in states" :key="state.value" :value="state.value">
+                {{ state.label }}
+              </option>
+            </select>
+          </label>
         </div>
       </div>
       <div class="stats-layout">
         <div class="big-stat">
-          <strong>90<span>%</span></strong>
-          <p>of cervical cancer cases are linked to HPV.</p>
+          <strong v-if="percentageLoading"> — </strong>
+
+          <strong v-else-if="headlinePercent !== null">
+            {{ headlinePercent }}<span>%</span>
+          </strong>
+
+          <strong v-else> — </strong>
+
+          <p>Every screening helps move Australia closer to eliminating cervical cancer.</p>
+
           <div class="stat-rule"></div>
-          <small>World Health Organization</small>
+
+          <small v-if="participationPercentage">
+            {{ headlinePeriod }}
+          </small>
+
+          <small v-else> — </small>
         </div>
         <div class="chart-card">
           <div class="chart-top">
-            <h3>Prevention impact</h3>
-            <span>2020 — 2030</span>
+            <h3>Screening Participation Rate</h3>
+            <span>{{ chartPeriodRange }}</span>
           </div>
+
+          <div v-if="participationChange !== null" class="trend-indicator">
+            <span>↓</span>
+            {{ Math.abs(participationChange).toFixed(1) }} % participation rate
+          </div>
+
           <svg
-            viewBox="0 0 560 220"
+            viewBox="0 0 600 220"
             role="img"
-            aria-label="Line chart showing prevention impact increasing over time"
+            aria-label="Line chart showing cervical screening participation over time"
           >
-            <path class="grid-line" d="M0 180H560M0 125H560M0 70H560M0 15H560" />
+            <!-- Grid lines -->
             <path
+              class="grid-line"
+              d="M40 15H560M40 56.25H560M40 97.5H560M40 138.75H560M40 180H560"
+            />
+
+            <!-- Chart -->
+            <path
+              v-if="!graphLoading && svgChartPoints.length"
               class="chart-area"
-              d="M0 180 C70 175 80 155 140 160 S210 130 270 138 S345 80 405 91 S470 44 560 20 V180Z"
+              :d="chartAreaPath"
             />
+
             <path
+              v-if="!graphLoading && svgChartPoints.length"
               class="chart-line"
-              d="M0 180 C70 175 80 155 140 160 S210 130 270 138 S345 80 405 91 S470 44 560 20"
+              :d="chartLinePath"
             />
-            <circle cx="560" cy="20" r="6" class="chart-dot" />
+
+            <!-- Data points -->
+            <circle
+              v-for="(point, index) in svgChartPoints"
+              :key="`hit-${point.year}`"
+              :cx="point.x"
+              :cy="point.y"
+              r="18"
+              fill="transparent"
+              class="chart-hit-area"
+              @mouseenter="hoveredPoint = index"
+              @mouseleave="hoveredPoint = null"
+            />
+
+            <circle
+              v-for="point in svgChartPoints"
+              :key="`${point.year}-${point.percent}`"
+              :cx="point.x"
+              :cy="point.y"
+              r="5"
+              class="chart-dot"
+            />
+
+            <g v-if="hoveredPoint !== null" class="chart-tooltip">
+              <line
+                :x1="svgChartPoints[hoveredPoint].x"
+                :x2="svgChartPoints[hoveredPoint].x"
+                :y1="svgChartPoints[hoveredPoint].y"
+                y2="180"
+                class="chart-hover-line"
+              />
+
+              <rect
+                :x="svgChartPoints[hoveredPoint].x - 48"
+                :y="svgChartPoints[hoveredPoint].y - 48"
+                width="96"
+                height="36"
+                rx="6"
+                class="chart-tooltip-box"
+              />
+
+              <text
+                :x="svgChartPoints[hoveredPoint].x"
+                :y="svgChartPoints[hoveredPoint].y - 30"
+                text-anchor="middle"
+                dominant-baseline="middle"
+                class="chart-tooltip-text"
+              >
+                {{ svgChartPoints[hoveredPoint].percent }}%
+              </text>
+            </g>
           </svg>
           <div class="chart-labels">
-            <span>2017</span><span>2020</span><span>2023</span><span>2026</span>
+            <span v-for="point in chartPoints" :key="`${point.year}-${point.percent}`">
+              {{ point.year }}
+            </span>
           </div>
         </div>
       </div>
@@ -189,12 +277,213 @@
   </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import '../assets/homeView.css'
 
-import { ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 
-const states = ['All states', 'Victoria', 'New South Wales', 'Queensland', 'Western Australia', 'South Australia', 'Tasmania']
-const selectedState = ref(states[0])
+import {
+  getParticipationGraph,
+  getParticipationPercentage,
+  type ParticipationGraph,
+  type ParticipationPercentage,
+} from '../api/stats'
+
+const states = [
+  { label: 'All states', value: 'Australia' },
+  { label: 'Victoria', value: 'Vic' },
+  { label: 'New South Wales', value: 'NSW' },
+  { label: 'Queensland', value: 'Qld' },
+  { label: 'Western Australia', value: 'WA' },
+  { label: 'South Australia', value: 'SA' },
+  { label: 'Tasmania', value: 'Tas' },
+  { label: 'Australian Capital Territory', value: 'ACT' },
+  { label: 'Northern Territory', value: 'NT' },
+]
+
+const selectedState = ref(states[0].value)
+
+const participationPercentage = ref<ParticipationPercentage | null>(null)
+const participationGraph = ref<ParticipationGraph | null>(null)
+
+const percentageLoading = ref(false)
+const graphLoading = ref(false)
+
+const percentageError = ref('')
+const graphError = ref('')
+
+async function loadParticipationPercentage() {
+  percentageLoading.value = true
+  percentageError.value = ''
+
+  try {
+    participationPercentage.value = await getParticipationPercentage()
+  } catch (error) {
+    console.error(error)
+    percentageError.value = 'Unable to load participation percentage.'
+  } finally {
+    percentageLoading.value = false
+  }
+}
+
+async function loadParticipationGraph() {
+  graphLoading.value = true
+  graphError.value = ''
+
+  try {
+    participationGraph.value = await getParticipationGraph(selectedState.value)
+  } catch (error) {
+    console.error(error)
+    graphError.value = 'Unable to load participation graph.'
+    participationGraph.value = null
+  } finally {
+    graphLoading.value = false
+  }
+}
+
+onMounted(() => {
+  loadParticipationPercentage()
+  loadParticipationGraph()
+})
+
+watch(selectedState, () => {
+  loadParticipationGraph()
+})
+
+const hoveredPoint = ref<number | null>(null)
+
+// Headline percentage
+const headlinePercent = computed(() => {
+  return participationPercentage.value?.percent ?? null
+})
+
+const headlinePeriod = computed(() => {
+  if (!participationPercentage.value) {
+    return '—'
+  }
+
+  return `${participationPercentage.value.year_start} — ${participationPercentage.value.year_end}`
+})
+
+/*
+ * Convert the API's three rolling periods into
+ * the three chart years:
+ *
+ * 2018-2022 → 2018
+ * 2019-2023 → 2021
+ * 2020-2024 → 2024
+ */
+const chartPoints = computed(() => {
+  if (!participationGraph.value) {
+    return []
+  }
+
+  return participationGraph.value.points.map((point) => {
+    let year: number
+
+    // First point → lowest starting year
+    if (point === participationGraph.value?.points[0]) {
+      year = point.year_start
+    }
+    // Last point → highest ending year
+    else if (
+      point === participationGraph.value?.points[participationGraph.value.points.length - 1]
+    ) {
+      year = point.year_end
+    }
+    // Middle point → middle year of the period
+    else {
+      year = Math.floor((point.year_start + point.year_end) / 2)
+    }
+
+    return {
+      year,
+      percent: point.percent,
+    }
+  })
+})
+
+const participationChange = computed(() => {
+  const points = chartPoints.value
+
+  if (points.length < 2) {
+    return null
+  }
+
+  return points[points.length - 1].percent - points[0].percent
+})
+
+//Convert the three data points into SVG coordinates.
+const svgChartPoints = computed(() => {
+  const points = chartPoints.value
+
+  if (points.length === 0) {
+    return []
+  }
+
+  const width = 520
+  const chartTop = 15
+  const chartBottom = 180
+  const chartHeight = chartBottom - chartTop
+
+  const minPercent = 70
+  const maxPercent = 85
+
+  return points.map((point, index) => {
+    const x = points.length === 1 ? 300 : 40 + (index / (points.length - 1)) * width
+
+    const y = chartBottom - ((point.percent - minPercent) / (maxPercent - minPercent)) * chartHeight
+
+    return {
+      x,
+      y,
+      year: point.year,
+      percent: point.percent,
+    }
+  })
+})
+
+// SVG line path.
+const chartLinePath = computed(() => {
+  return svgChartPoints.value
+    .map((point, index) => {
+      return `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
+    })
+    .join(' ')
+})
+
+//SVG filled area underneath the line.
+const chartAreaPath = computed(() => {
+  const points = svgChartPoints.value
+
+  if (points.length === 0) {
+    return ''
+  }
+
+  const line = points
+    .map((point, index) => {
+      return `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
+    })
+    .join(' ')
+
+  const lastPoint = points[points.length - 1]
+  const firstPoint = points[0]
+
+  return `${line} L ${lastPoint.x} 180 L ${firstPoint.x} 180 Z`
+})
+
+//Range shown in the chart header.
+const chartPeriodRange = computed(() => {
+  const points = participationGraph.value?.points
+
+  if (!points || points.length === 0) {
+    return '—'
+  }
+
+  const firstYear = Math.min(...points.map((point) => point.year_start))
+
+  const lastYear = Math.max(...points.map((point) => point.year_end))
+
+  return `${firstYear} — ${lastYear}`
+})
 </script>
-
