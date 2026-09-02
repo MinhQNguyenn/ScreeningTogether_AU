@@ -1,40 +1,43 @@
+# Screening Pathways Prototype
 
-ScreeningTogether AU
+A small Godot 4 endless-runner prototype for cervical cancer screening awareness. The project is designed around a 720 x 1280 virtual viewport, scalable UI, touch gestures, and the Web-compatible GL Compatibility renderer.
 
-ScreeningTogether AU is a web application designed to raise awareness and promote education about cervical screening in Australia. Through interactive educational content and engaging games, the application helps users understand the importance of cervical screening, learn about the screening process, and build confidence to take the next step towards regular screening.
+## Scene structure
 
-# fusion-vue-tailwind-starter
+- `scenes/main.tscn`: run state, HUD, start/game-over screens, scoring, and procedural segment lifecycle.
+- `scenes/player.tscn`: player body, supplied Sprout Lands character animation, following camera, lane movement, jumping, keyboard input, and swipe input.
+- `scenes/track_segment.tscn`: reusable 640-pixel path section with generated lane markings and supplied Sprout Lands vegetation.
+- `scenes/obstacle.tscn`: reusable symbolic sign obstacle with collision and a data-provided barrier label.
+- `scenes/npc.tscn`: side-of-path community voices with respectful, data-provided misconception messages.
+- `scenes/support_pickup.tscn`: trusted-information and support pickups that build confidence and clear an upcoming stigma barrier.
+- `scenes/support_popup.tscn`: a random screening fact shown after collecting support.
+- `scenes/clinic_finish.tscn`: the fixed health-service destination and finish trigger.
 
-## Customize configuration
+Scripts mirror those scene names under `scripts/`. Barrier names and display colours are data entries in `scripts/main.gd`, leaving room for later translation resources and educational message data.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Coding style
 
-## Project Setup
+PEP 8 is a Python style guide, while Godot uses GDScript for this project. The scripts follow the corresponding conventions: `snake_case` functions and variables, `UPPER_CASE` constants, descriptive names, focused functions, blank lines between functions, and lines kept to 88 characters where practical. Indentation uses tabs because that is the Godot GDScript convention.
 
-```sh
-npm install
-```
+## Controls
 
-### Compile and Hot-Reload for Development
+- Desktop: Left/Right arrows or A/D change lanes. Up arrow or W jumps.
+- Space starts the game, continues fact popups, and restarts after an ending.
+- Touch: swipe left/right to change lanes and swipe up to jump.
 
-```sh
-npm run dev
-```
+## Level-one gameplay
 
-### Type-Check, Compile and Minify for Production
+The first route focuses on stigma, shame, misconceptions, and social pressure. The player has three lives and a short invulnerability period after a hit. Every NPC speech bubble animates into a physical quote barrier after the player has time to read it. Each support pickup appears before a three-lane barrier row and clears that complete row when collected. A missed pickup leaves jumping as the avoidance option. The finite 1500 m route ends at a health service with the message, "You made an informed choice."
 
-```sh
-npm run build
-```
+## Reused assets
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+- `assets/sprout_lands/character.png`: player and NPC character animation.
+- `assets/sprout_lands/grass_scenery.png`: repeated verge vegetation.
+- `assets/sprout_lands/clinic_building.png`: clinic destination artwork.
+- The pack's palette and pixel-art proportions guide the generated path and signs.
 
-```sh
-npm run test:unit
-```
+Sprout Lands assets are by Cup Nooble and are used under the terms in `assets/sprout_lands/LICENSE.txt`.
 
-### Lint with [ESLint](https://eslint.org/)
+## Running
 
-```sh
-npm run lint
-```
+Open the folder containing `project.godot` in Godot 4.7 and run the project. For a Web build, use the included Web export preset; no filesystem, threading, native extension, external API, or non-Web renderer features are required by the prototype.
