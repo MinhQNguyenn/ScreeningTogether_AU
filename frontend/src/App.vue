@@ -17,8 +17,27 @@
                 -->
       </nav>
       <RouterLink to="/gprunner" class="header-cta">
-        Learn through the game<span>↗</span>
+        <span v-if="isMobile">Game</span>
+        <span v-else>Learn through the game</span>
+        <span>↗</span>
       </RouterLink>
+      <button
+        class="menu-toggle"
+        type="button"
+        :aria-label="menuOpen ? 'Close menu' : 'Open menu'"
+        :aria-expanded="menuOpen"
+        @click="toggleMenu"
+      >
+        <template v-if="menuOpen">
+          <span class="close-icon">×</span>
+        </template>
+
+        <template v-else>
+          <span></span>
+          <span></span>
+          <span></span>
+        </template>
+      </button>
     </header>
     <RouterView />
     <footer class="site-footer">
@@ -32,8 +51,8 @@
 import { onMounted, onUnmounted, ref, computed } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 
-const menuOpen = ref(true)
-
+const menuOpen = ref(window.innerWidth > 900)
+const isMobile = ref(window.innerWidth <= 900)
 
 const route = useRoute()
 const isHomePage = computed(() => route.path === '/')
@@ -45,7 +64,22 @@ const closeMenu = () => {
   menuOpen.value = false
 }
 
-</script>
+const handleResize = () => {
+  isMobile.value = window.innerWidth <= 900
+
+  // Keep desktop menu open
+  if (window.innerWidth > 900) {
+    menuOpen.value = true
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
+})</script>
 
 <style scoped>
 .site-shell {
@@ -111,8 +145,6 @@ const closeMenu = () => {
 }
 .menu-toggle {
   display: none;
-  background: none;
-  border: 0;
 }
 .site-footer {
   display: flex;
@@ -174,8 +206,9 @@ const closeMenu = () => {
   .site-header {
     padding: 0 20px;
   }
+
   .main-nav {
-    display: none !important;
+    display: none;
     position: absolute;
     top: 78px;
     left: 0;
@@ -188,42 +221,12 @@ const closeMenu = () => {
     gap: 18px;
     box-shadow: 0 10px 20px #0000000c;
   }
+
   .main-nav.open {
-    display: flex !important;
-  }
-  .header-cta {
-    display: none;
-  }
-  .menu-toggle {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding: 8px;
-    background: transparent;
   }
-  .menu-toggle span {
-    display: block;
-    width: 23px;
-    height: 2px;
-    background: #302a2d;
-  }
-}
-@media (max-width: 420px) {
-  .site-header {
-    padding: 0 14px;
-  }
-  .brand {
-    font-size: 15px;
-  }
-  .brand-mark {
-    font-size: 18px;
-    margin-right: 3px;
-  }
-  .main-nav {
-    padding: 18px 16px;
-  }
-}
-@media (max-width: 900px) {
+
+  /* Keep the game button visible */
   .header-cta {
     display: inline-flex;
     align-items: center;
@@ -231,12 +234,92 @@ const closeMenu = () => {
     padding: 9px 12px;
     font-size: 10px;
   }
+
   .header-cta span {
     font-size: 13px;
     margin-left: 6px;
   }
+
+  /* Hamburger / close button */
   .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
     margin-left: 8px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .menu-toggle > span:not(.close-icon) {
+    display: block;
+    width: 23px;
+    height: 2px;
+    background: #302a2d;
+  }
+
+  .menu-toggle .close-icon {
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1;
+    color: #302a2d;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header {
+    padding: 0 14px;
+  }
+
+  .brand {
+    font-size: 15px;
+  }
+
+  .brand-mark {
+    font-size: 18px;
+    margin-right: 3px;
+  }
+
+  .header-cta {
+    padding: 8px 9px;
+    font-size: 9px;
+  }
+
+  .header-cta span {
+    font-size: 12px;
+    margin-left: 4px;
+  }
+
+  .menu-toggle {
+    margin-left: 3px;
+  }
+
+  .main-nav {
+    padding: 18px 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header {
+    padding: 0 14px;
+  }
+
+  .brand {
+    font-size: 15px;
+  }
+
+  .brand-mark {
+    font-size: 18px;
+    margin-right: 3px;
+  }
+
+  .main-nav {
+    padding: 18px 16px;
   }
 }
 @media (max-width: 520px) {
