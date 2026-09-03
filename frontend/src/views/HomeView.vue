@@ -135,7 +135,7 @@
       <div class="stats-heading">
         <div>
           <div class="section-label light">03 / The bigger picture</div>
-          <h2>Every<br /><em>Screening counts.</em></h2>
+          <h2>Chance for<br /><em>Improvement.</em></h2>
         </div>
         <div class="stats-filters">
           <label>
@@ -158,7 +158,7 @@
 
           <strong v-else> — </strong>
 
-          <p>Every screening helps move Australia closer to eliminating cervical cancer.</p>
+          <p>eligible women had an HPV test between January 2020 to June 2025.</p>
 
           <div class="stat-rule"></div>
 
