@@ -9,3 +9,4 @@ router = APIRouter(prefix="/gp", tags=["gp"])
 @router.get("", response_model=list[GPResponse])
 def list_gps(query: GPQuery = Depends()):
     return healthdirect.search_gps_by_postcode(query.postcode)
+
