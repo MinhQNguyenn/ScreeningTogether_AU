@@ -29,7 +29,7 @@
               <span>01</span>
               <h3>Navigation</h3>
               <p>
-                Use arrow keys → ← or 'A', 'D' keys to move side by side. And Space, 'W' and ↑ to
+                Use arrow keys → ← or 'A', 'D' keys to move side by side. And 'W' or ↑ to
                 jump
               </p>
             </article>
