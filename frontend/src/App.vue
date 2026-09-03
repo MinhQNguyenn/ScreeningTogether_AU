@@ -79,7 +79,8 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize)
-})</script>
+})
+</script>
 
 <style scoped>
 .site-shell {
