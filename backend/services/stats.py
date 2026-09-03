@@ -36,6 +36,7 @@ def participation_percentage() -> ParticipationPercentageResponse:
         percent=latest.percent,
         year_start=latest.year_start,
         year_end=latest.year_end,
+        label=latest.label,
     )
 
 
@@ -52,7 +53,7 @@ def participation_graph(state: str) -> ParticipationGraphResponse:
         state=geo_code,
         points=[
             ParticipationGraphPoint(
-                year_start=w.year_start, year_end=w.year_end, percent=w.percent
+                year_start=w.year_start, year_end=w.year_end, percent=w.percent, label=w.label
             )
             for w in windows
         ],
@@ -64,6 +65,7 @@ class _Window:
         self.year_start = year_start
         self.year_end = year_end
         self.percent = percent
+        self.label = f"{year_start}-{year_end}"
 
 
 def _participation_totals(session: Session, geo_code: str) -> list[_Window]:
@@ -89,7 +91,8 @@ def _participation_totals(session: Session, geo_code: str) -> list[_Window]:
             ScreeningParticipation.metric_code.in_(("number", "population")),
         )
         .group_by(ScreeningParticipation.year_start, ScreeningParticipation.year_end)
-        .order_by(ScreeningParticipation.year_end)
+        # oldest window first, so points/labels are already left-to-right for the chart
+        .order_by(ScreeningParticipation.year_start, ScreeningParticipation.year_end)
     ).all()
 
     return [

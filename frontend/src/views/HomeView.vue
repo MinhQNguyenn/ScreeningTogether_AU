@@ -206,7 +206,7 @@
             <!-- Data points -->
             <circle
               v-for="(point, index) in svgChartPoints"
-              :key="`hit-${point.year}`"
+              :key="`hit-${point.label}`"
               :cx="point.x"
               :cy="point.y"
               r="18"
@@ -218,7 +218,7 @@
 
             <circle
               v-for="point in svgChartPoints"
-              :key="`${point.year}-${point.percent}`"
+              :key="`${point.label}-${point.percent}`"
               :cx="point.x"
               :cy="point.y"
               r="5"
@@ -255,8 +255,8 @@
             </g>
           </svg>
           <div class="chart-labels">
-            <span v-for="point in chartPoints" :key="`${point.year}-${point.percent}`">
-              {{ point.year }}
+            <span v-for="point in chartPoints" :key="`${point.label}-${point.percent}`">
+              {{ point.label }}
             </span>
           </div>
         </div>
@@ -362,45 +362,20 @@ const headlinePeriod = computed(() => {
     return '—'
   }
 
-  return `${participationPercentage.value.year_start} — ${participationPercentage.value.year_end}`
+  return participationPercentage.value.label
 })
 
-/*
- * Convert the API's three rolling periods into
- * the three chart years:
- *
- * 2018-2022 → 2018
- * 2019-2023 → 2021
- * 2020-2024 → 2024
- */
+// The API returns points oldest-first, each with a ready-made period label
+// (e.g. "2018-2022") for the x-axis.
 const chartPoints = computed(() => {
   if (!participationGraph.value) {
     return []
   }
 
-  return participationGraph.value.points.map((point) => {
-    let year: number
-
-    // First point → lowest starting year
-    if (point === participationGraph.value?.points[0]) {
-      year = point.year_start
-    }
-    // Last point → highest ending year
-    else if (
-      point === participationGraph.value?.points[participationGraph.value.points.length - 1]
-    ) {
-      year = point.year_end
-    }
-    // Middle point → middle year of the period
-    else {
-      year = Math.floor((point.year_start + point.year_end) / 2)
-    }
-
-    return {
-      year,
-      percent: point.percent,
-    }
-  })
+  return participationGraph.value.points.map((point) => ({
+    label: point.label,
+    percent: point.percent,
+  }))
 })
 
 const participationChange = computed(() => {
@@ -437,7 +412,7 @@ const svgChartPoints = computed(() => {
     return {
       x,
       y,
-      year: point.year,
+      label: point.label,
       percent: point.percent,
     }
   })
