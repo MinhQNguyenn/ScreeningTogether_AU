@@ -1,4 +1,4 @@
-# ScreeningTogether AU - UI Branch
+# ScreeningTogether AU — UI Branch
 
 ## 1. Branch Overview
 
@@ -11,7 +11,7 @@ This branch is responsible for building the user interface and user-facing inter
 * Frequently Asked Questions (FAQ)
 * GP finder interface
 * Educational game interfaces
-* Screening Pathways game
+* GP Runner game
 * Temporary placeholder pages
 * Frontend routing and navigation
 * Frontend development, testing, linting, and type checking
@@ -61,7 +61,7 @@ frontend/
 | `HomeView.vue`         | Landing page containing information about cervical cancer, dynamic statistics, and FAQs about cervical cancer.                 |
 | `GameView.vue`         | Gaming page that provides access to the project's educational games.                                                           |
 | `GPFinderView.vue`     | GP finder page where users can find a GP near them for cervical cancer screening.                                              |
-| `GpRunnerGameView.vue` | First educational game, **Screening Pathways**, where the player controls a character moving through hurdles and stigmas to reach a GP. |
+| `GpRunnerGameView.vue` | First educational game, **GP Runner**, where the player controls a character moving through hurdles and stigmas to reach a GP. |
 | `Placeholder.vue`      | Temporary "Coming Soon" page used for features that are not yet implemented.                                                   |
 
 ---
