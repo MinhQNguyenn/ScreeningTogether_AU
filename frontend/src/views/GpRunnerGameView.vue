@@ -44,7 +44,7 @@
       <section ref="gameFrame" class="game-frame" aria-label="Educational game area">
         <iframe 
          class="game_1" 
-          src="/public/godot/screening-game/index.html" 
+          src="/godot/screening-game/index.html" 
           allowfullscreen
         ></iframe>
         <button
