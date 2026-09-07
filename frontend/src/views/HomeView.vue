@@ -123,10 +123,9 @@
             Choose a healthcare provider for a clinician-collected test, or ask if self-collection
             is available for you. Both options check for HPV.
           </p>
-          <!-- This section will be implemented when GP finder feature is ready (Iteration 2)
           <RouterLink to="/gpfinder" class="arrow-link"
             >Look for GP near you <span>→</span></RouterLink
-          > -->
+          >
         </article>
       </div>
     </section>
@@ -163,7 +162,8 @@
           <div class="stat-rule"></div>
 
           <small v-if="participationPercentage">
-            {{ headlinePeriod }}
+            <!-- {{ headlinePeriod }} -->
+            2020 - 2024
           </small>
 
           <small v-else> — </small>
@@ -263,7 +263,6 @@
       </div>
     </section>
 
-    <!-- This section will be implemented when GP finder feature is ready (Iteration 2)
     <section class="closing-section">
       <div class="closing-bloom"></div>
       <div class="section-label">04 / Your next step</div>
@@ -273,7 +272,6 @@
         >Check your nearest GP <span>↗</span></RouterLink
       >
     </section>
-    -->
   </main>
 </template>
 

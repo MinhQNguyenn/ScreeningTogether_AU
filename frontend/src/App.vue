@@ -12,9 +12,7 @@
           <a href="/#screening-info">FAQ</a>
           <a href="/#stats">The numbers</a>
         </template>
-        <!-- This section will be implemented when GP finder feature is ready (Iteration 2)
-                <RouterLink to="/gpfinder" @click="closeMenu">GP Finder</RouterLink>
-                -->
+        <RouterLink to="/gpfinder" @click="closeMenu">GP Finder</RouterLink>
       </nav>
       <RouterLink to="/gprunner" class="header-cta">
         <span v-if="isMobile">Game</span>
