@@ -5,6 +5,7 @@ import EducationGame from '../views/GameView.vue'
 import HomeView from '../views/HomeView.vue'
 import GpFinder from '../views/GpFinderView.vue'
 import GPRunnerGameView from '../views/GpRunnerGameView.vue'
+import GPDetailsView from '../views/GpFinderDetailView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -33,6 +34,7 @@ const router = createRouter({
       component: GPRunnerGameView,
       meta: { title: 'Screening Pathways | ScreeningTogether AU' },
     },
+    { path: '/details', component: GPDetailsView, meta: { title: 'GP Details | ScreeningTogether AU' } }
   ],
 })
 
