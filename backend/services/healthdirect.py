@@ -8,6 +8,7 @@ This dataset requires no authentication.
 """
 
 import httpx
+from fastapi import HTTPException
 
 from schemas import GPResponse
 
@@ -18,15 +19,19 @@ GP_LAYER_URL = (
 
 
 def search_gps_by_postcode(postcode: str) -> list[GPResponse]:
-    response = httpx.get(
-        GP_LAYER_URL,
-        params={
-            'where': f'postcode={postcode}',
-            'outFields': 'organisation_name,address,suburb,postcode,state,latitude,longitude',
-            'f': 'json',
-        },
-    )
-    response.raise_for_status()
+    try:
+        response = httpx.get(
+            GP_LAYER_URL,
+            params={
+                'where': f'postcode={postcode}',
+                'outFields': 'organisation_name,address,suburb,postcode,state,latitude,longitude',
+                'f': 'json',
+            },
+        )
+        response.raise_for_status()
+    except httpx.HTTPError as exc:
+        raise HTTPException(status_code=502, detail="Unable to reach GP directory") from exc
+
     features = response.json().get('features', [])
 
     gps = []
