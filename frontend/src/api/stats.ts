@@ -2,12 +2,14 @@ export interface ParticipationPercentage {
   percent: number
   year_start: number
   year_end: number
+  label: string
 }
 
 export interface ParticipationGraphPoint {
   year_start: number
   year_end: number
   percent: number
+  label: string
 }
 
 export interface ParticipationGraph {
