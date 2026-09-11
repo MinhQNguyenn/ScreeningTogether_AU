@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://braoj8xhdhrh"
-path="res://.godot/imported/index.png-aef8614cbeb475057c849451554bb85e.ctex"
+uid="uid://bb35gd2m7bhtk"
+path="res://.godot/imported/heart_pixel.png-e9545a2e4b82551c52c97ccfbea350c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://web_build/index.png"
-dest_files=["res://.godot/imported/index.png-aef8614cbeb475057c849451554bb85e.ctex"]
+source_file="res://assets/heart_pixel.png"
+dest_files=["res://.godot/imported/heart_pixel.png-e9545a2e4b82551c52c97ccfbea350c5.ctex"]
 
 [params]
 

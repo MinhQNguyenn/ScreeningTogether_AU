@@ -13,9 +13,10 @@ const SUPPORT_POPUP := preload("res://scenes/support_popup.tscn")
 # basic level settings
 const SEGMENT_HEIGHT := 640.0
 const SEGMENTS_AHEAD := 7
-const FINISH_Y := -15000.0
+const ROUTE_DISTANCE_METRES := 1500
+const PIXELS_PER_METRE := 10.0
+const FINISH_Y := -ROUTE_DISTANCE_METRES * PIXELS_PER_METRE
 const MAX_LIVES := 3
-const MAX_CONFIDENCE := 3
 # which track pieces get NPCs and pickups
 const NPC_SEGMENTS := [3, 9, 15, 21, 27, 33, 39, 44]
 const PICKUP_SEGMENTS := [7, 20, 32]
@@ -59,7 +60,6 @@ var track_segments: Array[Node2D] = []
 var next_segment_y: float = 320.0
 var segment_count: int = 0
 var lives: int = MAX_LIVES
-var confidence: int = 0
 var is_playing: bool = false
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 # stops an old message timer from deleting a newer message
@@ -72,8 +72,11 @@ var current_support_popup: SupportPopup = null
 @onready var player: RunnerPlayer = $Player
 @onready var clinic_finish: ClinicFinish = $Destination
 @onready var score_label: Label = $Interface/HUD/Score
-@onready var lives_label: Label = $Interface/HUD/Lives
-@onready var support_label: Label = $Interface/HUD/Support
+@onready var health_hearts: Array[TextureRect] = [
+	$Interface/HUD/HealthDisplay/Heart1,
+	$Interface/HUD/HealthDisplay/Heart2,
+	$Interface/HUD/HealthDisplay/Heart3,
+]
 @onready var feedback_label: Label = $Interface/HUD/Feedback
 @onready var start_screen: Control = $Interface/StartScreen
 @onready var game_over_screen: Control = $Interface/GameOverScreen
@@ -149,7 +152,6 @@ func _restart_game() -> void:
 	next_segment_y = 320.0
 	segment_count = 0
 	lives = MAX_LIVES
-	confidence = 0
 	is_playing = false
 	clinic_finish.reset_finish()
 	player.reset_player()
@@ -299,18 +301,25 @@ func _maintain_track() -> void:
 
 
 func _update_score() -> void:
-	# going forward is negative Y, 10 pixels = 1 metre
-	var distance: int = maxi(0, int(-player.position.y / 10.0))
-	score_label.text = "%04d m" % distance
+	# Show the journey as a clear countdown from 1500 m to the clinic.
+	score_label.text = "%d m" % _get_remaining_distance_metres()
+
+
+func _get_remaining_distance_metres() -> int:
+	var travelled_metres: float = clampf(
+		-player.position.y / PIXELS_PER_METRE,
+		0.0,
+		float(ROUTE_DISTANCE_METRES),
+	)
+	return int(ceil(float(ROUTE_DISTANCE_METRES) - travelled_metres))
 
 
 func _update_hud() -> void:
-	# build the little filled/empty life display
+	# Use image-based hearts so the HUD renders consistently in Web exports.
 	_update_score()
-	var filled_lives: String = "[+] ".repeat(lives)
-	var empty_lives: String = "[ ] ".repeat(MAX_LIVES - lives)
-	lives_label.text = "LIVES  %s%s" % [filled_lives, empty_lives]
-	support_label.text = "SUPPORT  %d / %d" % [confidence, MAX_CONFIDENCE]
+	for heart_index in health_hearts.size():
+		var heart_alpha: float = 1.0 if heart_index < lives else 0.2
+		health_hearts[heart_index].modulate = Color(1.0, 1.0, 1.0, heart_alpha)
 
 
 func _on_player_hit(barrier_name: String) -> void:
@@ -322,16 +331,15 @@ func _on_player_hit(barrier_name: String) -> void:
 		return
 	is_playing = false
 	player.stop_run()
-	var distance: int = maxi(0, int(-player.position.y / 10.0))
-	final_score.text = "Distance  %d m" % distance
+	final_score.text = (
+		"Remaining distance  %d m" % _get_remaining_distance_metres()
+	)
 	barrier_message.text = "This path was blocked by: %s" % barrier_name
 	game_over_screen.show()
 
 
 func _on_support_collected(support_name: String) -> void:
 	# Apply the gameplay effect first.
-	confidence = mini(MAX_CONFIDENCE, confidence + 1)
-	
 	# Pause the run and show a local screening fact.
 	await _open_support_popup()
 
@@ -381,9 +389,9 @@ func _on_clinic_reached() -> void:
 		return
 	is_playing = false
 	player.stop_run()
+	player.position.y = FINISH_Y
 	_update_score()
-	var distance: int = maxi(0, int(-player.position.y / 10.0))
-	completion_score.text = "Distance  %d m" % distance
+	completion_score.text = "Remaining distance  0 m"
 	_show_feedback("Trusted support reached")
 	completion_screen.show()
 
