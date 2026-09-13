@@ -2,21 +2,27 @@
   <main>
     <section class="hero-section" id="top">
       <div class="hero-copy">
-        <p class="eyebrow"><span class="eyebrow-dot"></span> Prevention is powerful</p>
-        <h1>Your health<br /><em>deserves a voice.</em></h1>
+        <p class="eyebrow">
+          <span class="eyebrow-dot"></span> {{ t('hero.eyebrow', { ns: 'home' }) }}
+        </p>
+        <h1>
+          {{ t('hero.title', { ns: 'home' }) }}<br /><em>{{
+            t('hero.titleEmphasis', { ns: 'home' })
+          }}</em>
+        </h1>
         <p class="hero-text">
-          No matter your culture, language, or background, you deserve to feel informed and
-          confident about cervical screening. Cervical cancer is preventable—take a simple step
-          today to protect your future.
+          {{ t('hero.description', { ns: 'home' }) }}
         </p>
         <div class="hero-actions">
-          <RouterLink to="/gprunner" class="button button-primary"
-            >Start learning <span>↗</span></RouterLink
+          <RouterLink to="/gprunner" class="button button-primary">{{
+            t('hero.startLearning', { ns: 'home' })
+          }}</RouterLink>
+          <a href="#stats" class="text-link"
+            >{{ t('hero.seeNumbers', { ns: 'home' }) }}<span>↓</span></a
           >
-          <a href="#stats" class="text-link">See the numbers <span>↓</span></a>
         </div>
       </div>
-      <div class="hero-art" aria-label="Abstract illustration of a flower and sun">
+      <div class="hero-art" :aria-label="t('hero.artAriaLabel', { ns: 'home' })">
         <div class="sun"></div>
         <div class="art-orbit orbit-one"></div>
         <div class="art-orbit orbit-two"></div>
@@ -24,109 +30,160 @@
         <div class="leaf leaf-left"></div>
         <div class="leaf leaf-right"></div>
         <div class="flower"><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="art-note note-one">Know your<br /><strong>options</strong></div>
-        <div class="art-note note-two">Small steps<br /><strong>matter</strong></div>
+        <div class="art-note note-one">
+          {{ t('hero.noteOne', { ns: 'home' }) }}<br /><strong>{{
+            t('hero.noteOneStrong', { ns: 'home' })
+          }}</strong>
+        </div>
+        <div class="art-note note-two">
+          {{ t('hero.noteTwo', { ns: 'home' }) }}<br /><strong>{{
+            t('hero.noteTwoStrong', { ns: 'home' })
+          }}</strong>
+        </div>
       </div>
     </section>
 
     <section class="intro-section" id="learn">
-      <div class="section-label">01 / The essentials</div>
+      <div class="section-label">{{ t('essentials.label', { ns: 'home' }) }}</div>
       <div class="intro-grid">
-        <h2>A little knowledge<br /><em>goes a long way.</em></h2>
+        <h2>
+          {{ t('essentials.title', { ns: 'home' }) }}<br /><em>{{
+            t('essentials.titleEmphasis', { ns: 'home' })
+          }}</em>
+        </h2>
         <div>
           <p class="lead">
-            Cervical cancer starts in the cervix, but with regular screening and HPV vaccination, it
-            can often be prevented before it starts.
+            {{ t('essentials.description', { ns: 'home' }) }}
           </p>
-          <a class="arrow-link" href="#screening-info">Frequently Asked Question <span>→</span></a>
+          <a class="arrow-link" href="#screening-info"
+            >{{ t('essentials.faqLink', { ns: 'home' }) }} <span>→</span></a
+          >
         </div>
       </div>
       <div class="steps-grid" id="steps">
         <article class="step-card">
           <span class="step-number">01</span>
           <div class="step-icon icon-shield">♡</div>
-          <h3>HPV vaccination</h3>
+          <h3>{{ t('essentials.steps.vaccination.title', { ns: 'home' }) }}</h3>
           <p>
-            HPV (human papillomavirus) is a common virus that can cause cervical cancer. Vaccination
-            helps prevent HPV infection.
+            {{ t('essentials.steps.vaccination.description', { ns: 'home' }) }}
           </p>
         </article>
         <article class="step-card featured">
           <span class="step-number">02</span>
           <div class="step-icon">◌</div>
-          <h3>Regular screening</h3>
-          <p>Finds cell changes early, when they are easier to treat and manage.</p>
+          <h3>{{ t('essentials.steps.screening.title', { ns: 'home' }) }}</h3>
+          <p>{{ t('essentials.steps.screening.description', { ns: 'home' }) }}</p>
         </article>
         <article class="step-card">
           <span class="step-number">03</span>
           <div class="step-icon">✦</div>
-          <h3>Know your body</h3>
-          <p>Talk to a healthcare professional about anything that feels unusual.</p>
+          <h3>{{ t('essentials.steps.body.title', { ns: 'home' }) }}</h3>
+          <p>{{ t('essentials.steps.body.description', { ns: 'home' }) }}</p>
         </article>
       </div>
     </section>
 
     <section class="screening-info" id="screening-info">
-      <div class="section-label">02 / The screening basics</div>
+      <div class="section-label">{{ t('screening.label', { ns: 'home' }) }}</div>
       <div class="screening-info-heading">
-        <h2>Clear answers for<br /><em>your next step.</em></h2>
+        <h2>
+          {{ t('screening.title', { ns: 'home' }) }}<br /><em>{{
+            t('screening.titleEmphasis', { ns: 'home' })
+          }}</em>
+        </h2>
         <p>
-          Knowing what to expect can make screening feel simpler. Here is the information to help
-          you feel informed and supported.
+          {{ t('screening.description', { ns: 'home' }) }}
         </p>
       </div>
       <div class="info-grid">
         <article class="info-card">
-          <span class="info-index">01</span>
-          <h3>What is cervical screening?</h3>
-          <p>
-            A quick health check for high-risk HPV and early cell changes in the cervix. Finding
-            changes early helps prevent cervical cancer.
-          </p>
+          <div class="info-card-inner">
+            <div class="info-card-front">
+              <span class="info-index">01</span>
+              <h3>{{ t('screening.cards.what.title', { ns: 'home' }) }}</h3>
+            </div>
+            <div class="info-card-back">
+              <p>
+                {{ t('screening.cards.what.description', { ns: 'home' }) }}
+              </p>
+            </div>
+          </div>
         </article>
+
         <article class="info-card">
-          <span class="info-index">02</span>
-          <h3>Why is it important?</h3>
-          <p>
-            Screening can find HPV and early cell changes before they become cancer. It is one of
-            the best ways to protect your future health.
-          </p>
+          <div class="info-card-inner">
+            <div class="info-card-front">
+              <span class="info-index">02</span>
+              <h3>{{ t('screening.cards.why.title', { ns: 'home' }) }}</h3>
+            </div>
+            <div class="info-card-back">
+              <p>
+                {{ t('screening.cards.why.description', { ns: 'home' }) }}
+              </p>
+            </div>
+          </div>
         </article>
+
         <article class="info-card">
-          <span class="info-index">03</span>
-          <h3>Who is it for?</h3>
-          <p>
-            In Australia, cervical screening is recommended for people aged 25 to 74 who have a
-            cervix, whether or not they have had the HPV vaccine.
-          </p>
+          <div class="info-card-inner">
+            <div class="info-card-front">
+              <span class="info-index">03</span>
+              <h3>{{ t('screening.cards.who.title', { ns: 'home' }) }}</h3>
+            </div>
+            <div class="info-card-back">
+              <p>
+                {{ t('screening.cards.who.description', { ns: 'home' }) }}
+              </p>
+            </div>
+          </div>
         </article>
+
         <article class="info-card">
-          <span class="info-index">04</span>
-          <h3>How often?</h3>
-          <p>
-            Most people need screening every five years. Your healthcare provider may recommend a
-            different plan based on your result or health history.
-          </p>
+          <div class="info-card-inner">
+            <div class="info-card-front">
+              <span class="info-index">04</span>
+              <h3>{{ t('screening.cards.howOften.title', { ns: 'home' }) }}</h3>
+            </div>
+            <div class="info-card-back">
+              <p>
+                {{ t('screening.cards.howOften.description', { ns: 'home' }) }}
+              </p>
+            </div>
+          </div>
         </article>
+
         <article class="info-card">
-          <span class="info-index">05</span>
-          <h3>What happens?</h3>
-          <p>
-            A small sample is collected from the cervix by a trained healthcare professional. It
-            usually takes a few minutes, and you can ask questions at any time.
-          </p>
+          <div class="info-card-inner">
+            <div class="info-card-front">
+              <span class="info-index">05</span>
+              <h3>{{ t('screening.cards.whatHappens.title', { ns: 'home' }) }}</h3>
+            </div>
+            <div class="info-card-back">
+              <p>
+                {{ t('screening.cards.whatHappens.description', { ns: 'home' }) }}
+              </p>
+            </div>
+          </div>
         </article>
+
         <article class="info-card info-card-accent">
-          <span class="info-index">06</span>
-          <h3>Your screening options</h3>
-          <p>
-            Choose a healthcare provider for a clinician-collected test, or ask if self-collection
-            is available for you. Both options check for HPV.
-          </p>
-          <!-- This section will be implemented when GP finder feature is ready (Iteration 2)
-          <RouterLink to="/gpfinder" class="arrow-link"
-            >Look for GP near you <span>→</span></RouterLink
-          > -->
+          <div class="info-card-inner">
+            <div class="info-card-front">
+              <span class="info-index">06</span>
+              <h3>{{ t('screening.cards.options.title', { ns: 'home' }) }}</h3>
+            </div>
+
+            <div class="info-card-back">
+              <p>
+                {{ t('screening.cards.options.description', { ns: 'home' }) }}
+              </p>
+
+              <RouterLink to="/gpfinder" class="arrow-link">
+                {{ t('screening.cards.options.findGp', { ns: 'home' }) }} <span>→</span>
+              </RouterLink>
+            </div>
+          </div>
         </article>
       </div>
     </section>
@@ -134,12 +191,16 @@
     <section class="stats-section" id="stats">
       <div class="stats-heading">
         <div>
-          <div class="section-label light">03 / The bigger picture</div>
-          <h2>Chance for<br /><em>Improvement.</em></h2>
+          <div class="section-label light">{{ t('stats.label', { ns: 'home' }) }}</div>
+          <h2>
+            {{ t('stats.title', { ns: 'home' }) }}<br /><em>{{
+              t('stats.titleEmphasis', { ns: 'home' })
+            }}</em>
+          </h2>
         </div>
         <div class="stats-filters">
           <label>
-            State
+            {{ t('stats.state', { ns: 'home' }) }}
             <select v-model="selectedState">
               <option v-for="state in states" :key="state.value" :value="state.value">
                 {{ state.label }}
@@ -158,7 +219,7 @@
 
           <strong v-else> — </strong>
 
-          <p>eligible women had an HPV test between January 2020 to June 2025.</p>
+          <p>{{ t('stats.eligibleWomen', { ns: 'home' }) }}</p>
 
           <div class="stat-rule"></div>
 
@@ -170,19 +231,20 @@
         </div>
         <div class="chart-card">
           <div class="chart-top">
-            <h3>Screening Participation Rate</h3>
+            <h3>{{ t('stats.chartTitle', { ns: 'home' }) }}</h3>
             <span>{{ chartPeriodRange }}</span>
           </div>
 
           <div v-if="participationChange !== null" class="trend-indicator">
             <span>↓</span>
-            {{ Math.abs(participationChange).toFixed(1) }} % participation rate
+            {{ Math.abs(participationChange).toFixed(1) }}%
+            {{ t('stats.participationRate', { ns: 'home' }) }}
           </div>
 
           <svg
             viewBox="0 0 600 220"
             role="img"
-            aria-label="Line chart showing cervical screening participation over time"
+            :aria-label="t('stats.chartAriaLabel', { ns: 'home' })"
           >
             <!-- Grid lines -->
             <path
@@ -206,7 +268,7 @@
             <!-- Data points -->
             <circle
               v-for="(point, index) in svgChartPoints"
-              :key="`hit-${point.year}`"
+              :key="`hit-${point.label}`"
               :cx="point.x"
               :cy="point.y"
               r="18"
@@ -218,7 +280,7 @@
 
             <circle
               v-for="point in svgChartPoints"
-              :key="`${point.year}-${point.percent}`"
+              :key="`${point.label}-${point.percent}`"
               :cx="point.x"
               :cy="point.y"
               r="5"
@@ -255,25 +317,21 @@
             </g>
           </svg>
           <div class="chart-labels">
-            <span v-for="point in chartPoints" :key="`${point.year}-${point.percent}`">
-              {{ point.year }}
+            <span v-for="point in chartPoints" :key="`${point.label}-${point.percent}`">
+              {{ point.label }}
             </span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- This section will be implemented when GP finder feature is ready (Iteration 2)
     <section class="closing-section">
       <div class="closing-bloom"></div>
-      <div class="section-label">04 / Your next step</div>
-      <h2>Care for yourself.<br /><em>Share what you know.</em></h2>
-      <p>Every conversation can help someone take their next step toward prevention.</p>
-      <RouterLink to="/gpfinder" class="button button-primary"
-        >Check your nearest GP <span>↗</span></RouterLink
-      >
+      <div class="section-label">{{ t('closing.label', { ns: 'home' }) }}</div>
+      <h2>{{ t('closing.title', { ns: 'home' }) }}<br /><em>{{ t('closing.titleEmphasis', { ns: 'home' }) }}</em></h2>
+      <p>{{ t('closing.description', { ns: 'home' }) }}</p>
+      <RouterLink to="/gpfinder" class="button button-primary">{{ t('closing.checkGp', { ns: 'home' }) }}</RouterLink>
     </section>
-    -->
   </main>
 </template>
 
@@ -289,19 +347,49 @@ import {
   type ParticipationPercentage,
 } from '../api/stats'
 
-const states = [
-  { label: 'All states', value: 'Australia' },
-  { label: 'Victoria', value: 'Vic' },
-  { label: 'New South Wales', value: 'NSW' },
-  { label: 'Queensland', value: 'Qld' },
-  { label: 'Western Australia', value: 'WA' },
-  { label: 'South Australia', value: 'SA' },
-  { label: 'Tasmania', value: 'Tas' },
-  { label: 'Australian Capital Territory', value: 'ACT' },
-  { label: 'Northern Territory', value: 'NT' },
-]
+import { useTranslation } from '../i18n/useTranslation'
+const { t } = useTranslation()
 
-const selectedState = ref(states[0].value)
+const states = computed(() => [
+  {
+    label: t('states.all', { ns: 'home' }),
+    value: 'Australia',
+  },
+  {
+    label: t('states.victoria', { ns: 'home' }),
+    value: 'Vic',
+  },
+  {
+    label: t('states.newSouthWales', { ns: 'home' }),
+    value: 'NSW',
+  },
+  {
+    label: t('states.queensland', { ns: 'home' }),
+    value: 'Qld',
+  },
+  {
+    label: t('states.westernAustralia', { ns: 'home' }),
+    value: 'WA',
+  },
+  {
+    label: t('states.southAustralia', { ns: 'home' }),
+    value: 'SA',
+  },
+  {
+    label: t('states.tasmania', { ns: 'home' }),
+    value: 'Tas',
+  },
+  {
+    label: t('states.australianCapitalTerritory', { ns: 'home' }),
+    value: 'ACT',
+  },
+  {
+    label: t('states.northernTerritory', { ns: 'home' }),
+    value: 'NT',
+  },
+])
+
+const selectedState = ref('Australia')
 
 const participationPercentage = ref<ParticipationPercentage | null>(null)
 const participationGraph = ref<ParticipationGraph | null>(null)
@@ -320,7 +408,7 @@ async function loadParticipationPercentage() {
     participationPercentage.value = await getParticipationPercentage()
   } catch (error) {
     console.error(error)
-    percentageError.value = 'Unable to load participation percentage.'
+    percentageError.value = t('errors.percentage', { ns: 'home' })
   } finally {
     percentageLoading.value = false
   }
@@ -334,7 +422,7 @@ async function loadParticipationGraph() {
     participationGraph.value = await getParticipationGraph(selectedState.value)
   } catch (error) {
     console.error(error)
-    graphError.value = 'Unable to load participation graph.'
+    graphError.value = t('errors.graph', { ns: 'home' })
     participationGraph.value = null
   } finally {
     graphLoading.value = false
@@ -362,45 +450,20 @@ const headlinePeriod = computed(() => {
     return '—'
   }
 
-  return `${participationPercentage.value.year_start} — ${participationPercentage.value.year_end}`
+  return participationPercentage.value.label
 })
 
-/*
- * Convert the API's three rolling periods into
- * the three chart years:
- *
- * 2018-2022 → 2018
- * 2019-2023 → 2021
- * 2020-2024 → 2024
- */
+// The API returns points oldest-first, each with a ready-made period label
+// (e.g. "2018-2022") for the x-axis.
 const chartPoints = computed(() => {
   if (!participationGraph.value) {
     return []
   }
 
-  return participationGraph.value.points.map((point) => {
-    let year: number
-
-    // First point → lowest starting year
-    if (point === participationGraph.value?.points[0]) {
-      year = point.year_start
-    }
-    // Last point → highest ending year
-    else if (
-      point === participationGraph.value?.points[participationGraph.value.points.length - 1]
-    ) {
-      year = point.year_end
-    }
-    // Middle point → middle year of the period
-    else {
-      year = Math.floor((point.year_start + point.year_end) / 2)
-    }
-
-    return {
-      year,
-      percent: point.percent,
-    }
-  })
+  return participationGraph.value.points.map((point) => ({
+    label: point.label,
+    percent: point.percent,
+  }))
 })
 
 const participationChange = computed(() => {
@@ -437,7 +500,7 @@ const svgChartPoints = computed(() => {
     return {
       x,
       y,
-      year: point.year,
+      label: point.label,
       percent: point.percent,
     }
   })

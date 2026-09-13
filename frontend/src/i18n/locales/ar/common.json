@@ -1,0 +1,24 @@
+{
+  "header": {
+    "home": "الرئيسية",
+    "learn": "تعلّم",
+    "faq": "الأسئلة الشائعة",
+    "numbers": "الأرقام",
+    "gpFinder": "البحث عن طبيب عام",
+    "game": "اللعبة",
+    "learnThroughGame": "تعلّم من خلال اللعبة",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "mainNavigation": "التنقل الرئيسي"
+  },
+  "footer": {
+    "tagline": "تبدأ الوقاية بالمحادثة.",
+    "copyright": "© 2026 ScreeningTogether AU"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "language": "اللغة",
+    "theme": "المظهر",
+    "fontSize": "حجم النص"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "hero": {
+    "eyebrow": "Prevention is powerful",
+    "title": "Your health",
+    "titleEmphasis": "deserves a voice.",
+    "description": "No matter your culture, language, or background, you deserve to feel informed and confident about cervical screening. Cervical cancer is preventable—take a simple step today to protect your future.",
+    "startLearning": "Start learning",
+    "seeNumbers": "See the numbers",
+    "noteOne": "Know your",
+    "noteOneStrong": "options",
+    "noteTwo": "Small steps",
+    "noteTwoStrong": "matter"
+  },
+
+  "essentials": {
+    "label": "01 / The essentials",
+    "title": "A little knowledge",
+    "titleEmphasis": "goes a long way.",
+    "description": "Cervical cancer starts in the cervix, but with regular screening and HPV vaccination, it can often be prevented before it starts.",
+    "faqLink": "Frequently Asked Question",
+
+    "steps": {
+      "vaccination": {
+        "title": "HPV vaccination",
+        "description": "HPV (human papillomavirus) is a common virus that can cause cervical cancer. Vaccination helps prevent HPV infection."
+      },
+      "screening": {
+        "title": "Regular screening",
+        "description": "Finds cell changes early, when they are easier to treat and manage."
+      },
+      "body": {
+        "title": "Know your body",
+        "description": "Talk to a healthcare professional about anything that feels unusual."
+      }
+    }
+  },
+
+  "screening": {
+    "label": "02 / The screening basics",
+    "title": "Clear answers for",
+    "titleEmphasis": "your next step.",
+    "description": "Knowing what to expect can make screening feel simpler. Here is the information to help you feel informed and supported.",
+
+    "cards": {
+      "what": {
+        "title": "What is cervical screening?",
+        "description": "A quick health check for high-risk HPV and early cell changes in the cervix. Finding changes early helps prevent cervical cancer."
+      },
+      "why": {
+        "title": "Why is it important?",
+        "description": "Screening can find HPV and early cell changes before they become cancer. It is one of the best ways to protect your future health."
+      },
+      "who": {
+        "title": "Who is it for?",
+        "description": "In Australia, cervical screening is recommended for people aged 25 to 74 who have a cervix, whether or not they have had the HPV vaccine."
+      },
+      "howOften": {
+        "title": "How often?",
+        "description": "Most people need screening every five years. Your healthcare provider may recommend a different plan based on your result or health history."
+      },
+      "whatHappens": {
+        "title": "What happens?",
+        "description": "A small sample is collected from the cervix by a trained healthcare professional. It usually takes a few minutes, and you can ask questions at any time."
+      },
+      "options": {
+        "title": "Your screening options",
+        "description": "Choose a healthcare provider for a clinician-collected test, or ask if self-collection is available for you. Both options check for HPV.",
+        "findGp": "Look for a GP near you"
+      }
+    }
+  },
+
+  "stats": {
+    "label": "03 / The bigger picture",
+    "title": "Chance for",
+    "titleEmphasis": "Improvement.",
+    "state": "State",
+    "allStates": "All states",
+    "eligibleWomen": "eligible women had an HPV test between January 2020 to June 2025.",
+    "period": "2020 - 2024",
+    "chartTitle": "Screening Participation Rate",
+    "participationRate": "participation rate",
+    "chartAriaLabel": "Line chart showing cervical screening participation over time"
+  },
+
+  "closing": {
+    "label": "04 / Your next step",
+    "title": "Care for yourself.",
+    "titleEmphasis": "Share what you know.",
+    "description": "Every conversation can help someone take their next step toward prevention.",
+    "checkGp": "Check your nearest GP"
+  },
+
+  "states": {
+    "all": "All states",
+    "victoria": "Victoria",
+    "newSouthWales": "New South Wales",
+    "queensland": "Queensland",
+    "westernAustralia": "Western Australia",
+    "southAustralia": "South Australia",
+    "tasmania": "Tasmania",
+    "australianCapitalTerritory": "Australian Capital Territory",
+    "northernTerritory": "Northern Territory"
+  },
+
+  "errors": {
+    "percentage": "Unable to load participation percentage.",
+    "graph": "Unable to load participation graph."
+  }
+}

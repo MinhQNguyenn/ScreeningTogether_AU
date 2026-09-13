@@ -1,0 +1,24 @@
+{
+  "header": {
+    "home": "首页",
+    "learn": "了解更多",
+    "faq": "常见问题",
+    "numbers": "数据",
+    "gpFinder": "寻找全科医生",
+    "game": "游戏",
+    "learnThroughGame": "通过游戏了解更多",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "mainNavigation": "主导航"
+  },
+  "footer": {
+    "tagline": "预防始于对话。",
+    "copyright": "© 2026 ScreeningTogether AU"
+  },
+  "settings": {
+    "title": "设置",
+    "language": "语言",
+    "theme": "主题",
+    "fontSize": "文字大小"
+  }
+}
