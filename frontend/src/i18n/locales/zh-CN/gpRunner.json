@@ -1,0 +1,32 @@
+{
+  "educationalGame": "教育游戏",
+  "howToPlay": "游戏玩法",
+  "navigation": {
+    "title": "操作",
+    "description": "使用方向键 → ← 或“A”、“D”键左右移动，并使用“W”键或 ↑ 跳跃。"
+  },
+  "rule": {
+    "title": "游戏规则",
+    "description": "尽量避开障碍物，并在到达全科医生（GP）前保持至少 1 点生命值。每次撞到障碍物会失去 1 点生命值。"
+  },
+  "funFact": {
+    "title": "小知识",
+    "description": "你知道吗？接受宫颈筛查可以帮助预防高达 90% 的宫颈癌。"
+  },
+  "games": {
+    "knowYourBody": {
+      "title": "了解你的身体",
+      "description": "文化观念、尴尬、语言障碍以及害怕受到评判，都可能让人难以谈论宫颈筛查。让我们一起打破对筛查的误解，让每个人都能更轻松地谈论宫颈筛查。"
+    },
+    "throughTheProcess": {
+      "title": "了解筛查流程",
+      "description": "体验宫颈筛查的流程，了解不同的筛查选择，包括前往全科医生诊所或在家中进行的选项。"
+    }
+  },
+  "fullscreen": {
+    "exit": "退出全屏",
+    "open": "打开游戏全屏"
+  },
+  "gameArea": "教育游戏区域"
+}
+

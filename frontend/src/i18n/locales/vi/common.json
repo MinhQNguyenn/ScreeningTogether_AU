@@ -1,0 +1,24 @@
+{
+  "header": {
+    "home": "Trang chủ",
+    "learn": "Tìm hiểu",
+    "faq": "Câu hỏi thường gặp",
+    "numbers": "Số liệu",
+    "gpFinder": "Tìm bác sĩ đa khoa",
+    "game": "Trò chơi",
+    "learnThroughGame": "Tìm hiểu qua trò chơi",
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu",
+    "mainNavigation": "Điều hướng chính"
+  },
+  "footer": {
+    "tagline": "Phòng ngừa bắt đầu từ một cuộc trò chuyện.",
+    "copyright": "© 2026 ScreeningTogether AU"
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "language": "Ngôn ngữ",
+    "theme": "Giao diện",
+    "fontSize": "Cỡ chữ"
+  }
+}
