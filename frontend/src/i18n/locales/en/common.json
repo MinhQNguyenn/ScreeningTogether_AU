@@ -1,0 +1,26 @@
+{
+  "header": {
+    "home": "Home",
+    "learn": "Learn",
+    "faq": "FAQ",
+    "numbers": "The numbers",
+    "gpFinder": "GP Finder",
+    "game": "Game",
+    "learnThroughGame": "Learn through the game",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mainNavigation": "Main navigation"
+  },
+
+  "footer": {
+    "tagline": "Prevention starts with a conversation.",
+    "copyright": "© 2026 ScreeningTogether AU"
+  },
+
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "fontSize": "Text size"
+  }
+}

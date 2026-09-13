@@ -1,0 +1,33 @@
+
+{
+  "educationalGame": "Educational game",
+  "howToPlay": "How to play",
+  "navigation": {
+    "title": "Navigation",
+    "description": "Use arrow keys → ← or 'A', 'D' keys to move side by side. And 'W' or ↑ to jump."
+  },
+  "rule": {
+    "title": "Rule",
+    "description": "Try to avoid obstacles and keep at least 1 health before reaching GP. Hitting each obstacle costs one health."
+  },
+  "funFact": {
+    "title": "Fun fact",
+    "description": "Do you know that just by going to cervical screening can help prevent up to 90% of cervical cancers?"
+  },
+  "games": {
+    "knowYourBody": {
+      "title": "Know your body",
+      "description": "Cultural beliefs, embarrassment, language barriers and fear of judgement can make cervical screening difficult to talk about. Let’s break the stigma and make screening conversations easier for everyone."
+    },
+    "throughTheProcess": {
+      "title": "Through the process",
+      "description": "Experience the process for cervical screening and explore its options either at GP or right at the comfort of your home."
+    }
+  },
+  "fullscreen": {
+    "exit": "Exit fullscreen",
+    "open": "Open game fullscreen"
+  },
+  "gameArea": "Educational game area"
+}
+
