@@ -267,43 +267,113 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
+
+/* Flip card container */
 .info-card {
-  background: #fffaf8;
-  border: 1px solid #eadedb;
+  height: 205px;
+  perspective: 1000px;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* Element that actually rotates */
+.info-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+/* Flip when hovering */
+.info-card:hover .info-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Both sides of the card */
+.info-card-front,
+.info-card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+
   padding: 23px;
-  min-height: 205px;
+  border: 1px solid #eadedb;
+
+  border-radius: 0;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
-.info-card-wide {
-  background: #f6e1df;
-  border-color: #f6e1df;
+
+/* Front */
+.info-card-front {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  background: #fffaf8;
 }
-.info-card-accent {
-  background: #e9f0e7;
-  border-color: #e9f0e7;
-}
-.info-index {
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: #b06b70;
-}
-.info-card h3 {
+
+/* Question */
+.info-card-front h3 {
+  margin: 0;
+  max-width: 80%;
+
   font-size: 18px;
   line-height: 1.15;
   color: #332a2d;
   font-weight: 700;
-  margin: 26px 0 10px;
 }
-.info-card-wide h3 {
-  margin-top: 26px;
+
+/* Number stays in the corner */
+.info-card-front .info-index {
+  position: absolute;
+  top: 23px;
+  left: 23px;
+
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #b06b70;
 }
-.info-card p {
+
+/* Back */
+.info-card-back {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  background: #f8e9e9;
+
+  transform: rotateY(180deg);
+}
+
+/* Answer */
+.info-card-back p {
+  margin: 0;
+  max-width: 310px;
+
   font-size: 13px;
   line-height: 1.6;
   color: #806f70;
-  margin: 0;
-  max-width: 310px;
 }
-.info-card .arrow-link {
+
+/* Accent card */
+.info-card-accent .info-card-front,
+.info-card-accent .info-card-back {
+  background: #e9f0e7;
+  border-color: #e9f0e7;
+}
+
+/* GP Finder link */
+.info-card-back .arrow-link {
   display: inline-block;
   margin-top: 18px;
 }

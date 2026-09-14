@@ -1,0 +1,31 @@
+{
+  "educationalGame": "教育遊戲",
+  "howToPlay": "遊戲玩法",
+  "navigation": {
+    "title": "操作",
+    "description": "使用方向鍵 → ← 或「A」、「D」鍵左右移動，並使用「W」鍵或 ↑ 跳躍。"
+  },
+  "rule": {
+    "title": "遊戲規則",
+    "description": "盡量避開障礙物，並在到達全科醫生（GP）前保持至少 1 點生命值。每次撞到障礙物會失去 1 點生命值。"
+  },
+  "funFact": {
+    "title": "小知識",
+    "description": "你知道嗎？接受子宮頸篩查可以幫助預防高達 90% 的子宮頸癌。"
+  },
+  "games": {
+    "knowYourBody": {
+      "title": "認識自己的身體",
+      "description": "文化觀念、尷尬、語言障礙和害怕被評價，都可能令人難以談論子宮頸篩查。讓我們一起打破對篩查的誤解，讓每個人都更容易談論子宮頸篩查。"
+    },
+    "throughTheProcess": {
+      "title": "了解篩查流程",
+      "description": "體驗子宮頸篩查的流程，了解不同的篩查選擇，包括到全科醫生診所或在家中進行的選項。"
+    }
+  },
+  "fullscreen": {
+    "exit": "退出全螢幕",
+    "open": "開啟遊戲全螢幕"
+  },
+  "gameArea": "教育遊戲區域"
+}

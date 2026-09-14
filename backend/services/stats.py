@@ -6,7 +6,7 @@ Only the state-level tables (table_code S1.2x) are used here.
 """
 
 from fastapi import HTTPException
-from sqlalchemy import case, func, select
+from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from db.models import Geography, ScreeningParticipation
@@ -26,17 +26,14 @@ def participation_percentage() -> ParticipationPercentageResponse:
     from the most recent reporting window.
     """
     with SessionLocal() as session:
-        windows = _participation_totals(session, NATIONAL_GEO_CODE)
+        points = _participation_totals(session, NATIONAL_GEO_CODE)
 
-    if not windows:
+    if not points:
         raise HTTPException(status_code=404, detail="No participation data available")
 
-    latest = windows[-1]  # _participation_totals is ordered oldest first
-    return ParticipationPercentageResponse(
-        percent=latest.percent,
-        year_start=latest.year_start,
-        year_end=latest.year_end,
-    )
+    # _participation_totals is ordered oldest first, and a graph point already
+    # has every field this response needs.
+    return ParticipationPercentageResponse(**points[-1].model_dump())
 
 
 def participation_graph(state: str) -> ParticipationGraphResponse:
@@ -46,61 +43,46 @@ def participation_graph(state: str) -> ParticipationGraphResponse:
     """
     with SessionLocal() as session:
         geo_code = _resolve_geo_code(session, state)
-        windows = _participation_totals(session, geo_code)
+        points = _participation_totals(session, geo_code)
 
-    return ParticipationGraphResponse(
-        state=geo_code,
-        points=[
-            ParticipationGraphPoint(
-                year_start=w.year_start, year_end=w.year_end, percent=w.percent
-            )
-            for w in windows
-        ],
-    )
+    return ParticipationGraphResponse(state=geo_code, points=points)
 
 
-class _Window:
-    def __init__(self, year_start: int, year_end: int, percent: float):
-        self.year_start = year_start
-        self.year_end = year_end
-        self.percent = percent
-
-
-def _participation_totals(session: Session, geo_code: str) -> list[_Window]:
+def _participation_totals(session: Session, geo_code: str) -> list[ParticipationGraphPoint]:
     """
-    derived 25-74 participation % (number / population * 100) for one geography,
-    one entry per reporting window, ordered by year_end ascending.
+    Derived 25-74 participation % (number / population * 100) for one geography,
+    one point per reporting window, ordered oldest first.
     """
+    SP = ScreeningParticipation
     rows = session.execute(
         select(
-            ScreeningParticipation.year_start,
-            ScreeningParticipation.year_end,
-            func.sum(
-                case((ScreeningParticipation.metric_code == "number", ScreeningParticipation.value))
-            ).label("number"),
-            func.sum(
-                case((ScreeningParticipation.metric_code == "population", ScreeningParticipation.value))
-            ).label("population"),
+            SP.year_start,
+            SP.year_end,
+            func.sum(SP.value).filter(SP.metric_code == "number").label("number"),
+            func.sum(SP.value).filter(SP.metric_code == "population").label("population"),
         )
-        .where(
-            ScreeningParticipation.geo_code == geo_code,
-            ScreeningParticipation.age_code == AGE_TOTAL_CODE,
-            ScreeningParticipation.table_code.like(STATE_TABLE_PREFIX),
-            ScreeningParticipation.metric_code.in_(("number", "population")),
-        )
-        .group_by(ScreeningParticipation.year_start, ScreeningParticipation.year_end)
-        .order_by(ScreeningParticipation.year_end)
+        .where(SP.geo_code == geo_code, SP.age_code == AGE_TOTAL_CODE, SP.table_code.like(STATE_TABLE_PREFIX))
+        .group_by(SP.year_start, SP.year_end)
+        # oldest window first, so points/labels are already left-to-right for the chart
+        .order_by(SP.year_start, SP.year_end)
     ).all()
 
     return [
-        _Window(r.year_start, r.year_end, round(float(r.number) / float(r.population) * 100, 1))
+        ParticipationGraphPoint(
+            year_start=r.year_start,
+            year_end=r.year_end,
+            percent=round(float(r.number) / float(r.population) * 100, 1),
+            label=f"{r.year_start}-{r.year_end}",
+        )
         for r in rows
         if r.number and r.population
     ]
 
 
 def _resolve_geo_code(session: Session, state: str) -> str:
-    """Validate the state filter against lookup_geography, or 404 if it isn't a known state."""
+    """
+    Validate the state filter against lookup_geography, or 404 if it isn't a known state.
+    """
     geo_code = session.execute(
         select(Geography.geo_code).where(
             Geography.geo_level == "state",

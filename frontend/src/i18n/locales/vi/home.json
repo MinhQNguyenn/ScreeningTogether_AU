@@ -1,0 +1,112 @@
+{
+"hero": {
+"eyebrow": "Phòng ngừa là sức mạnh",
+"title": "Sức khỏe của bạn",
+"titleEmphasis": "xứng đáng được quan tâm.",
+"description": "Dù bạn thuộc nền văn hóa, sử dụng ngôn ngữ hay có hoàn cảnh như thế nào, bạn đều xứng đáng được hiểu rõ và tự tin về việc tầm soát cổ tử cung. Ung thư cổ tử cung có thể phòng ngừa được — hãy thực hiện một bước đơn giản hôm nay để bảo vệ tương lai của bạn.",
+"startLearning": "Bắt đầu tìm hiểu",
+"seeNumbers": "Xem số liệu",
+"noteOne": "Hiểu rõ",
+"noteOneStrong": "lựa chọn của bạn",
+"noteTwo": "Những bước nhỏ",
+"noteTwoStrong": "đều quan trọng"
+},
+
+"essentials": {
+"label": "01 / Những điều cơ bản",
+"title": "Hiểu biết một chút",
+"titleEmphasis": "có thể tạo nên khác biệt lớn.",
+"description": "Ung thư cổ tử cung bắt đầu từ cổ tử cung, nhưng việc tầm soát định kỳ và tiêm vắc-xin HPV có thể giúp phòng ngừa bệnh trước khi ung thư hình thành.",
+"faqLink": "Câu hỏi thường gặp",
+
+"steps": {
+  "vaccination": {
+    "title": "Tiêm vắc-xin HPV",
+    "description": "HPV (vi-rút u nhú ở người) là một loại vi-rút phổ biến có thể gây ung thư cổ tử cung. Tiêm vắc-xin giúp phòng ngừa nhiễm HPV."
+  },
+  "screening": {
+    "title": "Tầm soát định kỳ",
+    "description": "Giúp phát hiện sớm những thay đổi của tế bào, khi chúng dễ điều trị và kiểm soát hơn."
+  },
+  "body": {
+    "title": "Hiểu rõ cơ thể bạn",
+    "description": "Hãy trao đổi với chuyên gia y tế về bất kỳ điều gì khiến bạn cảm thấy bất thường."
+  }
+}
+
+},
+
+"screening": {
+"label": "02 / Những điều cơ bản về tầm soát",
+"title": "Câu trả lời rõ ràng cho",
+"titleEmphasis": "bước tiếp theo của bạn.",
+"description": "Biết trước những gì sẽ xảy ra có thể giúp việc tầm soát trở nên đơn giản hơn. Dưới đây là thông tin giúp bạn cảm thấy được chuẩn bị và hỗ trợ tốt hơn.",
+
+"cards": {
+  "what": {
+    "title": "Tầm soát cổ tử cung là gì?",
+    "description": "Là một kiểm tra sức khỏe nhanh nhằm phát hiện HPV nguy cơ cao và những thay đổi sớm của tế bào ở cổ tử cung. Phát hiện sớm những thay đổi giúp phòng ngừa ung thư cổ tử cung."
+  },
+  "why": {
+    "title": "Tại sao tầm soát lại quan trọng?",
+    "description": "Tầm soát có thể phát hiện HPV và những thay đổi sớm của tế bào trước khi chúng phát triển thành ung thư. Đây là một trong những cách tốt nhất để bảo vệ sức khỏe của bạn trong tương lai."
+  },
+  "who": {
+    "title": "Dành cho ai?",
+    "description": "Tại Úc, tầm soát cổ tử cung được khuyến nghị cho những người từ 25 đến 74 tuổi có cổ tử cung, bất kể họ đã tiêm vắc-xin HPV hay chưa."
+  },
+  "howOften": {
+    "title": "Bao lâu một lần?",
+    "description": "Hầu hết mọi người cần tầm soát mỗi năm năm. Nhân viên y tế có thể đề xuất lịch tầm soát khác dựa trên kết quả hoặc tiền sử sức khỏe của bạn."
+  },
+  "whatHappens": {
+    "title": "Điều gì sẽ xảy ra?",
+    "description": "Một mẫu nhỏ được lấy từ cổ tử cung bởi chuyên gia y tế đã được đào tạo. Quá trình này thường chỉ mất vài phút và bạn có thể đặt câu hỏi bất cứ lúc nào."
+  },
+  "options": {
+    "title": "Các lựa chọn tầm soát của bạn",
+    "description": "Bạn có thể chọn nhân viên y tế để thực hiện xét nghiệm lấy mẫu, hoặc hỏi xem bạn có thể tự lấy mẫu hay không. Cả hai phương pháp đều kiểm tra HPV.",
+    "findGp": "Tìm bác sĩ đa khoa gần bạn"
+  }
+}
+
+},
+
+"stats": {
+"label": "03 / Bức tranh lớn hơn",
+"title": "Cơ hội để",
+"titleEmphasis": "cải thiện.",
+"state": "Bang",
+"allStates": "Tất cả các bang",
+"eligibleWomen": "phụ nữ đủ điều kiện đã thực hiện xét nghiệm HPV trong khoảng thời gian từ tháng 1 năm 2020 đến tháng 6 năm 2025.",
+"period": "2020 - 2024",
+"chartTitle": "Tỷ lệ tham gia tầm soát",
+"participationRate": "tỷ lệ tham gia",
+"chartAriaLabel": "Biểu đồ đường thể hiện tỷ lệ tham gia tầm soát cổ tử cung theo thời gian"
+},
+
+"closing": {
+"label": "04 / Bước tiếp theo của bạn",
+"title": "Chăm sóc bản thân.",
+"titleEmphasis": "Chia sẻ những gì bạn biết.",
+"description": "Mỗi cuộc trò chuyện đều có thể giúp ai đó thực hiện bước tiếp theo để phòng ngừa bệnh.",
+"checkGp": "Tìm bác sĩ đa khoa gần bạn"
+},
+
+"states": {
+"all": "Tất cả các bang",
+"victoria": "Victoria",
+"newSouthWales": "New South Wales",
+"queensland": "Queensland",
+"westernAustralia": "Western Australia",
+"southAustralia": "South Australia",
+"tasmania": "Tasmania",
+"australianCapitalTerritory": "Lãnh thổ Thủ đô Úc",
+"northernTerritory": "Lãnh thổ Bắc Úc"
+},
+
+"errors": {
+"percentage": "Không thể tải tỷ lệ tham gia tầm soát.",
+"graph": "Không thể tải biểu đồ tham gia tầm soát."
+}
+}

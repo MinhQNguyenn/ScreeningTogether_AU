@@ -40,6 +40,7 @@ class ParticipationPercentageResponse(BaseModel):
     percent: float
     year_start: int
     year_end: int
+    label: str  # reporting window, e.g. "2020-2024"
 
 
 # participation % for the 25-74 total. Filterable by state or all of Australia.
@@ -47,6 +48,7 @@ class ParticipationGraphPoint(BaseModel):
     year_start: int
     year_end: int
     percent: float
+    label: str  # x-axis label, e.g. "2020-2024"
 
 
 class ParticipationGraphResponse(ParticipationBase):
