@@ -6,6 +6,7 @@ import HomeView from '../views/HomeView.vue'
 import GpFinder from '../views/GpFinderView.vue'
 import GPRunnerGameView from '../views/GpRunnerGameView.vue'
 import GPDetailsView from '../views/GpFinderDetailView.vue'
+import Game3View from '../views/Game3View.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -33,6 +34,11 @@ const router = createRouter({
       path: '/gprunner',
       component: GPRunnerGameView,
       meta: { title: 'Screening Pathways | ScreeningTogether AU' },
+    },
+    {
+      path: '/game3',
+      component: Game3View,
+      meta: { title: 'A few minutes with Luna | ScreeningTogether AU' },
     },
     { path: '/details', component: GPDetailsView, meta: { title: 'GP Details | ScreeningTogether AU' } }
   ],

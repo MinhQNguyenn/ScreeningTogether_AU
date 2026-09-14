@@ -89,6 +89,11 @@
           </div>
         </section>
 
+        <RouterLink class="next-game-link" to="/game3">
+          Continue to Game 3
+          <span aria-hidden="true">→</span>
+        </RouterLink>
+
         <!-- This part will be implemented when more game is available
         <div class="game-switcher" aria-label="Choose a game">
           <button
@@ -111,6 +116,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { RouterLink } from 'vue-router'
 import '../assets/gpRunnerGame.css'
 import { useTranslation } from '../i18n/useTranslation'
 
