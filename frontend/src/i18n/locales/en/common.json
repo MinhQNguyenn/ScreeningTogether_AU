@@ -22,5 +22,24 @@
     "language": "Language",
     "theme": "Theme",
     "fontSize": "Text size"
+  },
+  "displayOptions": {
+    "ariaLabel": "Display options",
+    "close": "Close display options",
+    "title": "Display options",
+    "intro": "Choose how the app looks for you. Saved only in this browser",
+    "appearance": "Appearance",
+    "themes": {
+      "blush": "Blush & sage",
+      "teal": "Cervical teal",
+      "accessible": "Colour friendly"
+    },
+    "textSize": {
+      "title": "Text size",
+      "normal": "Normal",
+      "larger": "Larger",
+      "largest": "Largest"
+    },
+    "reset": "Reset to default"
   }
 }

@@ -1,18 +1,8 @@
 <template>
   <main class="game-play-page">
-
     <section class="game-stage">
-
-      <section
-        ref="gameFrame"
-        class="game-frame"
-        :aria-label="t('gameArea', { ns: 'gpRunner' })"
-      >
-        <iframe
-          class="game_1"
-          src="/godot/screening-game/index.html"
-          allowfullscreen
-        ></iframe>
+      <section ref="gameFrame" class="game-frame" :aria-label="t('gameArea', { ns: 'gpRunner' })">
+        <iframe class="game_1" src="/godot/screening-game/index.html" allowfullscreen></iframe>
 
         <button
           class="fullscreen-button"
@@ -29,7 +19,6 @@
       </section>
 
       <div class="game-side">
-
         <div class="game-side-copy">
           <p class="section-label">
             {{ t('educationalGame', { ns: 'gpRunner' }) }}
@@ -41,7 +30,6 @@
         </div>
 
         <section class="how-to-play" id="how-to-play">
-
           <div>
             <p class="section-label">
               {{ t('howToPlay', { ns: 'gpRunner' }) }}
@@ -49,7 +37,6 @@
           </div>
 
           <div class="guide-steps">
-
             <article>
               <span>01</span>
 
@@ -85,10 +72,17 @@
                 {{ t('funFact.description', { ns: 'gpRunner' }) }}
               </p>
             </article>
-
           </div>
         </section>
 
+<<<<<<< Updated upstream
+=======
+        <RouterLink class="next-game-link" to="/game3">
+          {{ t('nextGame', { ns: 'gpRunner' }) }}
+          <span aria-hidden="true">→</span>
+        </RouterLink>
+
+>>>>>>> Stashed changes
         <!-- This part will be implemented when more game is available
         <div class="game-switcher" aria-label="Choose a game">
           <button
@@ -103,7 +97,6 @@
           </button>
         </div>
         -->
-
       </div>
     </section>
   </main>
@@ -140,9 +133,7 @@ const games = computed(() => [
 ])
 
 const currentGame = computed(
-  () =>
-    games.value.find((game) => game.number === selectedGame.value) ??
-    games.value[0],
+  () => games.value.find((game) => game.number === selectedGame.value) ?? games.value[0],
 )
 
 const toggleFullscreen = async () => {

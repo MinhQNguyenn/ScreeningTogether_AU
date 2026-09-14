@@ -72,6 +72,8 @@
       ><span>{{ t('footer.tagline') }}</span
       ><span>{{ t('footer.copyright') }}</span>
     </footer>
+<<<<<<< Updated upstream
+=======
 
     <button
       class="accessibility-trigger d-flex align-items-center justify-content-center p-0"
@@ -123,78 +125,79 @@
       </svg>
     </button>
 
-    <aside v-if="displayOptionsOpen" class="display-options" aria-label="Display options">
+    <aside
+      v-if="displayOptionsOpen"
+      class="display-options"
+      :aria-label="t('displayOptions.ariaLabel')"
+    >
       <button
         class="display-options-close"
         type="button"
-        aria-label="Close display options"
+        :aria-label="t('displayOptions.close')"
         @click="displayOptionsOpen = false"
       >
         ×
       </button>
-      <p class="display-options-title">Display options</p>
-      <p class="display-options-intro">
-        Choose how the app looks for you. Saved only in this browser
-      </p>
-
+      <p class="display-options-title">{{ t('displayOptions.title') }}</p>
+      <p class="display-options-intro">{{ t('displayOptions.intro') }}</p>
       <fieldset>
-        <legend>Appearance</legend>
+        <legend>{{ t('displayOptions.appearance') }}</legend>
         <div class="option-grid option-grid-themes">
           <button
             type="button"
             :class="['option-card', { selected: selectedTheme === 'blush' }]"
             @click="setTheme('blush')"
           >
-            <span class="theme-swatch swatch-blush"></span>Blush &amp; sage
+            <span class="theme-swatch swatch-blush"></span> {{ t('displayOptions.themes.blush') }}
           </button>
           <button
             type="button"
             :class="['option-card', { selected: selectedTheme === 'teal' }]"
             @click="setTheme('teal')"
           >
-            <span class="theme-swatch swatch-teal"></span>Cervical teal
+            <span class="theme-swatch swatch-teal"></span> {{ t('displayOptions.themes.teal') }}
           </button>
           <button
             type="button"
             :class="['option-card', { selected: selectedTheme === 'accessible' }]"
             @click="setTheme('accessible')"
           >
-            <span class="theme-swatch swatch-accessible"></span>Colour friendly
+            <span class="theme-swatch swatch-accessible"></span>
+            {{ t('displayOptions.themes.accessible') }}
           </button>
         </div>
       </fieldset>
-
       <fieldset>
-        <legend>Text size</legend>
+        <legend>{{ t('displayOptions.textSize.title') }}</legend>
         <div class="option-grid option-grid-text">
           <button
             type="button"
             :class="['option-card', { selected: textSize === 'normal' }]"
             @click="setTextSize('normal')"
           >
-            Normal
+            {{ t('displayOptions.textSize.normal') }}
           </button>
           <button
             type="button"
             :class="['option-card', { selected: textSize === 'larger' }]"
             @click="setTextSize('larger')"
           >
-            Larger
+            {{ t('displayOptions.textSize.larger') }}
           </button>
           <button
             type="button"
             :class="['option-card', { selected: textSize === 'largest' }]"
             @click="setTextSize('largest')"
           >
-            Largest
+            {{ t('displayOptions.textSize.largest') }}
           </button>
         </div>
       </fieldset>
-
       <button class="reset-display-options" type="button" @click="resetDisplayOptions">
-        Reset to default
+        {{ t('displayOptions.reset') }}
       </button>
     </aside>
+>>>>>>> Stashed changes
   </div>
 </template>
 
@@ -617,6 +620,8 @@ onUnmounted(() => {
     height: 33px;
   }
 }
+<<<<<<< Updated upstream
+=======
 .accessibility-trigger {
   position: fixed;
   right: 20px;
@@ -1032,24 +1037,27 @@ onUnmounted(() => {
 .site-shell.theme-accessible :deep(.section-label) {
   color: #1769aa;
 }
+/* Larger text */
 .site-shell.text-size-larger :deep(h1),
 .site-shell.text-size-larger :deep(h2),
 .site-shell.text-size-larger :deep(h3) {
-  transform: scale(1.1);
-  transform-origin: left center;
+  font-size: 1.1em;
 }
+
 .site-shell.text-size-larger :deep(p),
 .site-shell.text-size-larger :deep(a),
 .site-shell.text-size-larger :deep(button),
 .site-shell.text-size-larger :deep(label) {
   font-size: 1.08em;
 }
+
+/* Largest text */
 .site-shell.text-size-largest :deep(h1),
 .site-shell.text-size-largest :deep(h2),
 .site-shell.text-size-largest :deep(h3) {
-  transform: scale(1.2);
-  transform-origin: left center;
+  font-size: 1.2em;
 }
+
 .site-shell.text-size-largest :deep(p),
 .site-shell.text-size-largest :deep(a),
 .site-shell.text-size-largest :deep(button),
@@ -1154,6 +1162,32 @@ onUnmounted(() => {
 .site-shell.theme-accessible :deep(.section-label) {
   color: #1769aa;
 }
+
+.site-shell.text-size-normal :deep(.game-play-page) {
+  height: calc(100dvh - 78px);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.site-shell.text-size-normal :deep(.game-stage) {
+  height: 100%;
+  min-height: 0;
+}
+
+/* Enlarged text: allow content to grow and page to scroll */
+.site-shell.text-size-larger :deep(.game-play-page),
+.site-shell.text-size-largest :deep(.game-play-page) {
+  height: auto;
+  min-height: calc(100dvh - 78px);
+  overflow: visible;
+}
+
+.site-shell.text-size-larger :deep(.game-stage),
+.site-shell.text-size-largest :deep(.game-stage) {
+  height: auto;
+  min-height: calc(100dvh - 78px);
+}
+
 @media (max-width: 700px) {
   .accessibility-trigger {
     right: 16px;
@@ -1217,4 +1251,5 @@ onUnmounted(() => {
     height: 16px;
   }
 }
+>>>>>>> Stashed changes
 </style>
