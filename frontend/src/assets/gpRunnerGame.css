@@ -84,8 +84,6 @@
   border: 0;
   display: block;
 }
-<<<<<<< Updated upstream
-=======
 
 .game-placeholder {
   text-align: center;
@@ -157,8 +155,6 @@
   border: 0;
 }
 
-<<<<<<< HEAD
-=======
 .how-to-play > .section-label {
   font-size: 11px;
   margin: 0 0 16px;
@@ -208,45 +204,28 @@
 }
 
 /* Continue to Game 3 */
->>>>>>> development
 .next-game-link {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
   width: min(100%, 310px);
-<<<<<<< HEAD
-  margin-top: auto;
-=======
   margin-top: 8px;
->>>>>>> development
   padding: 14px 18px;
   border-radius: 999px;
   background: #302a2d;
   color: #fffaf8;
   font-size: 12px;
   font-weight: 700;
-<<<<<<< HEAD
-  transition: background 0.2s ease, transform 0.2s ease;
-=======
   text-decoration: none;
   transition:
     background 0.2s ease,
     transform 0.2s ease;
->>>>>>> development
 }
 
 .next-game-link:hover {
   background: #8e4f59;
   color: #fffaf8;
-<<<<<<< HEAD
-  transform: translateY(-1px);
-}
-
-.next-game-link span {
-  font-size: 18px;
-}
-=======
   text-decoration: none;
   transform: translateY(-1px);
 }
@@ -376,5 +355,3 @@
     margin-top: 8px;
   }
 }
->>>>>>> Stashed changes
->>>>>>> development

@@ -620,8 +620,6 @@ onUnmounted(() => {
     height: 33px;
   }
 }
-<<<<<<< Updated upstream
-=======
 .accessibility-trigger {
   position: fixed;
   right: 20px;
@@ -1251,5 +1249,4 @@ onUnmounted(() => {
     height: 16px;
   }
 }
->>>>>>> Stashed changes
 </style>
