@@ -1,0 +1,33 @@
+{
+  "aria": {
+    "gameFrame": "Game 3: Luna's cervical screening appointment",
+    "fullscreenExit": "Exit fullscreen",
+    "fullscreenOpen": "Open game fullscreen"
+  },
+  "iframe": {
+    "title": "A few minutes with Luna"
+  },
+  "intro": {
+    "label": "Cervical screening journey | Game 3",
+    "title": "What happens at screening?",
+    "description": "Join Luna during her appointment, explore her screening choices, and experience how quickly the sample collection part can feel."
+  },
+  "learning": {
+    "label": "What you will learn",
+    "choices": {
+      "title": "Choices and control",
+      "description": "Help Luna discuss previous screening, sample options, and how to pause or stop."
+    },
+    "minutes": {
+      "title": "A few minutes",
+      "description": "Solve Luna's picture while the timer shows how a few minutes can pass."
+    },
+    "after": {
+      "title": "After screening",
+      "description": "Learn what happens to the sample and when screening is usually due again."
+    }
+  },
+  "navigation": {
+    "previousGame": "Return to the previous game"
+  }
+}
