@@ -72,8 +72,6 @@
       ><span>{{ t('footer.tagline') }}</span
       ><span>{{ t('footer.copyright') }}</span>
     </footer>
-<<<<<<< Updated upstream
-=======
 
     <button
       class="accessibility-trigger d-flex align-items-center justify-content-center p-0"
@@ -197,7 +195,6 @@
         {{ t('displayOptions.reset') }}
       </button>
     </aside>
->>>>>>> Stashed changes
   </div>
 </template>
 
