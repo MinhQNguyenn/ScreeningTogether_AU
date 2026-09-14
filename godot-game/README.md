@@ -41,3 +41,53 @@ Sprout Lands assets are by Cup Nooble and are used under the terms in `assets/sp
 ## Running
 
 Open the folder containing `project.godot` in Godot 4.7 and run the project. For a Web build, use the included Web export preset; no filesystem, threading, native extension, external API, or non-Web renderer features are required by the prototype.
+
+## Game 3: A few minutes with Luna
+
+Game 3 is a separate, modular screening-appointment experience. It starts with
+Luna following a floor path into a top-down RPG doctor's office composed from
+the supplied Top Down Hospital pack's patterned walls, tiled floor,
+examination chair, standing lamp, cabinets, seating, rug, and other room
+details. The pack's usage terms are preserved in
+`assets/topdown_hospital/README.txt`.
+The healthcare professional uses a 32 x 48 pixel front-facing Luna sprite with
+a white doctor's coat and brown glasses. The doctor is displayed at the same
+height as Luna in the office and character cards. Luna uses her right-facing
+walk animation and then turns to face the player. The game
+continues through three supportive conversation questions, a brief procedure
+introduction, a short visual instruction screen, and then a solvable 3 x 3
+sliding puzzle made from an enlarged crop of Luna's front-facing cat sprite.
+Game 3 uses the bundled Noto Sans variable font for clearer text and broad
+language coverage. Its SIL Open Font License is stored beside the font in
+`assets/fonts/`.
+Its prominent timer counts upward to a two-minute limit. At 02:00, a fact
+overlay explains
+that the sample-collection part can take only a few minutes and distinguishes
+this from the whole appointment. The player can continue the same puzzle or
+finish immediately. Each new puzzle briefly shows Luna's complete picture
+before the tiles are scrambled. The completed Luna portrait remains visible
+above the puzzle as a reference. The final popup explains that the sample is
+sent to a laboratory, the result
+arrives later, and routine screening is generally every five years when no
+earlier follow-up is needed. Luna then follows a densely decorated Sprout Lands
+garden path vertically toward a warm pixel-art sunset. At the two-minute puzzle
+limit, the player can use **Finish puzzle** to continue immediately. Luna
+disappears where the path meets the horizon before the completion
+congratulations appear.
+
+Game 3 files are grouped under `scripts/game3/` with these reusable scenes:
+
+- `scenes/game3_main.tscn`: Game 3 flow and transitions.
+- `scenes/doctor_conversation.tscn`: the three-question conversation.
+- `scenes/sliding_puzzle.tscn`: the puzzle, timer, moves, reset, and completion.
+- `scenes/screening_complete.tscn`: final information popup and ending.
+- `scenes/pack_lunas_bag.tscn`: optional standalone preparation mini game.
+
+The standard project Run button still opens the original runner. To run Game 3
+inside Godot, open `scenes/game3_main.tscn` and use **Run Current Scene** (F6).
+The bag mini game can be run independently in the same way.
+
+The `Game 3 Web` export preset writes to
+`../frontend/public/godot/game3/index.html`. The Vue route `/game3` embeds that
+export. The `Pack Luna's Bag Web` preset is available if a separate browser
+build of the optional mini game is needed later.

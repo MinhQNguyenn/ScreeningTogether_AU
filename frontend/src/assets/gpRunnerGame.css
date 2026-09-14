@@ -437,3 +437,29 @@
   border: 0;
   display: block;
 }
+
+.next-game-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  width: min(100%, 310px);
+  margin-top: auto;
+  padding: 14px 18px;
+  border-radius: 999px;
+  background: #302a2d;
+  color: #fffaf8;
+  font-size: 12px;
+  font-weight: 700;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.next-game-link:hover {
+  background: #8e4f59;
+  color: #fffaf8;
+  transform: translateY(-1px);
+}
+
+.next-game-link span {
+  font-size: 18px;
+}
