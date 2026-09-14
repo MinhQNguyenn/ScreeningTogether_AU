@@ -1,0 +1,34 @@
+{
+  "aria": {
+    "gameFrame": "第3個遊戲：Luna的子宮頸篩查預約",
+    "fullscreenExit": "退出全螢幕",
+    "fullscreenOpen": "開啟遊戲全螢幕"
+  },
+  "iframe": {
+    "title": "與Luna一起了解幾分鐘的篩查"
+  },
+  "intro": {
+    "label": "子宮頸篩查旅程 | 第3個遊戲",
+    "title": "接受篩查時會發生甚麼？",
+    "description": "陪伴Luna進行篩查預約，了解她的篩查選擇，並體驗樣本採集過程其實可以很快完成。"
+  },
+  "learning": {
+    "label": "你將會學到",
+    "choices": {
+      "title": "選擇與自主權",
+      "description": "協助Luna了解過往的篩查、樣本採集選擇，以及如何暫停或停止程序。"
+    },
+    "minutes": {
+      "title": "幾分鐘的時間",
+      "description": "完成Luna的圖片遊戲，同時透過計時器了解幾分鐘可以很快過去。"
+    },
+    "after": {
+      "title": "篩查之後",
+      "description": "了解樣本會如何處理，以及通常何時需要再次接受篩查。"
+    }
+  },
+  "navigation": {
+    "previousGame": "返回上一個遊戲"
+  }
+}
+

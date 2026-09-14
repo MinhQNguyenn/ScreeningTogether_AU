@@ -20,5 +20,24 @@
     "language": "Ngôn ngữ",
     "theme": "Giao diện",
     "fontSize": "Cỡ chữ"
+  },
+  "displayOptions": {
+    "ariaLabel": "Tùy chọn hiển thị",
+    "close": "Đóng tùy chọn hiển thị",
+    "title": "Tùy chọn hiển thị",
+    "intro": "Chọn cách hiển thị ứng dụng phù hợp với bạn. Chỉ được lưu trên trình duyệt này",
+    "appearance": "Giao diện",
+    "themes": {
+      "blush": "Hồng phấn & xanh xô thơm",
+      "teal": "Xanh ngọc cổ tử cung",
+      "accessible": "Màu sắc dễ tiếp cận"
+    },
+    "textSize": {
+      "title": "Cỡ chữ",
+      "normal": "Bình thường",
+      "larger": "Lớn hơn",
+      "largest": "Lớn nhất"
+    },
+    "reset": "Đặt lại mặc định"
   }
 }

@@ -4,19 +4,23 @@
       <section
         ref="gameFrame"
         class="game-frame"
-        aria-label="Game 3: Luna's cervical screening appointment"
+        :aria-label="t('aria.gameFrame', { ns: 'game3' })"
       >
         <iframe
           class="game_3"
           src="/godot/game3/index.html?v=20260914-17"
-          title="A few minutes with Luna"
+          :title="t('iframe.title', { ns: 'game3' })"
           allowfullscreen
         ></iframe>
 
         <button
           class="fullscreen-button"
           type="button"
-          :aria-label="isFullscreen ? 'Exit fullscreen' : 'Open game fullscreen'"
+          :aria-label="
+            isFullscreen
+              ? t('aria.fullscreenExit', { ns: 'game3' })
+              : t('aria.fullscreenOpen', { ns: 'game3' })
+          "
           @click="toggleFullscreen"
         >
           <span class="expand-icon" aria-hidden="true"></span>
@@ -25,41 +29,67 @@
 
       <div class="game-side">
         <div class="game-side-copy">
-          <p class="section-label">Cervical screening journey | Game 3</p>
-          <h1>What happens at screening?</h1>
+          <p class="section-label">
+            {{ t('intro.label', { ns: 'game3' }) }}
+          </p>
+
+          <h1>
+            {{ t('intro.title', { ns: 'game3' }) }}
+          </h1>
+
           <p>
-            Join Luna during her appointment, explore her screening choices, and experience how
-            quickly the sample collection part can feel.
+            {{ t('intro.description', { ns: 'game3' }) }}
           </p>
         </div>
 
         <section class="how-to-play" id="how-to-play">
-          <div><p class="section-label">What you will learn</p></div>
+          <div>
+            <p class="section-label">
+              {{ t('learning.label', { ns: 'game3' }) }}
+            </p>
+          </div>
+
           <div class="guide-steps">
             <article>
               <span>01</span>
-              <h3>Choices and control</h3>
+
+              <h3>
+                {{ t('learning.choices.title', { ns: 'game3' }) }}
+              </h3>
+
               <p>
-                Help Luna discuss previous screening, sample options, and how to pause or stop.
+                {{ t('learning.choices.description', { ns: 'game3' }) }}
               </p>
             </article>
+
             <article>
               <span>02</span>
-              <h3>A few minutes</h3>
+
+              <h3>
+                {{ t('learning.minutes.title', { ns: 'game3' }) }}
+              </h3>
+
               <p>
-                Solve Luna's picture while the timer shows how a few minutes can pass.
+                {{ t('learning.minutes.description', { ns: 'game3' }) }}
               </p>
             </article>
+
             <article>
               <span>03</span>
-              <h3>After screening</h3>
-              <p>Learn what happens to the sample and when screening is usually due again.</p>
+
+              <h3>
+                {{ t('learning.after.title', { ns: 'game3' }) }}
+              </h3>
+
+              <p>
+                {{ t('learning.after.description', { ns: 'game3' }) }}
+              </p>
             </article>
           </div>
         </section>
 
         <RouterLink class="previous-game-link" to="/gprunner">
-          ← Return to the previous game
+          ← {{ t('navigation.previousGame', { ns: 'game3' }) }}
         </RouterLink>
       </div>
     </section>
@@ -70,6 +100,9 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import '../assets/gpRunnerGame.css'
+import { useTranslation } from '../i18n/useTranslation'
+
+const { t } = useTranslation()
 
 const gameFrame = ref<HTMLElement | null>(null)
 const isFullscreen = ref(false)
@@ -127,6 +160,7 @@ onBeforeUnmount(() => window.removeEventListener('message', handleGameMessage))
   padding-bottom: 4px;
   font-size: 12px;
   font-weight: 700;
+  text-decoration: none;
 }
 
 @media (max-width: 760px) {

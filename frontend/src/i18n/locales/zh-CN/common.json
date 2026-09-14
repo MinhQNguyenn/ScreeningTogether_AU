@@ -20,5 +20,24 @@
     "language": "语言",
     "theme": "主题",
     "fontSize": "文字大小"
+  },
+  "displayOptions": {
+    "ariaLabel": "显示选项",
+    "close": "关闭显示选项",
+    "title": "显示选项",
+    "intro": "选择应用的显示方式。设置只会保存在此浏览器中",
+    "appearance": "外观",
+    "themes": {
+      "blush": "柔粉与鼠尾草绿",
+      "teal": "宫颈青绿色",
+      "accessible": "色彩无障碍"
+    },
+    "textSize": {
+      "title": "文字大小",
+      "normal": "正常",
+      "larger": "较大",
+      "largest": "最大"
+    },
+    "reset": "恢复默认设置"
   }
 }

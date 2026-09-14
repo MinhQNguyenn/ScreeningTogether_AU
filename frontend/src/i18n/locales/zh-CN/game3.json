@@ -1,0 +1,34 @@
+{
+  "aria": {
+    "gameFrame": "第3个游戏：Luna的宫颈筛查预约",
+    "fullscreenExit": "退出全屏",
+    "fullscreenOpen": "打开游戏全屏"
+  },
+  "iframe": {
+    "title": "和Luna一起了解几分钟的筛查"
+  },
+  "intro": {
+    "label": "宫颈筛查之旅 | 第3个游戏",
+    "title": "筛查时会发生什么？",
+    "description": "陪伴Luna进行筛查预约，了解她的筛查选择，并体验样本采集过程其实可以很快完成。"
+  },
+  "learning": {
+    "label": "你将学到什么",
+    "choices": {
+      "title": "选择与自主权",
+      "description": "帮助Luna了解之前的筛查、样本采集选择，以及如何暂停或停止流程。"
+    },
+    "minutes": {
+      "title": "几分钟的时间",
+      "description": "完成Luna的图片游戏，同时通过计时器了解几分钟可以很快过去。"
+    },
+    "after": {
+      "title": "筛查之后",
+      "description": "了解样本会如何处理，以及通常什么时候需要再次进行筛查。"
+    }
+  },
+  "navigation": {
+    "previousGame": "返回上一个游戏"
+  }
+}
+
