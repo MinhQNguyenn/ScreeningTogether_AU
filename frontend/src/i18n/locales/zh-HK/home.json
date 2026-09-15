@@ -1,7 +1,7 @@
 {
 "hero": {
 "eyebrow": "預防就是力量",
-"title": "你的健康",
+"title": "女性健康",
 "titleEmphasis": "值得被重視。",
 "description": "無論你的文化、語言或背景如何，你都值得了解子宮頸篩查，並對自己的健康充滿信心。子宮頸癌是可以預防的——今天踏出簡單一步，守護你的未來。",
 "startLearning": "開始了解",
@@ -13,7 +13,7 @@
 },
 
 "essentials": {
-"label": "01 / 基本資訊",
+"label": "01 / 必備資訊",
 "title": "多了解一點",
 "titleEmphasis": "就能帶來很大幫助。",
 "description": "子宮頸癌始於子宮頸，但透過定期篩查和 HPV 疫苗接種，通常可以在癌症發生前預防。",
@@ -37,7 +37,7 @@
 },
 
 "screening": {
-"label": "02 / 篩查基本資訊",
+"label": "02 / 常見問題",
 "title": "為你的下一步",
 "titleEmphasis": "提供清晰答案。",
 "description": "了解篩查過程可以讓篩查變得更簡單。以下資訊可以幫助你做好準備，並獲得支持。",
@@ -73,7 +73,7 @@
 },
 
 "stats": {
-"label": "03 / 更全面的數據",
+"label": "03 / 數據",
 "title": "改善的",
 "titleEmphasis": "機會。",
 "state": "州／領地",

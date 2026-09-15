@@ -246,6 +246,26 @@
             role="img"
             :aria-label="t('stats.chartAriaLabel', { ns: 'home' })"
           >
+            <text
+              x="30"
+              y="15"
+              text-anchor="end"
+              dominant-baseline="middle"
+              class="chart-axis-label"
+            >
+              100%
+            </text>
+
+            <text
+              x="30"
+              y="180"
+              text-anchor="end"
+              dominant-baseline="middle"
+              class="chart-axis-label"
+            >
+              0%
+            </text>
+
             <!-- Grid lines -->
             <path
               class="grid-line"
@@ -328,9 +348,15 @@
     <section class="closing-section">
       <div class="closing-bloom"></div>
       <div class="section-label">{{ t('closing.label', { ns: 'home' }) }}</div>
-      <h2>{{ t('closing.title', { ns: 'home' }) }}<br /><em>{{ t('closing.titleEmphasis', { ns: 'home' }) }}</em></h2>
+      <h2>
+        {{ t('closing.title', { ns: 'home' }) }}<br /><em>{{
+          t('closing.titleEmphasis', { ns: 'home' })
+        }}</em>
+      </h2>
       <p>{{ t('closing.description', { ns: 'home' }) }}</p>
-      <RouterLink to="/gpfinder" class="button button-primary">{{ t('closing.checkGp', { ns: 'home' }) }}</RouterLink>
+      <RouterLink to="/gpfinder" class="button button-primary">{{
+        t('closing.checkGp', { ns: 'home' })
+      }}</RouterLink>
     </section>
   </main>
 </template>

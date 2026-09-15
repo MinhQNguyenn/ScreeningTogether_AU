@@ -2,7 +2,12 @@
   <div class="site-shell" :class="[`theme-${selectedTheme}`, `text-size-${textSize}`]">
     <header class="site-header">
       <RouterLink to="/" class="brand"
-        ><span class="brand-mark">✳</span> ScreeningTogether AU</RouterLink
+        ><span class="brand-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        ScreeningTogether AU</RouterLink
       >
       <nav :class="['main-nav', { open: menuOpen }]" aria-label="Main navigation">
         <RouterLink to="/">{{ t('header.home') }}</RouterLink>
@@ -319,9 +324,35 @@ onUnmounted(() => {
 }
 
 .brand-mark {
-  font-size: 20px;
-  color: #bd6f76;
-  margin-right: 5px;
+  position: relative;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  margin-right: 6px;
+  vertical-align: -5px;
+}
+
+.brand-mark span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 22px;
+  border-radius: 999px;
+  background: #bd6f76;
+  transform-origin: center;
+}
+
+.brand-mark span:nth-child(1) {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.brand-mark span:nth-child(2) {
+  transform: translate(-50%, -50%) rotate(60deg);
+}
+
+.brand-mark span:nth-child(3) {
+  transform: translate(-50%, -50%) rotate(120deg);
 }
 
 .brand-dot {
@@ -339,6 +370,7 @@ onUnmounted(() => {
   color: #796b6c;
   font-size: 12px;
   font-weight: 700;
+  text-decoration: none;
 }
 
 .main-nav a.router-link-active,
@@ -1036,7 +1068,8 @@ onUnmounted(() => {
 .site-shell.text-size-larger :deep(h1),
 .site-shell.text-size-larger :deep(h2),
 .site-shell.text-size-larger :deep(h3) {
-  font-size: 1.1em;
+  transform: scale(1.1);
+  transform-origin: left center;
 }
 
 .site-shell.text-size-larger :deep(p),
@@ -1050,7 +1083,8 @@ onUnmounted(() => {
 .site-shell.text-size-largest :deep(h1),
 .site-shell.text-size-largest :deep(h2),
 .site-shell.text-size-largest :deep(h3) {
-  font-size: 1.2em;
+  transform: scale(1.2);
+  transform-origin: left center;
 }
 
 .site-shell.text-size-largest :deep(p),
@@ -1245,5 +1279,9 @@ onUnmounted(() => {
     width: 16px;
     height: 16px;
   }
+}
+.header-cta,
+.site-footer .brand {
+  text-decoration: none;
 }
 </style>
