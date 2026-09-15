@@ -74,10 +74,12 @@
             </article>
           </div>
         </section>
-        <RouterLink class="next-game-link" to="/game3">
-          {{ t('nextGame', { ns: 'gpRunner' }) }}
-          <span aria-hidden="true">→</span>
-        </RouterLink>
+        <div class="game-navigation-links">
+          <RouterLink class="next-game-link" to="/game2">
+            Continue to Game 2
+            <span aria-hidden="true">→</span>
+          </RouterLink>
+        </div>
         <!-- This part will be implemented when more game is available
         <div class="game-switcher" aria-label="Choose a game">
           <button

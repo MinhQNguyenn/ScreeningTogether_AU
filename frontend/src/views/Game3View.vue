@@ -88,7 +88,7 @@
           </div>
         </section>
 
-        <RouterLink class="previous-game-link" to="/gprunner">
+        <RouterLink class="previous-game-link" to="/game2">
           ← {{ t('navigation.previousGame', { ns: 'game3' }) }}
         </RouterLink>
       </div>
