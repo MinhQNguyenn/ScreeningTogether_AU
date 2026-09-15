@@ -2,6 +2,7 @@ class_name GameCompletePopup
 extends ColorRect
 
 signal replay_requested
+signal continue_requested
 
 @onready var title_label: Label = $PanelContainer/Content/TitleLabel
 @onready var message_label: Label = $PanelContainer/Content/MessageLabel
@@ -9,11 +10,13 @@ signal replay_requested
 @onready var side_quest_score_label: Label = $PanelContainer/Content/SideQuestScoreLabel
 @onready var total_score_label: Label = $PanelContainer/Content/TotalScoreLabel
 @onready var replay_button: Button = $PanelContainer/Content/ReplayButton
+@onready var continue_button: Button = $PanelContainer/Content/ContinueButton
 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	replay_button.pressed.connect(_on_replay_pressed)
+	continue_button.pressed.connect(_on_continue_pressed)
 	replay_button.grab_focus()
 
 
@@ -43,6 +46,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func _on_replay_pressed() -> void:
 	replay_button.disabled = true
+	continue_button.disabled = true
 	get_tree().paused = false
 	replay_requested.emit()
 	get_tree().reload_current_scene()
+
+
+func _on_continue_pressed() -> void:
+	replay_button.disabled = true
+	continue_button.disabled = true
+	get_tree().paused = false
+	continue_requested.emit()

@@ -219,11 +219,25 @@ func _show_game_complete_popup(side_quest_points: int) -> void:
 		GAME_COMPLETE_POPUP_SCENE.instantiate() as GameCompletePopup
 	)
 	get_parent().add_child(_completion_popup)
+	_completion_popup.continue_requested.connect(_on_continue_requested)
 	_completion_popup.show_result(
 		player_name,
 		correct_answer_points,
 		side_quest_points
 	)
+
+
+func _on_continue_requested() -> void:
+	if OS.has_feature("web"):
+		var payload := JSON.stringify({
+			"type": "game2-complete",
+			"score": score,
+		})
+		JavaScriptBridge.eval(
+			"window.parent.postMessage(%s, window.location.origin);" % payload
+		)
+	else:
+		get_tree().reload_current_scene()
 
 
 func _show_temporary_feedback(message: String, color: Color) -> void:
