@@ -87,10 +87,12 @@
             </article>
           </div>
         </section>
-
-        <RouterLink class="previous-game-link" to="/game2">
-          ← {{ t('navigation.previousGame', { ns: 'game3' }) }}
-        </RouterLink>
+        <div class="game-navigation-links">
+          <RouterLink class="game-route-link" to="/game2">
+            <span aria-hidden="true">←</span>
+            Game 2
+          </RouterLink>
+        </div>
       </div>
     </section>
   </main>
@@ -177,5 +179,39 @@ onBeforeUnmount(() => window.removeEventListener('message', handleGameMessage))
     height: min(85vh, 760px);
     min-height: 600px;
   }
+}
+
+.game-navigation-links {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.game-route-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 132px;
+  padding: 13px 18px;
+  border: 1px solid #8e4f59;
+  border-radius: 999px;
+  background: transparent;
+  color: #8e4f59;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.game-route-link:hover {
+  background: #8e4f59;
+  color: #fffaf8;
+  transform: translateY(-1px);
+}
+
+.game-route-link-next {
+  background: #302a2d;
+  border-color: #302a2d;
+  color: #fffaf8;
 }
 </style>
