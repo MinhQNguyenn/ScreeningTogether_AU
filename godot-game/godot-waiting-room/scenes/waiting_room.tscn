@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bkv28okp56ekn"]
+
+[ext_resource type="Script" uid="uid://6bswbt0kl6cv" path="res://scripts/waiting_room.gd" id="1_0q7jc"]
+[ext_resource type="PackedScene" uid="uid://cylfy3t1d0i4r" path="res://scenes/maps/map_1.tscn" id="2_r4be7"]
+
+[node name="WaitingRoom" type="Node2D" unique_id=357274318]
+script = ExtResource("1_0q7jc")
+
+[node name="Map1" parent="." unique_id=743532204 instance=ExtResource("2_r4be7")]
