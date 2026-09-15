@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://7mxshc28ahmc"]
+
+[ext_resource type="SpriteFrames" uid="uid://bwiqv8ggp25vk" path="res://resources/npcs/npc1_frames.tres" id="1_nh2m4"]
+[ext_resource type="Script" uid="uid://s13gdsdls8jj" path="res://scripts/npc.gd" id="2_npc_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgk5e"]
+size = Vector2(12, 10)
+
+[node name="NPC" type="CharacterBody2D" unique_id=1077395663]
+collision_layer = 2
+script = ExtResource("2_npc_script")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=1848923257]
+sprite_frames = ExtResource("1_nh2m4")
+animation = &"read_down"
+frame_progress = 0.54214084
+
+[node name="ActionTimer" type="Timer" parent="." unique_id=1095063973]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1585137693]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_rgk5e")

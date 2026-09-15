@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://bb2dk5uwbkyxf"]
+
+[ext_resource type="Script" uid="uid://dyh5maarvdhvu" path="res://scripts/player_name_popup.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_panel"]
+content_margin_left = 38.0
+content_margin_top = 32.0
+content_margin_right = 38.0
+content_margin_bottom = 32.0
+bg_color = Color(0.96862745, 0.9529412, 0.8745098, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.30980393, 0.60784316, 0.47058824, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.75)
+shadow_size = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_input_normal"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.54901963, 0.6156863, 0.5686275, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_input_focus"]
+content_margin_left = 15.0
+content_margin_right = 15.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.30980393, 0.60784316, 0.47058824, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_normal"]
+bg_color = Color(0.24705882, 0.4627451, 0.34509805, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_pressed"]
+bg_color = Color(0.19215687, 0.3647059, 0.27058825, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_hover"]
+bg_color = Color(0.30980393, 0.60784316, 0.47058824, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="PlayerNamePopup" type="ColorRect" unique_id=1723742521]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03529412, 0.08627451, 0.06666667, 0.84)
+script = ExtResource("1_script")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1002417970]
+custom_minimum_size = Vector2(660, 520)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -330.0
+offset_top = -260.0
+offset_right = 330.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBox_panel")
+
+[node name="Content" type="VBoxContainer" parent="PanelContainer" unique_id=1268602464]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/Content" unique_id=344022406]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15686275, 0.30980393, 0.20784314, 1)
+theme_override_font_sizes/font_size = 34
+text = "WELCOME TO THE WAITING ROOM"
+horizontal_alignment = 1
+
+[node name="InstructionLabel" type="Label" parent="PanelContainer/Content" unique_id=981104512]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14117648, 0.19215687, 0.15294118, 1)
+theme_override_font_sizes/font_size = 19
+text = "Enter your name exactly as you want it to be called."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="FirstNameLabel" type="Label" parent="PanelContainer/Content" unique_id=71323766]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15686275, 0.30980393, 0.20784314, 1)
+theme_override_font_sizes/font_size = 18
+text = "First name"
+
+[node name="FirstNameInput" type="LineEdit" parent="PanelContainer/Content" unique_id=961362534]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882354, 0.16078432, 0.11764706, 1)
+theme_override_colors/font_placeholder_color = Color(0.4, 0.45, 0.41, 0.7)
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBox_input_normal")
+theme_override_styles/focus = SubResource("StyleBox_input_focus")
+placeholder_text = "e.g. Emily"
+max_length = 32
+clear_button_enabled = true
+
+[node name="LastNameLabel" type="Label" parent="PanelContainer/Content" unique_id=104468563]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15686275, 0.30980393, 0.20784314, 1)
+theme_override_font_sizes/font_size = 18
+text = "Last name"
+
+[node name="LastNameInput" type="LineEdit" parent="PanelContainer/Content" unique_id=1224307103]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882354, 0.16078432, 0.11764706, 1)
+theme_override_colors/font_placeholder_color = Color(0.4, 0.45, 0.41, 0.7)
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBox_input_normal")
+theme_override_styles/focus = SubResource("StyleBox_input_focus")
+placeholder_text = "e.g. Talor"
+max_length = 32
+clear_button_enabled = true
+
+[node name="ErrorLabel" type="Label" parent="PanelContainer/Content" unique_id=1110933401]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7607843, 0.16078432, 0.14117648, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="PanelContainer/Content" unique_id=141805769]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+text = "START WAITING"
+
+[node name="PrivacyLabel" type="Label" parent="PanelContainer/Content" unique_id=600245287]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.39215687, 0.44705883, 0.40392157, 1)
+theme_override_font_sizes/font_size = 14
+text = "Your name is used only during this game session."
+horizontal_alignment = 1
