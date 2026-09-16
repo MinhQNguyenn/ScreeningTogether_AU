@@ -1,184 +1,120 @@
-```vue
 <template>
   <main class="finder-page">
     <section class="finder-hero">
       <div class="finder-hero-inner">
         <p class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Find care near you
+          <span class="eyebrow-dot"></span> {{ t('findCare', { ns: 'gpFinder' }) }}
         </p>
-
-        <h1>GP Finder</h1>
-
+        <h1>{{ t('title', { ns: 'gpFinder' }) }}</h1>
         <form class="search-card" @submit.prevent="searchLocation">
           <label for="location">
-            <button class="pin-icon" aria-label="Use current location" type="button">⌖</button>
-            <em>Enter suburb or postcode</em>
+            <button
+              class="pin-icon"
+              :aria-label="t('useCurrentLocation', { ns: 'gpFinder' })"
+              type="button"
+            >
+              ⌖
+            </button>
+            <em>{{ t('enterLocation', { ns: 'gpFinder' }) }}</em>
           </label>
-
           <div class="search-input">
             <span>⌕</span>
-
             <input
               id="location"
               v-model="location"
-              placeholder="Clayton, VIC 3168"
-              aria-label="Suburb or postcode"
+              :placeholder="t('placeholder', { ns: 'gpFinder' })"
+              :aria-label="t('locationInput', { ns: 'gpFinder' })"
             />
           </div>
         </form>
       </div>
     </section>
-
     <section class="results-section">
-      <div class="results-toolbar">
-        <button class="filter-button" type="button" @click="showFilters = !showFilters">
-          Filter
-          <span :class="{ rotate: showFilters }"></span>
-        </button>
-
-        <label class="sort-control">
-          Sort by:
-
-          <select v-model="sortOrder" aria-label="Sort services by distance">
-            <option value="nearest">Nearest</option>
-            <option value="furthest">Furthest</option>
-          </select>
-        </label>
-      </div>
-
-      <!-- Filters will be connected to API data later -->
-      <div v-if="showFilters" class="filter-panel">
-        <label>
-          <input type="checkbox" checked />
-          Accessible services
-        </label>
-
-        <label>
-          <input type="checkbox" />
-          Bulk billing
-        </label>
-
-        <label>
-          <input type="checkbox" />
-          Open today
-        </label>
-      </div>
-
       <!-- Loading state -->
-      <p v-if="loading" class="results-message">Searching for GPs...</p>
-
+      <p v-if="loading" class="results-message">{{ t('searching', { ns: 'gpFinder' }) }}</p>
       <!-- Error state -->
-      <p v-else-if="errorMessage" class="results-message error-message">
-        {{ errorMessage }}
-      </p>
-
+      <p v-else-if="errorMessage" class="results-message error-message">{{ errorMessage }}</p>
       <!-- No results state -->
       <p v-else-if="hasSearched && services.length === 0" class="results-message">
-        No GPs were found for this postcode.
+        {{ t('noResults', { ns: 'gpFinder' }) }}
       </p>
-
       <!-- GP results -->
-      <div v-for="service in sortedServices" :to="`/details`" class="service-card">
+      <div
+        v-for="service in sortedServices"
+        :key="`${service.name}-${service.postcode}`"
+        class="service-card"
+      >
         <div>
+          <!-- Keep GP name as returned by API -->
           <h2>{{ service.name }}</h2>
-
-          <p class="service-type">GP (General Practice)</p>
-
+          <!-- Translate fixed service type -->
+          <p class="service-type">{{ t('generalPractice', { ns: 'gpFinder' }) }}</p>
+          <!-- Keep real address information unchanged -->
           <p class="service-details">
             🏘 {{ service.address }}<br />
-            ⌖ {{ service.suburb }}, {{ service.state }}
-            {{ service.postcode }}
+            ⌖ {{ service.suburb }}, {{ translatedState(service.state) }} {{ service.postcode }}
           </p>
         </div>
       </div>
     </section>
   </main>
 </template>
-
 <script setup lang="ts">
 import '../assets/gpFinder.css'
 import { computed, ref } from 'vue'
 import { getGPsByPostcode, type GP } from '../api/gpFinder'
-
+import { useTranslation } from '../i18n/useTranslation'
+const { t } = useTranslation()
 const location = ref('')
-
-const showFilters = ref(false)
-
-const sortOrder = ref<'nearest' | 'furthest'>('nearest')
-
 const services = ref<GP[]>([])
-
 const loading = ref(false)
-
 const hasSearched = ref(false)
-
 const errorMessage = ref('')
 
+/* * Keep the API result order for now. */
 const sortedServices = computed(() => {
-  /*
-   * The current GP API does not return distance.
-   * It only returns latitude and longitude.
-   *
-   * Distance-based sorting can be implemented later
-   * once the user's location is available.
-   *
-   * For now, preserve the API result order.
-   */
   return [...services.value]
 })
 
+/* * Translate Australian state abbreviations * returned by the API. */
+const translatedState = (state: string) => {
+  const map: Record<string, string> = {
+    VIC: t('states.victoria', { ns: 'gpFinder' }),
+    NSW: t('states.newSouthWales', { ns: 'gpFinder' }),
+    QLD: t('states.queensland', { ns: 'gpFinder' }),
+    SA: t('states.southAustralia', { ns: 'gpFinder' }),
+    WA: t('states.westernAustralia', { ns: 'gpFinder' }),
+    TAS: t('states.tasmania', { ns: 'gpFinder' }),
+    NT: t('states.northernTerritory', { ns: 'gpFinder' }),
+    ACT: t('states.australianCapitalTerritory', { ns: 'gpFinder' }),
+  }
+  return map[state] || state
+}
+/* * Search GP services by postcode. */
 const searchLocation = async () => {
   errorMessage.value = ''
   hasSearched.value = false
-
   const input = location.value.trim()
-
   if (!input) {
-    errorMessage.value = 'Please enter a postcode.'
+    errorMessage.value = t('postcodeRequired', { ns: 'gpFinder' })
     return
   }
-
-  /*
-   * The current backend endpoint only accepts a
-   * four-digit postcode.
-   *
-   * Location/suburb suggestions will be implemented later.
-   */
   const postcodeMatch = input.match(/\b\d{4}\b/)
-
   if (!postcodeMatch) {
-    errorMessage.value = 'Please enter a valid 4-digit postcode, such as 3168.'
+    errorMessage.value = t('invalidPostcode', { ns: 'gpFinder' })
     return
   }
-
   const postcode = postcodeMatch[0]
-
   loading.value = true
-
   try {
     services.value = await getGPsByPostcode(postcode)
-
     hasSearched.value = true
   } catch (error) {
     console.error('GP search failed:', error)
-
     services.value = []
-
-    errorMessage.value = 'Unable to find GP services right now. Please try again later.'
+    errorMessage.value = t('searchError', { ns: 'gpFinder' })
   } finally {
     loading.value = false
   }
 }
-
-const viewDetails = (service: GP) => {
-  console.log('Selected GP:', service)
-
-  /*
-   * TODO:
-   * Connect this button to the GP details API
-   * when that endpoint is implemented.
-   */
-}
 </script>
-```

@@ -13,7 +13,7 @@
 },
 
 "essentials": {
-"label": "01 / 基本信息",
+"label": "01 / 必备信息",
 "title": "多了解一点",
 "titleEmphasis": "就能带来很大帮助。",
 "description": "宫颈癌始于宫颈，但通过定期筛查和 HPV 疫苗接种，通常可以在癌症发生前预防。",
@@ -37,7 +37,7 @@
 },
 
 "screening": {
-"label": "02 / 筛查基本信息",
+"label": "02 / 常见问题",
 "title": "为你的下一步",
 "titleEmphasis": "提供清晰答案。",
 "description": "了解筛查过程可以让筛查变得更简单。以下信息可以帮助你做好准备，并获得支持。",
@@ -73,7 +73,7 @@
 },
 
 "stats": {
-"label": "03 / 更全面的数据",
+"label": "03 / 数据",
 "title": "改善的",
 "titleEmphasis": "机会。",
 "state": "州／领地",

@@ -1,0 +1,25 @@
+{
+  "findCare": "Tìm dịch vụ chăm sóc gần bạn",
+  "title": "Tìm bác sĩ đa khoa",
+  "enterLocation": "Nhập mã bưu chính",
+  "placeholder": "ví dụ: 3168",
+
+  "searching": "Đang tìm bác sĩ đa khoa...",
+  "noResults": "Không tìm thấy bác sĩ đa khoa cho mã bưu chính này.",
+  "generalPractice": "Bác sĩ đa khoa",
+
+  "postcodeRequired": "Vui lòng nhập mã bưu chính.",
+  "invalidPostcode": "Vui lòng nhập mã bưu chính gồm 4 chữ số, chẳng hạn như 3168.",
+  "searchError": "Không thể tìm thấy dịch vụ bác sĩ đa khoa lúc này. Vui lòng thử lại sau.",
+
+  "states": {
+    "victoria": "Victoria",
+    "newSouthWales": "New South Wales",
+    "queensland": "Queensland",
+    "southAustralia": "Nam Úc",
+    "westernAustralia": "Tây Úc",
+    "tasmania": "Tasmania",
+    "northernTerritory": "Lãnh thổ Bắc Úc",
+    "australianCapitalTerritory": "Lãnh thổ Thủ đô Úc"
+  }
+}

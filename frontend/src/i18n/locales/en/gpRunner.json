@@ -8,7 +8,7 @@
   },
   "rule": {
     "title": "Rule",
-    "description": "Try to avoid obstacles and keep at least 1 health before reaching GP. Hitting each obstacle costs one health."
+    "description": "Avoid obstacles and keep at least 1 health point before reaching the GP. Each collision costs 1 health point."
   },
   "funFact": {
     "title": "Fun fact",

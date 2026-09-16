@@ -4,20 +4,24 @@
       <section
         ref="gameFrame"
         class="game-frame"
-        aria-label="Game 2: waiting room listening practice"
+        :aria-label="t('page.ariaLabel', { ns: 'game2' })"
       >
         <iframe
           ref="gameIframe"
           class="game_2"
           src="/godot/game2/index.html?v=20260915-1"
-          title="Waiting Room Listening Practice"
+          :title="t('page.iframeTitle', { ns: 'game2' })"
           allowfullscreen
         ></iframe>
 
         <button
           class="fullscreen-button"
           type="button"
-          :aria-label="isFullscreen ? 'Exit fullscreen' : 'Open game fullscreen'"
+          :aria-label="
+            isFullscreen
+              ? t('page.fullscreenExit', { ns: 'game2' })
+              : t('page.fullscreenOpen', { ns: 'game2' })
+          "
           @click="toggleFullscreen"
         >
           <span class="expand-icon" aria-hidden="true"></span>
@@ -26,36 +30,81 @@
 
       <div class="game-side">
         <div class="game-side-copy">
-          <p class="section-label">Screening appointment | Game 2</p>
-          <h1>Listen for your name</h1>
+          <p class="section-label">
+            {{ t('intro.label', { ns: 'game2' }) }}
+          </p>
+
+          <h1>
+            {{ t('intro.title', { ns: 'game2' }) }}
+          </h1>
+
           <p>
-            Practise staying aware in a busy waiting room, recognise when your name is called,
-            and explore useful support while you wait.
+            {{ t('intro.description', { ns: 'game2' }) }}
           </p>
         </div>
 
         <section class="how-to-play" id="how-to-play">
           <div>
-            <p class="section-label">How to play</p>
+            <p class="section-label">
+              {{ t('howToPlay.label', { ns: 'game2' }) }}
+            </p>
           </div>
 
           <div class="guide-steps">
             <article>
               <span>01</span>
-              <h3>Watch and listen</h3>
-              <p>Names move across the blue announcement screen one at a time.</p>
+
+              <h3>
+                {{ t('howToPlay.steps.watchAndListen.title', { ns: 'game2' }) }}
+              </h3>
+
+              <p>
+                {{
+                  t(
+                    'howToPlay.steps.watchAndListen.description',
+                    { ns: 'game2' }
+                  )
+                }}
+              </p>
             </article>
 
             <article>
               <span>02</span>
-              <h3>Respond in time</h3>
-              <p>Select That's Me only when your full name appears.</p>
+
+              <h3>
+                {{ t('howToPlay.steps.respondInTime.title', { ns: 'game2' }) }}
+              </h3>
+
+              <p>
+                {{
+                  t(
+                    'howToPlay.steps.respondInTime.description',
+                    { ns: 'game2' }
+                  )
+                }}
+              </p>
             </article>
 
             <article>
               <span>03</span>
-              <h3>Explore while waiting</h3>
-              <p>Find useful objects and information to complete optional side quests.</p>
+
+              <h3>
+                {{
+                  t(
+                    'howToPlay.steps.exploreWhileWaiting.title',
+                    { ns: 'game2' }
+                  )
+                }}
+              </h3>
+
+              <p>
+                {{
+                  t(
+                    'howToPlay.steps.exploreWhileWaiting.description',
+                    { ns: 'game2' }
+                  )
+                }}
+              </p>
             </article>
           </div>
         </section>
@@ -63,11 +112,14 @@
         <div class="game-navigation-links">
           <RouterLink class="game-route-link" to="/gprunner">
             <span aria-hidden="true">←</span>
-            Game 1
+            {{ t('navigation.game1', { ns: 'game2' }) }}
           </RouterLink>
 
-          <RouterLink class="game-route-link game-route-link-next" to="/game3">
-            Game 3
+          <RouterLink
+            class="game-route-link game-route-link-next"
+            to="/game3"
+          >
+            {{ t('navigation.game3', { ns: 'game2' }) }}
             <span aria-hidden="true">→</span>
           </RouterLink>
         </div>
@@ -80,6 +132,9 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import '../assets/gpRunnerGame.css'
+import { useTranslation } from '../i18n/useTranslation'
+
+const { t } = useTranslation()
 
 const gameFrame = ref<HTMLElement | null>(null)
 const gameIframe = ref<HTMLIFrameElement | null>(null)

@@ -1064,34 +1064,142 @@ onUnmounted(() => {
 .site-shell.theme-accessible :deep(.section-label) {
   color: #1769aa;
 }
-/* Larger text */
+/* =========================================
+   Accessibility text sizes
+   ========================================= */
+
+.site-shell {
+  --accessibility-scale: 1;
+}
+
+/*
+  Do not set font-size directly on page headings here.
+
+  Each page already has its own responsive typography,
+  such as clamp(), fixed px values, etc.
+
+  The transform below visually enlarges the text without
+  replacing the page's original font-size.
+*/
+
+/* Larger */
 .site-shell.text-size-larger :deep(h1),
 .site-shell.text-size-larger :deep(h2),
 .site-shell.text-size-larger :deep(h3) {
-  transform: scale(1.1);
-  transform-origin: left center;
+  zoom: 1.08;
 }
 
 .site-shell.text-size-larger :deep(p),
 .site-shell.text-size-larger :deep(a),
 .site-shell.text-size-larger :deep(button),
-.site-shell.text-size-larger :deep(label) {
-  font-size: 1.08em;
+.site-shell.text-size-larger :deep(label),
+.site-shell.text-size-larger :deep(select),
+.site-shell.text-size-larger :deep(small) {
+  zoom: 1.08;
 }
 
-/* Largest text */
+/* Largest */
 .site-shell.text-size-largest :deep(h1),
 .site-shell.text-size-largest :deep(h2),
 .site-shell.text-size-largest :deep(h3) {
-  transform: scale(1.2);
-  transform-origin: left center;
+  zoom: 1.16;
 }
 
 .site-shell.text-size-largest :deep(p),
 .site-shell.text-size-largest :deep(a),
 .site-shell.text-size-largest :deep(button),
-.site-shell.text-size-largest :deep(label) {
+.site-shell.text-size-largest :deep(label),
+.site-shell.text-size-largest :deep(select),
+.site-shell.text-size-largest :deep(small) {
+  zoom: 1.16;
+}
+
+/* =========================================
+   SVG chart text
+   ========================================= */
+
+.site-shell.text-size-larger :deep(.chart-axis-label),
+.site-shell.text-size-larger :deep(.chart-tooltip-text) {
+  font-size: 1.08em;
+}
+
+.site-shell.text-size-largest :deep(.chart-axis-label),
+.site-shell.text-size-largest :deep(.chart-tooltip-text) {
   font-size: 1.16em;
+}
+
+/* =========================================
+   Chart labels
+   ========================================= */
+
+.site-shell.text-size-larger :deep(.chart-labels span),
+.site-shell.text-size-largest :deep(.chart-labels span) {
+  zoom: 1.08;
+}
+
+/* =========================================
+   Chart header
+   ========================================= */
+
+.site-shell.text-size-larger :deep(.chart-top h3),
+.site-shell.text-size-larger :deep(.chart-top span) {
+  zoom: 1.08;
+}
+
+.site-shell.text-size-largest :deep(.chart-top h3),
+.site-shell.text-size-largest :deep(.chart-top span) {
+  zoom: 1.16;
+}
+
+/* =========================================
+   Trend indicator
+   ========================================= */
+
+.site-shell.text-size-larger :deep(.trend-indicator),
+.site-shell.text-size-largest :deep(.trend-indicator) {
+  zoom: 1.08;
+}
+
+.site-shell.text-size-largest :deep(.trend-indicator) {
+  zoom: 1.16;
+}
+
+/* =========================================
+   Stats period
+   ========================================= */
+
+.site-shell.text-size-larger :deep(.big-stat small) {
+  zoom: 1.08;
+}
+
+.site-shell.text-size-largest :deep(.big-stat small) {
+  zoom: 1.16;
+}
+
+/* =========================================
+   Big percentage
+   ========================================= */
+
+.site-shell.text-size-larger :deep(.big-stat strong) {
+  zoom: 1.08;
+}
+
+.site-shell.text-size-largest :deep(.big-stat strong) {
+  zoom: 1.16;
+}
+
+/* =========================================
+   State dropdown
+   ========================================= */
+
+.site-shell.text-size-larger :deep(.stats-filters label),
+.site-shell.text-size-larger :deep(.stats-filters select) {
+  zoom: 1.08;
+}
+
+.site-shell.text-size-largest :deep(.stats-filters label),
+.site-shell.text-size-largest :deep(.stats-filters select) {
+  zoom: 1.16;
 }
 .site-shell.theme-blush .accessibility-trigger {
   background: #e9b9b3;
