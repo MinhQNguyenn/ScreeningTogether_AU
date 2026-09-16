@@ -20,5 +20,24 @@
     "language": "語言",
     "theme": "主題",
     "fontSize": "文字大小"
+  },
+  "displayOptions": {
+    "ariaLabel": "顯示選項",
+    "close": "關閉顯示選項",
+    "title": "顯示選項",
+    "intro": "選擇應用程式的顯示方式。設定只會儲存在此瀏覽器",
+    "appearance": "外觀",
+    "themes": {
+      "blush": "粉彩與鼠尾草綠",
+      "teal": "青綠色",
+      "accessible": "色彩無障礙"
+    },
+    "textSize": {
+      "title": "文字大小",
+      "normal": "正常",
+      "larger": "較大",
+      "largest": "最大"
+    },
+    "reset": "重設為預設值"
   }
 }

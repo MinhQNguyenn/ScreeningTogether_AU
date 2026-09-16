@@ -1,19 +1,19 @@
 {
   "hero": {
     "eyebrow": "Prevention is powerful",
-    "title": "Your health",
+    "title": "Women's health",
     "titleEmphasis": "deserves a voice.",
-    "description": "No matter your culture, language, or background, you deserve to feel informed and confident about cervical screening. Cervical cancer is preventable—take a simple step today to protect your future.",
-    "startLearning": "Start learning",
+    "description": "Cervical cancer is preventable, and cervical screening can help protect your health. Whether you come from a different culture, speak another language, or have a diverse background, find clear information and support in a language that works for you.",
+    "startLearning": "Learn about cervical screening",
     "seeNumbers": "See the numbers",
-    "noteOne": "Know your",
-    "noteOneStrong": "options",
-    "noteTwo": "Small steps",
-    "noteTwoStrong": "matter"
+    "noteOne": "Understand your",
+    "noteOneStrong": "screening options",
+    "noteTwo": "Every language,",
+    "noteTwoStrong": "every background matters"
   },
 
   "essentials": {
-    "label": "01 / The essentials",
+    "label": "01 / Learn the essentials",
     "title": "A little knowledge",
     "titleEmphasis": "goes a long way.",
     "description": "Cervical cancer starts in the cervix, but with regular screening and HPV vaccination, it can often be prevented before it starts.",
@@ -36,7 +36,7 @@
   },
 
   "screening": {
-    "label": "02 / The screening basics",
+    "label": "02 / Frequently asked questions",
     "title": "Clear answers for",
     "titleEmphasis": "your next step.",
     "description": "Knowing what to expect can make screening feel simpler. Here is the information to help you feel informed and supported.",
@@ -71,7 +71,7 @@
   },
 
   "stats": {
-    "label": "03 / The bigger picture",
+    "label": "03 / The numbers",
     "title": "Chance for",
     "titleEmphasis": "Improvement.",
     "state": "State",

@@ -1,7 +1,7 @@
 {
 "hero": {
 "eyebrow": "Phòng ngừa là sức mạnh",
-"title": "Sức khỏe của bạn",
+"title": "Sức khỏe phụ nữ",
 "titleEmphasis": "xứng đáng được quan tâm.",
 "description": "Dù bạn thuộc nền văn hóa, sử dụng ngôn ngữ hay có hoàn cảnh như thế nào, bạn đều xứng đáng được hiểu rõ và tự tin về việc tầm soát cổ tử cung. Ung thư cổ tử cung có thể phòng ngừa được — hãy thực hiện một bước đơn giản hôm nay để bảo vệ tương lai của bạn.",
 "startLearning": "Bắt đầu tìm hiểu",
@@ -13,7 +13,7 @@
 },
 
 "essentials": {
-"label": "01 / Những điều cơ bản",
+"label": "01 / Điều cần biết",
 "title": "Hiểu biết một chút",
 "titleEmphasis": "có thể tạo nên khác biệt lớn.",
 "description": "Ung thư cổ tử cung bắt đầu từ cổ tử cung, nhưng việc tầm soát định kỳ và tiêm vắc-xin HPV có thể giúp phòng ngừa bệnh trước khi ung thư hình thành.",
@@ -37,7 +37,7 @@
 },
 
 "screening": {
-"label": "02 / Những điều cơ bản về tầm soát",
+"label": "02 / Câu hỏi thường gặp",
 "title": "Câu trả lời rõ ràng cho",
 "titleEmphasis": "bước tiếp theo của bạn.",
 "description": "Biết trước những gì sẽ xảy ra có thể giúp việc tầm soát trở nên đơn giản hơn. Dưới đây là thông tin giúp bạn cảm thấy được chuẩn bị và hỗ trợ tốt hơn.",
@@ -73,7 +73,7 @@
 },
 
 "stats": {
-"label": "03 / Bức tranh lớn hơn",
+"label": "03 / Số liệu",
 "title": "Cơ hội để",
 "titleEmphasis": "cải thiện.",
 "state": "Bang",

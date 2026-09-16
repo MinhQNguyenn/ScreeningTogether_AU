@@ -22,33 +22,42 @@ import zhCNGpRunner from './locales/zh-CN/gpRunner.json'
 import arGpRunner from './locales/ar/gpRunner.json'
 import viGpRunner from './locales/vi/gpRunner.json'
 
-
+import game3En from './locales/en/game3.json'
+import game3ZhHK from './locales/zh-HK/game3.json'
+import game3ZhCN from './locales/zh-CN/game3.json'
+import game3Ar from './locales/ar/game3.json'
+import game3Vi from './locales/vi/game3.json'
 
 const resources = {
   en: {
     common: enCommon,
     home: enHome,
-    gpRunner: enGpRunner
+    gpRunner: enGpRunner,
+    game3: game3En
   },
   'zh-HK': {
     common: zhHKCommon,
     home: zhHKHome,
-    gpRunner: zhHKGpRunner
+    gpRunner: zhHKGpRunner,
+    game3: game3ZhHK
   },
   'zh-CN': {
     common: zhCNCommon,
     home: zhCNHome,
-    gpRunner: zhCNGpRunner
+    gpRunner: zhCNGpRunner,
+    game3: game3ZhCN
   },
   ar: {
     common: arCommon,
     home: arHome,
-    gpRunner: arGpRunner
+    gpRunner: arGpRunner,
+    game3: game3Ar
   },
   vi: {
     common: viCommon,
     home: viHome,
-    gpRunner: viGpRunner
+    gpRunner: viGpRunner,
+    game3: game3Vi
   }
 }
 

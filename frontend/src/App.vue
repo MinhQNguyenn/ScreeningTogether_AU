@@ -2,7 +2,12 @@
   <div class="site-shell" :class="[`theme-${selectedTheme}`, `text-size-${textSize}`]">
     <header class="site-header">
       <RouterLink to="/" class="brand"
-        ><span class="brand-mark">✳</span> ScreeningTogether AU</RouterLink
+        ><span class="brand-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        ScreeningTogether AU</RouterLink
       >
       <nav :class="['main-nav', { open: menuOpen }]" aria-label="Main navigation">
         <RouterLink to="/">{{ t('header.home') }}</RouterLink>
@@ -123,76 +128,76 @@
       </svg>
     </button>
 
-    <aside v-if="displayOptionsOpen" class="display-options" aria-label="Display options">
+    <aside
+      v-if="displayOptionsOpen"
+      class="display-options"
+      :aria-label="t('displayOptions.ariaLabel')"
+    >
       <button
         class="display-options-close"
         type="button"
-        aria-label="Close display options"
+        :aria-label="t('displayOptions.close')"
         @click="displayOptionsOpen = false"
       >
         ×
       </button>
-      <p class="display-options-title">Display options</p>
-      <p class="display-options-intro">
-        Choose how the app looks for you. Saved only in this browser
-      </p>
-
+      <p class="display-options-title">{{ t('displayOptions.title') }}</p>
+      <p class="display-options-intro">{{ t('displayOptions.intro') }}</p>
       <fieldset>
-        <legend>Appearance</legend>
+        <legend>{{ t('displayOptions.appearance') }}</legend>
         <div class="option-grid option-grid-themes">
           <button
             type="button"
             :class="['option-card', { selected: selectedTheme === 'blush' }]"
             @click="setTheme('blush')"
           >
-            <span class="theme-swatch swatch-blush"></span>Blush &amp; sage
+            <span class="theme-swatch swatch-blush"></span> {{ t('displayOptions.themes.blush') }}
           </button>
           <button
             type="button"
             :class="['option-card', { selected: selectedTheme === 'teal' }]"
             @click="setTheme('teal')"
           >
-            <span class="theme-swatch swatch-teal"></span>Cervical teal
+            <span class="theme-swatch swatch-teal"></span> {{ t('displayOptions.themes.teal') }}
           </button>
           <button
             type="button"
             :class="['option-card', { selected: selectedTheme === 'accessible' }]"
             @click="setTheme('accessible')"
           >
-            <span class="theme-swatch swatch-accessible"></span>Colour friendly
+            <span class="theme-swatch swatch-accessible"></span>
+            {{ t('displayOptions.themes.accessible') }}
           </button>
         </div>
       </fieldset>
-
       <fieldset>
-        <legend>Text size</legend>
+        <legend>{{ t('displayOptions.textSize.title') }}</legend>
         <div class="option-grid option-grid-text">
           <button
             type="button"
             :class="['option-card', { selected: textSize === 'normal' }]"
             @click="setTextSize('normal')"
           >
-            Normal
+            {{ t('displayOptions.textSize.normal') }}
           </button>
           <button
             type="button"
             :class="['option-card', { selected: textSize === 'larger' }]"
             @click="setTextSize('larger')"
           >
-            Larger
+            {{ t('displayOptions.textSize.larger') }}
           </button>
           <button
             type="button"
             :class="['option-card', { selected: textSize === 'largest' }]"
             @click="setTextSize('largest')"
           >
-            Largest
+            {{ t('displayOptions.textSize.largest') }}
           </button>
         </div>
       </fieldset>
-
       <button class="reset-display-options" type="button" @click="resetDisplayOptions">
-        Reset to default
+        {{ t('displayOptions.reset') }}
       </button>
     </aside>
   </div>
@@ -319,9 +324,35 @@ onUnmounted(() => {
 }
 
 .brand-mark {
-  font-size: 20px;
-  color: #bd6f76;
-  margin-right: 5px;
+  position: relative;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  margin-right: 6px;
+  vertical-align: -5px;
+}
+
+.brand-mark span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 22px;
+  border-radius: 999px;
+  background: #bd6f76;
+  transform-origin: center;
+}
+
+.brand-mark span:nth-child(1) {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.brand-mark span:nth-child(2) {
+  transform: translate(-50%, -50%) rotate(60deg);
+}
+
+.brand-mark span:nth-child(3) {
+  transform: translate(-50%, -50%) rotate(120deg);
 }
 
 .brand-dot {
@@ -339,6 +370,7 @@ onUnmounted(() => {
   color: #796b6c;
   font-size: 12px;
   font-weight: 700;
+  text-decoration: none;
 }
 
 .main-nav a.router-link-active,
@@ -1032,24 +1064,29 @@ onUnmounted(() => {
 .site-shell.theme-accessible :deep(.section-label) {
   color: #1769aa;
 }
+/* Larger text */
 .site-shell.text-size-larger :deep(h1),
 .site-shell.text-size-larger :deep(h2),
 .site-shell.text-size-larger :deep(h3) {
   transform: scale(1.1);
   transform-origin: left center;
 }
+
 .site-shell.text-size-larger :deep(p),
 .site-shell.text-size-larger :deep(a),
 .site-shell.text-size-larger :deep(button),
 .site-shell.text-size-larger :deep(label) {
   font-size: 1.08em;
 }
+
+/* Largest text */
 .site-shell.text-size-largest :deep(h1),
 .site-shell.text-size-largest :deep(h2),
 .site-shell.text-size-largest :deep(h3) {
   transform: scale(1.2);
   transform-origin: left center;
 }
+
 .site-shell.text-size-largest :deep(p),
 .site-shell.text-size-largest :deep(a),
 .site-shell.text-size-largest :deep(button),
@@ -1154,6 +1191,32 @@ onUnmounted(() => {
 .site-shell.theme-accessible :deep(.section-label) {
   color: #1769aa;
 }
+
+.site-shell.text-size-normal :deep(.game-play-page) {
+  height: calc(100dvh - 78px);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.site-shell.text-size-normal :deep(.game-stage) {
+  height: 100%;
+  min-height: 0;
+}
+
+/* Enlarged text: allow content to grow and page to scroll */
+.site-shell.text-size-larger :deep(.game-play-page),
+.site-shell.text-size-largest :deep(.game-play-page) {
+  height: auto;
+  min-height: calc(100dvh - 78px);
+  overflow: visible;
+}
+
+.site-shell.text-size-larger :deep(.game-stage),
+.site-shell.text-size-largest :deep(.game-stage) {
+  height: auto;
+  min-height: calc(100dvh - 78px);
+}
+
 @media (max-width: 700px) {
   .accessibility-trigger {
     right: 16px;
@@ -1216,5 +1279,9 @@ onUnmounted(() => {
     width: 16px;
     height: 16px;
   }
+}
+.header-cta,
+.site-footer .brand {
+  text-decoration: none;
 }
 </style>

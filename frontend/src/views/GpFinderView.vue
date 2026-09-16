@@ -79,7 +79,7 @@
       </p>
 
       <!-- GP results -->
-      <RouterLink v-for="service in sortedServices" :to="`/details`" class="service-card">
+      <div v-for="service in sortedServices" :to="`/details`" class="service-card">
         <div>
           <h2>{{ service.name }}</h2>
 
@@ -91,12 +91,7 @@
             {{ service.postcode }}
           </p>
         </div>
-        <button type="button" class="details-button" @click="viewDetails(service)">
-          <span class="brand-mark">✳</span>
-
-          View Details
-        </button>
-      </RouterLink>
+      </div>
     </section>
   </main>
 </template>
