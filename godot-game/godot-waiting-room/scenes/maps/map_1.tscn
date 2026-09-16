@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bo4qoqi0flci5" path="res://scenes/main_char.tscn" id="4_p4o1l"]
 [ext_resource type="Script" uid="uid://b1jhx8f1m4vif" path="res://scripts/side_quest_ui.gd" id="5_sidequest"]
 [ext_resource type="PackedScene" uid="uid://7mxshc28ahmc" path="res://scenes/npc.tscn" id="6_npc"]
+[ext_resource type="Texture2D" uid="uid://csxvb1vj7qh66" path="res://assets/heart_pixel.png" id="7_646el"]
 [ext_resource type="PackedScene" uid="uid://bb2dk5uwbkyxf" path="res://scenes/player_name_popup.tscn" id="7_name_entry"]
+[ext_resource type="AudioStream" uid="uid://bgkinvt5ycv7l" path="res://resources/alex-morgan-lofi-cocktail-bar-568153.mp3" id="8_background_music"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lolil"]
 content_margin_left = 22.0
@@ -77,11 +79,7 @@ corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smh7c"]
-bg_color = Color(0.92739975, 0.94660884, 0.987773, 0.18039216)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+bg_color = Color(0.9254902, 0.94509804, 0.827451, 0.18039216)
 border_color = Color(1, 0.93333334, 0.5137255, 0.7)
 corner_radius_top_left = 7
 corner_radius_top_right = 7
@@ -130,6 +128,12 @@ size = Vector2(456, 47)
 texture_filter = 1
 script = ExtResource("1_map")
 
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=21048718]
+process_mode = 3
+stream = ExtResource("8_background_music")
+volume_db = -22.0
+autoplay = true
+
 [node name="ChatGptImageSep15,2026,024611Am" type="Sprite2D" parent="." unique_id=2117797756]
 position = Vector2(638.8333, 432.87497)
 scale = Vector2(0.88374764, 0.88374764)
@@ -168,7 +172,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -403.0
-offset_top = -510.0
+offset_top = -520.0
 offset_right = -16.0
 offset_bottom = 8.0
 grow_horizontal = 0
@@ -179,10 +183,6 @@ script = ExtResource("5_sidequest")
 [node name="QuestContent" type="VBoxContainer" parent="Canvas/SideQuestUI" unique_id=794659121]
 layout_mode = 2
 theme_override_constants/separation = 12
-
-[node name="MainChar" parent="Canvas/SideQuestUI/QuestContent" unique_id=349741940 instance=ExtResource("4_p4o1l")]
-position = Vector2(285, 394)
-scale = Vector2(4, 4)
 
 [node name="QuestTitle" type="Label" parent="Canvas/SideQuestUI/QuestContent" unique_id=1373841309]
 custom_minimum_size = Vector2(0, 46)
@@ -199,7 +199,7 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.23921569, 0.15294118, 0.09411765, 1)
 theme_override_font_sizes/font_size = 17
-text = "0 / 4 completed"
+text = "0 / 6 completed"
 horizontal_alignment = 1
 
 [node name="WaterQuestLabel" type="Label" parent="Canvas/SideQuestUI/QuestContent" unique_id=781375620]
@@ -224,25 +224,14 @@ text = "[ ]  Get general help/information"
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ScreeningInfo1QuestLabel" type="Label" parent="Canvas/SideQuestUI/QuestContent" unique_id=436328513]
+[node name="ScreeningInfoQuestLabel" type="Label" parent="Canvas/SideQuestUI/QuestContent" unique_id=436328513]
 custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.95686275, 0.8745098, 1)
 theme_override_colors/font_outline_color = Color(0.31764707, 0.21176471, 0.1254902, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 19
-text = "[ ]  See fact about screening 1"
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="ScreeningInfo2QuestLabel" type="Label" parent="Canvas/SideQuestUI/QuestContent" unique_id=1947538886]
-custom_minimum_size = Vector2(0, 54)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.95686275, 0.8745098, 1)
-theme_override_colors/font_outline_color = Color(0.31764707, 0.21176471, 0.1254902, 1)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 19
-text = "[ ]  See fact about screening 2"
+text = "[ ]  Screening facts found: 0 / 4"
 vertical_alignment = 1
 autowrap_mode = 2
 
@@ -264,6 +253,7 @@ offset_bottom = 123.0
 tooltip_text = "Listen for your name"
 theme_override_styles/panel = SubResource("StyleBoxFlat_1q0j8")
 script = ExtResource("4_announcement")
+that_me_arrow_path = NodePath("")
 
 [node name="AnnouncementContent" type="VBoxContainer" parent="Canvas/AnnouncementUI" unique_id=1389470353]
 layout_mode = 2
@@ -293,9 +283,15 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_rgk5e")
 
 [node name="CoverUpContent" type="VBoxContainer" parent="Canvas/CoverUpUI" unique_id=2090234452]
 layout_mode = 2
+theme_override_constants/separation = 5
 
 [node name="CoverUpLabel" type="Label" parent="Canvas/CoverUpUI/CoverUpContent" unique_id=755060479]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Screening
+Information"
+horizontal_alignment = 1
 
 [node name="CoverUpUI3" type="PanelContainer" parent="Canvas" unique_id=1221854621]
 anchors_preset = -1
@@ -383,6 +379,21 @@ layout_mode = 2
 
 [node name="CoverUpLabel" type="Label" parent="Canvas/CoverUpUI7/CoverUpContent" unique_id=1047741443]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Screening
+Information"
+horizontal_alignment = 1
+
+[node name="HeartPixel2" type="Sprite2D" parent="Canvas" unique_id=2024255618]
+position = Vector2(94.00003, 288)
+scale = Vector2(0.0072845034, 0.0072845034)
+texture = ExtResource("7_646el")
+
+[node name="HeartPixel" type="Sprite2D" parent="Canvas" unique_id=439038494]
+position = Vector2(327, 533)
+scale = Vector2(0.016465511, 0.016465511)
+texture = ExtResource("7_646el")
 
 [node name="CoverUpUI8" type="PanelContainer" parent="Canvas" unique_id=32201278]
 anchors_preset = -1
@@ -400,14 +411,14 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 11
 
 [node name="LunaDoctor" type="Sprite2D" parent="Canvas" unique_id=1840170590]
-position = Vector2(601, 109)
+position = Vector2(607, 107.00001)
 scale = Vector2(1.5156243, 1.5156243)
 texture = ExtResource("3_1q0j8")
 
 [node name="ReceptionClick" type="Button" parent="Canvas" unique_id=649866851]
-offset_left = 583.0
+offset_left = 590.0
 offset_top = 80.0
-offset_right = 618.0
+offset_right = 625.0
 offset_bottom = 141.0
 tooltip_text = "General information desk"
 focus_mode = 0
@@ -419,9 +430,9 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
 theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
 
 [node name="WaterClick" type="Button" parent="Canvas" unique_id=952978009]
-offset_left = 250.0
-offset_top = 284.0
-offset_right = 285.0
+offset_left = 251.0
+offset_top = 292.0
+offset_right = 281.0
 offset_bottom = 392.0
 tooltip_text = "Water fountain"
 focus_mode = 0
@@ -460,15 +471,43 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_smh7c")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
 theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
 
+[node name="ScreeningInfo3" type="Button" parent="Canvas" unique_id=1869993137]
+offset_left = 294.0
+offset_top = 466.0
+offset_right = 360.0
+offset_bottom = 561.0
+tooltip_text = "Screening information 3"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_e65wt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hotspot_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_smh7c")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
+
+[node name="ScreeningInfo4" type="Button" parent="Canvas" unique_id=100906177]
+offset_left = 1066.0
+offset_top = 14.0
+offset_right = 1162.0
+offset_bottom = 53.0
+tooltip_text = "Screening information 4"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_e65wt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hotspot_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_smh7c")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
+
 [node name="ThatMeHint" type="PanelContainer" parent="Canvas" unique_id=755328164]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -350.0
-offset_top = -89.0
-offset_right = -166.0
+offset_left = -339.0
+offset_top = -101.0
+offset_right = -73.0
 offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -482,7 +521,7 @@ theme_override_constants/separation = 8
 
 [node name="Instruction" type="Label" parent="Canvas/ThatMeHint/HintRow" unique_id=2087366771]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 17
@@ -491,19 +530,9 @@ you see your name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Arrow" type="Label" parent="Canvas" unique_id=1771662902]
-custom_minimum_size = Vector2(48, 0)
-offset_left = 1113.0
-offset_top = 639.0
-offset_right = 1161.0
-offset_bottom = 686.0
-theme_override_colors/font_color = Color(1, 0.8745098, 0.28235295, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 34
-text = "→"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="MainChar2" parent="Canvas/ThatMeHint" unique_id=349741940 instance=ExtResource("4_p4o1l")]
+position = Vector2(222, 0)
+scale = Vector2(4, 4)
 
 [node name="ThatMeButton" type="Button" parent="Canvas" unique_id=145374315]
 anchors_preset = 3
@@ -511,9 +540,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -125.0
-offset_top = -84.0
-offset_right = -66.0
+offset_left = -337.0
+offset_top = -98.0
+offset_right = -75.0
 offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -527,6 +556,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
 theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
 
 [node name="PlayerNamePopup" parent="Canvas" unique_id=25163167 instance=ExtResource("7_name_entry")]
+visible = false
 
 [node name="EnvironmentCollisions" type="StaticBody2D" parent="." unique_id=726143529]
 collision_mask = 0

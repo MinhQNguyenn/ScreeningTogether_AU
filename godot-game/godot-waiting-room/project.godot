@@ -14,6 +14,10 @@ config/name="Screening Journey - Waiting Room"
 run/main_scene="uid://cylfy3t1d0i4r"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
+[audio]
+
+general/text_to_speech=true
+
 [display]
 
 window/size/viewport_width=1280
