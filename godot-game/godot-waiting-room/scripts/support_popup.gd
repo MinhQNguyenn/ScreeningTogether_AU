@@ -13,6 +13,26 @@ const SCREENING_FACTS := [
 		+ "can detect early changes before they become cancer, giving you more "
 		+ "time to take action."
 	),
+	(
+		"4 in 5 Australians get HPV at some point, it's common, "
+		+ "not hereditary"
+	),
+	(
+		"Screening-detected cancers have an 87% lower risk of death "
+		+ "than unscreened cases."
+	),
+	(
+		"No face-to-face talk needed. Self-collection lets you "
+		+ "take the swab yourself, in private."
+	),
+	(
+		"Going for a test doesn't mean something's already wrong. "
+		+ "Most results come back normal."
+	),
+	(
+		"Your visit is confidential, protected the same as any other "
+		+ "medical appointment."
+	)
 ]
 
 var _is_closing := false
