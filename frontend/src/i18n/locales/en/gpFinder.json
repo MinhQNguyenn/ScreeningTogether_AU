@@ -1,0 +1,25 @@
+{
+  "findCare": "Find care near you",
+  "title": "GP Finder",
+  "enterLocation": "Enter Postcode",
+  "placeholder": "e.g. 3168",
+
+  "searching": "Searching for GPs...",
+  "noResults": "No GPs were found for this postcode.",
+  "generalPractice": "GP (General Practice)",
+
+  "postcodeRequired": "Please enter a postcode.",
+  "invalidPostcode": "Please enter a valid 4-digit postcode, such as 3168.",
+  "searchError": "Unable to find GP services right now. Please try again later.",
+
+  "states": {
+    "victoria": "Victoria",
+    "newSouthWales": "New South Wales",
+    "queensland": "Queensland",
+    "southAustralia": "South Australia",
+    "westernAustralia": "Western Australia",
+    "tasmania": "Tasmania",
+    "northernTerritory": "Northern Territory",
+    "australianCapitalTerritory": "Australian Capital Territory"
+  }
+}

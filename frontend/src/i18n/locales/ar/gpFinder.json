@@ -1,0 +1,22 @@
+{
+  "findCare": "ابحث عن خدمات الرعاية الصحية القريبة منك",
+  "title": "البحث عن طبيب عام",
+  "enterLocation": "أدخل الرمز البريدي",
+  "placeholder": "مثال: 3168",
+  "searching": "جارٍ البحث عن أطباء عامين...",
+  "noResults": "لم يتم العثور على أطباء عامين لهذا الرمز البريدي.",
+  "generalPractice": "طبيب عام",
+  "postcodeRequired": "يرجى إدخال الرمز البريدي.",
+  "invalidPostcode": "يرجى إدخال رمز بريدي صالح مكوّن من 4 أرقام، مثل 3168.",
+  "searchError": "يتعذر العثور على خدمات الأطباء العامين في الوقت الحالي. يرجى المحاولة مرة أخرى لاحقًا.",
+  "states": {
+    "victoria": "فيكتوريا",
+    "newSouthWales": "نيو ساوث ويلز",
+    "queensland": "كوينزلاند",
+    "southAustralia": "جنوب أستراليا",
+    "westernAustralia": "أستراليا الغربية",
+    "tasmania": "تسمانيا",
+    "northernTerritory": "الإقليم الشمالي",
+    "australianCapitalTerritory": "إقليم العاصمة الأسترالية"
+  }
+}

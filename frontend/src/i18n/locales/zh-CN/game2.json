@@ -1,0 +1,34 @@
+{
+  "page": {
+    "ariaLabel": "游戏 2：候诊室听力练习",
+    "iframeTitle": "候诊室听力练习",
+    "fullscreenOpen": "打开游戏全屏模式",
+    "fullscreenExit": "退出全屏模式"
+  },
+  "intro": {
+    "label": "筛查预约 | 游戏 2",
+    "title": "留意你的名字",
+    "description": "练习在繁忙的候诊室保持注意力，留意什么时候叫到你的名字，并了解等待期间可以获得的实用支持。"
+  },
+  "howToPlay": {
+    "label": "游戏玩法",
+    "steps": {
+      "watchAndListen": {
+        "title": "观看并聆听",
+        "description": "名字会一个接一个地出现在蓝色公告屏幕上。"
+      },
+      "respondInTime": {
+        "title": "及时回应",
+        "description": "只有当你的全名出现时，才选择“这是我”。"
+      },
+      "exploreWhileWaiting": {
+        "title": "等待时探索",
+        "description": "寻找有用的物品和信息，以完成可选的支线任务。"
+      }
+    }
+  },
+  "navigation": {
+    "game1": "游戏 1",
+    "game3": "游戏 3"
+  }
+}

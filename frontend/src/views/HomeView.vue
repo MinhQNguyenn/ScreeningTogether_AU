@@ -14,9 +14,9 @@
           {{ t('hero.description', { ns: 'home' }) }}
         </p>
         <div class="hero-actions">
-          <RouterLink to="/gprunner" class="button button-primary">{{
+          <a href="#screening-info" class="button button-primary">{{
             t('hero.startLearning', { ns: 'home' })
-          }}</RouterLink>
+          }}</a>
           <a href="#stats" class="text-link"
             >{{ t('hero.seeNumbers', { ns: 'home' }) }}<span>↓</span></a
           >
@@ -240,14 +240,20 @@
             {{ Math.abs(participationChange).toFixed(1) }}%
             {{ t('stats.participationRate', { ns: 'home' }) }}
           </div>
-
           <svg
             viewBox="0 0 600 220"
             role="img"
             :aria-label="t('stats.chartAriaLabel', { ns: 'home' })"
           >
+            <!-- Y-axis -->
+            <line x1="40" y1="15" x2="40" y2="180" class="chart-axis" />
+
+            <!-- X-axis -->
+            <line x1="40" y1="180" x2="560" y2="180" class="chart-axis" />
+
+            <!-- Y-axis labels -->
             <text
-              x="30"
+              x="32"
               y="15"
               text-anchor="end"
               dominant-baseline="middle"
@@ -257,7 +263,7 @@
             </text>
 
             <text
-              x="30"
+              x="32"
               y="180"
               text-anchor="end"
               dominant-baseline="middle"
@@ -267,10 +273,7 @@
             </text>
 
             <!-- Grid lines -->
-            <path
-              class="grid-line"
-              d="M40 15H560M40 56.25H560M40 97.5H560M40 138.75H560M40 180H560"
-            />
+            <path class="grid-line" d="M40 15H560M40 180H560" />
 
             <!-- Chart -->
             <path
@@ -307,6 +310,7 @@
               class="chart-dot"
             />
 
+            <!-- Tooltip -->
             <g v-if="hoveredPoint !== null" class="chart-tooltip">
               <line
                 :x1="svgChartPoints[hoveredPoint].x"
@@ -336,6 +340,7 @@
               </text>
             </g>
           </svg>
+
           <div class="chart-labels">
             <span v-for="point in chartPoints" :key="`${point.label}-${point.percent}`">
               {{ point.label }}

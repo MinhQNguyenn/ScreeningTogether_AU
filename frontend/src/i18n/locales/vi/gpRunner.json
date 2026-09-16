@@ -7,7 +7,7 @@
   },
   "rule": {
     "title": "Luật chơi",
-    "description": "Cố gắng tránh các chướng ngại vật và giữ ít nhất 1 điểm sức khỏe trước khi đến gặp bác sĩ đa khoa (GP). Mỗi lần va vào chướng ngại vật sẽ mất 1 điểm sức khỏe."
+    "description": "Tránh chướng ngại vật và giữ ít nhất 1 điểm sức khỏe trước khi gặp GP. Mỗi lần va chạm mất 1 điểm sức khỏe"
   },
   "funFact": {
     "title": "Bạn có biết?",
