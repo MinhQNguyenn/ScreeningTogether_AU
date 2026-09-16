@@ -8,7 +8,9 @@
       >
         <iframe
           class="game_3"
-          src="/godot/game3/index.html?v=20260914-17"
+          :key="variant"
+          :src="gameSource"
+          ref="gameIframe"
           :title="t('iframe.title', { ns: 'game3' })"
           allowfullscreen
         ></iframe>
@@ -28,6 +30,11 @@
       </section>
 
       <div class="game-side">
+        <nav class="variant-picker" aria-label="Game 3 test versions">
+          <p>Choose a test version. Switching restarts the appointment.</p>
+          <RouterLink :to="{ path: '/game3', query: { variant: 'animation' } }" :aria-current="variant === 'animation' ? 'page' : undefined">A · Clock animation</RouterLink>
+          <RouterLink :to="{ path: '/game3', query: { variant: 'puzzle' } }" :aria-current="variant === 'puzzle' ? 'page' : undefined">B · Picture puzzle</RouterLink>
+        </nav>
         <div class="game-side-copy">
           <p class="section-label">
             {{ t('intro.label', { ns: 'game3' }) }}
@@ -70,7 +77,9 @@
               </h3>
 
               <p>
-                {{ t('learning.minutes.description', { ns: 'game3' }) }}
+                {{ variant === 'animation'
+                  ? 'Watch the clock show time passing during sample collection.'
+                  : 'Play a picture puzzle for up to two minutes to experience time passing during sample collection.' }}
               </p>
             </article>
 
@@ -99,8 +108,8 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { RouterLink, useRouter } from 'vue-router'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
 import '../assets/gpRunnerGame.css'
 import { useTranslation } from '../i18n/useTranslation'
 
@@ -109,6 +118,10 @@ const { t } = useTranslation()
 const gameFrame = ref<HTMLElement | null>(null)
 const isFullscreen = ref(false)
 const router = useRouter()
+const route = useRoute()
+const gameIframe = ref<HTMLIFrameElement | null>(null)
+const variant = computed(() => route.query.variant === 'puzzle' ? 'puzzle' : 'animation')
+const gameSource = computed(() => `/godot/game3/index.html?v=20260916-clock-copy&variant=${variant.value}`)
 
 const toggleFullscreen = async () => {
   if (!document.fullscreenElement) {
@@ -121,17 +134,30 @@ const toggleFullscreen = async () => {
 }
 
 const handleGameMessage = (event: MessageEvent) => {
-  if (event.origin !== window.location.origin) return
+  if (event.origin !== window.location.origin || event.source !== gameIframe.value?.contentWindow) return
   if (event.data?.type === 'game3-complete') {
     void router.push('/gprunner')
   }
 }
 
-onMounted(() => window.addEventListener('message', handleGameMessage))
-onBeforeUnmount(() => window.removeEventListener('message', handleGameMessage))
+const syncFullscreen = () => { isFullscreen.value = document.fullscreenElement === gameFrame.value }
+onMounted(() => {
+  window.addEventListener('message', handleGameMessage)
+  document.addEventListener('fullscreenchange', syncFullscreen)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('message', handleGameMessage)
+  document.removeEventListener('fullscreenchange', syncFullscreen)
+})
 </script>
 
 <style scoped>
+.variant-picker { display: flex; flex-wrap: wrap; gap: 10px; }
+.variant-picker p { flex-basis: 100%; font-size: 13px; margin: 0; }
+.variant-picker a { padding: 10px 14px; border: 2px solid #8e4f59; border-radius: 6px; color: #8e4f59; text-decoration: none; font-size: 13px; }
+.variant-picker a[aria-current='page'] { background: #302a2d; border-color: #302a2d; color: white; }
+.variant-picker a:focus-visible { outline: 3px solid #d5a653; outline-offset: 3px; }
+.game3-page .fullscreen-button { top: 16px; bottom: auto; }
 .game3-page .game-frame {
   background: #f8e9e9;
   min-height: 720px;
