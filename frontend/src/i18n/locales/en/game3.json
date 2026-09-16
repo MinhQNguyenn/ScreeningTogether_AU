@@ -2,10 +2,16 @@
   "aria": {
     "gameFrame": "Game 3: Luna's cervical screening appointment",
     "fullscreenExit": "Exit fullscreen",
-    "fullscreenOpen": "Open game fullscreen"
+    "fullscreenOpen": "Open game fullscreen",
+    "variantPicker": "Game 3 test versions"
   },
   "iframe": {
     "title": "A few minutes with Luna"
+  },
+  "variant": {
+    "description": "Choose a test version. Switching restarts the appointment.",
+    "animation": "A · Clock animation",
+    "puzzle": "B · Picture puzzle"
   },
   "intro": {
     "label": "Cervical screening journey | Game 3",
@@ -20,7 +26,8 @@
     },
     "minutes": {
       "title": "A few minutes",
-      "description": "Solve Luna's picture while the timer shows how a few minutes can pass."
+      "animationDescription": "Watch the clock show time passing during sample collection.",
+      "puzzleDescription": "Play a picture puzzle for up to two minutes to experience time passing during sample collection."
     },
     "after": {
       "title": "After screening",
@@ -28,6 +35,6 @@
     }
   },
   "navigation": {
-    "previousGame": "Return to the previous game"
+    "previousGame": "Game 2"
   }
 }

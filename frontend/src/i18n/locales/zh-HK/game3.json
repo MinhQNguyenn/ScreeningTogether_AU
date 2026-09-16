@@ -1,34 +1,40 @@
 {
   "aria": {
-    "gameFrame": "第3個遊戲：Luna的子宮頸篩查預約",
+    "gameFrame": "遊戲 3：Luna 的子宮頸篩查預約",
     "fullscreenExit": "退出全螢幕",
-    "fullscreenOpen": "開啟遊戲全螢幕"
+    "fullscreenOpen": "開啟遊戲全螢幕",
+    "variantPicker": "遊戲 3 測試版本"
   },
   "iframe": {
-    "title": "與Luna一起了解幾分鐘的篩查"
+    "title": "與 Luna 一起幾分鐘"
+  },
+  "variant": {
+    "description": "選擇測試版本。切換版本會重新開始預約。",
+    "animation": "A · 時鐘動畫",
+    "puzzle": "B · 圖片拼圖"
   },
   "intro": {
-    "label": "子宮頸篩查旅程 | 第3個遊戲",
-    "title": "接受篩查時會發生甚麼？",
-    "description": "陪伴Luna進行篩查預約，了解她的篩查選擇，並體驗樣本採集過程其實可以很快完成。"
+    "label": "子宮頸篩查旅程 | 遊戲 3",
+    "title": "篩查時會發生甚麼？",
+    "description": "陪伴 Luna 進行篩查預約，探索她的篩查選擇，並體驗取樣過程的幾分鐘可以過得多快。"
   },
   "learning": {
-    "label": "你將會學到",
+    "label": "你將學到甚麼",
     "choices": {
       "title": "選擇與自主權",
-      "description": "協助Luna了解過往的篩查、樣本採集選擇，以及如何暫停或停止程序。"
+      "description": "協助 Luna 討論過往的篩查、取樣選擇，以及如何暫停或停止。"
     },
     "minutes": {
       "title": "幾分鐘的時間",
-      "description": "完成Luna的圖片遊戲，同時透過計時器了解幾分鐘可以很快過去。"
+      "animationDescription": "觀看時鐘顯示取樣過程中的時間流逝。",
+      "puzzleDescription": "玩圖片拼圖最多兩分鐘，體驗取樣過程中幾分鐘時間的流逝。"
     },
     "after": {
       "title": "篩查之後",
-      "description": "了解樣本會如何處理，以及通常何時需要再次接受篩查。"
+      "description": "了解取樣後會發生甚麼，以及通常何時需要再次進行篩查。"
     }
   },
   "navigation": {
-    "previousGame": "返回上一個遊戲"
+    "previousGame": "遊戲 2"
   }
 }
-
