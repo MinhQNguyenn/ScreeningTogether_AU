@@ -1,6 +1,6 @@
 {
   "aria": {
-    "gameFrame": "Trò chơi 3: lịch hẹn tầm soát cổ tử cung của Luna",
+    "gameFrame": "Lịch hẹn tầm soát ung thư cổ tử cung của Luna | Giai đoạn 3",
     "fullscreenExit": "Thoát chế độ toàn màn hình",
     "fullscreenOpen": "Mở trò chơi toàn màn hình",
     "variantPicker": "Các phiên bản thử nghiệm của Trò chơi 3"
@@ -9,7 +9,7 @@
     "title": "Vài phút cùng Luna"
   },
   "variant": {
-    "description": "Chọn một phiên bản thử nghiệm. Việc chuyển phiên bản sẽ bắt đầu lại lịch hẹn.",
+    "description": "Chọn một phiên bản. Việc chuyển phiên bản sẽ bắt đầu lại lịch hẹn.",
     "animation": "A · Hoạt ảnh đồng hồ",
     "puzzle": "B · Trò chơi ghép hình"
   },
@@ -35,6 +35,6 @@
     }
   },
   "navigation": {
-    "previousGame": "Trò chơi 2"
+    "previousGame": "Luyện nghe trong phòng chờ"
   }
 }

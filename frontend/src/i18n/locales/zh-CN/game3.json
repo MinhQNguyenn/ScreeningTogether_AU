@@ -1,6 +1,6 @@
 {
   "aria": {
-    "gameFrame": "游戏 3：Luna 的宫颈筛查预约",
+    "gameFrame": "Luna 的宫颈筛查预约 | 第 3 阶段",
     "fullscreenExit": "退出全屏模式",
     "fullscreenOpen": "打开游戏全屏模式",
     "variantPicker": "游戏 3 测试版本"
@@ -9,7 +9,7 @@
     "title": "与 Luna 一起几分钟"
   },
   "variant": {
-    "description": "选择测试版本。切换版本会重新开始预约。",
+    "description": "选择一个版本。切换版本会重新开始预约。",
     "animation": "A · 时钟动画",
     "puzzle": "B · 图片拼图"
   },
@@ -35,6 +35,6 @@
     }
   },
   "navigation": {
-    "previousGame": "游戏 2"
+    "previousGame": "候诊室听力练习"
   }
 }

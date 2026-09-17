@@ -1,6 +1,6 @@
 {
   "aria": {
-    "gameFrame": "Game 3: Luna's cervical screening appointment",
+    "gameFrame": "Luna's cervical screening appointment | Phase 3",
     "fullscreenExit": "Exit fullscreen",
     "fullscreenOpen": "Open game fullscreen",
     "variantPicker": "Game 3 test versions"
@@ -9,7 +9,7 @@
     "title": "A few minutes with Luna"
   },
   "variant": {
-    "description": "Choose a test version. Switching restarts the appointment.",
+    "description": "Choose a version. Switching restarts the appointment.",
     "animation": "A · Clock animation",
     "puzzle": "B · Picture puzzle"
   },
@@ -35,6 +35,6 @@
     }
   },
   "navigation": {
-    "previousGame": "Game 2"
+    "previousGame": "Waiting Room Listening Practice"
   }
 }

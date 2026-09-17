@@ -1,6 +1,6 @@
 {
   "aria": {
-    "gameFrame": "遊戲 3：Luna 的子宮頸篩查預約",
+    "gameFrame": "Luna 的子宮頸篩查預約 | 第 3 階段",
     "fullscreenExit": "退出全螢幕",
     "fullscreenOpen": "開啟遊戲全螢幕",
     "variantPicker": "遊戲 3 測試版本"
@@ -9,7 +9,7 @@
     "title": "與 Luna 一起幾分鐘"
   },
   "variant": {
-    "description": "選擇測試版本。切換版本會重新開始預約。",
+    "description": "選擇一個版本。切換版本會重新開始預約。",
     "animation": "A · 時鐘動畫",
     "puzzle": "B · 圖片拼圖"
   },
@@ -35,6 +35,6 @@
     }
   },
   "navigation": {
-    "previousGame": "遊戲 2"
+    "previousGame": "候診室聆聽練習"
   }
 }

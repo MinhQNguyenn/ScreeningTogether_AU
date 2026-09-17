@@ -76,7 +76,7 @@
         </section>
         <div class="game-navigation-links">
           <RouterLink class="next-game-link" to="/game2">
-            Continue to Game 2
+            {{ t('nextGame', { ns: 'gpRunner' }) }}
             <span aria-hidden="true">→</span>
           </RouterLink>
         </div>

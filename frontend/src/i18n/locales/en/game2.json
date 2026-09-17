@@ -6,7 +6,7 @@
     "fullscreenExit": "Exit fullscreen"
   },
   "intro": {
-    "label": "Screening appointment | Game 2",
+    "label": "Screening Appointment | Phase 2",
     "title": "Listen for your name",
     "description": "Practise staying aware in a busy waiting room, recognise when your name is called, and explore useful support while you wait."
   },
@@ -28,7 +28,7 @@
     }
   },
   "navigation": {
-    "game1": "Game 1",
-    "game3": "Game 3"
+    "game1": "Move pass the stigma",
+    "game3": "Luna's cervical screening appointment"
   }
 }
