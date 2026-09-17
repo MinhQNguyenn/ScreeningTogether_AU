@@ -1326,11 +1326,13 @@ onUnmounted(() => {
   min-height: calc(100dvh - 78px);
 }
 
+
 /* =========================================
    Mobile game pages
    ========================================= */
 
 @media (max-width: 760px) {
+
   .site-shell.text-size-normal :deep(.game-play-page),
   .site-shell.text-size-larger :deep(.game-play-page),
   .site-shell.text-size-largest :deep(.game-play-page) {

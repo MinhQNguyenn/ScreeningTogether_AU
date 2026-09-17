@@ -135,6 +135,9 @@
               <p>
                 {{ t('screening.cards.who.description', { ns: 'home' }) }}
               </p>
+              <a href="#stats" class="arrow-link">
+                {{ t('screening.cards.options.theNumber', { ns: 'home' }) }} <span>→</span>
+              </a>
             </div>
           </div>
         </article>
@@ -224,7 +227,7 @@
           <div class="stat-rule"></div>
 
           <small v-if="participationPercentage">
-            {{ headlinePeriod }}
+            {{ t('stats.period', { ns: 'home' }) }}
           </small>
 
           <small v-else> — </small>
