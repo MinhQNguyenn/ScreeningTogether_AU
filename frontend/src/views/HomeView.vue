@@ -14,12 +14,12 @@
           {{ t('hero.description', { ns: 'home' }) }}
         </p>
         <div class="hero-actions">
-          <a href="#screening-info" class="button button-primary">{{
+          <a href="#learn" class="button button-primary">{{
             t('hero.startLearning', { ns: 'home' })
           }}</a>
-          <a href="#stats" class="text-link"
+          <!-- <a href="#stats" class="text-link"
             >{{ t('hero.seeNumbers', { ns: 'home' }) }}<span>↓</span></a
-          >
+          > -->
         </div>
       </div>
       <div class="hero-art" :aria-label="t('hero.artAriaLabel', { ns: 'home' })">
