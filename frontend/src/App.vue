@@ -24,7 +24,7 @@
         <span v-else>{{ t('header.exploreTogether') }}</span>
       </button>
 
-      <div class="dropdown language-control">
+      <div sclass="dropdown language-control">
         <button
           class="btn btn-dark dropdown-toggle language-button"
           type="button"

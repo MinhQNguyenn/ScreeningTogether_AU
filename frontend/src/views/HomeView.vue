@@ -306,6 +306,7 @@
 
 <script setup lang="ts">
 import '../assets/homeView.css'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
 
 import { computed, onMounted, ref, watch } from 'vue'
 
@@ -318,6 +319,13 @@ import {
 
 import { useTranslation } from '../i18n/useTranslation'
 const { t } = useTranslation()
+
+const emit = defineEmits<{
+  (e: 'open-explore'): void
+}>()
+
+const route = useRoute()
+const router = useRouter()
 
 const states = computed(() => [
   {
@@ -518,4 +526,6 @@ const chartPeriodRange = computed(() => {
 
   return `${firstYear} — ${lastYear}`
 })
+
+
 </script>
