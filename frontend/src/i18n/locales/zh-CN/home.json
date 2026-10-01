@@ -1,112 +1,111 @@
 {
-"hero": {
-"eyebrow": "预防就是力量",
-"title": "你的健康",
-"titleEmphasis": "值得被重视。",
-"description": "无论你的文化、语言或背景如何，你都值得了解宫颈筛查，并对自己的健康充满信心。宫颈癌是可以预防的——今天迈出简单一步，守护你的未来。",
-"startLearning": "开始了解",
-"seeNumbers": "查看数据",
-"noteOne": "了解你的",
-"noteOneStrong": "选择",
-"noteTwo": "每一小步",
-"noteTwoStrong": "都很重要"
-},
-
-"essentials": {
-"label": "01 / 基本信息",
-"title": "多了解一点",
-"titleEmphasis": "就能带来很大帮助。",
-"description": "宫颈癌始于宫颈，但通过定期筛查和 HPV 疫苗接种，通常可以在癌症发生前预防。",
-"faqLink": "常见问题",
-
-"steps": {
-  "vaccination": {
-    "title": "HPV 疫苗接种",
-    "description": "HPV（人乳头瘤病毒）是一种常见病毒，可导致宫颈癌。接种疫苗有助于预防 HPV 感染。"
+  "hero": {
+    "eyebrow": "预防就是力量",
+    "title": "女性健康",
+    "titleEmphasis": "值得被重视。",
+    "description": "无论你的文化、语言或背景如何，你都值得了解宫颈筛查，并对自己的健康充满信心。宫颈癌是可以预防的——今天迈出简单一步，守护你的未来。",
+    "startLearning": "开始了解",
+    "seeNumbers": "查看数据",
+    "noteOne": "了解你的",
+    "noteOneStrong": "选择",
+    "noteTwo": "每一小步",
+    "noteTwoStrong": "都很重要"
   },
+
+  "essentials": {
+    "label": "01 / 必备信息",
+    "title": "多了解一点",
+    "titleEmphasis": "就能带来很大帮助。",
+    "description": "宫颈癌始于宫颈，但通过定期筛查和 HPV 疫苗接种，通常可以在癌症发生前预防。",
+    "faqLink": "常见问题",
+
+    "steps": {
+      "vaccination": {
+        "title": "HPV 疫苗接种",
+        "description": "HPV（人乳头瘤病毒）是一种常见病毒，可导致宫颈癌。接种疫苗有助于预防 HPV 感染。"
+      },
+      "screening": {
+        "title": "定期筛查",
+        "description": "及早发现细胞变化，让问题更容易得到治疗和处理。"
+      },
+      "body": {
+        "title": "了解自己的身体",
+        "description": "如果身体出现任何异常，请与医疗专业人员讨论。"
+      }
+    }
+  },
+
   "screening": {
-    "title": "定期筛查",
-    "description": "及早发现细胞变化，让问题更容易得到治疗和处理。"
+    "label": "02 / 常见问题",
+    "title": "为你的下一步",
+    "titleEmphasis": "提供清晰答案。",
+    "description": "了解筛查过程可以让筛查变得更简单。以下信息可以帮助你做好准备，并获得支持。",
+
+    "cards": {
+      "what": {
+        "title": "什么是宫颈筛查？",
+        "description": "这是一项快速的健康检查，用于检测高风险 HPV 及宫颈的早期细胞变化。及早发现变化有助于预防宫颈癌。"
+      },
+      "why": {
+        "title": "为什么重要？",
+        "description": "筛查可以在 HPV 和早期细胞变化发展成癌症之前发现它们。这是守护未来健康的重要方法之一。"
+      },
+      "who": {
+        "title": "适合哪些人？",
+        "description": "在澳大利亚，建议 25 至 74 岁、拥有宫颈的人接受宫颈筛查，无论是否曾接种 HPV 疫苗。"
+      },
+      "howOften": {
+        "title": "多久一次？",
+        "description": "大多数人每五年需要接受一次筛查。医疗服务提供者可能会根据你的检查结果或健康记录建议不同的安排。"
+      },
+      "whatHappens": {
+        "title": "筛查时会发生什么？",
+        "description": "受过培训的医疗专业人员会从宫颈采集少量样本。通常只需几分钟，你可以随时提出问题。"
+      },
+      "options": {
+        "title": "你的筛查选择",
+        "description": "你可以选择由医疗专业人员进行采样，或询问自己是否可以进行自行采样。两种方法都可以检测 HPV。",
+        "findGp": "寻找附近的全科医生",
+        "theNumber": "查看澳大利亚的筛查参与率"
+      }
+    }
   },
-  "body": {
-    "title": "了解自己的身体",
-    "description": "如果身体出现任何异常，请与医疗专业人员讨论。"
+
+  "stats": {
+    "label": "03 / 数据",
+    "title": "改善的",
+    "titleEmphasis": "机会。",
+    "state": "州／领地",
+    "allStates": "所有州／领地",
+    "eligibleWomen": "符合资格的女性在 2020 年 1 月至 2025 年 6 月期间接受了 HPV 检测。",
+    "period": "2020 - 2025",
+    "chartTitle": "筛查参与率",
+    "participationRate": "参与率",
+    "chartAriaLabel": "显示宫颈筛查参与率随时间变化的折线图"
+  },
+
+  "closing": {
+    "label": "04 / 你的下一步",
+    "title": "照顾自己。",
+    "titleEmphasis": "分享你所知道的。",
+    "description": "每一次交流，都可以帮助身边的人向预防迈出下一步。",
+    "checkGp": "查看附近的全科医生"
+  },
+
+  "states": {
+    "all": "所有州／领地",
+    "victoria": "维多利亚州",
+    "newSouthWales": "新南威尔士州",
+    "queensland": "昆士兰州",
+    "westernAustralia": "西澳大利亚州",
+    "southAustralia": "南澳大利亚州",
+    "tasmania": "塔斯马尼亚州",
+    "australianCapitalTerritory": "澳大利亚首都领地",
+    "northernTerritory": "北领地"
+  },
+
+  "errors": {
+    "percentage": "无法加载筛查参与率。",
+    "graph": "无法加载筛查参与图表。"
   }
-}
-
-},
-
-"screening": {
-"label": "02 / 筛查基本信息",
-"title": "为你的下一步",
-"titleEmphasis": "提供清晰答案。",
-"description": "了解筛查过程可以让筛查变得更简单。以下信息可以帮助你做好准备，并获得支持。",
-
-"cards": {
-  "what": {
-    "title": "什么是宫颈筛查？",
-    "description": "这是一项快速的健康检查，用于检测高风险 HPV 及宫颈的早期细胞变化。及早发现变化有助于预防宫颈癌。"
-  },
-  "why": {
-    "title": "为什么重要？",
-    "description": "筛查可以在 HPV 和早期细胞变化发展成癌症之前发现它们。这是守护未来健康的重要方法之一。"
-  },
-  "who": {
-    "title": "适合哪些人？",
-    "description": "在澳大利亚，建议 25 至 74 岁、拥有宫颈的人接受宫颈筛查，无论是否曾接种 HPV 疫苗。"
-  },
-  "howOften": {
-    "title": "多久一次？",
-    "description": "大多数人每五年需要接受一次筛查。医疗服务提供者可能会根据你的检查结果或健康记录建议不同的安排。"
-  },
-  "whatHappens": {
-    "title": "筛查时会发生什么？",
-    "description": "受过培训的医疗专业人员会从宫颈采集少量样本。通常只需几分钟，你可以随时提出问题。"
-  },
-  "options": {
-    "title": "你的筛查选择",
-    "description": "你可以选择由医疗专业人员进行采样，或询问自己是否可以进行自行采样。两种方法都可以检测 HPV。",
-    "findGp": "寻找附近的全科医生"
-  }
-}
-
-},
-
-"stats": {
-"label": "03 / 更全面的数据",
-"title": "改善的",
-"titleEmphasis": "机会。",
-"state": "州／领地",
-"allStates": "所有州／领地",
-"eligibleWomen": "符合资格的女性在 2020 年 1 月至 2025 年 6 月期间接受了 HPV 检测。",
-"period": "2020 - 2024",
-"chartTitle": "筛查参与率",
-"participationRate": "参与率",
-"chartAriaLabel": "显示宫颈筛查参与率随时间变化的折线图"
-},
-
-"closing": {
-"label": "04 / 你的下一步",
-"title": "照顾自己。",
-"titleEmphasis": "分享你所知道的。",
-"description": "每一次交流，都可以帮助身边的人向预防迈出下一步。",
-"checkGp": "查看附近的全科医生"
-},
-
-"states": {
-"all": "所有州／领地",
-"victoria": "维多利亚州",
-"newSouthWales": "新南威尔士州",
-"queensland": "昆士兰州",
-"westernAustralia": "西澳大利亚州",
-"southAustralia": "南澳大利亚州",
-"tasmania": "塔斯马尼亚州",
-"australianCapitalTerritory": "澳大利亚首都领地",
-"northernTerritory": "北领地"
-},
-
-"errors": {
-"percentage": "无法加载筛查参与率。",
-"graph": "无法加载筛查参与图表。"
-}
 }

@@ -1,5 +1,5 @@
 {
-  "educationalGame": "教育游戏",
+  "educationalGame": "第 1 阶段｜克服污名",
   "howToPlay": "游戏玩法",
   "navigation": {
     "title": "操作",
@@ -7,7 +7,7 @@
   },
   "rule": {
     "title": "游戏规则",
-    "description": "尽量避开障碍物，并在到达全科医生（GP）前保持至少 1 点生命值。每次撞到障碍物会失去 1 点生命值。"
+    "description": "避开障碍物，并在到达 GP 前保持至少 1 点生命值。每次撞到障碍物会失去 1 点生命值。"
   },
   "funFact": {
     "title": "小知识",
@@ -15,7 +15,7 @@
   },
   "games": {
     "knowYourBody": {
-      "title": "了解你的身体",
+      "title": "筛查途径",
       "description": "文化观念、尴尬、语言障碍以及害怕受到评判，都可能让人难以谈论宫颈筛查。让我们一起打破对筛查的误解，让每个人都能更轻松地谈论宫颈筛查。"
     },
     "throughTheProcess": {
@@ -28,6 +28,6 @@
     "open": "打开游戏全屏"
   },
   "gameArea": "教育游戏区域",
-  "nextGame": "继续前往第3个游戏"
+  "nextGame": "继续前往全科医生"
 }
 

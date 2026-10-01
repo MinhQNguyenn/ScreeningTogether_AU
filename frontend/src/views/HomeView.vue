@@ -14,12 +14,12 @@
           {{ t('hero.description', { ns: 'home' }) }}
         </p>
         <div class="hero-actions">
-          <RouterLink to="/gprunner" class="button button-primary">{{
+          <a href="#learn" class="button button-primary">{{
             t('hero.startLearning', { ns: 'home' })
-          }}</RouterLink>
-          <a href="#stats" class="text-link"
+          }}</a>
+          <!-- <a href="#stats" class="text-link"
             >{{ t('hero.seeNumbers', { ns: 'home' }) }}<span>↓</span></a
-          >
+          > -->
         </div>
       </div>
       <div class="hero-art" :aria-label="t('hero.artAriaLabel', { ns: 'home' })">
@@ -135,6 +135,9 @@
               <p>
                 {{ t('screening.cards.who.description', { ns: 'home' }) }}
               </p>
+              <a href="#stats" class="arrow-link">
+                {{ t('screening.cards.options.theNumber', { ns: 'home' }) }} <span>→</span>
+              </a>
             </div>
           </div>
         </article>
@@ -224,7 +227,7 @@
           <div class="stat-rule"></div>
 
           <small v-if="participationPercentage">
-            {{ headlinePeriod }}
+            {{ t('stats.period', { ns: 'home' }) }}
           </small>
 
           <small v-else> — </small>
@@ -240,17 +243,40 @@
             {{ Math.abs(participationChange).toFixed(1) }}%
             {{ t('stats.participationRate', { ns: 'home' }) }}
           </div>
-
           <svg
             viewBox="0 0 600 220"
             role="img"
             :aria-label="t('stats.chartAriaLabel', { ns: 'home' })"
           >
+            <!-- Y-axis -->
+            <line x1="40" y1="15" x2="40" y2="180" class="chart-axis" />
+
+            <!-- X-axis -->
+            <line x1="40" y1="180" x2="560" y2="180" class="chart-axis" />
+
+            <!-- Y-axis labels -->
+            <text
+              x="32"
+              y="15"
+              text-anchor="end"
+              dominant-baseline="middle"
+              class="chart-axis-label"
+            >
+              100%
+            </text>
+
+            <text
+              x="32"
+              y="180"
+              text-anchor="end"
+              dominant-baseline="middle"
+              class="chart-axis-label"
+            >
+              0%
+            </text>
+
             <!-- Grid lines -->
-            <path
-              class="grid-line"
-              d="M40 15H560M40 56.25H560M40 97.5H560M40 138.75H560M40 180H560"
-            />
+            <path class="grid-line" d="M40 15H560M40 180H560" />
 
             <!-- Chart -->
             <path
@@ -287,6 +313,7 @@
               class="chart-dot"
             />
 
+            <!-- Tooltip -->
             <g v-if="hoveredPoint !== null" class="chart-tooltip">
               <line
                 :x1="svgChartPoints[hoveredPoint].x"
@@ -316,6 +343,7 @@
               </text>
             </g>
           </svg>
+
           <div class="chart-labels">
             <span v-for="point in chartPoints" :key="`${point.label}-${point.percent}`">
               {{ point.label }}
@@ -328,9 +356,15 @@
     <section class="closing-section">
       <div class="closing-bloom"></div>
       <div class="section-label">{{ t('closing.label', { ns: 'home' }) }}</div>
-      <h2>{{ t('closing.title', { ns: 'home' }) }}<br /><em>{{ t('closing.titleEmphasis', { ns: 'home' }) }}</em></h2>
+      <h2>
+        {{ t('closing.title', { ns: 'home' }) }}<br /><em>{{
+          t('closing.titleEmphasis', { ns: 'home' })
+        }}</em>
+      </h2>
       <p>{{ t('closing.description', { ns: 'home' }) }}</p>
-      <RouterLink to="/gpfinder" class="button button-primary">{{ t('closing.checkGp', { ns: 'home' }) }}</RouterLink>
+      <RouterLink to="/gpfinder" class="button button-primary">{{
+        t('closing.checkGp', { ns: 'home' })
+      }}</RouterLink>
     </section>
   </main>
 </template>

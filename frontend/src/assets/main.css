@@ -51,3 +51,13 @@ button {
   font: inherit;
   cursor: pointer;
 }
+
+a,
+a:visited,
+a:hover,
+a:focus,
+a:active,
+.router-link-active,
+.router-link-exact-active {
+  text-decoration: none !important;
+}

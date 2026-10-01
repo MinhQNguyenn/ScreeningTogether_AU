@@ -2,7 +2,12 @@
   <div class="site-shell" :class="[`theme-${selectedTheme}`, `text-size-${textSize}`]">
     <header class="site-header">
       <RouterLink to="/" class="brand"
-        ><span class="brand-mark">✳</span> ScreeningTogether AU</RouterLink
+        ><span class="brand-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        ScreeningTogether AU</RouterLink
       >
       <nav :class="['main-nav', { open: menuOpen }]" aria-label="Main navigation">
         <RouterLink to="/">{{ t('header.home') }}</RouterLink>
@@ -72,8 +77,6 @@
       ><span>{{ t('footer.tagline') }}</span
       ><span>{{ t('footer.copyright') }}</span>
     </footer>
-<<<<<<< Updated upstream
-=======
 
     <button
       class="accessibility-trigger d-flex align-items-center justify-content-center p-0"
@@ -197,7 +200,6 @@
         {{ t('displayOptions.reset') }}
       </button>
     </aside>
->>>>>>> Stashed changes
   </div>
 </template>
 
@@ -322,9 +324,35 @@ onUnmounted(() => {
 }
 
 .brand-mark {
-  font-size: 20px;
-  color: #bd6f76;
-  margin-right: 5px;
+  position: relative;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  margin-right: 6px;
+  vertical-align: -5px;
+}
+
+.brand-mark span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 22px;
+  border-radius: 999px;
+  background: #bd6f76;
+  transform-origin: center;
+}
+
+.brand-mark span:nth-child(1) {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.brand-mark span:nth-child(2) {
+  transform: translate(-50%, -50%) rotate(60deg);
+}
+
+.brand-mark span:nth-child(3) {
+  transform: translate(-50%, -50%) rotate(120deg);
 }
 
 .brand-dot {
@@ -342,6 +370,7 @@ onUnmounted(() => {
   color: #796b6c;
   font-size: 12px;
   font-weight: 700;
+  text-decoration: none;
 }
 
 .main-nav a.router-link-active,
@@ -620,8 +649,6 @@ onUnmounted(() => {
     height: 33px;
   }
 }
-<<<<<<< Updated upstream
-=======
 .accessibility-trigger {
   position: fixed;
   right: 20px;
@@ -1037,32 +1064,142 @@ onUnmounted(() => {
 .site-shell.theme-accessible :deep(.section-label) {
   color: #1769aa;
 }
-/* Larger text */
+/* =========================================
+   Accessibility text sizes
+   ========================================= */
+
+.site-shell {
+  --accessibility-scale: 1;
+}
+
+/*
+  Do not set font-size directly on page headings here.
+
+  Each page already has its own responsive typography,
+  such as clamp(), fixed px values, etc.
+
+  The transform below visually enlarges the text without
+  replacing the page's original font-size.
+*/
+
+/* Larger */
 .site-shell.text-size-larger :deep(h1),
 .site-shell.text-size-larger :deep(h2),
 .site-shell.text-size-larger :deep(h3) {
-  font-size: 1.1em;
+  zoom: 1.08;
 }
 
 .site-shell.text-size-larger :deep(p),
 .site-shell.text-size-larger :deep(a),
 .site-shell.text-size-larger :deep(button),
-.site-shell.text-size-larger :deep(label) {
-  font-size: 1.08em;
+.site-shell.text-size-larger :deep(label),
+.site-shell.text-size-larger :deep(select),
+.site-shell.text-size-larger :deep(small) {
+  zoom: 1.08;
 }
 
-/* Largest text */
+/* Largest */
 .site-shell.text-size-largest :deep(h1),
 .site-shell.text-size-largest :deep(h2),
 .site-shell.text-size-largest :deep(h3) {
-  font-size: 1.2em;
+  zoom: 1.16;
 }
 
 .site-shell.text-size-largest :deep(p),
 .site-shell.text-size-largest :deep(a),
 .site-shell.text-size-largest :deep(button),
-.site-shell.text-size-largest :deep(label) {
+.site-shell.text-size-largest :deep(label),
+.site-shell.text-size-largest :deep(select),
+.site-shell.text-size-largest :deep(small) {
+  zoom: 1.16;
+}
+
+/* =========================================
+   SVG chart text
+   ========================================= */
+
+.site-shell.text-size-larger :deep(.chart-axis-label),
+.site-shell.text-size-larger :deep(.chart-tooltip-text) {
+  font-size: 1.08em;
+}
+
+.site-shell.text-size-largest :deep(.chart-axis-label),
+.site-shell.text-size-largest :deep(.chart-tooltip-text) {
   font-size: 1.16em;
+}
+
+/* =========================================
+   Chart labels
+   ========================================= */
+
+.site-shell.text-size-larger :deep(.chart-labels span),
+.site-shell.text-size-largest :deep(.chart-labels span) {
+  zoom: 1.08;
+}
+
+/* =========================================
+   Chart header
+   ========================================= */
+
+.site-shell.text-size-larger :deep(.chart-top h3),
+.site-shell.text-size-larger :deep(.chart-top span) {
+  zoom: 1.08;
+}
+
+.site-shell.text-size-largest :deep(.chart-top h3),
+.site-shell.text-size-largest :deep(.chart-top span) {
+  zoom: 1.16;
+}
+
+/* =========================================
+   Trend indicator
+   ========================================= */
+
+.site-shell.text-size-larger :deep(.trend-indicator),
+.site-shell.text-size-largest :deep(.trend-indicator) {
+  zoom: 1.08;
+}
+
+.site-shell.text-size-largest :deep(.trend-indicator) {
+  zoom: 1.16;
+}
+
+/* =========================================
+   Stats period
+   ========================================= */
+
+.site-shell.text-size-larger :deep(.big-stat small) {
+  zoom: 1.08;
+}
+
+.site-shell.text-size-largest :deep(.big-stat small) {
+  zoom: 1.16;
+}
+
+/* =========================================
+   Big percentage
+   ========================================= */
+
+.site-shell.text-size-larger :deep(.big-stat strong) {
+  zoom: 1.08;
+}
+
+.site-shell.text-size-largest :deep(.big-stat strong) {
+  zoom: 1.16;
+}
+
+/* =========================================
+   State dropdown
+   ========================================= */
+
+.site-shell.text-size-larger :deep(.stats-filters label),
+.site-shell.text-size-larger :deep(.stats-filters select) {
+  zoom: 1.08;
+}
+
+.site-shell.text-size-largest :deep(.stats-filters label),
+.site-shell.text-size-largest :deep(.stats-filters select) {
+  zoom: 1.16;
 }
 .site-shell.theme-blush .accessibility-trigger {
   background: #e9b9b3;
@@ -1163,6 +1300,7 @@ onUnmounted(() => {
   color: #1769aa;
 }
 
+/* Normal text size */
 .site-shell.text-size-normal :deep(.game-play-page) {
   height: calc(100dvh - 78px);
   min-height: 0;
@@ -1174,7 +1312,7 @@ onUnmounted(() => {
   min-height: 0;
 }
 
-/* Enlarged text: allow content to grow and page to scroll */
+/* Enlarged text */
 .site-shell.text-size-larger :deep(.game-play-page),
 .site-shell.text-size-largest :deep(.game-play-page) {
   height: auto;
@@ -1186,6 +1324,29 @@ onUnmounted(() => {
 .site-shell.text-size-largest :deep(.game-stage) {
   height: auto;
   min-height: calc(100dvh - 78px);
+}
+
+
+/* =========================================
+   Mobile game pages
+   ========================================= */
+
+@media (max-width: 760px) {
+
+  .site-shell.text-size-normal :deep(.game-play-page),
+  .site-shell.text-size-larger :deep(.game-play-page),
+  .site-shell.text-size-largest :deep(.game-play-page) {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .site-shell.text-size-normal :deep(.game-stage),
+  .site-shell.text-size-larger :deep(.game-stage),
+  .site-shell.text-size-largest :deep(.game-stage) {
+    height: auto;
+    min-height: 0;
+  }
 }
 
 @media (max-width: 700px) {
@@ -1251,5 +1412,8 @@ onUnmounted(() => {
     height: 16px;
   }
 }
->>>>>>> Stashed changes
+.header-cta,
+.site-footer .brand {
+  text-decoration: none;
+}
 </style>

@@ -1,5 +1,5 @@
 {
-  "educationalGame": "Trò chơi giáo dục",
+  "educationalGame": "Giai đoạn 1 | Vượt qua sự kỳ thị",
   "howToPlay": "Cách chơi",
   "navigation": {
     "title": "Điều khiển",
@@ -7,7 +7,7 @@
   },
   "rule": {
     "title": "Luật chơi",
-    "description": "Cố gắng tránh các chướng ngại vật và giữ ít nhất 1 điểm sức khỏe trước khi đến gặp bác sĩ đa khoa (GP). Mỗi lần va vào chướng ngại vật sẽ mất 1 điểm sức khỏe."
+    "description": "Tránh chướng ngại vật và giữ ít nhất 1 điểm sức khỏe trước khi gặp GP. Mỗi lần va chạm mất 1 điểm sức khỏe"
   },
   "funFact": {
     "title": "Bạn có biết?",
@@ -15,7 +15,7 @@
   },
   "games": {
     "knowYourBody": {
-      "title": "Hiểu về cơ thể bạn",
+      "title": "Lộ trình tầm soát",
       "description": "Niềm tin văn hóa, sự ngại ngùng, rào cản ngôn ngữ và nỗi sợ bị đánh giá có thể khiến việc nói về tầm soát cổ tử cung trở nên khó khăn. Hãy cùng phá bỏ sự kỳ thị và giúp mọi người cảm thấy dễ dàng hơn khi trao đổi về tầm soát."
     },
     "throughTheProcess": {
@@ -28,5 +28,5 @@
     "open": "Mở trò chơi toàn màn hình"
   },
   "gameArea": "Khu vực trò chơi giáo dục",
-  "nextGame": "Tiếp tục đến trò chơi 3"
+  "nextGame": "Tiếp tục đến bác sĩ đa khoa"
 }

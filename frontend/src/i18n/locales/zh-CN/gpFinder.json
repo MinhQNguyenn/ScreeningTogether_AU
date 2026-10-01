@@ -1,0 +1,22 @@
+{
+  "findCare": "寻找您附近的医疗服务",
+  "title": "全科医生搜索",
+  "enterLocation": "输入邮政编码",
+  "placeholder": "例如：3168",
+  "searching": "正在搜索全科医生……",
+  "noResults": "找不到此邮政编码的全科医生。",
+  "generalPractice": "全科医生（普通科）",
+  "postcodeRequired": "请输入邮政编码。",
+  "invalidPostcode": "请输入有效的4位数邮政编码，例如3168。",
+  "searchError": "目前无法找到全科医生服务。请稍后再试。",
+  "states": {
+    "victoria": "维多利亚州",
+    "newSouthWales": "新南威尔士州",
+    "queensland": "昆士兰州",
+    "southAustralia": "南澳大利亚州",
+    "westernAustralia": "西澳大利亚州",
+    "tasmania": "塔斯马尼亚州",
+    "northernTerritory": "北领地",
+    "australianCapitalTerritory": "澳大利亚首都领地"
+  }
+}

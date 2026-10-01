@@ -74,15 +74,12 @@
             </article>
           </div>
         </section>
-
-<<<<<<< Updated upstream
-=======
-        <RouterLink class="next-game-link" to="/game3">
-          {{ t('nextGame', { ns: 'gpRunner' }) }}
-          <span aria-hidden="true">→</span>
-        </RouterLink>
-
->>>>>>> Stashed changes
+        <div class="game-navigation-links">
+          <RouterLink class="next-game-link" to="/game2">
+            {{ t('nextGame', { ns: 'gpRunner' }) }}
+            <span aria-hidden="true">→</span>
+          </RouterLink>
+        </div>
         <!-- This part will be implemented when more game is available
         <div class="game-switcher" aria-label="Choose a game">
           <button
@@ -104,6 +101,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { RouterLink } from 'vue-router'
 import '../assets/gpRunnerGame.css'
 import { useTranslation } from '../i18n/useTranslation'
 

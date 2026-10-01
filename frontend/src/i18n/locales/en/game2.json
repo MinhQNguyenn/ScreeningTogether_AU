@@ -1,0 +1,34 @@
+{
+  "page": {
+    "ariaLabel": "Game 2: waiting room listening practice",
+    "iframeTitle": "Waiting Room Listening Practice",
+    "fullscreenOpen": "Open game fullscreen",
+    "fullscreenExit": "Exit fullscreen"
+  },
+  "intro": {
+    "label": "Screening Appointment | Phase 2",
+    "title": "Listen for your name",
+    "description": "Practise staying aware in a busy waiting room, recognise when your name is called, and explore useful support while you wait."
+  },
+  "howToPlay": {
+    "label": "How to play",
+    "steps": {
+      "watchAndListen": {
+        "title": "Watch and listen",
+        "description": "Names move across the blue announcement screen one at a time."
+      },
+      "respondInTime": {
+        "title": "Respond in time",
+        "description": "Select That's Me only when your full name appears."
+      },
+      "exploreWhileWaiting": {
+        "title": "Explore while waiting",
+        "description": "Find useful objects and information to complete optional side quests."
+      }
+    }
+  },
+  "navigation": {
+    "game1": "Move pass the stigma",
+    "game3": "Luna's cervical screening appointment"
+  }
+}

@@ -1,112 +1,111 @@
 {
-"hero": {
-"eyebrow": "預防就是力量",
-"title": "你的健康",
-"titleEmphasis": "值得被重視。",
-"description": "無論你的文化、語言或背景如何，你都值得了解子宮頸篩查，並對自己的健康充滿信心。子宮頸癌是可以預防的——今天踏出簡單一步，守護你的未來。",
-"startLearning": "開始了解",
-"seeNumbers": "查看數據",
-"noteOne": "了解你的",
-"noteOneStrong": "選擇",
-"noteTwo": "每一小步",
-"noteTwoStrong": "都很重要"
-},
-
-"essentials": {
-"label": "01 / 基本資訊",
-"title": "多了解一點",
-"titleEmphasis": "就能帶來很大幫助。",
-"description": "子宮頸癌始於子宮頸，但透過定期篩查和 HPV 疫苗接種，通常可以在癌症發生前預防。",
-"faqLink": "常見問題",
-
-"steps": {
-  "vaccination": {
-    "title": "HPV 疫苗接種",
-    "description": "HPV（人類乳頭瘤病毒）是一種常見病毒，可導致子宮頸癌。接種疫苗有助於預防 HPV 感染。"
+  "hero": {
+    "eyebrow": "預防就是力量",
+    "title": "女性健康",
+    "titleEmphasis": "值得被重視。",
+    "description": "無論你的文化、語言或背景如何，你都值得了解子宮頸篩查，並對自己的健康充滿信心。子宮頸癌是可以預防的——今天踏出簡單一步，守護你的未來。",
+    "startLearning": "開始了解",
+    "seeNumbers": "查看數據",
+    "noteOne": "了解你的",
+    "noteOneStrong": "選擇",
+    "noteTwo": "每一小步",
+    "noteTwoStrong": "都很重要"
   },
+
+  "essentials": {
+    "label": "01 / 必備資訊",
+    "title": "多了解一點",
+    "titleEmphasis": "就能帶來很大幫助。",
+    "description": "子宮頸癌始於子宮頸，但透過定期篩查和 HPV 疫苗接種，通常可以在癌症發生前預防。",
+    "faqLink": "常見問題",
+
+    "steps": {
+      "vaccination": {
+        "title": "HPV 疫苗接種",
+        "description": "HPV（人類乳頭瘤病毒）是一種常見病毒，可導致子宮頸癌。接種疫苗有助於預防 HPV 感染。"
+      },
+      "screening": {
+        "title": "定期篩查",
+        "description": "及早發現細胞變化，讓問題更容易得到治療和處理。"
+      },
+      "body": {
+        "title": "了解自己的身體",
+        "description": "如果身體出現任何異常，請與醫療專業人員討論。"
+      }
+    }
+  },
+
   "screening": {
-    "title": "定期篩查",
-    "description": "及早發現細胞變化，讓問題更容易得到治療和處理。"
+    "label": "02 / 常見問題",
+    "title": "為你的下一步",
+    "titleEmphasis": "提供清晰答案。",
+    "description": "了解篩查過程可以讓篩查變得更簡單。以下資訊可以幫助你做好準備，並獲得支持。",
+
+    "cards": {
+      "what": {
+        "title": "甚麼是子宮頸篩查？",
+        "description": "這是一項快速的健康檢查，用於檢測高風險 HPV 及子宮頸的早期細胞變化。及早發現變化有助於預防子宮頸癌。"
+      },
+      "why": {
+        "title": "為甚麼重要？",
+        "description": "篩查可以在 HPV 和早期細胞變化發展成癌症之前發現它們。這是守護未來健康的重要方法之一。"
+      },
+      "who": {
+        "title": "適合哪些人？",
+        "description": "在澳洲，建議 25 至 74 歲、擁有子宮頸的人士接受子宮頸篩查，無論是否曾接種 HPV 疫苗。"
+      },
+      "howOften": {
+        "title": "多久一次？",
+        "description": "大多數人每五年需要接受一次篩查。醫療服務提供者可能會根據你的檢查結果或健康紀錄建議不同的安排。"
+      },
+      "whatHappens": {
+        "title": "篩查時會發生甚麼？",
+        "description": "受過訓練的醫療專業人員會從子宮頸採集少量樣本。通常只需幾分鐘，你可以隨時提出問題。"
+      },
+      "options": {
+        "title": "你的篩查選擇",
+        "description": "你可以選擇由醫療專業人員進行採樣，或詢問自己是否可以進行自行採樣。兩種方法都可以檢測 HPV。",
+        "findGp": "尋找附近的全科醫生",
+        "theNumber": "查看澳洲的篩查參與率"
+      }
+    }
   },
-  "body": {
-    "title": "了解自己的身體",
-    "description": "如果身體出現任何異常，請與醫療專業人員討論。"
+
+  "stats": {
+    "label": "03 / 數據",
+    "title": "改善的",
+    "titleEmphasis": "機會。",
+    "state": "州／領地",
+    "allStates": "所有州／領地",
+    "eligibleWomen": "符合資格的女性在 2020 年 1 月至 2025 年 6 月期間接受了 HPV 檢測。",
+    "period": "2020 - 2025",
+    "chartTitle": "篩查參與率",
+    "participationRate": "參與率",
+    "chartAriaLabel": "顯示子宮頸篩查參與率隨時間變化的折線圖"
+  },
+
+  "closing": {
+    "label": "04 / 你的下一步",
+    "title": "照顧自己。",
+    "titleEmphasis": "分享你所知道的。",
+    "description": "每一次交流，都可以幫助身邊的人向預防邁出下一步。",
+    "checkGp": "查看附近的全科醫生"
+  },
+
+  "states": {
+    "all": "所有州／領地",
+    "victoria": "維多利亞州",
+    "newSouthWales": "新南威爾士州",
+    "queensland": "昆士蘭州",
+    "westernAustralia": "西澳州",
+    "southAustralia": "南澳州",
+    "tasmania": "塔斯曼尼亞州",
+    "australianCapitalTerritory": "澳洲首都領地",
+    "northernTerritory": "北領地"
+  },
+
+  "errors": {
+    "percentage": "無法載入篩查參與率。",
+    "graph": "無法載入篩查參與圖表。"
   }
-}
-
-},
-
-"screening": {
-"label": "02 / 篩查基本資訊",
-"title": "為你的下一步",
-"titleEmphasis": "提供清晰答案。",
-"description": "了解篩查過程可以讓篩查變得更簡單。以下資訊可以幫助你做好準備，並獲得支持。",
-
-"cards": {
-  "what": {
-    "title": "甚麼是子宮頸篩查？",
-    "description": "這是一項快速的健康檢查，用於檢測高風險 HPV 及子宮頸的早期細胞變化。及早發現變化有助於預防子宮頸癌。"
-  },
-  "why": {
-    "title": "為甚麼重要？",
-    "description": "篩查可以在 HPV 和早期細胞變化發展成癌症之前發現它們。這是守護未來健康的重要方法之一。"
-  },
-  "who": {
-    "title": "適合哪些人？",
-    "description": "在澳洲，建議 25 至 74 歲、擁有子宮頸的人士接受子宮頸篩查，無論是否曾接種 HPV 疫苗。"
-  },
-  "howOften": {
-    "title": "多久一次？",
-    "description": "大多數人每五年需要接受一次篩查。醫療服務提供者可能會根據你的檢查結果或健康紀錄建議不同的安排。"
-  },
-  "whatHappens": {
-    "title": "篩查時會發生甚麼？",
-    "description": "受過訓練的醫療專業人員會從子宮頸採集少量樣本。通常只需幾分鐘，你可以隨時提出問題。"
-  },
-  "options": {
-    "title": "你的篩查選擇",
-    "description": "你可以選擇由醫療專業人員進行採樣，或詢問自己是否可以進行自行採樣。兩種方法都可以檢測 HPV。",
-    "findGp": "尋找附近的全科醫生"
-  }
-}
-
-},
-
-"stats": {
-"label": "03 / 更全面的數據",
-"title": "改善的",
-"titleEmphasis": "機會。",
-"state": "州／領地",
-"allStates": "所有州／領地",
-"eligibleWomen": "符合資格的女性在 2020 年 1 月至 2025 年 6 月期間接受了 HPV 檢測。",
-"period": "2020 - 2024",
-"chartTitle": "篩查參與率",
-"participationRate": "參與率",
-"chartAriaLabel": "顯示子宮頸篩查參與率隨時間變化的折線圖"
-},
-
-"closing": {
-"label": "04 / 你的下一步",
-"title": "照顧自己。",
-"titleEmphasis": "分享你所知道的。",
-"description": "每一次交流，都可以幫助身邊的人向預防邁出下一步。",
-"checkGp": "查看附近的全科醫生"
-},
-
-"states": {
-"all": "所有州／領地",
-"victoria": "維多利亞州",
-"newSouthWales": "新南威爾士州",
-"queensland": "昆士蘭州",
-"westernAustralia": "西澳州",
-"southAustralia": "南澳州",
-"tasmania": "塔斯曼尼亞州",
-"australianCapitalTerritory": "澳洲首都領地",
-"northernTerritory": "北領地"
-},
-
-"errors": {
-"percentage": "無法載入篩查參與率。",
-"graph": "無法載入篩查參與圖表。"
-}
 }

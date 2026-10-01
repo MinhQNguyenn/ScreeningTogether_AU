@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://lf0px1myvlbe"]
+
+[ext_resource type="Script" uid="uid://b4luoe20etjir" path="res://scripts/api_client.gd" id="1_cyx46"]
+
+[node name="api_client" type="Node" unique_id=1147773525]
+script = ExtResource("1_cyx46")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1607899577]
