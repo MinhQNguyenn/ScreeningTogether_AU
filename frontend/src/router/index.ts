@@ -8,6 +8,8 @@ import GPRunnerGameView from '../views/GpRunnerGameView.vue'
 import GPDetailsView from '../views/GpFinderDetailView.vue'
 import Game2View from '../views/Game2View.vue'
 import Game3View from '../views/Game3View.vue'
+import FAQView from '../views/FAQView.vue'
+import DataView from '../views/DataView.vue'
 
 //Iteration 1
 import Iteration1Home from "../views/Iteration 1/HomeView.vue"
@@ -35,6 +37,8 @@ const router = createRouter({
 
   routes: [
     { path: '/', component: HomeView, meta: { title: 'Home | ScreeningTogether AU' } },
+    { path: '/faq', component: FAQView, meta: { title: 'FAQ | ScreeningTogether AU' } },
+    { path: '/data', component: DataView, meta: { title: 'The numbers | ScreeningTogether AU' } },
     {
       path: '/resources',
       component: PlaceholderView,

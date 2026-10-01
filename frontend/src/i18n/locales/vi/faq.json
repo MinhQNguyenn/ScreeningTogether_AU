@@ -1,0 +1,46 @@
+{
+  "title": "Câu hỏi thường gặp",
+  "eyebrow": "Câu hỏi thường gặp",
+  "heading": "Câu trả lời rõ ràng,",
+  "headingEmphasis": "tất cả ở một nơi.",
+  "intro": "Các câu hỏi được nhóm theo điều mọi người thường muốn biết trước. Nhấn vào câu hỏi để mở — không có giới hạn thời gian hay theo dõi, bạn có thể quay lại bất cứ lúc nào.",
+  "groups": {
+    "screening": "Về việc tầm soát",
+    "appointment": "Buổi hẹn",
+    "access": "Chi phí và lựa chọn"
+  },
+  "questions": {
+    "what": {
+      "question": "Tầm soát cổ tử cung là gì?",
+      "answer": "Đây là xét nghiệm đơn giản kiểm tra tế bào cổ tử cung để tìm HPV, loại vi-rút có thể gây thay đổi theo thời gian. Hầu hết kết quả đều bình thường."
+    },
+    "why": {
+      "question": "Tại sao việc này quan trọng?",
+      "answer": "Tầm soát có thể phát hiện HPV trước khi vi-rút gây thay đổi tế bào. Phát hiện sớm giúp theo dõi những thay đổi trước khi chúng phát triển thành ung thư cổ tử cung."
+    },
+    "who": {
+      "question": "Ai nên tầm soát và bắt đầu từ độ tuổi nào?",
+      "answer": "Tại Úc, tầm soát cổ tử cung được khuyến nghị mỗi năm năm cho người từ 25 đến 74 tuổi có cổ tử cung, kể cả người đã tiêm vắc-xin HPV."
+    },
+    "howOften": {
+      "question": "Tôi cần đi tầm soát bao lâu một lần?",
+      "answer": "Hầu hết mọi người cần xét nghiệm mỗi năm năm. Nhân viên y tế có thể đề xuất lịch khác dựa trên kết quả hoặc tiền sử sức khỏe của bạn."
+    },
+    "test": {
+      "question": "Thực tế điều gì xảy ra trong buổi kiểm tra?",
+      "answer": "Chuyên gia y tế đã qua đào tạo sẽ lấy một mẫu nhỏ từ cổ tử cung. Việc kiểm tra thường chỉ mất vài phút và bạn có thể yêu cầu tạm dừng bất cứ lúc nào."
+    },
+    "femaleClinician": {
+      "question": "Tôi có thể yêu cầu bác sĩ hoặc y tá nữ không?",
+      "answer": "Có. Bạn có thể yêu cầu nhân viên y tế nữ khi đặt lịch. Bạn cũng có thể đi cùng người hỗ trợ hoặc yêu cầu thông dịch viên."
+    },
+    "cost": {
+      "question": "Tầm soát có mất phí không?",
+      "answer": "Chi phí có thể tùy thuộc vào nơi khám và hoàn cảnh của bạn. Hãy hỏi phòng khám về các khoản phí trước khi đặt hẹn."
+    },
+    "selfCollect": {
+      "question": "Tôi có thể tự lấy mẫu không?",
+      "answer": "Người đủ điều kiện có thể được tự lấy mẫu. Hãy hỏi nhân viên y tế xem lựa chọn này có phù hợp với bạn không."
+    }
+  }
+}

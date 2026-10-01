@@ -6,14 +6,50 @@
     "numbers": "数据",
     "gpFinder": "寻找全科医生",
     "game": "游戏",
-    "learnThroughGame": "通过游戏了解更多",
+    "learnThroughGame": "一起探索",
+    "exploreTogether": "一起探索",
+    "exploreMobile": "探索",
     "openMenu": "打开菜单",
     "closeMenu": "关闭菜单",
     "mainNavigation": "主导航"
   },
   "footer": {
-    "tagline": "预防始于对话。",
+    "tagline": "了解工作如何影响你的身体，以及其他女性在工作后如何继续前行。免费使用，无需创建账户。",
+    "acknowledgement": "我们承认澳大利亚各地原住民是其土地的传统守护者，并持续与土地、水域及社区保持联系。我们向历代长者致以敬意，并向所有原住民及托雷斯海峡岛民致以同样敬意。",
+    "pages": "页面",
+    "dataSources": "数据来源",
+    "healthDepartment": "澳大利亚政府卫生部",
     "copyright": "© 2026 ScreeningTogether AU"
+  },
+  "navigation": { "nextPage": "前往下一页" },
+  "explore": {
+    "eyebrow": "一起探索",
+    "title": "你想从哪里开始？",
+    "intro": "没有错误的答案，选择现在最适合你的方向即可。你随时可以回来尝试其他路径。",
+    "close": "关闭探索选项",
+    "startBeginning": "不确定？从头开始",
+    "options": {
+      "nervous": {
+        "title": "我有点紧张或不太确定",
+        "description": "我们会一步一步，温和地陪伴你。"
+      },
+      "new": { "title": "我从未接触过这个系统", "description": "了解从候诊室到预约的整个流程。" },
+      "room": {
+        "title": "我只想知道诊室里会发生什么",
+        "description": "直接了解筛查预约的实际流程。"
+      },
+      "book": { "title": "我已准备好，请帮我预约", "description": "直接寻找附近的全科医生。" }
+    }
+  },
+  "gameStart": {
+    "eyebrow": "第一阶段 · 跨越偏见",
+    "title": "避开前方的障碍。",
+    "description": "路上的每个障碍，都代表有人在筛查前可能遇到的真实困难。跨越障碍，就能到达全科医生诊所。",
+    "goal": "到达路的尽头，找到全科医生",
+    "move": "移动",
+    "jump": "跳跃",
+    "rule": "撞到障碍会失去 1 点生命值 — 归零后便要重新开始",
+    "begin": "开始"
   },
   "settings": {
     "title": "设置",

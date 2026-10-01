@@ -17,9 +17,12 @@
           <a href="#learn" class="button button-primary">{{
             t('hero.startLearning', { ns: 'home' })
           }}</a>
-          <!-- <a href="#stats" class="text-link"
-            >{{ t('hero.seeNumbers', { ns: 'home' }) }}<span>↓</span></a
-          > -->
+          <button class="button button-explore" type="button" @click="emit('open-explore')">
+            <span class="explore-label-desktop">{{
+              t('hero.exploreTogether', { ns: 'home' })
+            }}</span>
+            <span class="explore-label-mobile">{{ t('hero.explore', { ns: 'home' }) }}</span>
+          </button>
         </div>
       </div>
       <div class="hero-art" :aria-label="t('hero.artAriaLabel', { ns: 'home' })">
@@ -82,9 +85,12 @@
           <p>{{ t('essentials.steps.body.description', { ns: 'home' }) }}</p>
         </article>
       </div>
+      <a class="section-next-link" href="#screening-info">
+        <span aria-hidden="true">↓</span>{{ t('essentials.nextSection', { ns: 'home' }) }}
+      </a>
     </section>
 
-    <section class="screening-info" id="screening-info">
+    <section class="screening-info faq-preview" id="screening-info">
       <div class="section-label">{{ t('screening.label', { ns: 'home' }) }}</div>
       <div class="screening-info-heading">
         <h2>
@@ -92,103 +98,26 @@
             t('screening.titleEmphasis', { ns: 'home' })
           }}</em>
         </h2>
-        <p>
-          {{ t('screening.description', { ns: 'home' }) }}
-        </p>
+        <p>{{ t('screening.description', { ns: 'home' }) }}</p>
       </div>
-      <div class="info-grid">
-        <article class="info-card">
-          <div class="info-card-inner">
-            <div class="info-card-front">
-              <span class="info-index">01</span>
-              <h3>{{ t('screening.cards.what.title', { ns: 'home' }) }}</h3>
-            </div>
-            <div class="info-card-back">
-              <p>
-                {{ t('screening.cards.what.description', { ns: 'home' }) }}
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <article class="info-card">
-          <div class="info-card-inner">
-            <div class="info-card-front">
-              <span class="info-index">02</span>
-              <h3>{{ t('screening.cards.why.title', { ns: 'home' }) }}</h3>
-            </div>
-            <div class="info-card-back">
-              <p>
-                {{ t('screening.cards.why.description', { ns: 'home' }) }}
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <article class="info-card">
-          <div class="info-card-inner">
-            <div class="info-card-front">
-              <span class="info-index">03</span>
-              <h3>{{ t('screening.cards.who.title', { ns: 'home' }) }}</h3>
-            </div>
-            <div class="info-card-back">
-              <p>
-                {{ t('screening.cards.who.description', { ns: 'home' }) }}
-              </p>
-              <a href="#stats" class="arrow-link">
-                {{ t('screening.cards.options.theNumber', { ns: 'home' }) }} <span>→</span>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="info-card">
-          <div class="info-card-inner">
-            <div class="info-card-front">
-              <span class="info-index">04</span>
-              <h3>{{ t('screening.cards.howOften.title', { ns: 'home' }) }}</h3>
-            </div>
-            <div class="info-card-back">
-              <p>
-                {{ t('screening.cards.howOften.description', { ns: 'home' }) }}
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <article class="info-card">
-          <div class="info-card-inner">
-            <div class="info-card-front">
-              <span class="info-index">05</span>
-              <h3>{{ t('screening.cards.whatHappens.title', { ns: 'home' }) }}</h3>
-            </div>
-            <div class="info-card-back">
-              <p>
-                {{ t('screening.cards.whatHappens.description', { ns: 'home' }) }}
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <article class="info-card info-card-accent">
-          <div class="info-card-inner">
-            <div class="info-card-front">
-              <span class="info-index">06</span>
-              <h3>{{ t('screening.cards.options.title', { ns: 'home' }) }}</h3>
-            </div>
-
-            <div class="info-card-back">
-              <p>
-                {{ t('screening.cards.options.description', { ns: 'home' }) }}
-              </p>
-
-              <RouterLink to="/gpfinder" class="arrow-link">
-                {{ t('screening.cards.options.findGp', { ns: 'home' }) }} <span>→</span>
-              </RouterLink>
-            </div>
-          </div>
-        </article>
+      <div class="faq-preview-grid">
+        <RouterLink class="faq-preview-card" to="/faq">
+          <span>{{ t('screening.cards.what.title', { ns: 'home' }) }}</span>
+          <small>{{ t('screening.preview.first', { ns: 'home' }) }}</small>
+          <span class="faq-plus" aria-hidden="true">＋</span>
+        </RouterLink>
+        <RouterLink class="faq-preview-card" to="/faq">
+          <span>{{ t('screening.cards.why.title', { ns: 'home' }) }}</span>
+          <small>{{ t('screening.preview.second', { ns: 'home' }) }}</small>
+          <span class="faq-plus" aria-hidden="true">＋</span>
+        </RouterLink>
       </div>
+      <RouterLink class="arrow-link faq-all-link" to="/faq">
+        {{ t('screening.seeAll', { ns: 'home' }) }} <span>→</span>
+      </RouterLink>
+      <a class="section-next-link" href="#stats">
+        <span aria-hidden="true">↓</span>{{ t('screening.nextSection', { ns: 'home' }) }}
+      </a>
     </section>
 
     <section class="stats-section" id="stats">
@@ -351,9 +280,15 @@
           </div>
         </div>
       </div>
+      <RouterLink class="arrow-link stats-data-link" to="/data">
+        {{ t('stats.seeData', { ns: 'home' }) }} <span>→</span>
+      </RouterLink>
+      <a class="section-next-link" href="#closing">
+        <span aria-hidden="true">↓</span>{{ t('stats.nextSection', { ns: 'home' }) }}
+      </a>
     </section>
 
-    <section class="closing-section">
+    <section class="closing-section" id="closing">
       <div class="closing-bloom"></div>
       <div class="section-label">{{ t('closing.label', { ns: 'home' }) }}</div>
       <h2>
@@ -479,13 +414,13 @@ const headlinePercent = computed(() => {
   return participationPercentage.value?.percent ?? null
 })
 
-const headlinePeriod = computed(() => {
-  if (!participationPercentage.value) {
-    return '—'
-  }
+// const headlinePeriod = computed(() => {
+//   if (!participationPercentage.value) {
+//     return '—'
+//   }
 
-  return participationPercentage.value.label
-})
+//   return participationPercentage.value.label
+// })
 
 // The API returns points oldest-first, each with a ready-made period label
 // (e.g. "2018-2022") for the x-axis.

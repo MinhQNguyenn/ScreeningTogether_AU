@@ -14,6 +14,16 @@ import zhHKHome from './locales/zh-HK/home.json'
 import zhCNHome from './locales/zh-CN/home.json'
 import arHome from './locales/ar/home.json'
 import viHome from './locales/vi/home.json'
+import enFaq from './locales/en/faq.json'
+import zhHKFaq from './locales/zh-HK/faq.json'
+import zhCNFaq from './locales/zh-CN/faq.json'
+import arFaq from './locales/ar/faq.json'
+import viFaq from './locales/vi/faq.json'
+import enData from './locales/en/data.json'
+import zhHKData from './locales/zh-HK/data.json'
+import zhCNData from './locales/zh-CN/data.json'
+import arData from './locales/ar/data.json'
+import viData from './locales/vi/data.json'
 
 // GPRunnerGameView.vue
 import enGpRunner from './locales/en/gpRunner.json'
@@ -47,6 +57,8 @@ const resources = {
   en: {
     common: enCommon,
     home: enHome,
+    faq: enFaq,
+    data: enData,
     gpRunner: enGpRunner,
     game3: game3En,
     gpFinder: enGpFinder,
@@ -55,6 +67,8 @@ const resources = {
   'zh-HK': {
     common: zhHKCommon,
     home: zhHKHome,
+    faq: zhHKFaq,
+    data: zhHKData,
     gpRunner: zhHKGpRunner,
     game3: game3ZhHK,
     gpFinder: zhHKGpFinder,
@@ -63,6 +77,8 @@ const resources = {
   'zh-CN': {
     common: zhCNCommon,
     home: zhCNHome,
+    faq: zhCNFaq,
+    data: zhCNData,
     gpRunner: zhCNGpRunner,
     game3: game3ZhCN,
     gpFinder: zhCNGpFinder,
@@ -71,6 +87,8 @@ const resources = {
   ar: {
     common: arCommon,
     home: arHome,
+    faq: arFaq,
+    data: arData,
     gpRunner: arGpRunner,
     game3: game3Ar,
     gpFinder: arGpFinder,
@@ -79,6 +97,8 @@ const resources = {
   vi: {
     common: viCommon,
     home: viHome,
+    faq: viFaq,
+    data: viData,
     gpRunner: viGpRunner,
     game3: game3Vi,
     gpFinder: viGpFinder,
@@ -92,7 +112,7 @@ i18next
     resources,
     fallbackLng: 'en',
     defaultNS: 'common',
-    ns: ['common', 'home', 'gpRunner', 'game3', 'gpFinder', 'game2'],
+    ns: ['common', 'home', 'faq', 'data', 'gpRunner', 'game3', 'gpFinder', 'game2'],
 
     detection: {
       order: ['localStorage', 'navigator'],
