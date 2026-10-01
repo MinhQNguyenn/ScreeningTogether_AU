@@ -65,7 +65,8 @@
       "options": {
         "title": "Your screening options",
         "description": "Choose a healthcare provider for a clinician-collected test, or ask if self-collection is available for you. Both options check for HPV.",
-        "findGp": "Look for a GP near you"
+        "findGp": "Look for a GP near you",
+        "theNumber": "See the participation number in Australia"
       }
     }
   },
@@ -77,7 +78,7 @@
     "state": "State",
     "allStates": "All states",
     "eligibleWomen": "eligible women had an HPV test between January 2020 to June 2025.",
-    "period": "2020 - 2024",
+    "period": "2020 - 2025 ",
     "chartTitle": "Screening Participation Rate",
     "participationRate": "participation rate",
     "chartAriaLabel": "Line chart showing cervical screening participation over time"

@@ -1300,6 +1300,7 @@ onUnmounted(() => {
   color: #1769aa;
 }
 
+/* Normal text size */
 .site-shell.text-size-normal :deep(.game-play-page) {
   height: calc(100dvh - 78px);
   min-height: 0;
@@ -1311,7 +1312,7 @@ onUnmounted(() => {
   min-height: 0;
 }
 
-/* Enlarged text: allow content to grow and page to scroll */
+/* Enlarged text */
 .site-shell.text-size-larger :deep(.game-play-page),
 .site-shell.text-size-largest :deep(.game-play-page) {
   height: auto;
@@ -1323,6 +1324,29 @@ onUnmounted(() => {
 .site-shell.text-size-largest :deep(.game-stage) {
   height: auto;
   min-height: calc(100dvh - 78px);
+}
+
+
+/* =========================================
+   Mobile game pages
+   ========================================= */
+
+@media (max-width: 760px) {
+
+  .site-shell.text-size-normal :deep(.game-play-page),
+  .site-shell.text-size-larger :deep(.game-play-page),
+  .site-shell.text-size-largest :deep(.game-play-page) {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .site-shell.text-size-normal :deep(.game-stage),
+  .site-shell.text-size-larger :deep(.game-stage),
+  .site-shell.text-size-largest :deep(.game-stage) {
+    height: auto;
+    min-height: 0;
+  }
 }
 
 @media (max-width: 700px) {

@@ -6,7 +6,7 @@
     "fullscreenExit": "Thoát chế độ toàn màn hình"
   },
   "intro": {
-    "label": "Lịch hẹn tầm soát | Trò chơi 2",
+    "label": "Cuộc hẹn tầm soát | Giai đoạn 2",
     "title": "Lắng nghe tên của bạn",
     "description": "Luyện tập giữ sự chú ý trong phòng chờ đông người, nhận biết khi tên của bạn được gọi và khám phá những hỗ trợ hữu ích trong khi chờ đợi."
   },
@@ -28,7 +28,7 @@
     }
   },
   "navigation": {
-    "game1": "Trò chơi 1",
-    "game3": "Trò chơi 3"
+    "game1": "Vượt qua sự kỳ thị",
+    "game3": "Lịch hẹn tầm soát ung thư cổ tử cung của Luna"
   }
 }

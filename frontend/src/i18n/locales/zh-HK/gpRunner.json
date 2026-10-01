@@ -1,5 +1,5 @@
 {
-  "educationalGame": "教育遊戲",
+  "educationalGame": "第 1 階段｜克服污名",
   "howToPlay": "遊戲玩法",
   "navigation": {
     "title": "操作",
@@ -15,7 +15,7 @@
   },
   "games": {
     "knowYourBody": {
-      "title": "認識自己的身體",
+      "title": "篩查途徑",
       "description": "文化觀念、尷尬、語言障礙和害怕被評價，都可能令人難以談論子宮頸篩查。讓我們一起打破對篩查的誤解，讓每個人都更容易談論子宮頸篩查。"
     },
     "throughTheProcess": {
@@ -28,5 +28,5 @@
     "open": "開啟遊戲全螢幕"
   },
   "gameArea": "教育遊戲區域",
-  "nextGame": "繼續前往第3個遊戲"
+  "nextGame": "繼續前往全科醫生"
 }

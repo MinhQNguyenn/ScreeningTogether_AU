@@ -1,6 +1,6 @@
 
 {
-  "educationalGame": "Educational game",
+  "educationalGame": "Phase 1 | Move pass the stigma",
   "howToPlay": "How to play",
   "navigation": {
     "title": "Navigation",
@@ -16,7 +16,7 @@
   },
   "games": {
     "knowYourBody": {
-      "title": "Know your body",
+      "title": "Screening Pathways",
       "description": "Cultural beliefs, embarrassment, language barriers and fear of judgement can make cervical screening difficult to talk about. Let’s break the stigma and make screening conversations easier for everyone."
     },
     "throughTheProcess": {
@@ -29,6 +29,6 @@
     "open": "Open game fullscreen"
   },
   "gameArea": "Educational game area",
-  "nextGame": "Continue to game 3"
+  "nextGame": "Continue to GP"
 }
 

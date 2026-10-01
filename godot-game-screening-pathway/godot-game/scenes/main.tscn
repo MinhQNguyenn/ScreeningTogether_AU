@@ -1,0 +1,393 @@
+[gd_scene format=3 uid="uid://c71n6pna8s7sa"]
+
+[ext_resource type="Script" uid="uid://vsh5k7vodm17" path="res://scripts/main.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/clinic_finish.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://bb35gd2m7bhtk" path="res://assets/heart_pixel.png" id="4_heart"]
+[ext_resource type="Texture2D" uid="uid://c6x1007srah10" path="res://assets/arrow.png" id="5_tbgi4"]
+
+[sub_resource type="StyleBoxFlat" id="Panel_style"]
+bg_color = Color(0.96, 0.93, 0.77, 0.97)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.23, 0.39, 0.27, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="Controls_group_style"]
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(0.9, 0.9, 0.76, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.42, 0.55, 0.4, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Main" type="Node2D" unique_id=2047231791]
+script = ExtResource("1")
+
+[node name="Track" type="Node2D" parent="." unique_id=2002580075]
+
+[node name="Player" parent="." unique_id=958786315 instance=ExtResource("2")]
+
+[node name="Destination" parent="." unique_id=2075738844 instance=ExtResource("3")]
+position = Vector2(0, -15000)
+
+[node name="Interface" type="CanvasLayer" parent="." unique_id=2134147226]
+
+[node name="HUD" type="Control" parent="Interface" unique_id=1356194197]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Score" type="Label" parent="Interface/HUD" unique_id=1726245057]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = 34.0
+offset_right = -32.0
+offset_bottom = 84.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 0.91, 1)
+theme_override_colors/font_shadow_color = Color(0.12, 0.18, 0.13, 0.8)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 26
+text = "1500 m"
+horizontal_alignment = 2
+
+[node name="HealthDisplay" type="HBoxContainer" parent="Interface/HUD" unique_id=1444587204]
+layout_mode = 1
+offset_left = 28.0
+offset_top = 32.0
+offset_right = 245.0
+offset_bottom = 72.0
+theme_override_constants/separation = 6
+
+[node name="Label" type="Label" parent="Interface/HUD/HealthDisplay" unique_id=47300253]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.56, 0.6, 1)
+theme_override_colors/font_shadow_color = Color(0.12, 0.18, 0.13, 0.8)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 18
+text = "HEALTH"
+
+[node name="Heart1" type="TextureRect" parent="Interface/HUD/HealthDisplay" unique_id=965522207]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_heart")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart2" type="TextureRect" parent="Interface/HUD/HealthDisplay" unique_id=1996569775]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_heart")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart3" type="TextureRect" parent="Interface/HUD/HealthDisplay" unique_id=223936334]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_heart")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Feedback" type="Label" parent="Interface/HUD" unique_id=1049952574]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 150.0
+offset_top = 124.0
+offset_right = -150.0
+offset_bottom = 174.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 0.91, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.18, 0.13, 0.75)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 18
+text = "Reach the health service"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="StartScreen" type="ColorRect" parent="Interface" unique_id=1269118582]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12, 0.25, 0.17, 0.9)
+
+[node name="Panel" type="PanelContainer" parent="Interface/StartScreen" unique_id=1649698253]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -330.0
+offset_right = 275.0
+offset_bottom = 330.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("Panel_style")
+
+[node name="Content" type="VBoxContainer" parent="Interface/StartScreen/Panel" unique_id=1754202413]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Title" type="Label" parent="Interface/StartScreen/Panel/Content" unique_id=148064177]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16, 0.31, 0.2, 1)
+theme_override_font_sizes/font_size = 48
+text = "SCREENING
+PATHWAYS"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Interface/StartScreen/Panel/Content" unique_id=449784113]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.31, 0.24, 1)
+theme_override_font_sizes/font_size = 22
+text = "A cervical screening awareness journey"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ControlsHeading" type="Label" parent="Interface/StartScreen/Panel/Content" unique_id=1872008717]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.31, 0.24, 1)
+theme_override_font_sizes/font_size = 22
+text = "CONTROLS"
+horizontal_alignment = 1
+
+[node name="ControlGroups" type="HBoxContainer" parent="Interface/StartScreen/Panel/Content" unique_id=1164404982]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="WasdGroup" type="PanelContainer" parent="Interface/StartScreen/Panel/Content/ControlGroups" unique_id=1380137224]
+custom_minimum_size = Vector2(235, 130)
+layout_mode = 2
+theme_override_styles/panel = SubResource("Controls_group_style")
+
+[node name="Content" type="VBoxContainer" parent="Interface/StartScreen/Panel/Content/ControlGroups/WasdGroup" unique_id=873990907]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Heading" type="Label" parent="Interface/StartScreen/Panel/Content/ControlGroups/WasdGroup/Content" unique_id=168874755]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16, 0.31, 0.2, 1)
+theme_override_font_sizes/font_size = 20
+text = "WASD KEYS"
+horizontal_alignment = 1
+
+[node name="Keys" type="Label" parent="Interface/StartScreen/Panel/Content/ControlGroups/WasdGroup/Content" unique_id=1972085387]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.31, 0.24, 1)
+theme_override_font_sizes/font_size = 17
+text = "W   Jump
+A   Left     D   Right"
+horizontal_alignment = 1
+
+[node name="ArrowGroup" type="PanelContainer" parent="Interface/StartScreen/Panel/Content/ControlGroups" unique_id=723626519]
+custom_minimum_size = Vector2(235, 130)
+layout_mode = 2
+theme_override_styles/panel = SubResource("Controls_group_style")
+
+[node name="Content" type="VBoxContainer" parent="Interface/StartScreen/Panel/Content/ControlGroups/ArrowGroup" unique_id=1169134523]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Heading" type="Label" parent="Interface/StartScreen/Panel/Content/ControlGroups/ArrowGroup/Content" unique_id=1201213465]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16, 0.31, 0.2, 1)
+theme_override_font_sizes/font_size = 20
+text = "ARROW KEYS"
+horizontal_alignment = 1
+
+[node name="Keys" type="Label" parent="Interface/StartScreen/Panel/Content/ControlGroups/ArrowGroup/Content" unique_id=79199454]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.31, 0.24, 1)
+theme_override_font_sizes/font_size = 17
+text = "       Jump
+    Left              Right"
+horizontal_alignment = 1
+
+[node name="SpaceControl" type="Label" parent="Interface/StartScreen/Panel/Content" unique_id=2129662223]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.31, 0.24, 1)
+theme_override_font_sizes/font_size = 18
+text = "[ SPACE ]   Start / Continue"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="Interface/StartScreen/Panel/Content" unique_id=1502617516]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.94, 1)
+theme_override_font_sizes/font_size = 28
+text = "START  [SPACE]"
+
+[node name="Credit" type="Label" parent="Interface/StartScreen/Panel/Content" unique_id=308258148]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33, 0.38, 0.3, 1)
+theme_override_font_sizes/font_size = 15
+text = "Sprout Lands assets by Cup Nooble"
+horizontal_alignment = 1
+
+[node name="ArrowRight" type="Sprite2D" parent="Interface/StartScreen/Panel/Content" unique_id=690154748]
+position = Vector2(488, 384)
+rotation = -1.5707964
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("5_tbgi4")
+
+[node name="ArrowLeft" type="Sprite2D" parent="Interface/StartScreen/Panel/Content" unique_id=1479460920]
+position = Vector2(320, 384)
+rotation = 1.5707964
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("5_tbgi4")
+
+[node name="Arrow" type="Sprite2D" parent="Interface/StartScreen/Panel/Content" unique_id=69353762]
+position = Vector2(377, 357)
+rotation = -3.1415925
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("5_tbgi4")
+
+[node name="GameOverScreen" type="ColorRect" parent="Interface" unique_id=717610567]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12, 0.18, 0.14, 0.82)
+
+[node name="Panel" type="PanelContainer" parent="Interface/GameOverScreen" unique_id=1838344819]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = -220.0
+offset_right = 265.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("Panel_style")
+
+[node name="Content" type="VBoxContainer" parent="Interface/GameOverScreen/Panel" unique_id=26023184]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Heading" type="Label" parent="Interface/GameOverScreen/Panel/Content" unique_id=255596016]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16, 0.31, 0.2, 1)
+theme_override_font_sizes/font_size = 40
+text = "PATH BLOCKED"
+horizontal_alignment = 1
+
+[node name="BarrierMessage" type="Label" parent="Interface/GameOverScreen/Panel/Content" unique_id=786078778]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52, 0.27, 0.3, 1)
+theme_override_font_sizes/font_size = 26
+text = "Barrier"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="FinalScore" type="Label" parent="Interface/GameOverScreen/Panel/Content" unique_id=1782789300]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.31, 0.24, 1)
+theme_override_font_sizes/font_size = 24
+text = "Remaining distance  1500 m"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="Interface/GameOverScreen/Panel/Content" unique_id=1400220639]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.94, 1)
+theme_override_font_sizes/font_size = 26
+text = "TRY AGAIN  [SPACE]"
+
+[node name="CompletionScreen" type="ColorRect" parent="Interface" unique_id=1414650624]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.25, 0.16, 0.86)
+
+[node name="Panel" type="PanelContainer" parent="Interface/CompletionScreen" unique_id=1462415950]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -245.0
+offset_right = 275.0
+offset_bottom = 245.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("Panel_style")
+
+[node name="Content" type="VBoxContainer" parent="Interface/CompletionScreen/Panel" unique_id=1801613921]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Heading" type="Label" parent="Interface/CompletionScreen/Panel/Content" unique_id=1909077463]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16, 0.39, 0.24, 1)
+theme_override_font_sizes/font_size = 36
+text = "YOU MADE AN
+INFORMED CHOICE"
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="Interface/CompletionScreen/Panel/Content" unique_id=1281467844]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.32, 0.24, 1)
+theme_override_font_sizes/font_size = 21
+text = "You reached trusted healthcare
+information and support."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="FinalScore" type="Label" parent="Interface/CompletionScreen/Panel/Content" unique_id=284612452]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.31, 0.24, 1)
+theme_override_font_sizes/font_size = 24
+text = "Remaining distance  0 m"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="Interface/CompletionScreen/Panel/Content" unique_id=439294155]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.94, 1)
+theme_override_font_sizes/font_size = 26
+text = "PLAY AGAIN  [SPACE]"

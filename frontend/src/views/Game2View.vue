@@ -9,10 +9,37 @@
         <iframe
           ref="gameIframe"
           class="game_2"
-          src="/godot/game2/index.html?v=20260915-1"
+          src="/godot/game2/index.html?v=20260916-audio-mute"
           :title="t('page.iframeTitle', { ns: 'game2' })"
           allowfullscreen
+          @load="sendAudioState"
         ></iframe>
+
+        <button
+          class="audio-button"
+          type="button"
+          :aria-label="
+            isMuted
+              ? t('page.unmute', { ns: 'game2' })
+              : t('page.mute', { ns: 'game2' })
+          "
+          :aria-pressed="isMuted"
+          @click="toggleAudio"
+        >
+          <svg
+            class="audio-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M4 9v6h4l5 4V5L8 9H4Z" />
+            <template v-if="isMuted">
+              <path d="m17 9 5 5M22 9l-5 5" />
+            </template>
+            <template v-else>
+              <path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7.5 7.5 0 0 1 0 10" />
+            </template>
+          </svg>
+        </button>
 
         <button
           class="fullscreen-button"
@@ -139,7 +166,20 @@ const { t } = useTranslation()
 const gameFrame = ref<HTMLElement | null>(null)
 const gameIframe = ref<HTMLIFrameElement | null>(null)
 const isFullscreen = ref(false)
+const isMuted = ref(false)
 const router = useRouter()
+
+const sendAudioState = () => {
+  gameIframe.value?.contentWindow?.postMessage(
+    { type: 'game2-set-muted', muted: isMuted.value },
+    window.location.origin,
+  )
+}
+
+const toggleAudio = () => {
+  isMuted.value = !isMuted.value
+  sendAudioState()
+}
 
 const toggleFullscreen = async () => {
   if (!document.fullscreenElement) {
@@ -156,6 +196,10 @@ const syncFullscreenState = () => {
 const handleGameMessage = (event: MessageEvent) => {
   if (event.origin !== window.location.origin) return
   if (event.source !== gameIframe.value?.contentWindow) return
+  if (event.data?.type === 'game2-audio-bridge-ready') {
+    sendAudioState()
+    return
+  }
   if (event.data?.type === 'game2-complete') {
     void router.push('/game3')
   }
@@ -194,6 +238,49 @@ onBeforeUnmount(() => {
   height: 100%;
   border: 0;
   display: block;
+}
+
+.game2-page .audio-button {
+  position: absolute;
+  right: 22px;
+  bottom: 66px;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: #fffaf8;
+  border: 0;
+  border-radius: 50%;
+  color: #302a2d;
+  box-shadow: 0 3px 12px #302a2d18;
+  cursor: pointer;
+}
+
+.game2-page .audio-button:hover {
+  background: #f4e8e4;
+}
+
+.audio-icon {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.audio-icon > path:first-child {
+  stroke: none;
+}
+
+@media (max-width: 640px) {
+  .game2-page .audio-button {
+    right: 16px;
+    bottom: 60px;
+  }
 }
 
 .game2-page .game-navigation-links {

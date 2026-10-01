@@ -66,7 +66,8 @@
   "options": {
     "title": "Các lựa chọn tầm soát của bạn",
     "description": "Bạn có thể chọn nhân viên y tế để thực hiện xét nghiệm lấy mẫu, hoặc hỏi xem bạn có thể tự lấy mẫu hay không. Cả hai phương pháp đều kiểm tra HPV.",
-    "findGp": "Tìm bác sĩ đa khoa gần bạn"
+    "findGp": "Tìm bác sĩ đa khoa gần bạn",
+    "theNumber": "Xem tỷ lệ tham gia sàng lọc tại Úc"
   }
 }
 
@@ -79,7 +80,7 @@
 "state": "Bang",
 "allStates": "Tất cả các bang",
 "eligibleWomen": "phụ nữ đủ điều kiện đã thực hiện xét nghiệm HPV trong khoảng thời gian từ tháng 1 năm 2020 đến tháng 6 năm 2025.",
-"period": "2020 - 2024",
+"period": "2020 - 2025",
 "chartTitle": "Tỷ lệ tham gia tầm soát",
 "participationRate": "tỷ lệ tham gia",
 "chartAriaLabel": "Biểu đồ đường thể hiện tỷ lệ tham gia tầm soát cổ tử cung theo thời gian"

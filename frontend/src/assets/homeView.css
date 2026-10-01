@@ -268,25 +268,34 @@
   gap: 16px;
 }
 
-/* Flip card container */
+/* Flip-card perspective */
 .info-card {
+  position: relative;
+  width: 100%;
   height: 205px;
-  perspective: 1000px;
-  background: transparent;
-  border: none;
+  min-width: 0;
+  margin: 0;
   padding: 0;
+  border: 0;
+  background: transparent;
+  perspective: 1200px;
 }
 
 /* Element that actually rotates */
 .info-card-inner {
-  position: relative;
+  position: absolute;
+  inset: 0;
+
   width: 100%;
   height: 100%;
-  transition: transform 0.6s ease;
+  margin: 0;
+  padding: 0;
+
   transform-style: preserve-3d;
+  transition: transform 0.6s ease;
 }
 
-/* Flip when hovering */
+/* Rotate the whole card */
 .info-card:hover .info-card-inner {
   transform: rotateY(180deg);
 }
@@ -296,13 +305,15 @@
 .info-card-back {
   position: absolute;
   inset: 0;
+
   width: 100%;
   height: 100%;
   box-sizing: border-box;
 
+  margin: 0;
   padding: 23px;
-  border: 1px solid #eadedb;
 
+  border: 0;
   border-radius: 0;
 
   backface-visibility: hidden;
@@ -314,23 +325,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
 
   background: #fffaf8;
+  text-align: center;
+
+  transform: rotateY(0deg);
 }
 
-/* Question */
 .info-card-front h3 {
   margin: 0;
   max-width: 80%;
-
   font-size: 18px;
   line-height: 1.15;
   color: #332a2d;
   font-weight: 700;
 }
 
-/* Number stays in the corner */
 .info-card-front .info-index {
   position: absolute;
   top: 23px;
@@ -344,18 +354,18 @@
 /* Back */
 .info-card-back {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+
+  /* FULL BACKGROUND */
+  background: #f8e9e9;
 
   text-align: center;
-
-  background: #f8e9e9;
 
   transform: rotateY(180deg);
 }
 
-/* Answer */
 .info-card-back p {
   margin: 0;
   max-width: 310px;
@@ -369,7 +379,7 @@
 .info-card-accent .info-card-front,
 .info-card-accent .info-card-back {
   background: #e9f0e7;
-  border-color: #e9f0e7;
+  border: 0;
 }
 
 /* GP Finder link */
