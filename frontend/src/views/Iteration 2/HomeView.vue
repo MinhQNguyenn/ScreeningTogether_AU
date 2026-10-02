@@ -479,13 +479,13 @@ const headlinePercent = computed(() => {
   return participationPercentage.value?.percent ?? null
 })
 
-const headlinePeriod = computed(() => {
-  if (!participationPercentage.value) {
-    return '—'
-  }
+// const headlinePeriod = computed(() => {
+//   if (!participationPercentage.value) {
+//     return '—'
+//   }
 
-  return participationPercentage.value.label
-})
+//   return participationPercentage.value.label
+// })
 
 // The API returns points oldest-first, each with a ready-made period label
 // (e.g. "2018-2022") for the x-axis.

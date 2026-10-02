@@ -5,6 +5,8 @@
     "titleEmphasis": "值得被重視。",
     "description": "無論你的文化、語言或背景如何，你都值得了解子宮頸篩查，並對自己的健康充滿信心。子宮頸癌是可以預防的——今天踏出簡單一步，守護你的未來。",
     "startLearning": "開始了解",
+    "exploreTogether": "一起探索",
+    "explore": "探索",
     "seeNumbers": "查看數據",
     "noteOne": "了解你的",
     "noteOneStrong": "選擇",
@@ -18,6 +20,7 @@
     "titleEmphasis": "就能帶來很大幫助。",
     "description": "子宮頸癌始於子宮頸，但透過定期篩查和 HPV 疫苗接種，通常可以在癌症發生前預防。",
     "faqLink": "常見問題",
+    "nextSection": "下一步：快速解答",
 
     "steps": {
       "vaccination": {
@@ -36,10 +39,13 @@
   },
 
   "screening": {
-    "label": "02 / 常見問題",
-    "title": "為你的下一步",
-    "titleEmphasis": "提供清晰答案。",
-    "description": "了解篩查過程可以讓篩查變得更簡單。以下資訊可以幫助你做好準備，並獲得支持。",
+    "label": "兩個快速解答",
+    "title": "有些疑問嗎？",
+    "titleEmphasis": "你並不孤單。",
+    "description": "以下是大家最常問的兩個問題。完整清單包括篩查流程、費用、文化與語言，以及疫苗接種，隨時可在專頁查看。",
+    "seeAll": "查看所有常見問題",
+    "nextSection": "下一步：為甚麼重要",
+    "preview": { "first": "最常見", "second": "第二常見" },
 
     "cards": {
       "what": {
@@ -72,9 +78,12 @@
   },
 
   "stats": {
-    "label": "03 / 數據",
-    "title": "改善的",
-    "titleEmphasis": "機會。",
+    "label": "數據",
+    "title": "仍有進步",
+    "titleEmphasis": "空間。",
+    "previewDescription": "完整數據每年更新。數字反映整個系統，並非個人的選擇。",
+    "seeData": "查看完整數據",
+    "nextSection": "下一步：你的下一步",
     "state": "州／領地",
     "allStates": "所有州／領地",
     "eligibleWomen": "符合資格的女性在 2020 年 1 月至 2025 年 6 月期間接受了 HPV 檢測。",

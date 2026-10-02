@@ -1,0 +1,11 @@
+{
+  "title": "數據",
+  "eyebrow": "數據",
+  "heading": "完整數據，",
+  "headingEmphasis": "每年更新。",
+  "intro": "從不同角度了解全國篩查參與情況。數字反映整個系統，並非任何個人的選擇。",
+  "participation": { "label": "全國參與率", "description": "符合資格人士在 2020 至 2024 年間接受了 HPV 篩查。", "period": "2020–2024" },
+  "chart": { "title": "篩查參與率", "range": "2020–2024", "ariaLabel": "2020 至 2024 年的參與趨勢", "change": "期間變化 2.9%" },
+  "ageGroups": { "label": "按年齡組別", "title": "參與率因年齡而異。", "note": "組別差異可能反映服務可及性、語言支援及對系統的熟悉程度，並非個人選擇。" },
+  "sources": { "title": "數據來源", "description": "數據來自 Cancer Australia 的全國篩查資料，並會隨新報告發布而更新。" }
+}

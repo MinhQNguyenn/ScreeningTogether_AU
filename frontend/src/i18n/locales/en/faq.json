@@ -1,0 +1,46 @@
+{
+  "title": "FAQ",
+  "eyebrow": "Frequently asked questions",
+  "heading": "Clear answers,",
+  "headingEmphasis": "all in one place.",
+  "intro": "Grouped by what people usually want to know first. Tap any question to open it — nothing here is timed or tracked, so come back as often as you like.",
+  "groups": {
+    "screening": "About screening",
+    "appointment": "The appointment",
+    "access": "Access and options"
+  },
+  "questions": {
+    "what": {
+      "question": "What is cervical screening?",
+      "answer": "A simple test that checks cervical cells for HPV, the virus that can lead to changes over time. Most results are normal."
+    },
+    "why": {
+      "question": "Why is it important?",
+      "answer": "Screening can find HPV before it causes cell changes. Finding changes early means they can be followed up before they develop into cervical cancer."
+    },
+    "who": {
+      "question": "Who should be screened, and from what age?",
+      "answer": "In Australia, cervical screening is recommended every five years for people aged 25 to 74 who have a cervix, including people who have had the HPV vaccine."
+    },
+    "howOften": {
+      "question": "How often do I need to go?",
+      "answer": "Most people need a test every five years. Your healthcare provider may suggest a different plan based on your result or health history."
+    },
+    "test": {
+      "question": "What actually happens during the test?",
+      "answer": "A small sample is collected from the cervix by a trained healthcare professional. The test usually takes a few minutes, and you can ask to pause at any time."
+    },
+    "femaleClinician": {
+      "question": "Can I ask for a female doctor or nurse?",
+      "answer": "Yes. You can request a female healthcare provider when booking. You can also bring a support person or ask for an interpreter."
+    },
+    "cost": {
+      "question": "Does screening cost anything?",
+      "answer": "The cost can depend on where you go and your circumstances. Ask the clinic about any fees before making an appointment."
+    },
+    "selfCollect": {
+      "question": "Can I collect my own sample?",
+      "answer": "Self-collection may be available for eligible people. Ask your healthcare provider whether it is an option for you."
+    }
+  }
+}
