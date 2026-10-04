@@ -53,3 +53,15 @@ class ParticipationGraphPoint(BaseModel):
 
 class ParticipationGraphResponse(ParticipationBase):
     points: list[ParticipationGraphPoint]
+
+
+class ChoroplethBase(BaseModel):
+    sa3_code: str
+
+
+class ChoroplethQuery(ChoroplethBase):
+    pass
+
+
+class ChoroplethResponse(ChoroplethBase):
+    pass
