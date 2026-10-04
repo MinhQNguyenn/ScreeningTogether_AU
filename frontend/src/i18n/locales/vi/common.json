@@ -6,14 +6,44 @@
     "numbers": "Số liệu",
     "gpFinder": "Tìm bác sĩ đa khoa",
     "game": "Trò chơi",
-    "learnThroughGame": "Tìm hiểu qua trò chơi",
+    "learnThroughGame": "Cùng khám phá",
+    "exploreTogether": "Cùng khám phá",
+    "exploreMobile": "Khám phá",
     "openMenu": "Mở menu",
     "closeMenu": "Đóng menu",
     "mainNavigation": "Điều hướng chính"
   },
   "footer": {
-    "tagline": "Phòng ngừa bắt đầu từ một cuộc trò chuyện.",
+    "tagline": "Hiểu công việc ảnh hưởng đến cơ thể bạn ra sao và những phụ nữ khác trong nghề đã làm gì tiếp theo. Miễn phí và không cần tạo tài khoản.",
+    "acknowledgement": "Chúng tôi ghi nhận những Người gìn giữ Truyền thống của vùng đất trên khắp Australia cùng mối gắn kết bền chặt của họ với đất đai, sông nước và cộng đồng. Chúng tôi kính trọng các bậc Trưởng lão xưa và nay, đồng thời dành sự kính trọng đó cho tất cả người Thổ dân và cư dân đảo Torres Strait.",
+    "pages": "Trang",
+    "dataSources": "Nguồn dữ liệu",
+    "healthDepartment": "Bộ Y tế Chính phủ Australia",
     "copyright": "© 2026 ScreeningTogether AU"
+  },
+  "navigation": { "nextPage": "Đi đến trang tiếp theo" },
+  "explore": {
+    "eyebrow": "Cùng khám phá",
+    "title": "Bạn muốn bắt đầu từ đâu?",
+    "intro": "Không có lựa chọn nào sai — hãy chọn điều phù hợp nhất với bạn lúc này. Bạn luôn có thể quay lại và thử một hướng khác sau.",
+    "close": "Đóng các lựa chọn khám phá",
+    "startBeginning": "Chưa chắc? Bắt đầu từ đầu",
+    "options": {
+      "nervous": { "title": "Tôi hơi lo lắng hoặc chưa chắc chắn", "description": "Chúng tôi sẽ nhẹ nhàng hướng dẫn bạn từng bước một." },
+      "new": { "title": "Tôi chưa từng trải qua hệ thống này", "description": "Tìm hiểu điều sẽ diễn ra từ phòng chờ đến buổi hẹn." },
+      "room": { "title": "Tôi chỉ muốn biết điều gì xảy ra trong phòng khám", "description": "Xem ngay hướng dẫn về buổi hẹn." },
+      "book": { "title": "Tôi đã sẵn sàng — hãy giúp tôi đặt lịch", "description": "Tìm bác sĩ đa khoa gần bạn ngay." }
+    }
+  },
+  "gameStart": {
+    "eyebrow": "Giai đoạn 1 · Vượt qua định kiến",
+    "title": "Tránh những chướng ngại trên đường.",
+    "description": "Mỗi chướng ngại trên đường là một rào cản thực tế mà ai đó có thể gặp trước khi tầm soát. Vượt qua chúng để đến gặp bác sĩ đa khoa.",
+    "goal": "Đến gặp bác sĩ đa khoa ở cuối con đường",
+    "move": "Di chuyển",
+    "jump": "Nhảy",
+    "rule": "Va vào chướng ngại sẽ mất 1 điểm sức khỏe — hết điểm sẽ phải quay lại",
+    "begin": "Bắt đầu"
   },
   "settings": {
     "title": "Cài đặt",

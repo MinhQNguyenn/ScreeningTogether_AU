@@ -1,0 +1,27 @@
+{
+  "title": "Số liệu",
+  "eyebrow": "Số liệu",
+  "heading": "Toàn cảnh,",
+  "headingEmphasis": "cập nhật hằng năm.",
+  "intro": "Tỷ lệ tham gia tầm soát trên toàn quốc được phân tích theo một số cách khác nhau. Số liệu mô tả hệ thống, không phải lựa chọn của một cá nhân.",
+  "participation": {
+    "label": "Tỷ lệ tham gia toàn quốc",
+    "description": "người đủ điều kiện đã xét nghiệm HPV trong giai đoạn 2020–2024.",
+    "period": "2020–2024"
+  },
+  "chart": {
+    "title": "Tỷ lệ tham gia tầm soát",
+    "range": "2020–2024",
+    "ariaLabel": "Xu hướng tham gia từ năm 2020 đến năm 2024",
+    "change": "Thay đổi 2,9% trong giai đoạn này"
+  },
+  "ageGroups": {
+    "label": "Theo nhóm tuổi",
+    "title": "Tỷ lệ tham gia khác nhau theo độ tuổi.",
+    "note": "Khác biệt giữa các nhóm có thể phản ánh khả năng tiếp cận dịch vụ, hỗ trợ ngôn ngữ và mức độ quen thuộc với hệ thống — không phải lựa chọn cá nhân."
+  },
+  "sources": {
+    "title": "Nguồn dữ liệu",
+    "description": "Dữ liệu tầm soát toàn quốc từ Cancer Australia. Số liệu tham gia được cập nhật khi có báo cáo mới."
+  }
+}
