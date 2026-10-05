@@ -63,5 +63,12 @@ class ChoroplethQuery(ChoroplethBase):
     pass
 
 
+# 2021 Census demographic breakdown for one SA3 area. Stat fields are null where the source has nothing.
 class ChoroplethResponse(ChoroplethBase):
-    pass
+    geo_name: str
+    women_25_74: float | None = None
+    females_all_ages: float | None = None
+    pct_born_overseas: float | None = None
+    pct_other_language: float | None = None
+    pct_low_proficiency: float | None = None
+    pct_birthplace_ns: float | None = None  # data-quality flag, not a finding

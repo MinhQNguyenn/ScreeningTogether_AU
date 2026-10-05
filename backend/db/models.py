@@ -1,11 +1,12 @@
 """
-SQLAlchemy models mirroring backend/data_pipeline/scripts/schema.sql.
+SQLAlchemy models for the live schema (see backend/data_pipeline/DATASET_README.md -
+schema.sql in this repo predates the Census tables, so it's stale).
 
 This describes the schema for querying purposes, but it does not create the
-tables. Any changes in schema.sql must be updated here as well.
+tables.
 """
 
-from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey, UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -54,6 +55,19 @@ class LetterType(Base):
 
     letter_type_code: Mapped[str] = mapped_column(primary_key=True)
     letter_type_label: Mapped[str]
+
+
+class CensusVariable(Base):
+    __tablename__ = "lookup_census_variable"
+
+    variable_code: Mapped[str] = mapped_column(primary_key=True)
+    table_code: Mapped[str] = mapped_column(ForeignKey("lookup_report_table.table_code"))
+    source_column: Mapped[str]
+    variable_label: Mapped[str]
+    topic: Mapped[str]
+    sex: Mapped[str]
+    age_label: Mapped[str | None]  # NULL means all ages
+    standard_name: Mapped[str | None]  # NULL only for the 20 G11 columns
 
 
 # --- Fact tables ---
@@ -108,3 +122,35 @@ class ResponseToInvitation(Base):
     year: Mapped[int]
     metric_code: Mapped[str] = mapped_column(ForeignKey("lookup_metric.metric_code"))
     value: Mapped[float | None]
+
+
+class CensusAreaValue(Base):
+    __tablename__ = "census_area_value"
+    __table_args__ = (UniqueConstraint("geo_code", "variable_code", "census_year"),)
+
+    census_value_id: Mapped[int] = mapped_column(primary_key=True)
+    geo_code: Mapped[str] = mapped_column(ForeignKey("lookup_geography.geo_code"))
+    variable_code: Mapped[str] = mapped_column(ForeignKey("lookup_census_variable.variable_code"))
+    census_year: Mapped[int]
+    value: Mapped[float | None]
+
+
+# --- Views (read-only, these describe saved queries) ---
+
+
+class Sa3CensusMeasures(Base):
+    """
+    v_sa3_census_measures: 2021 Census counts turned into percentages, one
+    row per SA3 area. geo_code is unique per row (not a real PK - views have
+    none - but good enough for ORM identity).
+    """
+
+    __tablename__ = "v_sa3_census_measures"
+
+    geo_code: Mapped[str] = mapped_column(ForeignKey("lookup_geography.geo_code"), primary_key=True)
+    women_25_74: Mapped[float | None]
+    females_all_ages: Mapped[float | None]
+    pct_born_overseas: Mapped[float | None]
+    pct_other_language: Mapped[float | None]
+    pct_low_proficiency: Mapped[float | None]
+    pct_birthplace_ns: Mapped[float | None]
