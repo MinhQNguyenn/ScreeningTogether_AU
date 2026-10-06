@@ -55,8 +55,8 @@ func _build_scene() -> void:
 	add_child(room)
 	var status := Game3UI.make_label("LUNA'S APPOINTMENT  /  " + ("A · CLOCK" if variant == "animation" else "B · PUZZLE"), 19, Game3UI.INK, HORIZONTAL_ALIGNMENT_CENTER)
 	status.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
-	status.offset_top = 24
-	status.offset_bottom = 60
+	status.offset_top = 38
+	status.offset_bottom = 72
 	add_child(status)
 	var centre := CenterContainer.new()
 	# Office characters use z-indices 2 and 3; activities must cover them.
@@ -113,6 +113,8 @@ func _say(who: String, words: String) -> void:
 	if typing:
 		typing.kill()
 	speaker.text = who
+	if speaker.has_meta("localized_text"):
+		speaker.remove_meta("localized_text")
 	text_label.text = words
 	text_label.visible_ratio = 1.0 if reduced_motion else 0.0
 	if not reduced_motion:
@@ -137,7 +139,8 @@ func _add_choice(words: String, action: Callable) -> Button:
 func _show_question() -> void:
 	stage = "question"
 	var question: Dictionary = CONTENT.QUESTIONS[question_index]
-	_say("HEALTHCARE PROFESSIONAL  /  %d OF 5" % (question_index + 1), question.question)
+	_say("", question.question)
+	GameLanguage.bind_text(speaker, "HEALTHCARE PROFESSIONAL  /  %d OF 5", [question_index + 1])
 	for index in question.options.size():
 		_add_choice(question.options[index], _answer.bind(index))
 
@@ -211,6 +214,8 @@ func _start_puzzle() -> void:
 	reference.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	activity.add_child(reference)
 	var grid := GridContainer.new()
+	# Tile indices and arrow-key movement retain their physical order in Arabic.
+	grid.layout_direction = Control.LAYOUT_DIRECTION_LTR
 	grid.columns = 3
 	grid.add_theme_constant_override("h_separation", 6)
 	grid.add_theme_constant_override("v_separation", 6)

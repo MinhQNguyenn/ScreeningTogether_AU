@@ -11,6 +11,7 @@
           :key="variant"
           :src="gameSource"
           ref="gameIframe"
+          @load="sendLanguage"
           :title="t('iframe.title', { ns: 'game3' })"
           allowfullscreen
         ></iframe>
@@ -128,6 +129,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import '../assets/gpRunnerGame.css'
 import { useTranslation } from '../i18n/useTranslation'
+import { useGameLanguage } from '../i18n/useGameLanguage'
 
 const { t } = useTranslation()
 
@@ -136,9 +138,10 @@ const isFullscreen = ref(false)
 const router = useRouter()
 const route = useRoute()
 const gameIframe = ref<HTMLIFrameElement | null>(null)
+const { initialLanguage, sendLanguage } = useGameLanguage(gameIframe)
 const variant = computed(() => (route.query.variant === 'puzzle' ? 'puzzle' : 'animation'))
 const gameSource = computed(
-  () => `/godot/game3/index.html?v=20260916-clock-copy&variant=${variant.value}`,
+  () => `/godot/game3/index.html?v=languages&variant=${variant.value}&lang=${initialLanguage}`,
 )
 
 const toggleFullscreen = async () => {
