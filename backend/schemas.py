@@ -63,12 +63,17 @@ class ChoroplethQuery(ChoroplethBase):
     pass
 
 
-# 2021 Census demographic breakdown for one SA3 area. Stat fields are null where the source has nothing.
+# Screening participation (latest AIHW window) + 2021 Census demographic breakdown
+# for one SA3 area. Stat fields are null where the source has nothing, or
+# where the latest window is suppressed/over-100% for that area.
 class ChoroplethResponse(ChoroplethBase):
     geo_name: str
+    year_start: int | None = None
+    year_end: int | None = None
+    label: str | None = None  # reporting window, e.g. "2020-2024"
+    rate_pct: float | None = None
     women_25_74: float | None = None
-    females_all_ages: float | None = None
     pct_born_overseas: float | None = None
     pct_other_language: float | None = None
     pct_low_proficiency: float | None = None
-    pct_birthplace_ns: float | None = None  # data-quality flag, not a finding
+    pct_birthplace_ns: float | None = None  # data-quality flag

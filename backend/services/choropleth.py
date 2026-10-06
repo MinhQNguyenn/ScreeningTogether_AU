@@ -1,13 +1,13 @@
 """
-SA3 2021 Census demographic breakdown, for the choropleth map.
+SA3 screening participation + 2021 Census demographics, for the choropleth map.
 
-Reads v_sa3_census_measures (see backend/data_pipeline/DATASET_README.md).
+Reads v_sa3_linked (see backend/data_pipeline/DATASET_README.md).
 """
 
 from fastapi import HTTPException
 from sqlalchemy import select
 
-from db.models import Geography, Sa3CensusMeasures
+from db.models import Sa3Linked
 from db.session import SessionLocal
 from schemas import ChoroplethResponse
 
@@ -15,22 +15,27 @@ from schemas import ChoroplethResponse
 def get_sa3_statistics(sa3_code: str) -> ChoroplethResponse:
     with SessionLocal() as session:
         row = session.execute(
-            select(Sa3CensusMeasures, Geography.geo_name)
-            .join(Geography, Geography.geo_code == Sa3CensusMeasures.geo_code)
-            .where(Sa3CensusMeasures.geo_code == sa3_code)
-        ).one_or_none()
+            select(Sa3Linked)
+            .where(Sa3Linked.geo_code == sa3_code)
+            .order_by(Sa3Linked.year_end.desc()) # order by most recent first
+            .limit(1) # select only the most recent 
+        ).scalar_one_or_none()
 
     if row is None:
         raise HTTPException(status_code=404, detail=f"Unknown SA3 code: {sa3_code!r}")
 
-    measures, geo_name = row
+    participation_reliable = not row.is_suppressed and not row.over_100
+
     return ChoroplethResponse(
-        sa3_code=measures.geo_code,
-        geo_name=geo_name,
-        women_25_74=measures.women_25_74,
-        females_all_ages=measures.females_all_ages,
-        pct_born_overseas=measures.pct_born_overseas,
-        pct_other_language=measures.pct_other_language,
-        pct_low_proficiency=measures.pct_low_proficiency,
-        pct_birthplace_ns=measures.pct_birthplace_ns,
+        sa3_code=row.geo_code,
+        geo_name=row.geo_name,
+        year_start=row.year_start if participation_reliable else None,
+        year_end=row.year_end if participation_reliable else None,
+        label=f"{row.year_start}-{row.year_end}" if participation_reliable else None,
+        rate_pct=row.rate_pct if participation_reliable else None,
+        women_25_74=row.women_25_74,
+        pct_born_overseas=row.pct_born_overseas,
+        pct_other_language=row.pct_other_language,
+        pct_low_proficiency=row.pct_low_proficiency,
+        pct_birthplace_ns=row.pct_birthplace_ns,
     )

@@ -138,18 +138,19 @@ class CensusAreaValue(Base):
 # --- Views (read-only, these describe saved queries) ---
 
 
-class Sa3CensusMeasures(Base):
-    """
-    v_sa3_census_measures: 2021 Census counts turned into percentages, one
-    row per SA3 area. geo_code is unique per row (not a real PK - views have
-    none - but good enough for ORM identity).
-    """
-
-    __tablename__ = "v_sa3_census_measures"
+class Sa3Linked(Base):
+    __tablename__ = "v_sa3_linked"
 
     geo_code: Mapped[str] = mapped_column(ForeignKey("lookup_geography.geo_code"), primary_key=True)
+    year_start: Mapped[int] = mapped_column(primary_key=True)
+    year_end: Mapped[int] = mapped_column(primary_key=True)
+    geo_name: Mapped[str | None]
+    screened: Mapped[float | None]
+    eligible_pop: Mapped[float | None]
+    rate_pct: Mapped[float | None]
+    is_suppressed: Mapped[bool | None]
+    over_100: Mapped[bool | None]
     women_25_74: Mapped[float | None]
-    females_all_ages: Mapped[float | None]
     pct_born_overseas: Mapped[float | None]
     pct_other_language: Mapped[float | None]
     pct_low_proficiency: Mapped[float | None]
