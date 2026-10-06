@@ -97,7 +97,7 @@ func _ready() -> void:
 	that_me_button.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	that_me_button.tooltip_text = "Respond when your name is called"
 	#that_me_hint.hide()
-	announcement_label.text = "Enter your name\nto begin"
+	GameLanguage.bind_text(announcement_label, "Enter your name\nto begin")
 
 
 func start_calling(full_name: String) -> void:
@@ -117,7 +117,7 @@ func start_calling(full_name: String) -> void:
 	that_me_button.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	#that_me_hint.hide()
 	announcement_label.modulate = Color.WHITE
-	announcement_label.text = ""
+	GameLanguage.bind_text(announcement_label, "")
 
 	# Retry during the user's button press. This also unlocks browser TTS.
 	_setup_tts(false)
@@ -137,7 +137,7 @@ func _begin_announcements() -> void:
 	that_me_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	that_me_hint.show()
 	announcement_label.modulate = Color.WHITE
-	announcement_label.text = "Please listen..."
+	GameLanguage.bind_text(announcement_label, "Please listen...")
 	call_deferred("_run_calling_loop")
 
 
@@ -158,7 +158,7 @@ func _run_calling_loop() -> void:
 		current_name = _pick_next_name()
 		_last_called_name = current_name
 		announcement_label.modulate = Color(1.0, 1.0, 1.0, 0.0)
-		announcement_label.text = "Calling:\n%s" % current_name
+		GameLanguage.bind_text(announcement_label, "Calling:\n%s", [StringName(current_name)])
 		_speak_name(current_name)
 
 		await _play_name_animation()
@@ -167,7 +167,7 @@ func _run_calling_loop() -> void:
 
 		current_name = ""
 		announcement_label.modulate = Color.WHITE
-		announcement_label.text = "Please listen..."
+		GameLanguage.bind_text(announcement_label, "Please listen...")
 		await get_tree().create_timer(pause_duration_seconds).timeout
 
 
@@ -370,7 +370,7 @@ func _check_current_name() -> void:
 		score = correct_answer_points + side_quest_points
 		is_game_completed = true
 		_stop_name_animation_at_center()
-		announcement_label.text = "Calling:\n%s" % current_name
+		GameLanguage.bind_text(announcement_label, "Calling:\n%s", [StringName(current_name)])
 		that_me_button.disabled = true
 		that_me_button.mouse_default_cursor_shape = Control.CURSOR_ARROW
 		that_me_hint.hide()
@@ -413,13 +413,13 @@ func _on_continue_requested() -> void:
 func _show_temporary_feedback(message: String, color: Color) -> void:
 	var name_when_clicked := current_name
 	announcement_label.modulate = color
-	announcement_label.text = message
+	GameLanguage.bind_text(announcement_label, message)
 	await get_tree().create_timer(0.65).timeout
 
 	if is_game_completed or current_name != name_when_clicked:
 		return
 	announcement_label.modulate = Color.WHITE
 	if current_name.is_empty():
-		announcement_label.text = "Please listen..."
+		GameLanguage.bind_text(announcement_label, "Please listen...")
 	else:
-		announcement_label.text = "Calling:\n%s" % current_name
+		GameLanguage.bind_text(announcement_label, "Calling:\n%s", [StringName(current_name)])

@@ -11,12 +11,25 @@ config_version=5
 [application]
 
 config/name="Screening Journey - Waiting Room"
-run/main_scene="uid://cylfy3t1d0i4r"
+run/main_scene="res://scenes/maps/map_1.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [audio]
 
 general/text_to_speech=true
+
+[autoload]
+
+GameLanguage="*res://scripts/game_language.gd"
+
+[gui]
+
+theme/custom="res://assets/fonts/game_theme.tres"
+
+[internationalization]
+
+locale/fallback="en"
+locale/include_text_server_data=true
 
 [display]
 

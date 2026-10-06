@@ -2,7 +2,7 @@
   <main class="game-play-page">
     <section class="game-stage">
       <section ref="gameFrame" class="game-frame" :aria-label="t('gameArea', { ns: 'gpRunner' })">
-        <iframe class="game_1" src="/godot/screening-game/index.html" allowfullscreen></iframe>
+        <iframe ref="gameIframe" class="game_1" :src="`/godot/screening-game/index.html?v=languages&lang=${initialLanguage}`" @load="sendLanguage" allowfullscreen></iframe>
 
         <button
           class="fullscreen-button"
@@ -104,6 +104,10 @@ import { computed, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import '../../assets/iteration2/gpRunnerGame.css'
 import { useTranslation } from '../../i18n/useTranslation'
+import { useGameLanguage } from '../../i18n/useGameLanguage'
+
+const gameIframe = ref<HTMLIFrameElement | null>(null)
+const { initialLanguage, sendLanguage } = useGameLanguage(gameIframe)
 
 const { t } = useTranslation()
 

@@ -31,6 +31,19 @@ func show_fact(fact_index: int) -> void:
 	data_label.text = SCREENING_FACTS[fact_index]
 
 
+func show_preparation_item(item: Dictionary) -> void:
+	title_label.text = item["name"]
+	status_label.text = "ADDED TO YOUR APPOINTMENT BAG"
+	data_label.text = item["description"]
+	var icon := TextureRect.new()
+	icon.texture = item["icon"]
+	icon.custom_minimum_size = Vector2(80, 80)
+	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	$PanelContainer/VBoxContainer.add_child(icon)
+	$PanelContainer/VBoxContainer.move_child(icon, 1)
+
+
 func _on_close_pressed() -> void:
 	close_popup()
 

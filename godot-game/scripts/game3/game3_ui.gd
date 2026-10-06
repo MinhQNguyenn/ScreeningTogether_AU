@@ -7,7 +7,7 @@ const LUNA_SPRITE_SHEET := preload(
 const HEALTHCARE_PROFESSIONAL_SOURCE := preload(
 	"res://assets/game3/luna_doctor.png"
 )
-const UI_FONT := preload("res://assets/fonts/NotoSans-Variable.ttf")
+const UI_FONT := preload("res://assets/fonts/multilingual.tres")
 
 const INK := Color("#302a2d")
 const MUTED := Color("#74676a")

@@ -24,6 +24,19 @@ window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[autoload]
+
+GameLanguage="*res://scripts/game_language.gd"
+
+[gui]
+
+theme/custom="res://assets/fonts/game_theme.tres"
+
+[internationalization]
+
+locale/fallback="en"
+locale/include_text_server_data=true
+
 [input]
 
 move_left={
