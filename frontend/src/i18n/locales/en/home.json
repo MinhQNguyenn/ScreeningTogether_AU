@@ -8,10 +8,33 @@
     "exploreTogether": "Explore together",
     "explore": "Explore",
     "seeNumbers": "See the numbers",
-    "noteOne": "Understand your",
-    "noteOneStrong": "screening options",
-    "noteTwo": "Every language,",
-    "noteTwoStrong": "every background matters"
+    "resources": "Check our other resources",
+    "cards": {
+      "data": {
+        "prompt": "Curious about the data?",
+        "title": "See the numbers",
+        "description": "Explore cervical screening participation by state and over time.",
+        "link": "View data"
+      },
+      "faq": {
+        "prompt": "Got questions?",
+        "title": "Read the FAQs",
+        "description": "Clear, quick answers to the most common questions about cervical cancer.",
+        "link": "See FAQs"
+      },
+      "gp": {
+        "prompt": "Ready to book?",
+        "title": "Find a GP near you",
+        "description": "Find a GP in your area who can help with your screening.",
+        "link": "Find a GP"
+      },
+      "guide": {
+        "prompt": "Prefer to test at home?",
+        "title": "Get your test kit",
+        "description": "Step by step: how to get a self-collection kit and do it at home.",
+        "link": "Read the guide"
+      }
+    }
   },
 
   "essentials": {
@@ -32,8 +55,9 @@
         "description": "Finds cell changes early, when they are easier to treat and manage."
       },
       "body": {
-        "title": "Know your body",
-        "description": "Talk to a healthcare professional about anything that feels unusual."
+        "title": "Do you know?",
+        "highlight": "4 in 5 people",
+        "description": " will have HPV at some point in their lives"
       }
     }
   },
