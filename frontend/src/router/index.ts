@@ -11,6 +11,7 @@ import Game3View from '../views/Game3View.vue'
 import FAQView from '../views/FAQView.vue'
 import DataView from '../views/DataView.vue'
 import GuideView from '../views/GuideView.vue'
+import resourceView from '../views/ResourceView.vue'
 
 //Iteration 1
 import Iteration1Home from '../views/Iteration 1/HomeView.vue'
@@ -41,6 +42,7 @@ const router = createRouter({
     { path: '/faq', component: FAQView, meta: { title: 'FAQ | ScreeningTogether AU' } },
     { path: '/data', component: DataView, meta: { title: 'The numbers | ScreeningTogether AU' } },
     { path: '/guide', component: GuideView, meta: { title: 'Guide | ScreeningTogether AU' } },
+    { path: '/resourceinfo', component: resourceView, meta: { title: 'Resources | ScreeningTogether AU' } },
     {
       path: '/resources',
       component: PlaceholderView,

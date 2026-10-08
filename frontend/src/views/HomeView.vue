@@ -21,7 +21,7 @@
             <span class="explore-label-mobile">{{ t('hero.explore', { ns: 'home' }) }}</span>
           </button>
 
-          <RouterLink class="button button-secondary" to="/resources">
+          <RouterLink class="button button-secondary" to="/resourceinfo">
             {{ t('hero.resources', { ns: 'home' }) }}
           </RouterLink>
         </div>

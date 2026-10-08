@@ -19,6 +19,7 @@
     "acknowledgement": "We acknowledge the Traditional Custodians of Country throughout Australia and their continuing connection to land, waters and community. We pay our respects to Elders past and present, and extend that respect to all Aboriginal and Torres Strait Islander peoples.",
     "pages": "Pages",
     "dataSources": "Where the data comes from",
+    "cancerAustralia": "Cancer Australia",
     "healthDepartment": "Australian Government Department of Health",
     "copyright": "© 2026 ScreeningTogether AU"
   },
@@ -32,14 +33,28 @@
     "close": "Close explore options",
     "startBeginning": "Not sure? Start from the beginning",
     "options": {
-      "nervous": { "title": "I'm feeling a little nervous or unsure about it", "description": "We'll ease you in gently, one step at a time." },
-      "new": { "title": "I've never been through this system before", "description": "See what to expect, from the waiting room to the appointment." },
-      "room": { "title": "I just want to know what happens in the room", "description": "Jump straight to a walkthrough of the appointment itself." },
-      "book": { "title": "I'm ready — just help me book", "description": "Skip ahead and find a GP near you now." }
+      "nervous": {
+        "title": "I'm feeling a little nervous or unsure about it",
+        "description": "We'll ease you in gently, one step at a time."
+      },
+      "new": {
+        "title": "I've never been through this system before",
+        "description": "See what to expect, from the waiting room to the appointment."
+      },
+      "room": {
+        "title": "I just want to know what happens in the room",
+        "description": "Jump straight to a walkthrough of the appointment itself."
+      },
+      "book": {
+        "title": "I'm ready — just help me book",
+        "description": "Skip ahead and find a GP near you now."
+      }
     }
   },
   "gameStart": {
     "eyebrow": "Phase 1 · Move past the stigma",
+    "eyebrowGame2": "Phase 2 · Screening appointment",
+    "eyebrowGame3": "Phase 3 · Cervical screening journey",
     "title": "Dodge what's in your way.",
     "description": "Every obstacle on this road is a real barrier someone feels before screening. Get past them, and you reach a GP.",
     "goal": "Reach the GP at the end of the road",

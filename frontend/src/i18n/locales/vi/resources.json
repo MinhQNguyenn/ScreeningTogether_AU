@@ -1,0 +1,62 @@
+{
+  "page": {
+    "eyebrow": "Tài nguyên",
+    "title": "Hỗ trợ và thông tin",
+    "titleEmphasis": "ngay gần bạn.",
+    "description": "Các dịch vụ, đường dây hỗ trợ và hướng dẫn đáng tin cậy giúp bạn hiểu về tầm soát ung thư cổ tử cung và bước tiếp theo, bằng ngôn ngữ phù hợp với bạn."
+  },
+
+  "sections": {
+    "support": "Hỗ trợ và dịch vụ",
+    "site": "Khám phá trang web này",
+    "info": "Tìm hiểu thêm về tầm soát ung thư cổ tử cung"
+  },
+
+  "cards": {
+    "cancerCouncil": {
+      "title": "13 11 20",
+      "description": "Gọi Cancer Council để được hỗ trợ và tìm hiểu thông tin về ung thư."
+    },
+    "interpreter": {
+      "title": "Dịch vụ thông dịch (131 450)",
+      "description": "Trao đổi với bác sĩ hoặc cơ sở dịch vụ bằng ngôn ngữ của bạn qua TIS National."
+    },
+    "healthdirect": {
+      "title": "Healthdirect",
+      "description": "Gọi 1800 022 222 để nói chuyện với y tá đã đăng ký bất cứ lúc nào."
+    },
+    "ncsr": {
+      "title": "Cơ quan Đăng ký Tầm soát Ung thư Quốc gia",
+      "description": "Kiểm tra lịch sử tầm soát hoặc cập nhật thông tin của bạn. Gọi 1800 627 701."
+    },
+    "data": {
+      "title": "Số liệu tầm soát",
+      "description": "Xem tỷ lệ tham gia theo tiểu bang và theo thời gian."
+    },
+    "faq": {
+      "title": "Câu hỏi thường gặp",
+      "description": "Giải đáp nhanh cho những câu hỏi phổ biến nhất."
+    },
+    "gp": {
+      "title": "Tìm bác sĩ gia đình",
+      "description": "Tìm bác sĩ gia đình gần bạn để thực hiện tầm soát."
+    },
+    "guide": {
+      "title": "Hướng dẫn bộ xét nghiệm tại nhà",
+      "description": "Từng bước: cách nhận bộ tự lấy mẫu và thực hiện tại nhà."
+    },
+    "program": {
+      "title": "Chương trình Tầm soát Ung thư Cổ tử cung Quốc gia",
+      "description": "Thông tin chính thức về ai nên tầm soát và tần suất."
+    },
+    "cancerCouncilInfo": {
+      "title": "Cancer Council: ung thư cổ tử cung",
+      "description": "Thông tin dễ hiểu về ung thư cổ tử cung và tầm soát."
+    }
+  },
+
+  "notes": {
+    "external": "Mở trong tab mới",
+    "disclaimer": "Trang này cung cấp thông tin chung, không phải lời khuyên y tế. Chúng tôi không quản lý nội dung của các trang web bên ngoài."
+  }
+}
