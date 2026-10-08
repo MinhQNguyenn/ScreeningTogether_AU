@@ -3,7 +3,9 @@
     <section ref="gameFrame" class="game-frame" aria-label="Educational game area">
         <iframe 
          class="game_1" 
-          src="/godot/screening-game/index.html" 
+          ref="gameIframe"
+          :src="`/godot/screening-game/index.html?v=languages&lang=${initialLanguage}`"
+          @load="sendLanguage"
           allowfullscreen
         ></iframe>
       <button
@@ -43,6 +45,10 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { useGameLanguage } from '../i18n/useGameLanguage'
+
+const gameIframe = ref<HTMLIFrameElement | null>(null)
+const { initialLanguage, sendLanguage } = useGameLanguage(gameIframe)
 
 const gameFrame = ref<HTMLElement | null>(null)
 const selectedGame = ref(1)

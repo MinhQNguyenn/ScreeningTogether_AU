@@ -25,15 +25,10 @@ func show_result(
 	reaction_points: int,
 	side_quest_points: int
 ) -> void:
-	message_label.text = (
-		"Great listening, %s!\nYou recognised your name and responded in time."
-		% player_name
-	)
-	reaction_score_label.text = "Reaction score:  +%d" % reaction_points
-	side_quest_score_label.text = "Side quest bonus:  +%d" % side_quest_points
-	total_score_label.text = "TOTAL SCORE:  %d" % (
-		reaction_points + side_quest_points
-	)
+	GameLanguage.bind_text(message_label, "Great listening, %s!\nYou recognised your name and responded in time.", [StringName(player_name)])
+	GameLanguage.bind_text(reaction_score_label, "Reaction score:  +%d", [reaction_points])
+	GameLanguage.bind_text(side_quest_score_label, "Side quest bonus:  +%d", [side_quest_points])
+	GameLanguage.bind_text(total_score_label, "TOTAL SCORE:  %d", [reaction_points + side_quest_points])
 	get_tree().paused = true
 
 

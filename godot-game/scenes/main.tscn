@@ -4,6 +4,24 @@
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/clinic_finish.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://bb35gd2m7bhtk" path="res://assets/heart_pixel.png" id="4_heart"]
+[ext_resource type="Texture2D" path="res://assets/arrow_keys.svg" id="5_arrows"]
+[ext_resource type="Texture2D" path="res://assets/wasd_keys.svg" id="6_wasd"]
+
+[sub_resource type="StyleBoxFlat" id="Barrier_feedback_style"]
+content_margin_left = 22.0
+content_margin_top = 14.0
+content_margin_right = 22.0
+content_margin_bottom = 14.0
+bg_color = Color(1, 0.98, 0.9, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.56, 0.31, 0.36, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_left = 14
+corner_radius_bottom_right = 14
 
 [sub_resource type="StyleBoxFlat" id="Panel_style"]
 bg_color = Color(0.96, 0.93, 0.77, 0.97)
@@ -46,6 +64,7 @@ position = Vector2(0, -15000)
 [node name="Interface" type="CanvasLayer" parent="." unique_id=2134147226]
 
 [node name="HUD" type="Control" parent="Interface" unique_id=1356194197]
+layout_direction = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,6 +132,21 @@ texture = ExtResource("4_heart")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="Bag" type="Label" parent="Interface/HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 28.0
+offset_top = 84.0
+offset_right = -28.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(1, 1, 0.91, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.18, 0.13, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "Appointment bag: 0 / 3"
+horizontal_alignment = 1
+mouse_filter = 2
+
 [node name="Feedback" type="Label" parent="Interface/HUD" unique_id=1049952574]
 layout_mode = 1
 anchors_preset = 10
@@ -128,6 +162,28 @@ theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 18
 text = "Reach the health service"
 horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="BarrierFeedback" type="PanelContainer" parent="Interface/HUD"]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = -214.0
+offset_right = -36.0
+offset_bottom = -30.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Barrier_feedback_style")
+
+[node name="Message" type="Label" parent="Interface/HUD/BarrierFeedback"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.19, 0.23, 0.18, 1)
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="StartScreen" type="ColorRect" parent="Interface" unique_id=1269118582]
@@ -170,7 +226,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.25, 0.31, 0.24, 1)
 theme_override_font_sizes/font_size = 22
-text = "A cervical screening awareness journey"
+text = "Dodge or jump fences. Collect items for your GP visit."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -182,6 +238,7 @@ text = "CONTROLS"
 horizontal_alignment = 1
 
 [node name="ControlGroups" type="HBoxContainer" parent="Interface/StartScreen/Panel/Content" unique_id=1164404982]
+layout_direction = 2
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
@@ -202,13 +259,23 @@ theme_override_font_sizes/font_size = 20
 text = "WASD KEYS"
 horizontal_alignment = 1
 
-[node name="Keys" type="Label" parent="Interface/StartScreen/Panel/Content/ControlGroups/WasdGroup/Content" unique_id=1972085387]
+[node name="Keys" type="TextureRect" parent="Interface/StartScreen/Panel/Content/ControlGroups/WasdGroup/Content"]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+texture = ExtResource("6_wasd")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="KeyActions" type="Label" parent="Interface/StartScreen/Panel/Content/ControlGroups/WasdGroup/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.25, 0.31, 0.24, 1)
 theme_override_font_sizes/font_size = 17
-text = "W   Jump
-A   Left     D   Right"
+text = "W: Jump
+A / D: Move
+S: Not used"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="ArrowGroup" type="PanelContainer" parent="Interface/StartScreen/Panel/Content/ControlGroups" unique_id=723626519]
 custom_minimum_size = Vector2(235, 130)
@@ -226,13 +293,23 @@ theme_override_font_sizes/font_size = 20
 text = "ARROW KEYS"
 horizontal_alignment = 1
 
-[node name="Keys" type="Label" parent="Interface/StartScreen/Panel/Content/ControlGroups/ArrowGroup/Content" unique_id=79199454]
+[node name="Keys" type="TextureRect" parent="Interface/StartScreen/Panel/Content/ControlGroups/ArrowGroup/Content"]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+texture = ExtResource("5_arrows")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="KeyActions" type="Label" parent="Interface/StartScreen/Panel/Content/ControlGroups/ArrowGroup/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.25, 0.31, 0.24, 1)
 theme_override_font_sizes/font_size = 17
-text = "↑   Jump
-←   Left     →   Right"
+text = "Up: Jump
+Left / Right: Move
+Down: Not used"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="SpaceControl" type="Label" parent="Interface/StartScreen/Panel/Content" unique_id=2129662223]
 layout_mode = 2
@@ -272,9 +349,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -265.0
-offset_top = -220.0
+offset_top = -310.0
 offset_right = 265.0
-offset_bottom = 220.0
+offset_bottom = 310.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("Panel_style")
@@ -296,6 +373,13 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.52, 0.27, 0.3, 1)
 theme_override_font_sizes/font_size = 26
 text = "Barrier"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="BarrierExplanation" type="Label" parent="Interface/GameOverScreen/Panel/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.29, 0.22, 1)
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -365,6 +449,7 @@ theme_override_colors/font_color = Color(0.25, 0.31, 0.24, 1)
 theme_override_font_sizes/font_size = 24
 text = "Remaining distance  0 m"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="RestartButton" type="Button" parent="Interface/CompletionScreen/Panel/Content" unique_id=439294155]
 custom_minimum_size = Vector2(0, 80)
