@@ -1,0 +1,62 @@
+{
+  "page": {
+    "eyebrow": "资源",
+    "title": "支持与信息",
+    "titleEmphasis": "就在您身边。",
+    "description": "可靠的服务、求助热线和指南，帮助您了解宫颈癌筛查并迈出下一步，使用适合您的语言。"
+  },
+
+  "sections": {
+    "support": "支持与服务",
+    "site": "浏览本网站",
+    "info": "了解更多宫颈癌筛查信息"
+  },
+
+  "cards": {
+    "cancerCouncil": {
+      "title": "13 11 20",
+      "description": "致电 Cancer Council，获取癌症相关支持和信息。"
+    },
+    "interpreter": {
+      "title": "口译服务（131 450）",
+      "description": "通过 TIS National，用您的语言与医生或服务机构沟通。"
+    },
+    "healthdirect": {
+      "title": "Healthdirect",
+      "description": "拨打 1800 022 222，随时与注册护士交流。"
+    },
+    "ncsr": {
+      "title": "国家癌症筛查登记处",
+      "description": "查询您的筛查记录或更新个人信息。电话 1800 627 701。"
+    },
+    "data": {
+      "title": "筛查数据",
+      "description": "查看各州及历年的参与率。"
+    },
+    "faq": {
+      "title": "常见问题",
+      "description": "快速解答最常被问到的问题。"
+    },
+    "gp": {
+      "title": "查找全科医生",
+      "description": "查找您附近可协助筛查的全科医生。"
+    },
+    "guide": {
+      "title": "居家检测套装指南",
+      "description": "分步指南：如何获取自取样套装并在家完成检测。"
+    },
+    "program": {
+      "title": "国家宫颈癌筛查计划",
+      "description": "关于哪些人应当筛查及筛查频率的官方信息。"
+    },
+    "cancerCouncilInfo": {
+      "title": "Cancer Council：宫颈癌",
+      "description": "用通俗易懂的语言介绍宫颈癌和筛查。"
+    }
+  },
+
+  "notes": {
+    "external": "在新标签页中打开",
+    "disclaimer": "本页仅提供一般信息，不构成医疗建议。外部网站内容不由我们管理。"
+  }
+}

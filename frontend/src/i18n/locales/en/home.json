@@ -5,11 +5,36 @@
     "titleEmphasis": "deserves a voice.",
     "description": "Cervical cancer is preventable, and cervical screening can help protect your health. Whether you come from a different culture, speak another language, or have a diverse background, find clear information and support in a language that works for you.",
     "startLearning": "Learn about cervical screening",
+    "exploreTogether": "Explore together",
+    "explore": "Explore",
     "seeNumbers": "See the numbers",
-    "noteOne": "Understand your",
-    "noteOneStrong": "screening options",
-    "noteTwo": "Every language,",
-    "noteTwoStrong": "every background matters"
+    "resources": "Check our other resources",
+    "cards": {
+      "data": {
+        "prompt": "Curious about the data?",
+        "title": "See the numbers",
+        "description": "Explore cervical screening participation by state and over time.",
+        "link": "View data"
+      },
+      "faq": {
+        "prompt": "Got questions?",
+        "title": "Read the FAQs",
+        "description": "Clear, quick answers to the most common questions about cervical cancer.",
+        "link": "See FAQs"
+      },
+      "gp": {
+        "prompt": "Ready to book?",
+        "title": "Find a GP near you",
+        "description": "Find a GP in your area who can help with your screening.",
+        "link": "Find a GP"
+      },
+      "guide": {
+        "prompt": "Prefer to test at home?",
+        "title": "Get your test kit",
+        "description": "Step by step: how to get a self-collection kit and do it at home.",
+        "link": "Read the guide"
+      }
+    }
   },
 
   "essentials": {
@@ -18,6 +43,7 @@
     "titleEmphasis": "goes a long way.",
     "description": "Cervical cancer starts in the cervix, but with regular screening and HPV vaccination, it can often be prevented before it starts.",
     "faqLink": "Frequently Asked Question",
+    "nextSection": "Next: a couple of quick answers",
 
     "steps": {
       "vaccination": {
@@ -29,17 +55,21 @@
         "description": "Finds cell changes early, when they are easier to treat and manage."
       },
       "body": {
-        "title": "Know your body",
-        "description": "Talk to a healthcare professional about anything that feels unusual."
+        "title": "Do you know?",
+        "highlight": "4 in 5 people",
+        "description": " will have HPV at some point in their lives"
       }
     }
   },
 
   "screening": {
-    "label": "02 / Frequently asked questions",
-    "title": "Clear answers for",
-    "titleEmphasis": "your next step.",
-    "description": "Knowing what to expect can make screening feel simpler. Here is the information to help you feel informed and supported.",
+    "label": "A couple of quick answers",
+    "title": "Wondering something?",
+    "titleEmphasis": "You're not the only one.",
+    "description": "These are the two questions people ask most. The full list — screening process, cost, culture and language, vaccination — lives on its own page whenever you want it.",
+    "seeAll": "See all FAQs",
+    "nextSection": "Next: why it matters",
+    "preview": { "first": "Most asked", "second": "2nd most asked" },
 
     "cards": {
       "what": {
@@ -72,9 +102,12 @@
   },
 
   "stats": {
-    "label": "03 / The numbers",
-    "title": "Chance for",
-    "titleEmphasis": "Improvement.",
+    "label": "The numbers",
+    "title": "There's room",
+    "titleEmphasis": "to do better.",
+    "previewDescription": "The full picture, updated each year. Numbers describe the system, not anyone's personal choice.",
+    "seeData": "See the full picture",
+    "nextSection": "Next: your next step",
     "state": "State",
     "allStates": "All states",
     "eligibleWomen": "eligible women had an HPV test between January 2020 to June 2025.",

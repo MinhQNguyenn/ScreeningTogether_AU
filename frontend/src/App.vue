@@ -19,12 +19,12 @@
         </template>
         <RouterLink to="/gpfinder" @click="closeMenu">{{ t('header.gpFinder') }}</RouterLink>
       </nav>
-      <RouterLink to="/gprunner" class="header-cta">
-        <span v-if="isMobile">{{ t('header.game') }}</span>
-        <span v-else>{{ t('header.learnThroughGame') }}</span>
-      </RouterLink>
+      <button class="header-cta" type="button" @click="openExplore">
+        <span v-if="isMobile">{{ t('header.exploreMobile') }}</span>
+        <span v-else>{{ t('header.exploreTogether') }}</span>
+      </button>
 
-      <div class="dropdown language-control">
+      <div sclass="dropdown language-control">
         <button
           class="btn btn-dark dropdown-toggle language-button"
           type="button"
@@ -71,12 +71,139 @@
         </template>
       </button>
     </header>
-    <RouterView />
+    <RouterView v-slot="{ Component }">
+      <component :is="Component" v-on="isHomePage ? { 'open-explore': openExplore } : {}" />
+    </RouterView>
     <footer class="site-footer">
-      <RouterLink to="/" class="brand">ScreeningTogether AU</RouterLink
-      ><span>{{ t('footer.tagline') }}</span
-      ><span>{{ t('footer.copyright') }}</span>
+      <div class="footer-acknowledgement">
+        <span class="footer-leaf" aria-hidden="true"
+          ><img src="./assets/cervical-cancer-ribbon.png"
+        /></span>
+        <p>{{ t('footer.acknowledgement') }}</p>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-about">
+          <RouterLink to="/" class="brand"
+            ><img
+              class="footer-brand-logo"
+              src="https://cdn.builder.io/api/v1/image/assets%2F9a3562f282554c16b26aa3f121a432bf%2F158611f967d7475c9c8e3f746c8da3e9?format=webp&width=800&height=1200"
+              alt=""
+            />ScreeningTogether AU</RouterLink
+          >
+          <p>{{ t('footer.tagline') }}</p>
+        </div>
+        <div>
+          <h2>{{ t('footer.pages') }}</h2>
+          <RouterLink to="/">{{ t('header.home') }}</RouterLink>
+          <RouterLink to="/faq">{{ t('header.faq') }}</RouterLink>
+          <RouterLink to="/data">{{ t('header.numbers') }}</RouterLink>
+          <RouterLink to="/gpfinder">{{ t('header.gpFinder') }}</RouterLink>
+        </div>
+        <div>
+          <h2>{{ t('footer.dataSources') }}</h2>
+          <a href="https://www.canceraustralia.gov.au/" target="_blank" rel="noreferrer">{{
+            t('footer.cancerAustralia')
+          }}</a>
+          <a href="https://www.health.gov.au/" target="_blank" rel="noreferrer">{{
+            t('footer.healthDepartment')
+          }}</a>
+        </div>
+      </div>
+      <div class="footer-bottom">{{ t('footer.copyright') }}</div>
     </footer>
+
+    <div v-if="exploreOpen" class="overlay-backdrop" @click.self="closeExplore">
+      <section
+        class="explore-modal"
+        role="dialog"
+        aria-modal="true"
+        :aria-labelledby="'explore-title'"
+      >
+        <button
+          class="modal-close"
+          type="button"
+          :aria-label="t('explore.close')"
+          @click="closeExplore"
+        >
+          ×
+        </button>
+        <p class="modal-eyebrow">{{ t('explore.eyebrow') }}</p>
+        <h2 id="explore-title">{{ t('explore.title') }}</h2>
+        <p class="explore-intro">{{ t('explore.intro') }}</p>
+        <div class="explore-options">
+          <button
+            v-for="(option, index) in exploreOptions"
+            :key="option.title"
+            type="button"
+            :class="['explore-option', { selected: selectedExploreOption === index }]"
+            :aria-pressed="selectedExploreOption === index"
+            @click="selectExploreOption(index)"
+          >
+            <span class="option-icon" aria-hidden="true">{{ option.icon }}</span>
+            <span
+              ><strong>{{ option.title }}</strong
+              ><small>{{ option.description }}</small></span
+            >
+          </button>
+        </div>
+        <RouterLink to="/">
+          <button class="start-over-link" type="button" @click="closeExplore">
+            {{ t('explore.startBeginning') }} <span aria-hidden="true">→</span>
+          </button>
+        </RouterLink>
+      </section>
+    </div>
+
+    <div v-if="gameStartOpen" class="overlay-backdrop game-start-backdrop">
+      <!-- Game 1 (existing guide, unchanged) -->
+      <section
+        v-if="currentGameGuide === 'runner'"
+        class="game-start-modal"
+        role="dialog"
+        aria-modal="true"
+        :aria-labelledby="'game-start-title'"
+      >
+        <p class="modal-eyebrow">{{ t('gameStart.eyebrow') }}</p>
+        <h2 id="game-start-title">{{ t('gameStart.title') }}</h2>
+        <p class="game-start-copy">{{ t('gameStart.description') }}</p>
+        <div class="game-start-goal">
+          <span aria-hidden="true">🎯</span>{{ t('gameStart.goal') }}
+        </div>
+        <div class="game-start-controls">
+          <strong>{{ t('gameStart.move') }}</strong
+          ><kbd>←</kbd><kbd>→</kbd><strong>{{ t('gameStart.jump') }}</strong
+          ><kbd>↑</kbd>
+        </div>
+        <p class="game-start-rule"><span aria-hidden="true">♥</span> {{ t('gameStart.rule') }}</p>
+        <button class="game-start-button" type="button" @click="gameStartOpen = false">
+          {{ t('gameStart.begin') }} <span aria-hidden="true">→</span>
+        </button>
+      </section>
+
+      <!-- Game 2 and Game 3 -->
+      <section
+        v-else-if="extraGuide"
+        class="game-start-modal"
+        role="dialog"
+        aria-modal="true"
+        :aria-labelledby="'game-start-title'"
+      >
+        <p class="modal-eyebrow">{{ extraGuide.eyebrow }}</p>
+        <h2 id="game-start-title">{{ extraGuide.title }}</h2>
+        <ol class="game-guide-steps">
+          <li v-for="step in extraGuide.steps" :key="step.title">
+            <span class="guide-step-icon" aria-hidden="true">{{ step.icon }}</span>
+            <span>
+              <strong>{{ step.title }}</strong>
+              <small>{{ step.description }}</small>
+            </span>
+          </li>
+        </ol>
+        <button class="game-start-button" type="button" @click="gameStartOpen = false">
+          {{ t('gameStart.begin') }} <span aria-hidden="true">→</span>
+        </button>
+      </section>
+    </div>
 
     <button
       class="accessibility-trigger d-flex align-items-center justify-content-center p-0"
@@ -204,17 +331,153 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, computed } from 'vue'
-import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { onMounted, onUnmounted, ref, computed, watch } from 'vue'
+import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 import { useTranslation } from './i18n/useTranslation'
 
 const menuOpen = ref(window.innerWidth > 900)
 const isMobile = ref(window.innerWidth <= 900)
 
 const route = useRoute()
+const router = useRouter()
 const isHomePage = computed(() => route.path === '/')
 
 const { t, changeLanguage } = useTranslation()
+const exploreOpen = ref(false)
+const gameStartOpen = ref(false)
+const selectedExploreOption = ref<number | null>(null)
+const exploreOptions = computed(() => [
+  {
+    icon: '〜',
+    title: t('explore.options.nervous.title'),
+    description: t('explore.options.nervous.description'),
+  },
+  {
+    icon: '🧭',
+    title: t('explore.options.new.title'),
+    description: t('explore.options.new.description'),
+  },
+  {
+    icon: '▤',
+    title: t('explore.options.room.title'),
+    description: t('explore.options.room.description'),
+  },
+  {
+    icon: '✓',
+    title: t('explore.options.book.title'),
+    description: t('explore.options.book.description'),
+  },
+])
+
+const openExplore = () => {
+  selectedExploreOption.value = null
+  exploreOpen.value = true
+  closeMenu()
+}
+const closeExplore = () => {
+  exploreOpen.value = false
+}
+type GameGuide = 'runner' | 'game2' | 'game3'
+
+const gameGuideByRoute: Record<string, GameGuide> = {
+  '/game': 'runner',
+  '/gprunner': 'runner',
+  '/iteration1/gprunner': 'runner',
+  '/iteration2/game': 'runner',
+  '/iteration2/gprunner': 'runner',
+  '/game2': 'game2',
+  '/iteration2/game2': 'game2',
+  '/game3': 'game3',
+  '/iteration2/game3': 'game3',
+}
+
+const currentGameGuide = ref<GameGuide | null>(null)
+
+watch(
+  () => route.path,
+  (path) => {
+    const guide = gameGuideByRoute[path] ?? null
+    currentGameGuide.value = guide
+    gameStartOpen.value = guide !== null
+  },
+  { immediate: true },
+)
+
+const game2Ns = { ns: 'game2' }
+const game3Ns = { ns: 'game3' }
+
+const extraGuide = computed(() => {
+  if (currentGameGuide.value === 'game2') {
+    return {
+      eyebrow: t('gameStart.eyebrowGame2'),
+      title: t('howToPlay.label', game2Ns),
+      steps: [
+        {
+          icon: '👀',
+          title: t('howToPlay.steps.watchAndListen.title', game2Ns),
+          description: t('howToPlay.steps.watchAndListen.description', game2Ns),
+        },
+        {
+          icon: '⏱',
+          title: t('howToPlay.steps.respondInTime.title', game2Ns),
+          description: t('howToPlay.steps.respondInTime.description', game2Ns),
+        },
+        {
+          icon: '🔍',
+          title: t('howToPlay.steps.exploreWhileWaiting.title', game2Ns),
+          description: t('howToPlay.steps.exploreWhileWaiting.description', game2Ns),
+        },
+      ],
+    }
+  }
+
+  if (currentGameGuide.value === 'game3') {
+    return {
+      eyebrow: t('gameStart.eyebrowGame3'),
+      title: t('learning.label', game3Ns),
+      steps: [
+        {
+          icon: '💬',
+          title: t('learning.choices.title', game3Ns),
+          description: t('learning.choices.description', game3Ns),
+        },
+        {
+          icon: '⏱',
+          title: t('learning.minutes.title', game3Ns),
+          description: t('learning.minutes.animationDescription', game3Ns),
+        },
+        {
+          icon: '📋',
+          title: t('learning.after.title', game3Ns),
+          description: t('learning.after.description', game3Ns),
+        },
+      ],
+    }
+  }
+
+  return null
+})
+watch([exploreOpen, gameStartOpen], ([explore, game]) => {
+  document.body.style.overflow = explore || game ? 'hidden' : ''
+})
+
+const selectExploreOption = (index: number) => {
+  selectedExploreOption.value = index
+
+  const routes = [
+    '/gprunner', // Nervous
+    '/game2', // New
+    '/game3', // Room
+    '/gpfinder', // Book
+  ]
+
+  const targetRoute = routes[index]
+
+  if (targetRoute) {
+    closeExplore()
+    router.push(targetRoute)
+  }
+}
 
 const toggleMenu = () => {
   menuOpen.value = !menuOpen.value
@@ -360,10 +623,12 @@ onUnmounted(() => {
 }
 
 .main-nav {
+  position: absolute;
+  left: 50%;
   display: flex;
   gap: 34px;
-  margin-left: auto;
-  margin-right: 46px;
+  margin: 0;
+  transform: translateX(-50%);
 }
 
 .main-nav a {
@@ -385,6 +650,9 @@ onUnmounted(() => {
 }
 
 .header-cta {
+  position: absolute;
+  right: max(calc(6vw + 72px), 96px);
+  z-index: 1;
   background: #302a2d;
   color: #fffaf8;
   border-radius: 100px;
@@ -395,16 +663,19 @@ onUnmounted(() => {
 
 .header-cta span {
   font-size: 15px;
-  margin-left: 8px;
 }
 
 /* Language selector */
 .language-control {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  right: max(6vw, 24px);
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin: 0 4px;
+  transform: translateY(-50%);
 }
 
 .language-button {
@@ -412,7 +683,7 @@ onUnmounted(() => {
   height: 38px;
   padding: 0 10px;
   border: 1px solid #6b595c;
-  border-radius: 14px;
+  border-radius: 999px;
   background: #302a2d;
   color: #fffaf8;
 
@@ -1326,13 +1597,11 @@ onUnmounted(() => {
   min-height: calc(100dvh - 78px);
 }
 
-
 /* =========================================
    Mobile game pages
    ========================================= */
 
 @media (max-width: 760px) {
-
   .site-shell.text-size-normal :deep(.game-play-page),
   .site-shell.text-size-larger :deep(.game-play-page),
   .site-shell.text-size-largest :deep(.game-play-page) {
@@ -1415,5 +1684,444 @@ onUnmounted(() => {
 .header-cta,
 .site-footer .brand {
   text-decoration: none;
+}
+.site-footer {
+  display: block;
+  padding: 48px max(8vw, 28px) 18px;
+  border: 0;
+  background: #fdf2f7;
+  color: #796b6c;
+}
+.footer-acknowledgement {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  max-width: 880px;
+  margin: 0 auto 34px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid #e7d5d4;
+}
+
+.footer-acknowledgement p,
+.footer-about p {
+  margin: 0;
+  color: #796b6c;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.footer-leaf {
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+.footer-leaf img {
+  height: 100%;
+  max-height: 70px;
+  width: auto;
+  object-fit: contain;
+}
+.footer-columns {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 48px;
+  max-width: 880px;
+  margin: 0 auto;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #e7d5d4;
+}
+.footer-columns > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.footer-columns h2 {
+  margin: 0 0 3px;
+  color: #302a2d;
+  font:
+    700 16px Georgia,
+    serif;
+}
+.site-footer .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #302a2d;
+  font-size: 18px;
+}
+.footer-brand-logo {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+.footer-columns a {
+  color: #796b6c;
+  font-size: 12px;
+}
+.footer-columns a:hover {
+  color: #a75d68;
+}
+.footer-bottom {
+  max-width: 880px;
+  margin: 14px auto 0;
+  color: #8c7e80;
+  font-size: 10px;
+}
+.header-cta {
+  border: 0;
+  cursor: pointer;
+}
+.explore-label-mobile {
+  display: none;
+}
+.overlay-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #21131d66;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.explore-modal,
+.game-start-modal {
+  position: relative;
+  width: min(100%, 820px);
+  max-height: min(92vh, 900px);
+  overflow-y: auto;
+  padding: clamp(30px, 6vw, 64px);
+  border: 1px solid #eadedb;
+  border-radius: 34px;
+  background: #fff;
+  box-shadow: 0 24px 90px #21051f35;
+  color: #2b2427;
+}
+.modal-close {
+  position: absolute;
+  top: 24px;
+  right: 26px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  color: #7b6d70;
+  font-size: 29px;
+}
+.modal-eyebrow {
+  margin: 0 0 12px;
+  color: #a75d68;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.explore-modal h2,
+.game-start-modal h2 {
+  margin: 0;
+  color: #211a1d;
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+.explore-intro,
+.game-start-copy {
+  max-width: 650px;
+  margin: 15px 0 32px;
+  color: #72676a;
+  font-size: 17px;
+  line-height: 1.65;
+}
+.explore-options {
+  display: grid;
+  gap: 12px;
+}
+.explore-option {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 16px 20px;
+  border: 1px solid #e6e1dc;
+  border-radius: 20px;
+  background: #fff;
+  color: #2b2427;
+  text-align: left;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+.explore-option:hover,
+.explore-option.selected {
+  border-color: #b77886;
+  background: #fbf0f2;
+}
+.explore-option:hover {
+  transform: translateY(-1px);
+}
+.option-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #edf0e9;
+  color: #725454;
+  font-size: 20px;
+}
+.explore-option.selected .option-icon {
+  background: #a9476c;
+  color: #fff;
+}
+.explore-option strong {
+  display: block;
+  font-size: 17px;
+  font-weight: 800;
+}
+.explore-option small {
+  display: block;
+  margin-top: 4px;
+  color: #71686a;
+  font-size: 14px;
+}
+.start-over-link {
+  display: block;
+  margin: 22px auto 0;
+  border: 0;
+  background: transparent;
+  color: #514448;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.game-start-modal {
+  width: min(100%, 690px);
+  background: #fff5ef;
+  border: 0;
+}
+.game-start-modal h2 {
+  font-size: clamp(34px, 5vw, 52px);
+}
+.game-start-copy {
+  margin-bottom: 22px;
+}
+.game-start-goal {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 20px 0;
+  padding: 16px;
+  border-radius: 16px;
+  background: #f7e2e6;
+  font-weight: 800;
+}
+.game-start-goal span {
+  font-size: 23px;
+}
+.game-start-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #a75d68;
+}
+.game-start-controls strong {
+  margin-right: 6px;
+}
+.game-start-controls kbd {
+  min-width: 42px;
+  padding: 8px 12px;
+  border-radius: 9px;
+  background: #fff;
+  box-shadow: 0 2px 4px #0002;
+  color: #2b2427;
+  text-align: center;
+  font-size: 20px;
+}
+.game-start-rule {
+  margin: 22px 0;
+  color: #71686a;
+}
+.game-guide-steps {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0 26px;
+  padding: 0;
+  list-style: none;
+}
+
+.game-guide-steps li {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 2px 6px #7c55551a;
+}
+
+.guide-step-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #f7e2e6;
+  font-size: 20px;
+}
+
+.game-guide-steps strong {
+  display: block;
+  color: #211a1d;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.game-guide-steps small {
+  display: block;
+  margin-top: 3px;
+  color: #71686a;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.game-start-button {
+  width: 100%;
+  padding: 16px 24px;
+  border: 0;
+  border-radius: 99px;
+  background: #211719;
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+}
+.game-start-button span {
+  margin-left: 8px;
+  font-size: 22px;
+}
+@media (max-width: 900px) {
+  .main-nav {
+    left: 0;
+    transform: none;
+  }
+  .header-cta,
+  .language-control {
+    position: static;
+    transform: none;
+  }
+  .site-footer {
+    padding: 36px 24px 18px;
+  }
+  .footer-columns {
+    gap: 24px;
+  }
+  .explore-label-desktop {
+    display: none;
+  }
+  .explore-label-mobile {
+    display: inline;
+  }
+}
+@media (min-width: 761px) and (max-width: 900px) {
+  .main-nav {
+    display: flex !important;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    width: auto;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    flex-direction: row;
+    gap: 14px;
+    transform: translate(-50%, -50%);
+  }
+  .main-nav a {
+    font-size: 10px;
+  }
+  .menu-toggle {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .footer-columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 18px;
+  }
+  .footer-about {
+    grid-column: 1 / -1;
+  }
+  .footer-acknowledgement {
+    align-items: flex-start;
+  }
+  .footer-acknowledgement p {
+    font-size: 11px;
+  }
+  .explore-modal,
+  .game-start-modal {
+    padding: 42px 22px 26px;
+    border-radius: 25px;
+  }
+  .modal-close {
+    top: 11px;
+    right: 14px;
+  }
+  .explore-modal h2,
+  .game-start-modal h2 {
+    font-size: 32px;
+  }
+  .explore-intro,
+  .game-start-copy {
+    font-size: 14px;
+    margin-bottom: 22px;
+  }
+  .explore-option {
+    grid-template-columns: 38px 1fr;
+    gap: 11px;
+    padding: 12px;
+    border-radius: 15px;
+  }
+  .game-guide-steps li {
+    grid-template-columns: 36px 1fr;
+    gap: 11px;
+    padding: 12px;
+  }
+
+  .guide-step-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 17px;
+  }
+
+  .game-guide-steps strong {
+    font-size: 14px;
+  }
+
+  .game-guide-steps small {
+    font-size: 12px;
+  }
+  .option-icon {
+    width: 36px;
+    height: 36px;
+  }
+  .explore-option strong {
+    font-size: 14px;
+  }
+  .explore-option small {
+    font-size: 12px;
+  }
+}
+.site-shell :deep(.hero-section .button-primary),
+.site-shell :deep(.closing-section .button-primary) {
+  background: #b65d6e;
+  color: #fff;
 }
 </style>
