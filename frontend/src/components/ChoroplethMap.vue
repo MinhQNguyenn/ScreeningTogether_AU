@@ -132,7 +132,7 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import type { Feature, FeatureCollection, Geometry } from 'geojson'
 
-import { getAllSa3Statistics, type Sa3Statistic } from '../api/Choropleth'
+import { getAllSa3Statistics, type Sa3Statistic } from '../api/choropleth'
 import { useTranslation } from '../i18n/useTranslation'
 
 const { t } = useTranslation()
