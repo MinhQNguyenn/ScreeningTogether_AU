@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/support_pickup.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/preparation/medicare_card.svg" id="2"]
 
 [sub_resource type="CircleShape2D" id="Pickup_shape"]
 radius = 38.0
@@ -21,30 +22,27 @@ color = Color(1, 0.95, 0.55, 0.35)
 polygon = PackedVector2Array(0, -35, 25, -25, 35, 0, 25, 25, 0, 35, -25, 25, -35, 0, -25, -25)
 color = Color(0.36, 0.67, 0.49, 1)
 
-[node name="Icon" type="Label" parent="Visual"]
-offset_left = -28.0
-offset_top = -30.0
-offset_right = 28.0
-offset_bottom = 30.0
-theme_override_colors/font_color = Color(1, 1, 0.93, 1)
-theme_override_font_sizes/font_size = 35
-text = "i"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Icon" type="Sprite2D" parent="Visual"]
+texture = ExtResource("2")
+
+[node name="CaptionBackground" type="Polygon2D" parent="Visual"]
+polygon = PackedVector2Array(-70, 46, 70, 46, 70, 108, -70, 108)
+color = Color(1, 0.98, 0.88, 1)
 
 [node name="Caption" type="Label" parent="Visual"]
-offset_left = -86.0
+offset_left = -68.0
 offset_top = 48.0
-offset_right = 86.0
-offset_bottom = 82.0
+offset_right = 68.0
+offset_bottom = 106.0
 theme_override_colors/font_color = Color(0.12, 0.26, 0.17, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 0.88, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 15
-text = "Trusted information"
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 22
+text = "Medicare card"
 horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
 autowrap_mode = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("Pickup_shape")
-

@@ -80,6 +80,8 @@ theme_override_font_sizes/font_size = 38
 text = "CONGRATULATIONS!"
 horizontal_alignment = 1
 
+autowrap_mode = 3
+
 [node name="MessageLabel" type="Label" parent="PanelContainer/Content"]
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
@@ -97,12 +99,16 @@ theme_override_font_sizes/font_size = 21
 text = "Reaction score:  +500"
 horizontal_alignment = 1
 
+autowrap_mode = 3
+
 [node name="SideQuestScoreLabel" type="Label" parent="PanelContainer/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.24705882, 0.4627451, 0.34509805, 1)
 theme_override_font_sizes/font_size = 21
 text = "Side quest bonus:  +0"
 horizontal_alignment = 1
+
+autowrap_mode = 3
 
 [node name="TotalScoreLabel" type="Label" parent="PanelContainer/Content"]
 custom_minimum_size = Vector2(0, 62)
@@ -112,6 +118,8 @@ theme_override_font_sizes/font_size = 30
 text = "TOTAL SCORE:  500"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+autowrap_mode = 3
 
 [node name="ReplayButton" type="Button" parent="PanelContainer/Content"]
 custom_minimum_size = Vector2(0, 72)
@@ -125,6 +133,8 @@ theme_override_styles/hover = SubResource("StyleBox_button_hover")
 theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
 text = "PLAY AGAIN"
 
+autowrap_mode = 3
+
 [node name="ContinueButton" type="Button" parent="PanelContainer/Content"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
@@ -136,3 +146,4 @@ theme_override_styles/normal = SubResource("StyleBox_button_normal")
 theme_override_styles/hover = SubResource("StyleBox_button_hover")
 theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
 text = "CONTINUE JOURNEY"
+autowrap_mode = 3

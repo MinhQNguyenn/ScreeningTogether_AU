@@ -9,10 +9,10 @@
         <iframe
           ref="gameIframe"
           class="game_2"
-          src="/godot/game2/index.html?v=20260916-audio-mute"
+          :src="`/godot/game2/index.html?v=languages&lang=${initialLanguage}`"
           :title="t('page.iframeTitle', { ns: 'game2' })"
           allowfullscreen
-          @load="sendAudioState"
+          @load="sendAudioState(); sendLanguage()"
         ></iframe>
 
         <button
@@ -160,11 +160,13 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import '../../assets/iteration2/gpRunnerGame.css'
 import { useTranslation } from '../../i18n/useTranslation'
+import { useGameLanguage } from '../../i18n/useGameLanguage'
 
 const { t } = useTranslation()
 
 const gameFrame = ref<HTMLElement | null>(null)
 const gameIframe = ref<HTMLIFrameElement | null>(null)
+const { initialLanguage, sendLanguage } = useGameLanguage(gameIframe)
 const isFullscreen = ref(false)
 const isMuted = ref(false)
 const router = useRouter()

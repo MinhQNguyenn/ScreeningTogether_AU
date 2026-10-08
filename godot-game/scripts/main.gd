@@ -17,9 +17,12 @@ const ROUTE_DISTANCE_METRES := 1500
 const PIXELS_PER_METRE := 10.0
 const FINISH_Y := -ROUTE_DISTANCE_METRES * PIXELS_PER_METRE
 const MAX_LIVES := 3
+# Include collision clearance so the first possible hit is at least four seconds away.
+const OPENING_SECONDS := 4.0
+const OBSTACLE_CLEARANCE := 100.0
 # which track pieces get NPCs and pickups
 const NPC_SEGMENTS := [3, 9, 15, 21, 27, 33, 39, 44]
-const PICKUP_SEGMENTS := [7, 20, 32]
+const PICKUP_SEGMENTS := [5, 12, 20]
 
 # the quotes that show up beside the path
 const STIGMA_MESSAGES := [
@@ -31,27 +34,47 @@ const STIGMA_MESSAGES := [
 
 const BARRIERS := [
 	# some of the quotes also show up as barriers
-	{"name": "Feel fine? Why screen?", "color": Color("#b56f7c")},
-	{"name": "Too private to discuss", "color": Color("#8f709c")},
-	{"name": "What will people think?", "color": Color("#c87965")},
-	{"name": "Only if something is wrong?", "color": Color("#7770a8")},
+	{"name": "Myths", "color": Color("#b56f7c")},
+	{"name": "Privacy", "color": Color("#8f709c")},
+	{"name": "Judgement", "color": Color("#c87965")},
+	{"name": "Doubt", "color": Color("#7770a8")},
 	# these ones are more general barrier ideas
 	{"name": "Shame", "color": Color("#a45f6b")},
-	{"name": "Social pressure", "color": Color("#927052")},
-	{"name": "Misconception", "color": Color("#557d9b")},
-	{"name": "Privacy stigma", "color": Color("#568f86")},
+	{"name": "Pressure", "color": Color("#927052")},
+	{"name": "Language", "color": Color("#557d9b")},
+	{"name": "Trust", "color": Color("#568f86")},
 ]
+
+const BARRIER_EXPLANATIONS := {
+	"Myths": "\"I feel well, so I don't need screening.\"\nScreening can be due even without symptoms.",
+	"Privacy": "Worrying that others may find out can make screening feel difficult. Ask your GP how your information stays private.",
+	"Judgement": "\"What will people think?\"\nFear of gossip or blame can make screening harder. You deserve respectful care.",
+	"Doubt": "Not knowing what screening involves can make it hard to start. Ask your GP to explain your options.",
+	"Shame": "Talking about intimate health can feel embarrassing. You can ask for a female practitioner when booking.",
+	"Pressure": "Family or community expectations can make screening feel difficult to discuss. Your screening decision is yours.",
+	"Language": "Unfamiliar medical words can make screening confusing. Ask the clinic for an interpreter when booking.",
+	"Trust": "An unfamiliar health system can make it hard to feel safe. A practitioner you trust can explain each step.",
+}
+const BARRIER_FEEDBACK_SECONDS := 5.0
 
 const SUPPORT_TYPES := [
 	{
-		"name": "Trusted information",
+		"name": "Medicare card",
 		"color": Color("#4f9b78"),
-		"icon": "i",
+		"icon": preload("res://assets/preparation/medicare_card.svg"),
+		"description": "Bring your Medicare card if you have one. You can still access cervical screening without a Medicare card; ask the clinic about costs when booking.",
 	},
 	{
-		"name": "Support",
+		"name": "Question notes",
 		"color": Color("#d1974f"),
-		"icon": "+",
+		"icon": preload("res://assets/preparation/question_notes.svg"),
+		"description": "You might like to bring a list of questions or concerns. For example: What are my screening options? Can you explain each step? You can ask to pause or stop.",
+	},
+	{
+		"name": "Reminder letter",
+		"color": Color("#6b80b4"),
+		"icon": preload("res://assets/preparation/reminder_letter.svg"),
+		"description": "Bring your cervical screening reminder letter if you have one. You can use it to ask your GP when you are due. You do not need a letter to book an appointment.",
 	},
 ]
 
@@ -61,10 +84,13 @@ var next_segment_y: float = 320.0
 var segment_count: int = 0
 var lives: int = MAX_LIVES
 var is_playing: bool = false
+var collected_items: Array[String] = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 # stops an old message timer from deleting a newer message
 var feedback_revision: int = 0
 var feedback_tween: Tween = null
+var barrier_feedback_revision: int = 0
+var barrier_feedback_tween: Tween = null
 
 var current_support_popup: SupportPopup = null
 
@@ -78,6 +104,9 @@ var current_support_popup: SupportPopup = null
 	$Interface/HUD/HealthDisplay/Heart3,
 ]
 @onready var feedback_label: Label = $Interface/HUD/Feedback
+@onready var barrier_feedback: PanelContainer = $Interface/HUD/BarrierFeedback
+@onready var barrier_feedback_label: Label = $Interface/HUD/BarrierFeedback/Message
+@onready var barrier_explanation: Label = $Interface/GameOverScreen/Panel/Content/BarrierExplanation
 @onready var start_screen: Control = $Interface/StartScreen
 @onready var game_over_screen: Control = $Interface/GameOverScreen
 @onready var completion_screen: Control = $Interface/CompletionScreen
@@ -135,10 +164,11 @@ func _process(_delta: float) -> void:
 
 func _start_game() -> void:
 	# hide menus and let the player start moving
+	_clear_barrier_feedback()
 	start_screen.hide()
 	game_over_screen.hide()
 	completion_screen.hide()
-	_show_feedback("Reach the health service")
+	_show_feedback("Find appointment items. Dodge or jump fences.", 4.0)
 	is_playing = true
 	player.start_run()
 
@@ -152,6 +182,7 @@ func _restart_game() -> void:
 	next_segment_y = 320.0
 	segment_count = 0
 	lives = MAX_LIVES
+	collected_items.clear()
 	is_playing = false
 	clinic_finish.reset_finish()
 	player.reset_player()
@@ -180,6 +211,7 @@ func _spawn_segment(add_obstacles: bool) -> void:
 	if (
 		add_obstacles
 		and not has_animated_quote
+		and -next_segment_y - 210.0 >= player.forward_speed * OPENING_SECONDS + OBSTACLE_CLEARANCE
 		and next_segment_y > FINISH_Y + SEGMENT_HEIGHT
 	):
 		if current_index in PICKUP_SEGMENTS:
@@ -187,7 +219,7 @@ func _spawn_segment(add_obstacles: bool) -> void:
 		else:
 			var obstacle_y: float = rng.randf_range(-210.0, 210.0)
 			_add_obstacle_row(segment, obstacle_y)
-	if current_index in NPC_SEGMENTS:
+	if current_index in NPC_SEGMENTS and -next_segment_y + 135.0 >= player.forward_speed * OPENING_SECONDS + OBSTACLE_CLEARANCE:
 		_add_npc(segment, current_index)
 	if current_index in PICKUP_SEGMENTS:
 		_add_support_pickup(segment, current_index)
@@ -281,7 +313,7 @@ func _add_support_pickup(segment: Node2D, current_index: int) -> void:
 	segment.add_child(pickup)
 	var support_name: String = str(support["name"])
 	var support_color: Color = support["color"]
-	var support_icon: String = str(support["icon"])
+	var support_icon: Texture2D = support["icon"]
 	pickup.configure(support_name, support_color, support_icon)
 	pickup.collected.connect(_on_support_collected)
 
@@ -302,7 +334,7 @@ func _maintain_track() -> void:
 
 func _update_score() -> void:
 	# Show the journey as a clear countdown from 1500 m to the clinic.
-	score_label.text = "%d m" % _get_remaining_distance_metres()
+	GameLanguage.bind_text(score_label, "%d m", [_get_remaining_distance_metres()])
 
 
 func _get_remaining_distance_metres() -> int:
@@ -317,6 +349,7 @@ func _get_remaining_distance_metres() -> int:
 func _update_hud() -> void:
 	# Use image-based hearts so the HUD renders consistently in Web exports.
 	_update_score()
+	GameLanguage.bind_text($Interface/HUD/Bag, "Appointment bag: %d / %d", [collected_items.size(), SUPPORT_TYPES.size()])
 	for heart_index in health_hearts.size():
 		var heart_alpha: float = 1.0 if heart_index < lives else 0.2
 		health_hearts[heart_index].modulate = Color(1.0, 1.0, 1.0, heart_alpha)
@@ -324,31 +357,55 @@ func _update_hud() -> void:
 
 func _on_player_hit(barrier_name: String) -> void:
 	# take one life for a proper hit
-	lives = maxi(0, lives - 1)
-	_show_feedback("Barrier: %s" % barrier_name)
-	_update_hud()
-	if lives > 0:
+	if not is_playing:
 		return
+	lives = maxi(0, lives - 1)
+	_update_hud()
+	var explanation: String = BARRIER_EXPLANATIONS.get(barrier_name, "Screening can feel unfamiliar. Ask your healthcare provider about the support you need.")
+	if lives > 0:
+		_show_barrier_feedback(barrier_name, explanation)
+		return
+	_clear_barrier_feedback()
 	is_playing = false
 	player.stop_run()
-	final_score.text = (
-		"Remaining distance  %d m" % _get_remaining_distance_metres()
-	)
-	barrier_message.text = "This path was blocked by: %s" % barrier_name
+	GameLanguage.bind_text(final_score, "Remaining distance  %d m", [_get_remaining_distance_metres()])
+	GameLanguage.bind_text(barrier_message, "Last barrier: %s", [barrier_name])
+	barrier_explanation.text = explanation
 	game_over_screen.show()
 
 
+func _clear_barrier_feedback() -> void:
+	barrier_feedback_revision += 1
+	if barrier_feedback_tween != null and barrier_feedback_tween.is_valid():
+		barrier_feedback_tween.kill()
+	barrier_feedback.hide()
+	barrier_feedback.modulate = Color.WHITE
+	GameLanguage.bind_text(barrier_feedback_label, "")
+
+
+func _show_barrier_feedback(barrier_name: String, explanation: String) -> void:
+	# Separate from pickup feedback: no pause, focus change or input interception.
+	_clear_barrier_feedback()
+	var revision: int = barrier_feedback_revision
+	GameLanguage.bind_text(barrier_feedback_label, "%s\n%s", [barrier_name, explanation])
+	barrier_feedback.show()
+	await get_tree().create_timer(BARRIER_FEEDBACK_SECONDS).timeout
+	if revision != barrier_feedback_revision:
+		return
+	barrier_feedback_tween = create_tween()
+	barrier_feedback_tween.tween_property(barrier_feedback, "modulate:a", 0.0, 0.35)
+	await barrier_feedback_tween.finished
+	if revision == barrier_feedback_revision:
+		_clear_barrier_feedback()
+
+
 func _on_support_collected(support_name: String) -> void:
-	# Apply the gameplay effect first.
-	# Pause the run and show a local screening fact.
-	await _open_support_popup()
-
-	var feedback_message := (
-		"%s cleared the barrier row" % support_name
-	)
-
-	_show_feedback(feedback_message)
+	if not is_playing:
+		return
+	if support_name not in collected_items:
+		collected_items.append(support_name)
 	_update_hud()
+	await _open_support_popup(support_name)
 
 
 func _clear_nearest_barrier_row() -> bool:
@@ -387,11 +444,12 @@ func _on_clinic_reached() -> void:
 	# stop the run and show the clinic ending
 	if not is_playing:
 		return
+	_clear_barrier_feedback()
 	is_playing = false
 	player.stop_run()
 	player.position.y = FINISH_Y
 	_update_score()
-	completion_score.text = "Remaining distance  0 m"
+	GameLanguage.bind_text(completion_score, "Appointment items collected: %d / %d\nYou can attend even without these items.", [collected_items.size(), SUPPORT_TYPES.size()])
 	_show_feedback("Trusted support reached")
 	completion_screen.show()
 
@@ -415,7 +473,7 @@ func _show_feedback(message_text: String, duration: float = 2.5) -> void:
 	feedback_label.text = ""
 	feedback_label.modulate = Color.WHITE
 
-func _open_support_popup() -> void:
+func _open_support_popup(support_name: String) -> void:
 	# Stop gameplay while the user reads the popup.
 	is_playing = false
 	player.stop_run()
@@ -438,16 +496,16 @@ func _open_support_popup() -> void:
 	current_support_popup.closed.connect(
 		_on_support_popup_closed
 	)
-	var fact_index: int = rng.randi_range(
-		0,
-		SupportPopup.SCREENING_FACTS.size() - 1,
-	)
-	current_support_popup.show_fact(fact_index)
+	for item in SUPPORT_TYPES:
+		if item["name"] == support_name:
+			current_support_popup.show_preparation_item(item)
+			break
 
 
 func _on_support_popup_closed() -> void:
 	current_support_popup = null
 	_clear_nearest_barrier_row()
+	_show_feedback("Packed for your appointment! Fence row cleared.")
 
 	await get_tree().create_timer(0.3).timeout
 	_resume_after_support_popup()

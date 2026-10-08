@@ -5,7 +5,7 @@ extends Area2D
 
 signal collected(support_name: String)
 
-@export var support_name: String = "Trusted information"
+@export var support_name: String = "Medicare card"
 
 var animation_time: float = 0.0
 
@@ -19,11 +19,11 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 
-func configure(name_text: String, color: Color, icon_text: String) -> void:
+func configure(name_text: String, color: Color, icon_texture: Texture2D) -> void:
 	# set which pickup this is and what it looks like
 	support_name = name_text
 	$Visual/Token.color = color
-	$Visual/Icon.text = icon_text
+	$Visual/Icon.texture = icon_texture
 	if is_node_ready():
 		caption.text = support_name
 
@@ -39,6 +39,6 @@ func _on_body_entered(body: Node2D) -> void:
 	# only collect it during an actual run
 	if not (body is RunnerPlayer) or not body.is_running:
 		return
-	monitoring = false
+	set_deferred("monitoring", false)
 	collected.emit(support_name)
 	queue_free()

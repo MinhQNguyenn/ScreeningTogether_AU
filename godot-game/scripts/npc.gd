@@ -53,7 +53,7 @@ func _animate_quote_to_barrier() -> void:
 		return
 	animation_started = true
 	var target_position: Vector2 = to_local(
-		target_barrier.global_position + Vector2(0.0, -21.0)
+		target_barrier.global_position + Vector2(0.0, -68.0)
 	)
 	var tween: Tween = create_tween()
 	tween.set_trans(Tween.TRANS_QUAD)
