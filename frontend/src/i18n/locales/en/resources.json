@@ -1,0 +1,62 @@
+{
+  "page": {
+    "eyebrow": "Resources",
+    "title": "Support and information",
+    "titleEmphasis": "close to you.",
+    "description": "Trusted services, helplines and guides to help you understand cervical screening and take your next step, in a language that works for you."
+  },
+
+  "sections": {
+    "support": "Support and services",
+    "site": "Explore this website",
+    "info": "Learn more about cervical screening"
+  },
+
+  "cards": {
+    "cancerCouncil": {
+      "title": "13 11 20",
+      "description": "Call Cancer Council for support and information about cancer."
+    },
+    "interpreter": {
+      "title": "Interpreter service (131 450)",
+      "description": "Speak with your doctor or a service in your language through TIS National."
+    },
+    "healthdirect": {
+      "title": "Healthdirect",
+      "description": "Call 1800 022 222 to talk with a registered nurse at any time."
+    },
+    "ncsr": {
+      "title": "National Cancer Screening Register",
+      "description": "Check your screening history or update your details. Call 1800 627 701."
+    },
+    "data": {
+      "title": "Screening data",
+      "description": "See participation rates by state and over time."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "description": "Quick answers to the most common questions."
+    },
+    "gp": {
+      "title": "Find a GP",
+      "description": "Look for a GP near you for your screening."
+    },
+    "guide": {
+      "title": "Home test kit guide",
+      "description": "Step by step: how to get a self-collection kit and test at home."
+    },
+    "program": {
+      "title": "National Cervical Screening Program",
+      "description": "Official information on who should screen and how often."
+    },
+    "cancerCouncilInfo": {
+      "title": "Cancer Council: cervical cancer",
+      "description": "Plain-language information about cervical cancer and screening."
+    }
+  },
+
+  "notes": {
+    "external": "Opens in a new tab",
+    "disclaimer": "This page provides general information and is not medical advice. We do not manage the content of external websites."
+  }
+}

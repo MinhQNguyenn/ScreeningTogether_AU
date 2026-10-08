@@ -8,10 +8,33 @@
     "exploreTogether": "Cùng khám phá",
     "explore": "Khám phá",
     "seeNumbers": "Xem số liệu",
-    "noteOne": "Hiểu rõ",
-    "noteOneStrong": "lựa chọn của bạn",
-    "noteTwo": "Những bước nhỏ",
-    "noteTwoStrong": "đều quan trọng"
+    "resources": "Xem thêm các tài nguyên khác của chúng tôi",
+    "cards": {
+      "data": {
+        "prompt": "Tò mò về số liệu?",
+        "title": "Xem số liệu",
+        "description": "Khám phá tỷ lệ tham gia tầm soát ung thư cổ tử cung theo tiểu bang và theo thời gian.",
+        "link": "Xem dữ liệu"
+      },
+      "faq": {
+        "prompt": "Bạn có thắc mắc?",
+        "title": "Đọc câu hỏi thường gặp",
+        "description": "Giải đáp rõ ràng, ngắn gọn cho những câu hỏi phổ biến nhất về ung thư cổ tử cung.",
+        "link": "Xem câu hỏi thường gặp"
+      },
+      "gp": {
+        "prompt": "Sẵn sàng đặt lịch?",
+        "title": "Tìm bác sĩ gia đình gần bạn",
+        "description": "Tìm bác sĩ gia đình (GP) trong khu vực của bạn để hỗ trợ việc tầm soát.",
+        "link": "Tìm bác sĩ"
+      },
+      "guide": {
+        "prompt": "Muốn tự xét nghiệm tại nhà?",
+        "title": "Nhận bộ xét nghiệm",
+        "description": "Từng bước: cách nhận bộ tự lấy mẫu và thực hiện tại nhà.",
+        "link": "Đọc hướng dẫn"
+      }
+    }
   },
 
   "essentials": {
@@ -32,8 +55,9 @@
         "description": "Giúp phát hiện sớm những thay đổi của tế bào, khi chúng dễ điều trị và kiểm soát hơn."
       },
       "body": {
-        "title": "Hiểu rõ cơ thể bạn",
-        "description": "Hãy trao đổi với chuyên gia y tế về bất kỳ điều gì khiến bạn cảm thấy bất thường."
+        "title": "Bạn có biết?",
+        "highlight": "4 trong 5 người",
+        "description": " sẽ nhiễm HPV vào một thời điểm nào đó trong đời"
       }
     }
   },

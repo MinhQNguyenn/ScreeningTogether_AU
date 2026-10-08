@@ -52,6 +52,14 @@ import arGame2 from './locales/ar/game2.json'
 import viGame2 from './locales/vi/game2.json'
 
 
+// resoucrce page
+import enResource from './locales/en/resources.json'
+import zhHKResource from './locales/zh-HK/resources.json'
+import zhCNResource from './locales/zh-CN/resources.json'  
+import arResource from './locales/ar/resources.json'
+import viResource from './locales/vi/resources.json'
+
+
 
 const resources = {
   en: {
@@ -62,7 +70,8 @@ const resources = {
     gpRunner: enGpRunner,
     game3: game3En,
     gpFinder: enGpFinder,
-    game2: enGame2
+    game2: enGame2,
+    resources: enResource
   },
   'zh-HK': {
     common: zhHKCommon,
@@ -72,7 +81,8 @@ const resources = {
     gpRunner: zhHKGpRunner,
     game3: game3ZhHK,
     gpFinder: zhHKGpFinder,
-    game2: zhHKGame2
+    game2: zhHKGame2,
+    resources: zhHKResource
   },
   'zh-CN': {
     common: zhCNCommon,
@@ -82,7 +92,8 @@ const resources = {
     gpRunner: zhCNGpRunner,
     game3: game3ZhCN,
     gpFinder: zhCNGpFinder,
-    game2:zhCNGame2
+    game2:zhCNGame2,
+    resources: zhCNResource
   },
   ar: {
     common: arCommon,
@@ -92,7 +103,8 @@ const resources = {
     gpRunner: arGpRunner,
     game3: game3Ar,
     gpFinder: arGpFinder,
-    game2: arGame2
+    game2: arGame2,
+    resources: arResource
   },
   vi: {
     common: viCommon,
@@ -102,7 +114,8 @@ const resources = {
     gpRunner: viGpRunner,
     game3: game3Vi,
     gpFinder: viGpFinder,
-    game2:viGame2
+    game2:viGame2,
+    resources: viResource
   }
 }
 
@@ -112,7 +125,7 @@ i18next
     resources,
     fallbackLng: 'en',
     defaultNS: 'common',
-    ns: ['common', 'home', 'faq', 'data', 'gpRunner', 'game3', 'gpFinder', 'game2'],
+    ns: ['common', 'home', 'faq', 'data', 'gpRunner', 'game3', 'gpFinder', 'game2', 'resources'],
 
     detection: {
       order: ['localStorage', 'navigator'],

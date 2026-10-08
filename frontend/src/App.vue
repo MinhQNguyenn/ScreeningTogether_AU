@@ -101,9 +101,9 @@
         </div>
         <div>
           <h2>{{ t('footer.dataSources') }}</h2>
-          <a href="https://www.canceraustralia.gov.au/" target="_blank" rel="noreferrer"
-            >Cancer Australia</a
-          >
+          <a href="https://www.canceraustralia.gov.au/" target="_blank" rel="noreferrer">{{
+            t('footer.cancerAustralia')
+          }}</a>
           <a href="https://www.health.gov.au/" target="_blank" rel="noreferrer">{{
             t('footer.healthDepartment')
           }}</a>
@@ -155,7 +155,9 @@
     </div>
 
     <div v-if="gameStartOpen" class="overlay-backdrop game-start-backdrop">
+      <!-- Game 1 (existing guide, unchanged) -->
       <section
+        v-if="currentGameGuide === 'runner'"
         class="game-start-modal"
         role="dialog"
         aria-modal="true"
@@ -173,6 +175,30 @@
           ><kbd>↑</kbd>
         </div>
         <p class="game-start-rule"><span aria-hidden="true">♥</span> {{ t('gameStart.rule') }}</p>
+        <button class="game-start-button" type="button" @click="gameStartOpen = false">
+          {{ t('gameStart.begin') }} <span aria-hidden="true">→</span>
+        </button>
+      </section>
+
+      <!-- Game 2 and Game 3 -->
+      <section
+        v-else-if="extraGuide"
+        class="game-start-modal"
+        role="dialog"
+        aria-modal="true"
+        :aria-labelledby="'game-start-title'"
+      >
+        <p class="modal-eyebrow">{{ extraGuide.eyebrow }}</p>
+        <h2 id="game-start-title">{{ extraGuide.title }}</h2>
+        <ol class="game-guide-steps">
+          <li v-for="step in extraGuide.steps" :key="step.title">
+            <span class="guide-step-icon" aria-hidden="true">{{ step.icon }}</span>
+            <span>
+              <strong>{{ step.title }}</strong>
+              <small>{{ step.description }}</small>
+            </span>
+          </li>
+        </ol>
         <button class="game-start-button" type="button" @click="gameStartOpen = false">
           {{ t('gameStart.begin') }} <span aria-hidden="true">→</span>
         </button>
@@ -342,18 +368,7 @@ const exploreOptions = computed(() => [
     description: t('explore.options.book.description'),
   },
 ])
-const gameRoutes = [
-  '/game',
-  '/gprunner',
-  '/game2',
-  '/game3',
-  '/iteration1/gprunner',
-  '/iteration2/game',
-  '/iteration2/gprunner',
-  '/iteration2/game2',
-  '/iteration2/game3',
-]
-const isGameRoute = (path: string) => gameRoutes.includes(path)
+
 const openExplore = () => {
   selectedExploreOption.value = null
   exploreOpen.value = true
@@ -362,13 +377,86 @@ const openExplore = () => {
 const closeExplore = () => {
   exploreOpen.value = false
 }
+type GameGuide = 'runner' | 'game2' | 'game3'
+
+const gameGuideByRoute: Record<string, GameGuide> = {
+  '/game': 'runner',
+  '/gprunner': 'runner',
+  '/iteration1/gprunner': 'runner',
+  '/iteration2/game': 'runner',
+  '/iteration2/gprunner': 'runner',
+  '/game2': 'game2',
+  '/iteration2/game2': 'game2',
+  '/game3': 'game3',
+  '/iteration2/game3': 'game3',
+}
+
+const currentGameGuide = ref<GameGuide | null>(null)
+
 watch(
   () => route.path,
   (path) => {
-    gameStartOpen.value = isGameRoute(path)
+    const guide = gameGuideByRoute[path] ?? null
+    currentGameGuide.value = guide
+    gameStartOpen.value = guide !== null
   },
   { immediate: true },
 )
+
+const game2Ns = { ns: 'game2' }
+const game3Ns = { ns: 'game3' }
+
+const extraGuide = computed(() => {
+  if (currentGameGuide.value === 'game2') {
+    return {
+      eyebrow: t('gameStart.eyebrowGame2'),
+      title: t('howToPlay.label', game2Ns),
+      steps: [
+        {
+          icon: '👀',
+          title: t('howToPlay.steps.watchAndListen.title', game2Ns),
+          description: t('howToPlay.steps.watchAndListen.description', game2Ns),
+        },
+        {
+          icon: '⏱',
+          title: t('howToPlay.steps.respondInTime.title', game2Ns),
+          description: t('howToPlay.steps.respondInTime.description', game2Ns),
+        },
+        {
+          icon: '🔍',
+          title: t('howToPlay.steps.exploreWhileWaiting.title', game2Ns),
+          description: t('howToPlay.steps.exploreWhileWaiting.description', game2Ns),
+        },
+      ],
+    }
+  }
+
+  if (currentGameGuide.value === 'game3') {
+    return {
+      eyebrow: t('gameStart.eyebrowGame3'),
+      title: t('learning.label', game3Ns),
+      steps: [
+        {
+          icon: '💬',
+          title: t('learning.choices.title', game3Ns),
+          description: t('learning.choices.description', game3Ns),
+        },
+        {
+          icon: '⏱',
+          title: t('learning.minutes.title', game3Ns),
+          description: t('learning.minutes.animationDescription', game3Ns),
+        },
+        {
+          icon: '📋',
+          title: t('learning.after.title', game3Ns),
+          description: t('learning.after.description', game3Ns),
+        },
+      ],
+    }
+  }
+
+  return null
+})
 watch([exploreOpen, gameStartOpen], ([explore, game]) => {
   document.body.style.overflow = explore || game ? 'hidden' : ''
 })
@@ -575,7 +663,6 @@ onUnmounted(() => {
 
 .header-cta span {
   font-size: 15px;
-  margin-left: 8px;
 }
 
 /* Language selector */
@@ -1863,6 +1950,49 @@ onUnmounted(() => {
   margin: 22px 0;
   color: #71686a;
 }
+.game-guide-steps {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0 26px;
+  padding: 0;
+  list-style: none;
+}
+
+.game-guide-steps li {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 2px 6px #7c55551a;
+}
+
+.guide-step-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #f7e2e6;
+  font-size: 20px;
+}
+
+.game-guide-steps strong {
+  display: block;
+  color: #211a1d;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.game-guide-steps small {
+  display: block;
+  margin-top: 3px;
+  color: #71686a;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
 .game-start-button {
   width: 100%;
   padding: 16px 24px;
@@ -1958,6 +2088,25 @@ onUnmounted(() => {
     gap: 11px;
     padding: 12px;
     border-radius: 15px;
+  }
+  .game-guide-steps li {
+    grid-template-columns: 36px 1fr;
+    gap: 11px;
+    padding: 12px;
+  }
+
+  .guide-step-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 17px;
+  }
+
+  .game-guide-steps strong {
+    font-size: 14px;
+  }
+
+  .game-guide-steps small {
+    font-size: 12px;
   }
   .option-icon {
     width: 36px;

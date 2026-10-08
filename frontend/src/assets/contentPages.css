@@ -76,8 +76,8 @@
   min-height: 58px;
   padding: 14px 20px;
   border: 0;
-  background: transparent;
-  color: #2c2326;
+  background: #2c2326;
+  color: floralwhite;
   text-align: left;
   font-weight: 800;
 }
@@ -90,19 +90,19 @@
   border: 1px solid #b77b84;
   border-radius: 50%;
   color: #a75d68;
-  font-size: 18px;
+  font-size: 15px;
 }
 .faq-item.open .faq-toggle {
   background: #a74769;
   color: #fff;
 }
 .faq-item > p {
-  max-width: 850px;
   margin: 0;
   padding: 0 20px 18px;
-  color: #6e6264;
+  color: #2c2326;
   font-size: 14px;
   line-height: 1.7;
+  background: white;
 }
 .data-page {
   background: #261417;
