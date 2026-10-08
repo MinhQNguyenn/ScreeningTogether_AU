@@ -1,0 +1,28 @@
+{
+  "map": {
+    "eyebrow": "探索地图",
+    "title": "您所在地区的筛查情况",
+    "description": "按本地区域（SA3）查看澳大利亚各地宫颈癌筛查参与率和社区背景的差异。搜索一个地区即可放大查看。",
+    "searchLabel": "查找地区",
+    "searchPlaceholder": "按地区名称搜索",
+    "noResults": "没有匹配的地区",
+    "metricLabel": "地图着色依据",
+    "metrics": {
+      "participation": "筛查参与率",
+      "bornOverseas": "海外出生",
+      "otherLanguage": "在家说英语以外的语言",
+      "lowProficiency": "英语水平较低"
+    },
+    "resetView": "重置视图",
+    "noData": "无可靠数据",
+    "loading": "正在加载地图…",
+    "error": "无法加载地图数据。",
+    "ariaLabel": "按本地区域着色的澳大利亚地图",
+    "hint": "在地图上选择一个地区，或搜索某个地区，即可查看详情。",
+    "detail": {
+      "women": "25至74岁女性",
+      "birthplaceNotStated": "未说明出生地"
+    },
+    "note": "参与率采用可用的最新报告期。人口数据来自2021年人口普查。参与数据被隐藏或不可靠的地区以灰色显示。"
+  }
+}

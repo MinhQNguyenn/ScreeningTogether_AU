@@ -17,6 +17,34 @@
           >
         </div>
       </div>
+      <div class="faq-preview-grid">
+        <RouterLink class="faq-preview-card" to="/faq">
+          <span>{{ t('screening.cards.what.title', { ns: 'home' }) }}</span>
+          <small>{{ t('screening.preview.first', { ns: 'home' }) }}</small>
+          <span class="faq-plus" aria-hidden="true">＋</span>
+        </RouterLink>
+        <RouterLink class="faq-preview-card" to="/faq">
+          <span>{{ t('screening.cards.why.title', { ns: 'home' }) }}</span>
+          <small>{{ t('screening.preview.second', { ns: 'home' }) }}</small>
+          <span class="faq-plus" aria-hidden="true">＋</span>
+        </RouterLink>
+      </div>
+
+      <a class="section-next-link" href="#screening-info">
+        <span aria-hidden="true">↓</span>{{ t('essentials.nextSection', { ns: 'home' }) }}
+      </a>
+    </section>
+
+    <section class="screening-info faq-preview" id="screening-info">
+      <div class="section-label">{{ t('screening.label', { ns: 'home' }) }}</div>
+      <div class="screening-info-heading">
+        <h2>
+          {{ t('screening.title', { ns: 'home' }) }}<br /><em>{{
+            t('screening.titleEmphasis', { ns: 'home' })
+          }}</em>
+        </h2>
+        <p>{{ t('screening.description', { ns: 'home' }) }}</p>
+      </div>
       <div class="steps-grid" id="steps">
         <article class="step-card">
           <span class="step-number">01</span>
@@ -42,33 +70,6 @@
           </p>
         </article>
       </div>
-      <a class="section-next-link" href="#screening-info">
-        <span aria-hidden="true">↓</span>{{ t('essentials.nextSection', { ns: 'home' }) }}
-      </a>
-    </section>
-
-    <section class="screening-info faq-preview" id="screening-info">
-      <div class="section-label">{{ t('screening.label', { ns: 'home' }) }}</div>
-      <div class="screening-info-heading">
-        <h2>
-          {{ t('screening.title', { ns: 'home' }) }}<br /><em>{{
-            t('screening.titleEmphasis', { ns: 'home' })
-          }}</em>
-        </h2>
-        <p>{{ t('screening.description', { ns: 'home' }) }}</p>
-      </div>
-      <div class="faq-preview-grid">
-        <RouterLink class="faq-preview-card" to="/faq">
-          <span>{{ t('screening.cards.what.title', { ns: 'home' }) }}</span>
-          <small>{{ t('screening.preview.first', { ns: 'home' }) }}</small>
-          <span class="faq-plus" aria-hidden="true">＋</span>
-        </RouterLink>
-        <RouterLink class="faq-preview-card" to="/faq">
-          <span>{{ t('screening.cards.why.title', { ns: 'home' }) }}</span>
-          <small>{{ t('screening.preview.second', { ns: 'home' }) }}</small>
-          <span class="faq-plus" aria-hidden="true">＋</span>
-        </RouterLink>
-      </div>
       <RouterLink class="arrow-link faq-all-link" to="/faq">
         {{ t('screening.seeAll', { ns: 'home' }) }} <span>→</span>
       </RouterLink>
@@ -87,155 +88,31 @@
             }}</em>
           </h2>
         </div>
-        <div class="stats-filters">
-          <label>
-            {{ t('stats.state', { ns: 'home' }) }}
-            <select v-model="selectedState">
-              <option v-for="state in states" :key="state.value" :value="state.value">
-                {{ state.label }}
-              </option>
-            </select>
-          </label>
-        </div>
       </div>
-      <div class="stats-layout">
-        <div class="big-stat">
-          <strong v-if="percentageLoading"> — </strong>
-
-          <strong v-else-if="headlinePercent !== null">
-            {{ headlinePercent }}<span>%</span>
-          </strong>
-
-          <strong v-else> — </strong>
-
-          <p>{{ t('stats.eligibleWomen', { ns: 'home' }) }}</p>
-
-          <div class="stat-rule"></div>
-
-          <small v-if="participationPercentage">
-            {{ t('stats.period', { ns: 'home' }) }}
-          </small>
-
-          <small v-else> — </small>
-        </div>
-        <div class="chart-card">
-          <div class="chart-top">
-            <h3>{{ t('stats.chartTitle', { ns: 'home' }) }}</h3>
-            <span>{{ chartPeriodRange }}</span>
-          </div>
-
-          <div v-if="participationChange !== null" class="trend-indicator">
-            <span>↓</span>
-            {{ Math.abs(participationChange).toFixed(1) }}%
-            {{ t('stats.participationRate', { ns: 'home' }) }}
-          </div>
-          <svg
-            viewBox="0 0 600 220"
-            role="img"
-            :aria-label="t('stats.chartAriaLabel', { ns: 'home' })"
-          >
-            <!-- Y-axis -->
-            <line x1="40" y1="15" x2="40" y2="180" class="chart-axis" />
-
-            <!-- X-axis -->
-            <line x1="40" y1="180" x2="560" y2="180" class="chart-axis" />
-
-            <!-- Y-axis labels -->
-            <text
-              x="32"
-              y="15"
-              text-anchor="end"
-              dominant-baseline="middle"
-              class="chart-axis-label"
-            >
-              100%
-            </text>
-
-            <text
-              x="32"
-              y="180"
-              text-anchor="end"
-              dominant-baseline="middle"
-              class="chart-axis-label"
-            >
-              0%
-            </text>
-
-            <!-- Grid lines -->
-            <path class="grid-line" d="M40 15H560M40 180H560" />
-
-            <!-- Chart -->
-            <path
-              v-if="!graphLoading && svgChartPoints.length"
-              class="chart-area"
-              :d="chartAreaPath"
-            />
-
-            <path
-              v-if="!graphLoading && svgChartPoints.length"
-              class="chart-line"
-              :d="chartLinePath"
-            />
-
-            <!-- Data points -->
-            <circle
-              v-for="(point, index) in svgChartPoints"
-              :key="`hit-${point.label}`"
-              :cx="point.x"
-              :cy="point.y"
-              r="18"
-              fill="transparent"
-              class="chart-hit-area"
-              @mouseenter="hoveredPoint = index"
-              @mouseleave="hoveredPoint = null"
-            />
-
-            <circle
-              v-for="point in svgChartPoints"
-              :key="`${point.label}-${point.percent}`"
-              :cx="point.x"
-              :cy="point.y"
-              r="5"
-              class="chart-dot"
-            />
-
-            <!-- Tooltip -->
-            <g v-if="hoveredPoint !== null" class="chart-tooltip">
-              <line
-                :x1="svgChartPoints[hoveredPoint].x"
-                :x2="svgChartPoints[hoveredPoint].x"
-                :y1="svgChartPoints[hoveredPoint].y"
-                y2="180"
-                class="chart-hover-line"
-              />
-
-              <rect
-                :x="svgChartPoints[hoveredPoint].x - 48"
-                :y="svgChartPoints[hoveredPoint].y - 48"
-                width="96"
-                height="36"
-                rx="6"
-                class="chart-tooltip-box"
-              />
-
-              <text
-                :x="svgChartPoints[hoveredPoint].x"
-                :y="svgChartPoints[hoveredPoint].y - 30"
-                text-anchor="middle"
-                dominant-baseline="middle"
-                class="chart-tooltip-text"
-              >
-                {{ svgChartPoints[hoveredPoint].percent }}%
-              </text>
-            </g>
-          </svg>
-
-          <div class="chart-labels">
-            <span v-for="point in chartPoints" :key="`${point.label}-${point.percent}`">
-              {{ point.label }}
-            </span>
-          </div>
-        </div>
+      <div class="steps-grid" id="steps">
+        <article class="step-card">
+          <span class="step-number">01</span>
+          <div class="step-icon icon-shield">♡</div>
+          <h3>{{ t('essentials.steps.vaccination.title', { ns: 'home' }) }}</h3>
+          <p>
+            {{ t('essentials.steps.vaccination.description', { ns: 'home' }) }}
+          </p>
+        </article>
+        <article class="step-card featured">
+          <span class="step-number">02</span>
+          <div class="step-icon">◌</div>
+          <h3>{{ t('essentials.steps.screening.title', { ns: 'home' }) }}</h3>
+          <p>{{ t('essentials.steps.screening.description', { ns: 'home' }) }}</p>
+        </article>
+        <article class="step-card">
+          <span class="step-number">03</span>
+          <div class="step-icon">✦</div>
+          <h3>{{ t('essentials.steps.body.title', { ns: 'home' }) }}</h3>
+          <p>
+            <strong>{{ t('essentials.steps.body.highlight', { ns: 'home' }) }}</strong>
+            {{ t('essentials.steps.body.description', { ns: 'home' }) }}
+          </p>
+        </article>
       </div>
       <RouterLink class="arrow-link stats-data-link" to="/data">
         {{ t('stats.seeData', { ns: 'home' }) }} <span>→</span>

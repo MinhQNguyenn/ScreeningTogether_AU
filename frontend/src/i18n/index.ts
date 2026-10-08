@@ -59,6 +59,13 @@ import zhCNResource from './locales/zh-CN/resources.json'
 import arResource from './locales/ar/resources.json'
 import viResource from './locales/vi/resources.json'
 
+// Choropleth map 
+import enChoropleth from './locales/en/data-map.json'
+import zhHKChoropleth from './locales/zh-HK/data-map.json'
+import zhCNChoropleth from './locales/zh-CN/data-map.json'
+import arChoropleth from './locales/ar/data-map.json'
+import viChoropleth from './locales/vi/data-map.json'
+
 
 
 const resources = {
@@ -71,7 +78,8 @@ const resources = {
     game3: game3En,
     gpFinder: enGpFinder,
     game2: enGame2,
-    resources: enResource
+    resources: enResource,
+    choropleth: enChoropleth
   },
   'zh-HK': {
     common: zhHKCommon,
@@ -82,7 +90,8 @@ const resources = {
     game3: game3ZhHK,
     gpFinder: zhHKGpFinder,
     game2: zhHKGame2,
-    resources: zhHKResource
+    resources: zhHKResource,
+    choropleth: zhHKChoropleth
   },
   'zh-CN': {
     common: zhCNCommon,
@@ -93,7 +102,8 @@ const resources = {
     game3: game3ZhCN,
     gpFinder: zhCNGpFinder,
     game2:zhCNGame2,
-    resources: zhCNResource
+    resources: zhCNResource,
+    choropleth: zhCNChoropleth
   },
   ar: {
     common: arCommon,
@@ -104,7 +114,8 @@ const resources = {
     game3: game3Ar,
     gpFinder: arGpFinder,
     game2: arGame2,
-    resources: arResource
+    resources: arResource,
+    choropleth: arChoropleth
   },
   vi: {
     common: viCommon,
@@ -115,7 +126,8 @@ const resources = {
     game3: game3Vi,
     gpFinder: viGpFinder,
     game2:viGame2,
-    resources: viResource
+    resources: viResource,
+    choropleth: viChoropleth
   }
 }
 
@@ -125,7 +137,7 @@ i18next
     resources,
     fallbackLng: 'en',
     defaultNS: 'common',
-    ns: ['common', 'home', 'faq', 'data', 'gpRunner', 'game3', 'gpFinder', 'game2', 'resources'],
+    ns: ['common', 'home', 'faq', 'data', 'gpRunner', 'game3', 'gpFinder', 'game2', 'resources', 'choropleth'],
 
     detection: {
       order: ['localStorage', 'navigator'],
