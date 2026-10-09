@@ -14,9 +14,10 @@
         <RouterLink to="/data">{{ t('header.data') }}</RouterLink>
         <RouterLink to="/faq">{{ t('header.faq') }}</RouterLink>
 
-        <RouterLink to="/gpfinder" @click="closeMenu">{{ t('header.gpFinder') }}</RouterLink>
         <RouterLink to="/guide">{{ t('header.guide') }}</RouterLink>
+        <RouterLink to="/gpfinder" @click="closeMenu">{{ t('header.gpFinder') }}</RouterLink>
         <RouterLink to="/resourceinfo">{{ t('header.resourceInfo') }}</RouterLink>
+        <RouterLink to="/guide/#guide-ai">{{ t('header.practice') }}</RouterLink>
       </nav>
       <button class="header-cta" type="button" @click="openExplore">
         <span v-if="isMobile">{{ t('header.exploreMobile') }}</span>
