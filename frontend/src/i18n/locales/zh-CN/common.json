@@ -1,10 +1,12 @@
 {
   "header": {
     "home": "首页",
-    "learn": "了解更多",
     "faq": "常见问题",
-    "numbers": "数据",
-    "gpFinder": "寻找全科医生",
+    "numbers": "数据概览",
+    "data": "数据",
+    "gpFinder": "查找全科医生",
+    "guide": "指南",
+    "resourceInfo": "资源",
     "game": "游戏",
     "learnThroughGame": "一起探索",
     "exploreTogether": "一起探索",

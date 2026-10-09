@@ -66,7 +66,12 @@ import zhCNChoropleth from './locales/zh-CN/data-map.json'
 import arChoropleth from './locales/ar/data-map.json'
 import viChoropleth from './locales/vi/data-map.json'
 
-
+// Guide
+import enGuide from './locales/en/guide.json'
+import zhHKGuide from './locales/zh-HK/guide.json'
+import zhCNGuide from './locales/zh-CN/guide.json'
+import arGuide from './locales/ar/guide.json'
+import viGuide from './locales/vi/guide.json'
 
 const resources = {
   en: {
@@ -79,7 +84,8 @@ const resources = {
     gpFinder: enGpFinder,
     game2: enGame2,
     resources: enResource,
-    choropleth: enChoropleth
+    choropleth: enChoropleth,
+    guide: enGuide
   },
   'zh-HK': {
     common: zhHKCommon,
@@ -91,7 +97,8 @@ const resources = {
     gpFinder: zhHKGpFinder,
     game2: zhHKGame2,
     resources: zhHKResource,
-    choropleth: zhHKChoropleth
+    choropleth: zhHKChoropleth,
+    guide: zhHKGuide
   },
   'zh-CN': {
     common: zhCNCommon,
@@ -103,7 +110,8 @@ const resources = {
     gpFinder: zhCNGpFinder,
     game2:zhCNGame2,
     resources: zhCNResource,
-    choropleth: zhCNChoropleth
+    choropleth: zhCNChoropleth,
+    guide: zhCNGuide
   },
   ar: {
     common: arCommon,
@@ -115,7 +123,8 @@ const resources = {
     gpFinder: arGpFinder,
     game2: arGame2,
     resources: arResource,
-    choropleth: arChoropleth
+    choropleth: arChoropleth,
+    guide: arGuide
   },
   vi: {
     common: viCommon,
@@ -127,7 +136,8 @@ const resources = {
     gpFinder: viGpFinder,
     game2:viGame2,
     resources: viResource,
-    choropleth: viChoropleth
+    choropleth: viChoropleth,
+    guide: viGuide
   }
 }
 
@@ -137,7 +147,7 @@ i18next
     resources,
     fallbackLng: 'en',
     defaultNS: 'common',
-    ns: ['common', 'home', 'faq', 'data', 'gpRunner', 'game3', 'gpFinder', 'game2', 'resources', 'choropleth'],
+    ns: ['common', 'home', 'faq', 'data', 'gpRunner', 'game3', 'gpFinder', 'game2', 'resources', 'choropleth', 'guide'],
 
     detection: {
       order: ['localStorage', 'navigator'],

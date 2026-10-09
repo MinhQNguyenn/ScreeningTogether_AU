@@ -147,7 +147,7 @@ const AUSTRALIA_BOUNDS = L.latLngBounds([-44.5, 112], [-9.5, 154.5])
 
 // Light to dark pink, 5 classes
 const RAMP = ['#fbe9e6', '#f4c9c5', '#e8a0a4', '#cf6f80', '#a84560']
-const NO_DATA_COLOR = '#e4dcdb'
+const NO_DATA_COLOR = '#ffc107'
 
 type MetricField = 'rate_pct' | 'pct_born_overseas' | 'pct_other_language' | 'pct_low_proficiency'
 type MetricKey = 'participation' | 'bornOverseas' | 'otherLanguage' | 'lowProficiency'

@@ -28,12 +28,21 @@ const router = createRouter({
   history: createWebHistory(),
 
   scrollBehavior(to, from, savedPosition) {
-    // Restore the previous position when using browser Back/Forward
     if (savedPosition) {
       return savedPosition
+    } // Scroll to a specific section when the URL contains a hash
+    if (to.hash) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            el: to.hash,
+            top: 100,
+            // Offset for the sticky header
+            behavior: 'smooth',
+          })
+        }, 200)
+      })
     }
-
-    // Start new pages at the top
     return { top: 0 }
   },
 
@@ -42,7 +51,11 @@ const router = createRouter({
     { path: '/faq', component: FAQView, meta: { title: 'FAQ | ScreeningTogether AU' } },
     { path: '/data', component: DataView, meta: { title: 'The numbers | ScreeningTogether AU' } },
     { path: '/guide', component: GuideView, meta: { title: 'Guide | ScreeningTogether AU' } },
-    { path: '/resourceinfo', component: resourceView, meta: { title: 'Resources | ScreeningTogether AU' } },
+    {
+      path: '/resourceinfo',
+      component: resourceView,
+      meta: { title: 'Resources | ScreeningTogether AU' },
+    },
     {
       path: '/resources',
       component: PlaceholderView,

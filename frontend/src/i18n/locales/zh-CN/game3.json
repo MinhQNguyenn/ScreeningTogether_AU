@@ -35,6 +35,7 @@
     }
   },
   "navigation": {
-    "previousGame": "候诊室听力练习"
+    "previousGame": "候诊室听力练习",
+    "cervicalResults": "了解宫颈筛查结果"
   }
 }
