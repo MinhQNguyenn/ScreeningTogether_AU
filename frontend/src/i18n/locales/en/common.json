@@ -1,10 +1,12 @@
 {
   "header": {
     "home": "Home",
-    "learn": "Learn",
     "faq": "FAQ",
     "numbers": "The numbers",
+    "data": "Data",
     "gpFinder": "GP Finder",
+    "guide": "Guide",
+    "resourceInfo": "Resource",
     "game": "Game",
     "learnThroughGame": "Explore together",
     "exploreTogether": "Explore together",

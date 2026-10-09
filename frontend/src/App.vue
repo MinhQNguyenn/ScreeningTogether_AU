@@ -11,13 +11,12 @@
       >
       <nav :class="['main-nav', { open: menuOpen }]" aria-label="Main navigation">
         <RouterLink to="/">{{ t('header.home') }}</RouterLink>
+        <RouterLink to="/data">{{ t('header.data') }}</RouterLink>
+        <RouterLink to="/faq">{{ t('header.faq') }}</RouterLink>
 
-        <template v-if="isHomePage">
-          <a href="/#learn">{{ t('header.learn') }}</a>
-          <a href="/#screening-info">{{ t('header.faq') }}</a>
-          <a href="/#stats">{{ t('header.numbers') }}</a>
-        </template>
         <RouterLink to="/gpfinder" @click="closeMenu">{{ t('header.gpFinder') }}</RouterLink>
+        <RouterLink to="/guide">{{ t('header.guide') }}</RouterLink>
+        <RouterLink to="/resourceinfo">{{ t('header.resourceInfo') }}</RouterLink>
       </nav>
       <button class="header-cta" type="button" @click="openExplore">
         <span v-if="isMobile">{{ t('header.exploreMobile') }}</span>
@@ -95,9 +94,11 @@
         <div>
           <h2>{{ t('footer.pages') }}</h2>
           <RouterLink to="/">{{ t('header.home') }}</RouterLink>
+          <RouterLink to="/data">{{ t('header.data') }}</RouterLink>
           <RouterLink to="/faq">{{ t('header.faq') }}</RouterLink>
-          <RouterLink to="/data">{{ t('header.numbers') }}</RouterLink>
           <RouterLink to="/gpfinder">{{ t('header.gpFinder') }}</RouterLink>
+          <RouterLink to="/guide">{{ t('header.guide') }}</RouterLink>
+          <RouterLink to="/resourceinfo">{{ t('header.resourceInfo') }}</RouterLink>
         </div>
         <div>
           <h2>{{ t('footer.dataSources') }}</h2>

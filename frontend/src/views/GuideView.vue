@@ -1,403 +1,634 @@
 <template>
-  <main>
-    <section class="intro-section" id="learn">
-      <div class="section-label">{{ t('essentials.label', { ns: 'home' }) }}</div>
+  <main class="guide-page">
+    <!-- 1. Choose a path -->
+    <section class="guide-hero guide-anchor" id="guide-top">
+      <div class="guide-hero-inner">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> {{ t('hero.eyebrow', ns) }}</p>
+        <h1>
+          {{ t('hero.title', ns) }}<br /><em>{{ t('hero.titleEmphasis', ns) }}</em>
+        </h1>
+        <p class="guide-lead">{{ t('hero.description', ns) }}</p>
+
+        <p class="guide-prompt">{{ t('hero.prompt', ns) }}</p>
+        <div class="choice-grid" role="group" :aria-label="t('hero.choicesAria', ns)">
+          <a
+            v-for="choice in choices"
+            :key="choice.key"
+            :href="`#${choice.target}`"
+            class="choice-card"
+          >
+            <span class="choice-icon" aria-hidden="true">{{ choice.icon }}</span>
+            <span class="choice-text">
+              <strong>{{ choice.title }}</strong>
+              <small>{{ choice.description }}</small>
+            </span>
+            <span class="choice-cta">{{ choice.cta }} <span aria-hidden="true">↓</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. From home -->
+    <section class="guide-section guide-section-home guide-anchor" id="guide-home">
+      <div class="section-label">{{ t('home.label', ns) }}</div>
       <div class="intro-grid">
         <h2>
-          {{ t('essentials.title', { ns: 'home' }) }}<br /><em>{{
-            t('essentials.titleEmphasis', { ns: 'home' })
-          }}</em>
+          {{ t('home.title', ns) }}<br /><em>{{ t('home.titleEmphasis', ns) }}</em>
         </h2>
         <div>
-          <p class="lead">
-            {{ t('essentials.description', { ns: 'home' }) }}
-          </p>
-          <a class="arrow-link" href="#screening-info"
-            >{{ t('essentials.faqLink', { ns: 'home' }) }} <span>→</span></a
-          >
+          <p class="lead">{{ t('home.description', ns) }}</p>
+          <p class="guide-note">{{ t('home.note', ns) }}</p>
         </div>
       </div>
-      <div class="faq-preview-grid">
-        <RouterLink class="faq-preview-card" to="/faq">
-          <span>{{ t('screening.cards.what.title', { ns: 'home' }) }}</span>
-          <small>{{ t('screening.preview.first', { ns: 'home' }) }}</small>
-          <span class="faq-plus" aria-hidden="true">＋</span>
-        </RouterLink>
-        <RouterLink class="faq-preview-card" to="/faq">
-          <span>{{ t('screening.cards.why.title', { ns: 'home' }) }}</span>
-          <small>{{ t('screening.preview.second', { ns: 'home' }) }}</small>
-          <span class="faq-plus" aria-hidden="true">＋</span>
-        </RouterLink>
-      </div>
+      <div class="steps-grid">
+        <div v-for="(step, index) in homeSteps" :key="step.key" class="step-flip" tabindex="0">
+          <div class="step-flip-inner">
+            <!-- Front: icon + action -->
+            <div class="step-card step-face step-front" :class="{ featured: index === 1 }">
+              <div class="step-icon" aria-hidden="true">{{ step.icon }}</div>
+              <h3>{{ step.title }}</h3>
+              <span class="flip-hint" aria-hidden="true">＋</span>
+            </div>
 
-      <a class="section-next-link" href="#screening-info">
-        <span aria-hidden="true">↓</span>{{ t('essentials.nextSection', { ns: 'home' }) }}
+            <!-- Back: detailed guide -->
+            <div class="step-card step-face step-back" :class="{ featured: index !== 1 }">
+              <span class="step-number">0{{ index + 1 }}</span>
+              <p>{{ step.description }}</p>
+
+              <RouterLink
+                v-if="index === 2"
+                class="arrow-link"
+                to="/faq/#result"
+                :aria-label="t('navigation.cervicalResults', { ns: 'game3' })"
+              >
+                {{ t('navigation.cervicalResults', { ns: 'game3' }) }}
+                <span aria-hidden="true">→</span>
+              </RouterLink>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="section-next-link" href="#guide-ai">
+        <span aria-hidden="true">↓</span>{{ t('home.next', ns) }}
       </a>
     </section>
 
-    <section class="screening-info faq-preview" id="screening-info">
-      <div class="section-label">{{ t('screening.label', { ns: 'home' }) }}</div>
-      <div class="screening-info-heading">
+    <!-- 3. At a GP -->
+    <section class="guide-section guide-section-gp guide-anchor" id="guide-gp">
+      <div class="section-label">{{ t('gp.label', ns) }}</div>
+      <div class="intro-grid">
         <h2>
-          {{ t('screening.title', { ns: 'home' }) }}<br /><em>{{
-            t('screening.titleEmphasis', { ns: 'home' })
-          }}</em>
+          {{ t('gp.title', ns) }}<br /><em>{{ t('gp.titleEmphasis', ns) }}</em>
         </h2>
-        <p>{{ t('screening.description', { ns: 'home' }) }}</p>
-      </div>
-      <div class="steps-grid" id="steps">
-        <article class="step-card">
-          <span class="step-number">01</span>
-          <div class="step-icon icon-shield">♡</div>
-          <h3>{{ t('essentials.steps.vaccination.title', { ns: 'home' }) }}</h3>
-          <p>
-            {{ t('essentials.steps.vaccination.description', { ns: 'home' }) }}
-          </p>
-        </article>
-        <article class="step-card featured">
-          <span class="step-number">02</span>
-          <div class="step-icon">◌</div>
-          <h3>{{ t('essentials.steps.screening.title', { ns: 'home' }) }}</h3>
-          <p>{{ t('essentials.steps.screening.description', { ns: 'home' }) }}</p>
-        </article>
-        <article class="step-card">
-          <span class="step-number">03</span>
-          <div class="step-icon">✦</div>
-          <h3>{{ t('essentials.steps.body.title', { ns: 'home' }) }}</h3>
-          <p>
-            <strong>{{ t('essentials.steps.body.highlight', { ns: 'home' }) }}</strong>
-            {{ t('essentials.steps.body.description', { ns: 'home' }) }}
-          </p>
-        </article>
-      </div>
-      <RouterLink class="arrow-link faq-all-link" to="/faq">
-        {{ t('screening.seeAll', { ns: 'home' }) }} <span>→</span>
-      </RouterLink>
-      <a class="section-next-link" href="#stats">
-        <span aria-hidden="true">↓</span>{{ t('screening.nextSection', { ns: 'home' }) }}
-      </a>
-    </section>
-
-    <section class="stats-section" id="stats">
-      <div class="stats-heading">
         <div>
-          <div class="section-label light">{{ t('stats.label', { ns: 'home' }) }}</div>
-          <h2>
-            {{ t('stats.title', { ns: 'home' }) }}<br /><em>{{
-              t('stats.titleEmphasis', { ns: 'home' })
-            }}</em>
-          </h2>
+          <p class="lead">{{ t('gp.description', ns) }}</p>
+          <p class="guide-note">{{ t('gp.note', ns) }}</p>
         </div>
       </div>
-      <div class="steps-grid" id="steps">
-        <article class="step-card">
-          <span class="step-number">01</span>
-          <div class="step-icon icon-shield">♡</div>
-          <h3>{{ t('essentials.steps.vaccination.title', { ns: 'home' }) }}</h3>
-          <p>
-            {{ t('essentials.steps.vaccination.description', { ns: 'home' }) }}
-          </p>
-        </article>
-        <article class="step-card featured">
-          <span class="step-number">02</span>
-          <div class="step-icon">◌</div>
-          <h3>{{ t('essentials.steps.screening.title', { ns: 'home' }) }}</h3>
-          <p>{{ t('essentials.steps.screening.description', { ns: 'home' }) }}</p>
-        </article>
-        <article class="step-card">
-          <span class="step-number">03</span>
-          <div class="step-icon">✦</div>
-          <h3>{{ t('essentials.steps.body.title', { ns: 'home' }) }}</h3>
-          <p>
-            <strong>{{ t('essentials.steps.body.highlight', { ns: 'home' }) }}</strong>
-            {{ t('essentials.steps.body.description', { ns: 'home' }) }}
-          </p>
-        </article>
+      <div class="steps-grid">
+        <div v-for="(step, index) in homeSteps" :key="step.key" class="step-flip" tabindex="0">
+          <div class="step-flip-inner">
+            <!-- Front: icon + action -->
+            <div class="step-card step-face step-front" :class="{ featured: index === 1 }">
+              <div class="step-icon" aria-hidden="true">{{ step.icon }}</div>
+              <h3>{{ step.title }}</h3>
+              <span class="flip-hint" aria-hidden="true">＋</span>
+            </div>
+
+            <!-- Back: detailed guide -->
+            <div class="step-card step-face step-back" :class="{ featured: index !== 1 }">
+              <span class="step-number">0{{ index + 1 }}</span>
+              <p>{{ step.description }}</p>
+
+              <RouterLink
+                v-if="index === 2"
+                class="arrow-link"
+                to="/faq/#result"
+                :aria-label="t('navigation.cervicalResults', { ns: 'game3' })"
+              >
+                {{ t('navigation.cervicalResults', { ns: 'game3' }) }}
+                <span aria-hidden="true">→</span>
+              </RouterLink>
+            </div>
+          </div>
+        </div>
       </div>
-      <RouterLink class="arrow-link stats-data-link" to="/data">
-        {{ t('stats.seeData', { ns: 'home' }) }} <span>→</span>
+      <RouterLink class="section-next-link section-next-link--out" to="/gpfinder">
+        <span aria-hidden="true">→</span>{{ t('gp.next', ns) }}
       </RouterLink>
-      <a class="section-next-link" href="#closing">
-        <span aria-hidden="true">↓</span>{{ t('stats.nextSection', { ns: 'home' }) }}
-      </a>
     </section>
 
-    <section class="closing-section" id="closing">
+    <!-- 4. AI call practice -->
+    <section class="closing-section guide-ai guide-anchor" id="guide-ai">
       <div class="closing-bloom"></div>
-      <div class="section-label">{{ t('closing.label', { ns: 'home' }) }}</div>
+      <div class="section-label">{{ t('ai.label', ns) }}</div>
       <h2>
-        {{ t('closing.title', { ns: 'home' }) }}<br /><em>{{
-          t('closing.titleEmphasis', { ns: 'home' })
-        }}</em>
+        {{ t('ai.title', ns) }}<br /><em>{{ t('ai.titleEmphasis', ns) }}</em>
       </h2>
-      <p>{{ t('closing.description', { ns: 'home' }) }}</p>
-      <RouterLink to="/gpfinder" class="button button-primary">{{
-        t('closing.checkGp', { ns: 'home' })
-      }}</RouterLink>
+      <p class="guide-ai-lead">{{ t('ai.description', ns) }}</p>
+
+      <ul class="guide-ai-points">
+        <li v-for="point in aiPoints" :key="point.key">
+          <span aria-hidden="true">✓</span>{{ point.text }}
+        </li>
+      </ul>
+
+      <!-- TODO: point this at the AI call practice feature once it exists -->
+      <button type="button" class="button button-primary" @click="startAiPractice">
+        {{ t('ai.button', ns) }} <span aria-hidden="true">→</span>
+      </button>
+      <p class="guide-disclaimer">
+        {{ t('ai.disclaimer', ns) }}<br />{{ t('ai.datadisclaimer', ns) }}
+      </p>
+
+      <div class="guide-ai-links">
+        <a class="arrow-link" href="#guide-top">{{ t('ai.backToStart', ns) }}</a>
+        <RouterLink class="arrow-link" to="/gpfinder">
+          {{ t('ai.findGp', ns) }} <span>→</span>
+        </RouterLink>
+      </div>
     </section>
   </main>
 </template>
 
 <script setup lang="ts">
 import '../assets/guide.css'
-import { RouterLink, useRoute, useRouter } from 'vue-router'
-
-import { computed, onMounted, ref, watch } from 'vue'
-
-import {
-  getParticipationGraph,
-  getParticipationPercentage,
-  type ParticipationGraph,
-  type ParticipationPercentage,
-} from '../api/stats'
+import { computed } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
 
 import { useTranslation } from '../i18n/useTranslation'
+
 const { t } = useTranslation()
-
-const emit = defineEmits<{
-  (e: 'open-explore'): void
-}>()
-
-const route = useRoute()
 const router = useRouter()
+const ns = { ns: 'guide' }
 
-const states = computed(() => [
-  {
-    label: t('states.all', { ns: 'home' }),
-    value: 'Australia',
-  },
-  {
-    label: t('states.victoria', { ns: 'home' }),
-    value: 'Vic',
-  },
-  {
-    label: t('states.newSouthWales', { ns: 'home' }),
-    value: 'NSW',
-  },
-  {
-    label: t('states.queensland', { ns: 'home' }),
-    value: 'Qld',
-  },
-  {
-    label: t('states.westernAustralia', { ns: 'home' }),
-    value: 'WA',
-  },
-  {
-    label: t('states.southAustralia', { ns: 'home' }),
-    value: 'SA',
-  },
-  {
-    label: t('states.tasmania', { ns: 'home' }),
-    value: 'Tas',
-  },
-  {
-    label: t('states.australianCapitalTerritory', { ns: 'home' }),
-    value: 'ACT',
-  },
-  {
-    label: t('states.northernTerritory', { ns: 'home' }),
-    value: 'NT',
-  },
-])
+// Route of the AI call practice feature (not built yet, update when it exists)
+const AI_PRACTICE_ROUTE = '/call-practice'
 
-const selectedState = ref('Australia')
-
-const participationPercentage = ref<ParticipationPercentage | null>(null)
-const participationGraph = ref<ParticipationGraph | null>(null)
-
-const percentageLoading = ref(false)
-const graphLoading = ref(false)
-
-const percentageError = ref('')
-const graphError = ref('')
-
-async function loadParticipationPercentage() {
-  percentageLoading.value = true
-  percentageError.value = ''
-
-  try {
-    participationPercentage.value = await getParticipationPercentage()
-  } catch (error) {
-    console.error(error)
-    percentageError.value = t('errors.percentage', { ns: 'home' })
-  } finally {
-    percentageLoading.value = false
-  }
+const startAiPractice = () => {
+  router.push(AI_PRACTICE_ROUTE)
 }
 
-async function loadParticipationGraph() {
-  graphLoading.value = true
-  graphError.value = ''
-
-  try {
-    participationGraph.value = await getParticipationGraph(selectedState.value)
-  } catch (error) {
-    console.error(error)
-    graphError.value = t('errors.graph', { ns: 'home' })
-    participationGraph.value = null
-  } finally {
-    graphLoading.value = false
-  }
-}
-
-onMounted(() => {
-  loadParticipationPercentage()
-  loadParticipationGraph()
-})
-
-watch(selectedState, () => {
-  loadParticipationGraph()
-})
-
-const hoveredPoint = ref<number | null>(null)
-
-// Headline percentage
-const headlinePercent = computed(() => {
-  return participationPercentage.value?.percent ?? null
-})
-
-// const headlinePeriod = computed(() => {
-//   if (!participationPercentage.value) {
-//     return '—'
-//   }
-
-//   return participationPercentage.value.label
-// })
-
-// The API returns points oldest-first, each with a ready-made period label
-// (e.g. "2018-2022") for the x-axis.
-const chartPoints = computed(() => {
-  if (!participationGraph.value) {
-    return []
-  }
-
-  return participationGraph.value.points.map((point) => ({
-    label: point.label,
-    percent: point.percent,
-  }))
-})
-
-const participationChange = computed(() => {
-  const points = chartPoints.value
-
-  if (points.length < 2) {
-    return null
-  }
-
-  return points[points.length - 1].percent - points[0].percent
-})
-
-//Convert the three data points into SVG coordinates.
-const svgChartPoints = computed(() => {
-  const points = chartPoints.value
-
-  if (points.length === 0) {
-    return []
-  }
-
-  const width = 520
-  const chartTop = 15
-  const chartBottom = 180
-  const chartHeight = chartBottom - chartTop
-
-  const minPercent = 70
-  const maxPercent = 85
-
-  return points.map((point, index) => {
-    const x = points.length === 1 ? 300 : 40 + (index / (points.length - 1)) * width
-
-    const y = chartBottom - ((point.percent - minPercent) / (maxPercent - minPercent)) * chartHeight
-
-    return {
-      x,
-      y,
-      label: point.label,
-      percent: point.percent,
-    }
-  })
-})
-
-// SVG line path.
-const chartLinePath = computed(() => {
-  return svgChartPoints.value
-    .map((point, index) => {
-      return `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
-    })
-    .join(' ')
-})
-
-//SVG filled area underneath the line.
-const chartAreaPath = computed(() => {
-  const points = svgChartPoints.value
-
-  if (points.length === 0) {
-    return ''
-  }
-
-  const line = points
-    .map((point, index) => {
-      return `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
-    })
-    .join(' ')
-
-  const lastPoint = points[points.length - 1]
-  const firstPoint = points[0]
-
-  return `${line} L ${lastPoint.x} 180 L ${firstPoint.x} 180 Z`
-})
-
-//Range shown in the chart header.
-const chartPeriodRange = computed(() => {
-  const points = participationGraph.value?.points
-
-  if (!points || points.length === 0) {
-    return '—'
-  }
-
-  const firstYear = Math.min(...points.map((point) => point.year_start))
-
-  const lastYear = Math.max(...points.map((point) => point.year_end))
-
-  return `${firstYear} — ${lastYear}`
-})
-
-// Load the content in the 4 cards around the flower
-const heroCards = computed(() => [
+const choices = computed(() => [
   {
-    key: 'data',
-    position: 'card-top-left',
-    to: '/data',
-    prompt: t('hero.cards.data.prompt', { ns: 'home' }),
-    title: t('hero.cards.data.title', { ns: 'home' }),
-    description: t('hero.cards.data.description', { ns: 'home' }),
-    link: t('hero.cards.data.link', { ns: 'home' }),
-  },
-  {
-    key: 'faq',
-    position: 'card-top-right',
-    to: '/faq',
-    prompt: t('hero.cards.faq.prompt', { ns: 'home' }),
-    title: t('hero.cards.faq.title', { ns: 'home' }),
-    description: t('hero.cards.faq.description', { ns: 'home' }),
-    link: t('hero.cards.faq.link', { ns: 'home' }),
+    key: 'home',
+    target: 'guide-home',
+    icon: '⌂',
+    title: t('hero.choices.home.title', ns),
+    description: t('hero.choices.home.description', ns),
+    cta: t('hero.choices.home.cta', ns),
   },
   {
     key: 'gp',
-    position: 'card-bottom-left',
-    to: '/gpfinder',
-    prompt: t('hero.cards.gp.prompt', { ns: 'home' }),
-    title: t('hero.cards.gp.title', { ns: 'home' }),
-    description: t('hero.cards.gp.description', { ns: 'home' }),
-    link: t('hero.cards.gp.link', { ns: 'home' }),
-  },
-  {
-    key: 'guide',
-    position: 'card-bottom-right',
-    to: '/guide',
-    prompt: t('hero.cards.guide.prompt', { ns: 'home' }),
-    title: t('hero.cards.guide.title', { ns: 'home' }),
-    description: t('hero.cards.guide.description', { ns: 'home' }),
-    link: t('hero.cards.guide.link', { ns: 'home' }),
+    target: 'guide-gp',
+    icon: '✚',
+    title: t('hero.choices.gp.title', ns),
+    description: t('hero.choices.gp.description', ns),
+    cta: t('hero.choices.gp.cta', ns),
   },
 ])
+
+const homeSteps = computed(() => [
+  {
+    key: 'call',
+    icon: '✆',
+    title: t('home.steps.call.title', ns),
+    description: t('home.steps.call.description', ns),
+  },
+  {
+    key: 'collect',
+    icon: '✦',
+    title: t('home.steps.collect.title', ns),
+    description: t('home.steps.collect.description', ns),
+  },
+  {
+    key: 'return',
+    icon: '◌',
+    title: t('home.steps.return.title', ns),
+    description: t('home.steps.return.description', ns),
+  },
+])
+
+const gpSteps = computed(() => [
+  {
+    key: 'book',
+    icon: '☰',
+    title: t('gp.steps.book.title', ns),
+    description: t('gp.steps.book.description', ns),
+  },
+  {
+    key: 'test',
+    icon: '✚',
+    title: t('gp.steps.test.title', ns),
+    description: t('gp.steps.test.description', ns),
+  },
+  {
+    key: 'result',
+    icon: '◌',
+    title: t('gp.steps.result.title', ns),
+    description: t('gp.steps.result.description', ns),
+  },
+])
+
+const aiPoints = computed(() => [
+  { key: 'ask', text: t('ai.points.ask', ns) },
+  { key: 'questions', text: t('ai.points.questions', ns) },
+  { key: 'next', text: t('ai.points.next', ns) },
+])
 </script>
+
+<style scoped>
+:global(html) {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html) {
+    scroll-behavior: auto;
+  }
+}
+
+.guide-page {
+  background: #fffaf8;
+}
+
+/* Anchor links land just below the 78px sticky header */
+.guide-anchor {
+  scroll-margin-top: 78px;
+}
+
+/* ---------- 1. Hero / choice ---------- */
+.guide-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: calc(100vh - 78px);
+  min-height: calc(100dvh - 78px);
+  padding: clamp(24px, 5vh, 56px) max(6vw, 40px);
+  background: #f8e9e9;
+  text-align: center;
+}
+
+.guide-hero-inner {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.guide-hero .eyebrow {
+  justify-content: center;
+}
+
+.guide-hero h1 {
+  margin: clamp(14px, 2.5vh, 24px) 0;
+  font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+  color: #282326;
+}
+
+.guide-hero h1 em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  color: #a75d68;
+}
+
+.guide-lead {
+  max-width: 540px;
+  margin: 0 auto;
+  color: #6e6263;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.guide-prompt {
+  margin: clamp(24px, 4.5vh, 44px) 0 16px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8f3f55;
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.choice-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  min-height: 250px;
+  box-sizing: border-box;
+  padding: 32px 28px 26px;
+  border: 1px solid #eadedb;
+  border-bottom: 5px solid #d47a82;
+  border-radius: 22px;
+  background: #fffaf6;
+  color: #302a2d;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s;
+}
+
+.choice-card:hover,
+.choice-card:focus-visible {
+  transform: translateY(-4px);
+  border-bottom-color: #b9626d;
+  box-shadow: 0 16px 32px #7c555526;
+  outline: none;
+}
+
+.choice-icon {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #f6e1df;
+  color: #b7626d;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.choice-text strong {
+  display: block;
+  font-size: 23px;
+  line-height: 1.2;
+  color: #8f3f55;
+}
+
+.choice-text small {
+  display: block;
+  max-width: 300px;
+  margin: 8px auto 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #806e70;
+}
+
+.choice-cta {
+  margin-top: auto;
+  font-size: 13px;
+  font-weight: 700;
+  color: #a75d68;
+}
+
+/* ---------- 2 + 3. Option sections ---------- */
+.guide-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: calc(100vh - 78px);
+  min-height: calc(100dvh - 78px);
+  padding: clamp(40px, 7vh, 80px) max(6vw, 40px) clamp(24px, 4vh, 48px);
+}
+
+.guide-section-home {
+  background: #fffaf8;
+}
+
+.guide-section-gp {
+  background: #fdf2ef;
+}
+
+.guide-section .intro-grid {
+  margin: 18px 0 clamp(24px, 4vh, 44px);
+}
+
+.guide-note {
+  max-width: 410px;
+  margin: 0;
+  padding-left: 14px;
+  border-left: 3px solid #e9b9a8;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #8d7c7e;
+}
+
+.guide-section .section-next-link {
+  margin-top: auto;
+  margin-bottom: 0;
+  padding-top: clamp(20px, 4vh, 40px);
+}
+
+/* ---------- Flip step cards ---------- */
+.step-flip {
+  position: relative;
+  min-height: 270px;
+  perspective: 1200px;
+  outline: none;
+}
+
+.step-flip:focus-visible {
+  outline: 2px solid #e9b9a8;
+  outline-offset: 4px;
+}
+
+.step-flip-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.step-flip:hover .step-flip-inner,
+.step-flip:focus-within .step-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.step-face {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 0;
+  padding: 28px 26px;
+  text-align: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.step-front .step-icon {
+  margin: 0;
+  font-size: 46px;
+}
+
+.step-front h3 {
+  margin: 0;
+  max-width: 85%;
+  font-size: 21px;
+  line-height: 1.2;
+}
+
+.step-back {
+  gap: 12px;
+  transform: rotateY(180deg);
+}
+
+.step-back p {
+  max-width: 310px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.flip-hint {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid #b77b84;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 1;
+  color: #a75d68;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step-flip-inner {
+    transition: none;
+  }
+}
+
+/* Arrow that leaves the page nudges sideways instead of down */
+.section-next-link--out span {
+  animation-name: guide-arrow-nudge;
+}
+
+@keyframes guide-arrow-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-next-link--out span {
+    animation: none;
+  }
+
+  .choice-card {
+    transition: none;
+  }
+}
+
+/* ---------- 4. AI call practice ---------- */
+.guide-ai {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: calc(100vh - 78px);
+  min-height: calc(100dvh - 78px);
+}
+
+.guide-ai .guide-ai-lead {
+  max-width: 560px;
+}
+
+.guide-ai-points {
+  display: grid;
+  gap: 10px;
+  max-width: 420px;
+  margin: 0 auto 32px;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  position: relative;
+}
+
+.guide-ai-points li {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #6e5558;
+}
+
+.guide-ai-points li span {
+  font-weight: 800;
+  color: #b7626d;
+}
+
+.guide-ai .guide-disclaimer {
+  margin: 16px auto 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #8d7c7e;
+}
+
+.guide-ai-links {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 28px;
+  margin-top: 26px;
+}
+
+.guide-ai-links .arrow-link {
+  margin-top: 0;
+}
+
+.guide-ai .button {
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  font-size: 12px;
+}
+
+.guide-ai .button span {
+  font-size: 15px;
+  line-height: 1;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .guide-hero {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .choice-card {
+    min-height: 0;
+    padding: 24px 20px 20px;
+  }
+
+  .guide-section {
+    justify-content: flex-start;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .step-flip {
+    min-height: 220px;
+  }
+}
+</style>

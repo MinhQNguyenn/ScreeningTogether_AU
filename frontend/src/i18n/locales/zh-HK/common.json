@@ -1,17 +1,19 @@
 {
   "header": {
-    "home": "主頁",
-    "learn": "了解更多",
+    "home": "首頁",
     "faq": "常見問題",
-    "numbers": "數據",
+    "numbers": "數據概覽",
+    "data": "數據",
     "gpFinder": "尋找全科醫生",
+    "guide": "指南",
+    "resourceInfo": "資源",
     "game": "遊戲",
     "learnThroughGame": "一起探索",
     "exploreTogether": "一起探索",
     "exploreMobile": "探索",
     "openMenu": "開啟選單",
     "closeMenu": "關閉選單",
-    "mainNavigation": "主要導航"
+    "mainNavigation": "主導覽"
   },
   "footer": {
     "tagline": "了解工作如何影響你的身體，以及其他女性在工作後如何繼續前行。免費使用，無需建立帳戶。",
@@ -30,9 +32,15 @@
     "close": "關閉探索選項",
     "startBeginning": "不確定？從頭開始",
     "options": {
-      "nervous": { "title": "我有點緊張或不太確定", "description": "我們會一步一步，溫和地陪伴你。" },
+      "nervous": {
+        "title": "我有點緊張或不太確定",
+        "description": "我們會一步一步，溫和地陪伴你。"
+      },
       "new": { "title": "我從未接觸過這個系統", "description": "了解從候診室到預約的整個流程。" },
-      "room": { "title": "我只想知道診間裡會發生甚麼", "description": "直接了解篩查預約的實際流程。" },
+      "room": {
+        "title": "我只想知道診間裡會發生甚麼",
+        "description": "直接了解篩查預約的實際流程。"
+      },
       "book": { "title": "我已準備好，請幫我預約", "description": "直接尋找附近的全科醫生。" }
     }
   },

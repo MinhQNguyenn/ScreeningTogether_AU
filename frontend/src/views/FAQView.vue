@@ -33,6 +33,32 @@
         </article>
       </div>
     </section>
+
+    <!-- Cervical result indicator -->
+    <section id="result" class="faq-group">
+      <h2>{{ t('results.heading', { ns: 'faq' }) }}</h2>
+      <div class="faq-list">
+        <article
+          v-for="(result, index) in results"
+          :key="result.key"
+          :class="['faq-item', { open: openItem === `result-${index}` }]"
+        >
+          <button
+            type="button"
+            :aria-expanded="openItem === `result-${index}`"
+            @click="toggleItem(`result-${index}`)"
+          >
+            <span> {{ t(`results.${result.key}.title`, { ns: 'faq' }) }} </span>
+            <span class="faq-toggle" aria-hidden="true">
+              {{ openItem === `result-${index}` ? '−' : '+' }}
+            </span>
+          </button>
+          <p v-if="openItem === `result-${index}`">
+            {{ t(`results.${result.key}.description`, { ns: 'faq' }) }}
+          </p>
+        </article>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -92,6 +118,14 @@ const groups = [
     ],
   },
 ]
+
+const results = [
+  { key: 'lowRisk' },
+  { key: 'intermediateRisk' },
+  { key: 'higherRisk' },
+  { key: 'unsatisfactory' },
+]
+
 const toggleItem = (key: string) => {
   openItem.value = openItem.value === key ? '' : key
 }

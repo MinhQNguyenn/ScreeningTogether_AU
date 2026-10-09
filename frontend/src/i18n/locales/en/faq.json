@@ -42,5 +42,25 @@
       "question": "Can I collect my own sample?",
       "answer": "Self-collection may be available for eligible people. Ask your healthcare provider whether it is an option for you."
     }
+  },
+  "results": {
+    "heading": "Understanding your cervical screening results",
+    "intro": "Your result helps determine whether you need another screening test or further follow-up. Here is what each result category means.",
+    "lowRisk": {
+      "title": "Low risk (HPV not detected)",
+      "description": "No high-risk HPV was found in your sample. Your chance of developing cervical cell changes that need treatment in the next five years is very low. You will generally be invited to have another cervical screening test in five years."
+    },
+    "intermediateRisk": {
+      "title": "Intermediate risk",
+      "description": "HPV types 16 and 18, which carry the highest risk, were not detected, but another high-risk HPV type was found. Your sample has also been checked for abnormal cell changes, and there are either no changes or only minor changes. You will generally be asked to return in 12 months for a follow-up HPV test, as your body will often clear the infection over time."
+    },
+    "higherRisk": {
+      "title": "Higher risk",
+      "description": "This may mean HPV types 16 or 18 were detected, high-grade cervical cell changes were found, or another high-risk HPV infection has persisted. Further follow-up is important to assess your risk and determine whether treatment is needed. A higher-risk result does not necessarily mean you have cervical cancer."
+    },
+    "unsatisfactory": {
+      "title": "Unsatisfactory result",
+      "description": "Your sample could not be examined adequately. This may happen if there were too few cells or insufficient sample material for the required tests. It does not mean that HPV was detected or that an abnormality was found. You should repeat the test at the time recommended by your healthcare professional."
+    }
   }
 }
