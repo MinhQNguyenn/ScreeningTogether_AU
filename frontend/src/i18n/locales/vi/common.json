@@ -1,13 +1,15 @@
 {
   "header": {
     "home": "Trang chủ",
-    "learn": "Tìm hiểu",
     "faq": "Câu hỏi thường gặp",
-    "numbers": "Số liệu",
+    "numbers": "Các số liệu",
+    "data": "Dữ liệu",
     "gpFinder": "Tìm bác sĩ đa khoa",
+    "guide": "Hướng dẫn",
+    "resourceInfo": "Tài nguyên",
     "game": "Trò chơi",
-    "learnThroughGame": "Cùng khám phá",
-    "exploreTogether": "Cùng khám phá",
+    "learnThroughGame": "Cùng nhau khám phá",
+    "exploreTogether": "Cùng nhau khám phá",
     "exploreMobile": "Khám phá",
     "openMenu": "Mở menu",
     "closeMenu": "Đóng menu",
@@ -18,6 +20,7 @@
     "acknowledgement": "Chúng tôi ghi nhận những Người gìn giữ Truyền thống của vùng đất trên khắp Australia cùng mối gắn kết bền chặt của họ với đất đai, sông nước và cộng đồng. Chúng tôi kính trọng các bậc Trưởng lão xưa và nay, đồng thời dành sự kính trọng đó cho tất cả người Thổ dân và cư dân đảo Torres Strait.",
     "pages": "Trang",
     "dataSources": "Nguồn dữ liệu",
+    "cancerAustralia": "Cancer Australia",
     "healthDepartment": "Bộ Y tế Chính phủ Australia",
     "copyright": "© 2026 ScreeningTogether AU"
   },
@@ -29,10 +32,22 @@
     "close": "Đóng các lựa chọn khám phá",
     "startBeginning": "Chưa chắc? Bắt đầu từ đầu",
     "options": {
-      "nervous": { "title": "Tôi hơi lo lắng hoặc chưa chắc chắn", "description": "Chúng tôi sẽ nhẹ nhàng hướng dẫn bạn từng bước một." },
-      "new": { "title": "Tôi chưa từng trải qua hệ thống này", "description": "Tìm hiểu điều sẽ diễn ra từ phòng chờ đến buổi hẹn." },
-      "room": { "title": "Tôi chỉ muốn biết điều gì xảy ra trong phòng khám", "description": "Xem ngay hướng dẫn về buổi hẹn." },
-      "book": { "title": "Tôi đã sẵn sàng — hãy giúp tôi đặt lịch", "description": "Tìm bác sĩ đa khoa gần bạn ngay." }
+      "nervous": {
+        "title": "Tôi hơi lo lắng hoặc chưa chắc chắn",
+        "description": "Chúng tôi sẽ nhẹ nhàng hướng dẫn bạn từng bước một."
+      },
+      "new": {
+        "title": "Tôi chưa từng trải qua hệ thống này",
+        "description": "Tìm hiểu điều sẽ diễn ra từ phòng chờ đến buổi hẹn."
+      },
+      "room": {
+        "title": "Tôi chỉ muốn biết điều gì xảy ra trong phòng khám",
+        "description": "Xem ngay hướng dẫn về buổi hẹn."
+      },
+      "book": {
+        "title": "Tôi đã sẵn sàng — hãy giúp tôi đặt lịch",
+        "description": "Tìm bác sĩ đa khoa gần bạn ngay."
+      }
     }
   },
   "gameStart": {

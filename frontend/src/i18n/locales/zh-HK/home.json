@@ -8,10 +8,33 @@
     "exploreTogether": "一起探索",
     "explore": "探索",
     "seeNumbers": "查看數據",
-    "noteOne": "了解你的",
-    "noteOneStrong": "選擇",
-    "noteTwo": "每一小步",
-    "noteTwoStrong": "都很重要"
+    "resources": "睇下我哋嘅其他資源",
+    "cards": {
+      "data": {
+        "prompt": "想了解下數據？",
+        "title": "睇下數字",
+        "description": "了解各州同歷年嘅子宮頸篩查參與率。",
+        "link": "查看數據"
+      },
+      "faq": {
+        "prompt": "有問題？",
+        "title": "睇常見問題",
+        "description": "清楚簡單咁解答大家最常問嘅子宮頸癌問題。",
+        "link": "查看常見問題"
+      },
+      "gp": {
+        "prompt": "準備好預約未？",
+        "title": "搵你附近嘅家庭醫生",
+        "description": "搵返你所在地區嘅家庭醫生（GP），幫你做篩查。",
+        "link": "搵醫生"
+      },
+      "guide": {
+        "prompt": "想喺屋企自己做檢測？",
+        "title": "索取檢測套裝",
+        "description": "逐步睇下點樣獲取自我採樣套裝，喺屋企完成檢測。",
+        "link": "睇指南"
+      }
+    }
   },
 
   "essentials": {
@@ -32,8 +55,9 @@
         "description": "及早發現細胞變化，讓問題更容易得到治療和處理。"
       },
       "body": {
-        "title": "了解自己的身體",
-        "description": "如果身體出現任何異常，請與醫療專業人員討論。"
+        "title": "你知唔知？",
+        "highlight": "每5個人就有4個",
+        "description": " 一生中某個時候會感染HPV"
       }
     }
   },

@@ -157,7 +157,7 @@
       </div>
     </section>
 
-    <section class="age-section">
+    <!-- <section class="age-section">
       <p class="section-label">{{ t('ageGroups.label', { ns: 'data' }) }}</p>
       <h2>{{ t('ageGroups.title', { ns: 'data' }) }}</h2>
       <div class="age-bars">
@@ -168,7 +168,13 @@
         </div>
       </div>
       <aside class="data-note">{{ t('ageGroups.note', { ns: 'data' }) }}</aside>
+    </section> -->
+
+    <section class="map-section">
+      <ChoroplethMap />
     </section>
+
+
     <footer class="data-source">
       <strong>{{ t('sources.title', { ns: 'data' }) }}</strong>
       <p>{{ t('sources.description', { ns: 'data' }) }}</p>
@@ -180,6 +186,8 @@
 import { useTranslation } from '../i18n/useTranslation'
 import '../assets/contentPages.css'
 import { computed, onMounted, ref, watch } from 'vue'
+import ChoroplethMap from '../components/ChoroplethMap.vue'
+
 
 import {
   getParticipationGraph,

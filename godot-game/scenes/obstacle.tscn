@@ -1,6 +1,11 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/obstacle.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sprout_lands/fences.png" id="2"]
+
+[sub_resource type="AtlasTexture" id="Fence_texture"]
+atlas = ExtResource("2")
+region = Rect2(16, 0, 48, 16)
 
 [sub_resource type="RectangleShape2D" id="Shape_obstacle"]
 size = Vector2(116, 62)
@@ -16,32 +21,38 @@ position = Vector2(0, 20)
 polygon = PackedVector2Array(-62, 0, -48, -11, 48, -11, 62, 0, 48, 11, -48, 11)
 color = Color(0.13, 0.18, 0.13, 0.3)
 
-[node name="Posts" type="Line2D" parent="."]
-points = PackedVector2Array(-45, -8, -45, 35, 45, 35, 45, -8)
-width = 9.0
-default_color = Color(0.32, 0.24, 0.16, 1)
+[node name="Fence" type="Sprite2D" parent="."]
+position = Vector2(0, -14)
+scale = Vector2(3, 4)
+texture_filter = 1
+texture = SubResource("Fence_texture")
+
+[node name="Outline" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-69, -96, 69, -96, 69, -40, -69, -40)
+color = Color(0.23, 0.18, 0.14, 1)
 
 [node name="Sign" type="Polygon2D" parent="."]
-position = Vector2(0, -21)
-polygon = PackedVector2Array(-61, -34, 61, -34, 61, 34, -61, 34)
-color = Color(0.71, 0.44, 0.49, 1)
+position = Vector2(0, -68)
+polygon = PackedVector2Array(-65, -24, 65, -24, 65, 24, -65, 24)
+color = Color(1, 0.98, 0.88, 1)
 
 [node name="Label" type="Label" parent="Sign"]
-offset_left = -56.0
-offset_top = -30.0
-offset_right = 56.0
-offset_bottom = 30.0
-theme_override_colors/font_color = Color(1, 1, 0.94, 1)
-theme_override_colors/font_shadow_color = Color(0.15, 0.12, 0.16, 0.75)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 16
+offset_left = -63.0
+offset_top = -23.0
+offset_right = 63.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.16, 0.13, 0.12, 1)
+theme_override_font_sizes/font_size = 22
+autowrap_mode = 2
 text = "Barrier"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+mouse_filter = 2
+
+[node name="Accent" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-64, -44, 64, -44, 64, -39, -64, -39)
+color = Color(0.71, 0.44, 0.49, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -18)
 shape = SubResource("Shape_obstacle")
-

@@ -14,7 +14,7 @@
     "puzzle": "B · Picture puzzle"
   },
   "intro": {
-    "label": "Cervical screening journey | Game 3",
+    "label": "Cervical screening journey | Phase 3",
     "title": "What happens at screening?",
     "description": "Join Luna during her appointment, explore her screening choices, and experience how quickly the sample collection part can feel."
   },
@@ -35,6 +35,7 @@
     }
   },
   "navigation": {
-    "previousGame": "Waiting Room Listening Practice"
+    "previousGame": "Waiting Room Listening Practice",
+    "cervicalResults": "Understanding cervical screening results"
   }
 }

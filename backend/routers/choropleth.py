@@ -10,7 +10,6 @@ router = APIRouter(prefix="/choropleth", tags=["choropleth"])
 def get_sa3_statistics(query: ChoroplethQuery = Depends()):
     return choropleth.get_sa3_statistics(query.sa3_code)
 
-
-@router.get("/all", response_model=ChoroplethAllResponse)
+@router.get("/all", response_model=list[ChoroplethResponse])
 def get_all_sa3_statistics():
     return choropleth.get_all_sa3_statistics()

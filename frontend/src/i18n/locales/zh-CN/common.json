@@ -1,10 +1,12 @@
 {
   "header": {
     "home": "首页",
-    "learn": "了解更多",
     "faq": "常见问题",
-    "numbers": "数据",
-    "gpFinder": "寻找全科医生",
+    "numbers": "数据概览",
+    "data": "数据",
+    "gpFinder": "查找全科医生",
+    "guide": "指南",
+    "resourceInfo": "资源",
     "game": "游戏",
     "learnThroughGame": "一起探索",
     "exploreTogether": "一起探索",
@@ -18,6 +20,7 @@
     "acknowledgement": "我们承认澳大利亚各地原住民是其土地的传统守护者，并持续与土地、水域及社区保持联系。我们向历代长者致以敬意，并向所有原住民及托雷斯海峡岛民致以同样敬意。",
     "pages": "页面",
     "dataSources": "数据来源",
+    "cancerAustralia": "澳大利亞癌症協會",
     "healthDepartment": "澳大利亚政府卫生部",
     "copyright": "© 2026 ScreeningTogether AU"
   },

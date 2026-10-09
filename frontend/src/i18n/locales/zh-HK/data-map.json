@@ -1,0 +1,28 @@
+{
+  "map": {
+    "eyebrow": "探索地圖",
+    "title": "你所在地區嘅篩查情況",
+    "description": "睇下澳洲各個地區（SA3）嘅子宮頸篩查參與率同社區背景有咩分別。搜尋一個地區就可以放大睇。",
+    "searchLabel": "搵地區",
+    "searchPlaceholder": "輸入地區名稱搜尋",
+    "noResults": "搵唔到相符嘅地區",
+    "metricLabel": "地圖顏色顯示",
+    "metrics": {
+      "participation": "篩查參與率",
+      "bornOverseas": "海外出生",
+      "otherLanguage": "屋企講英語以外嘅語言",
+      "lowProficiency": "英語能力偏低"
+    },
+    "resetView": "重設地圖",
+    "noData": "冇可靠數據",
+    "loading": "地圖載入緊…",
+    "error": "載入唔到地圖數據。",
+    "ariaLabel": "按地區着色嘅澳洲地圖",
+    "hint": "喺地圖上揀一個地區，或者搜尋一個地區，就可以睇到詳細資料。",
+    "detail": {
+      "women": "25至74歲女性",
+      "birthplaceNotStated": "未註明出生地"
+    },
+    "note": "參與率採用最新可用嘅報告期。人口數字來自2021年人口普查。參與數據被隱藏或者唔可靠嘅地區會顯示為灰色。"
+  }
+}

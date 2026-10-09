@@ -26,7 +26,8 @@ jobs:
             set -e
             source venv/bin/activate
             cd ~/FIT5120_Luna_ScreeningTogether_AU
-            git pull origin main
+            git fetch origin
+            git reset --hard origin/main
             cd backend
             pip install -r requirements.txt
             sudo systemctl restart fastapi

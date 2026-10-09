@@ -166,7 +166,7 @@ func _show_quest_popup(
 	get_parent().add_child(_active_popup)
 	_active_popup.closed.connect(_on_support_popup_closed, CONNECT_ONE_SHOT)
 	_active_popup.show_message(popup_title, popup_status, popup_message)
-	feedback_label.text = "Read the information, then press Continue."
+	GameLanguage.bind_text(feedback_label, "Read the information, then press Continue.")
 
 
 func _on_support_popup_closed() -> void:
@@ -189,56 +189,42 @@ func _complete_quest(
 	quest_text: String
 ) -> void:
 	if completed_quests.get(quest_id, false):
-		feedback_label.text = "Reviewed: %s" % quest_text
+		GameLanguage.bind_text(feedback_label, "Reviewed: %s", [quest_text])
 		return
 
 	completed_quests[quest_id] = true
 	side_quest_score += points_per_quest
-	feedback_label.text = "Completed: %s" % quest_text
+	GameLanguage.bind_text(feedback_label, "Completed: %s", [quest_text])
 	quest_completed.emit(quest_id, points_per_quest)
 	_refresh_quest_ui()
 
 	if completed_quests.size() == QUEST_COUNT:
-		feedback_label.text = "All side quests completed!  +%d points" % side_quest_score
+		GameLanguage.bind_text(feedback_label, "All side quests completed!  +%d points", [side_quest_score])
 		all_quests_completed.emit(side_quest_score)
 
 
 func _refresh_quest_ui() -> void:
-	progress_label.text = "%d / %d completed" % [
-		completed_quests.size(), QUEST_COUNT
-	]
+	GameLanguage.bind_text(progress_label, "%d / %d completed", [completed_quests.size(), QUEST_COUNT])
 	if completed_quests.get(&"water_fountain", false):
-		water_quest_label.text = "[DONE]  Stay hydrated   +%d" % points_per_quest
+		GameLanguage.bind_text(water_quest_label, "[DONE]  Stay hydrated   +%d", [points_per_quest])
 		water_quest_label.modulate = Color("#D8FFD5")
 	else:
-		water_quest_label.text = "[ ]  Stay hydrated"
+		GameLanguage.bind_text(water_quest_label, "[ ]  Stay hydrated")
 		water_quest_label.modulate = Color.WHITE
 
 	if completed_quests.get(&"general_information", false):
-		information_quest_label.text = (
-			"[DONE]  Get general support   +%d" % points_per_quest
-		)
+		GameLanguage.bind_text(information_quest_label, "[DONE]  Get general support   +%d", [points_per_quest])
 		information_quest_label.modulate = Color("#D8FFD5")
 	else:
-		information_quest_label.text = "[ ]  Get general support(Information)"
+		GameLanguage.bind_text(information_quest_label, "[ ]  Get general support(Information)")
 		information_quest_label.modulate = Color.WHITE
 
 	var screening_found := _get_screening_completed_count()
 	if screening_found == SCREENING_QUEST_COUNT:
-		screening_info_quest_label.text = (
-			"[DONE]  Screening facts: %d / %d   +%d"
-			% [
-				screening_found,
-				SCREENING_QUEST_COUNT,
-				points_per_quest * SCREENING_QUEST_COUNT,
-			]
-		)
+		GameLanguage.bind_text(screening_info_quest_label, "[DONE]  Screening facts: %d / %d   +%d", [screening_found, SCREENING_QUEST_COUNT, points_per_quest * SCREENING_QUEST_COUNT])
 		screening_info_quest_label.modulate = Color("#D8FFD5")
 	else:
-		screening_info_quest_label.text = "[ ]  Screening facts found: %d / %d" % [
-			screening_found,
-			SCREENING_QUEST_COUNT,
-		]
+		GameLanguage.bind_text(screening_info_quest_label, "[ ]  Screening facts found: %d / %d", [screening_found, SCREENING_QUEST_COUNT])
 		screening_info_quest_label.modulate = Color.WHITE
 
 
@@ -282,5 +268,5 @@ func reset_quests() -> void:
 	side_quest_score = 0
 	_pick_random_facts()
 	_refresh_hotspot_states()
-	feedback_label.text = "Hover over objects to investigate."
+	GameLanguage.bind_text(feedback_label, "Hover over objects to investigate.")
 	_refresh_quest_ui()

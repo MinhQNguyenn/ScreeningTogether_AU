@@ -30,11 +30,7 @@ func configure(
 func set_tile(new_tile_index: int) -> void:
 	tile_index = new_tile_index
 	disabled = tile_index < 0
-	tooltip_text = (
-		"Empty space"
-		if tile_index < 0
-		else "Move Luna puzzle piece %d" % (tile_index + 1)
-	)
+	GameLanguage.bind_text(self, "Empty space" if tile_index < 0 else "Move Luna puzzle piece %d", [] if tile_index < 0 else [tile_index + 1], "tooltip_text")
 	queue_redraw()
 
 

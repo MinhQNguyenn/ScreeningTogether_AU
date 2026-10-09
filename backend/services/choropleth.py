@@ -51,35 +51,55 @@ def get_sa3_statistics(sa3_code: str) -> ChoroplethResponse:
     )
 
 
-def get_all_sa3_statistics() -> ChoroplethAllResponse:
+def _to_response(row: Sa3Linked) -> ChoroplethResponse:
+    participation_reliable = not row.is_suppressed and not row.over_100
+
+    return ChoroplethResponse(
+        sa3_code=row.geo_code,
+        geo_name=row.geo_name,
+        year_start=row.year_start if participation_reliable else None,
+        year_end=row.year_end if participation_reliable else None,
+        label=f"{row.year_start}-{row.year_end}" if participation_reliable else None,
+        rate_pct=row.rate_pct if participation_reliable else None,
+        women_25_74=row.women_25_74,
+        pct_born_overseas=row.pct_born_overseas,
+        pct_other_language=row.pct_other_language,
+        pct_low_proficiency=row.pct_low_proficiency,
+        pct_birthplace_ns=row.pct_birthplace_ns,
+    )
+
+
+def get_sa3_statistics(sa3_code: str) -> ChoroplethResponse:
     with SessionLocal() as session:
-        latest_window = session.execute(
-            select(Sa3Linked.year_start, Sa3Linked.year_end)
-            .distinct()
-            # tiebreak on year_start too, so the result is deterministic if two
-            # windows ever shared the same year_end
-            .order_by(Sa3Linked.year_end.desc(), Sa3Linked.year_start.desc())
+        row = session.execute(
+            select(Sa3Linked)
+            .where(Sa3Linked.geo_code == sa3_code)
+            .order_by(Sa3Linked.year_end.desc())
             .limit(1)
-        ).one_or_none()
+        ).scalar_one_or_none()
 
-        if latest_window is None:
-            raise HTTPException(status_code=404, detail="No participation data available")
-        latest_year_start, latest_year_end = latest_window
-
-        rows = session.execute(
-            select(Sa3Linked.geo_code, Sa3Linked.geo_name, Sa3Linked.rate_pct, Sa3Linked.is_suppressed, Sa3Linked.over_100)
-            .where(Sa3Linked.year_end == latest_year_end)
-        ).all()
-
-    # retrieve all SA3 codes and participation rates
-    areas = []
-    for row in rows:
-        participation_reliable = not row.is_suppressed and not row.over_100
-        areas.append(
-            ChoroplethAreaRate(
-                sa3_code=row.geo_code,
-                geo_name=row.geo_name,
-                rate_pct=row.rate_pct if participation_reliable else None,
+        if row is None:
+            raise HTTPException(
+                status_code=404, detail=f"Unknown SA3 code: {sa3_code!r}"
             )
+
+        return _to_response(row)
+
+
+def get_all_sa3_statistics() -> list[ChoroplethResponse]:
+    with SessionLocal() as session:
+        rows = (
+            session.execute(
+                select(Sa3Linked).order_by(
+                    Sa3Linked.geo_code, Sa3Linked.year_end.desc()
+                )
+            )
+            .scalars()
+            .all()
         )
-    return ChoroplethAllResponse(label=f'{latest_year_start}-{latest_year_end}', areas=areas)
+
+        latest: dict[str, Sa3Linked] = {}
+        for row in rows:
+            latest.setdefault(row.geo_code, row)  # first row per area = most recent
+
+        return [_to_response(row) for row in latest.values()]
