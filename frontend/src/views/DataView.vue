@@ -157,7 +157,7 @@
       </div>
     </section>
 
-    <section class="age-section">
+    <!-- <section class="age-section">
       <p class="section-label">{{ t('ageGroups.label', { ns: 'data' }) }}</p>
       <h2>{{ t('ageGroups.title', { ns: 'data' }) }}</h2>
       <div class="age-bars">
@@ -168,7 +168,7 @@
         </div>
       </div>
       <aside class="data-note">{{ t('ageGroups.note', { ns: 'data' }) }}</aside>
-    </section>
+    </section> -->
 
     <section class="map-section">
       <ChoroplethMap />
