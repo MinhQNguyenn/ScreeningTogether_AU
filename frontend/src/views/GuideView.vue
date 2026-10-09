@@ -86,7 +86,7 @@
         </div>
       </div>
       <div class="steps-grid">
-        <div v-for="(step, index) in homeSteps" :key="step.key" class="step-flip" tabindex="0">
+        <div v-for="(step, index) in gpSteps" :key="step.key" class="step-flip" tabindex="0">
           <div class="step-flip-inner">
             <!-- Front: icon + action -->
             <div class="step-card step-face step-front" :class="{ featured: index === 1 }">

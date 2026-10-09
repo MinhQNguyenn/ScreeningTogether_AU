@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 
-from schemas import ChoroplethQuery, ChoroplethResponse
+from schemas import ChoroplethAllResponse, ChoroplethQuery, ChoroplethResponse
 from services import choropleth
 
 router = APIRouter(prefix="/choropleth", tags=["choropleth"])

@@ -15,7 +15,7 @@ export interface Sa3Statistic {
 
 // Use the same base URL as the other functions in api/stats.ts
 const API_BASE = 'https://api.screeningtogether.app'
-// const API_BASE = 'http://localhost:8000'
+//const API_BASE = 'http://localhost:8000'
 
 export async function getAllSa3Statistics(): Promise<Sa3Statistic[]> {
   const url = `${API_BASE}/choropleth/all`

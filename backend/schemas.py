@@ -67,7 +67,7 @@ class ChoroplethQuery(ChoroplethBase):
 # for one SA3 area. Stat fields are null where the source has nothing, or
 # where the latest window is suppressed/over-100% for that area.
 class ChoroplethResponse(ChoroplethBase):
-    geo_name: str
+    geo_name: str | None = None
     year_start: int | None = None
     year_end: int | None = None
     label: str | None = None  # reporting window, e.g. "2020-2024"
@@ -77,3 +77,16 @@ class ChoroplethResponse(ChoroplethBase):
     pct_other_language: float | None = None
     pct_low_proficiency: float | None = None
     pct_birthplace_ns: float | None = None  # data-quality flag
+    gap_pct: float | None = None  # rate_pct minus the national average for the same window
+
+
+# One area's rate, for painting every SA3 area on the map at once. null
+# where the latest window is suppressed/over-100% for that area.
+class ChoroplethAreaRate(ChoroplethBase):
+    geo_name: str | None = None
+    rate_pct: float | None = None
+
+
+class ChoroplethAllResponse(BaseModel):
+    label: str  # reporting window shared by every area, e.g. "2020-2024"
+    areas: list[ChoroplethAreaRate]
