@@ -73,6 +73,14 @@ import zhCNGuide from './locales/zh-CN/guide.json'
 import arGuide from './locales/ar/guide.json'
 import viGuide from './locales/vi/guide.json'
 
+
+// AI call page
+import enCallPractice from './locales/en/callPractice.json'
+import zhHKCallPractice from './locales/zh-HK/callPractice.json'
+import zhCNCallPractice from './locales/zh-CN/callPractice.json'
+import arCallPractice from './locales/ar/callPractice.json'
+import viCallPractice from './locales/vi/callPractice.json'
+
 const resources = {
   en: {
     common: enCommon,
@@ -85,7 +93,8 @@ const resources = {
     game2: enGame2,
     resources: enResource,
     choropleth: enChoropleth,
-    guide: enGuide
+    guide: enGuide,
+    callPractice: enCallPractice
   },
   'zh-HK': {
     common: zhHKCommon,
@@ -98,7 +107,8 @@ const resources = {
     game2: zhHKGame2,
     resources: zhHKResource,
     choropleth: zhHKChoropleth,
-    guide: zhHKGuide
+    guide: zhHKGuide,
+    callPractice: zhHKCallPractice
   },
   'zh-CN': {
     common: zhCNCommon,
@@ -111,7 +121,8 @@ const resources = {
     game2:zhCNGame2,
     resources: zhCNResource,
     choropleth: zhCNChoropleth,
-    guide: zhCNGuide
+    guide: zhCNGuide,
+    callPractice: zhCNCallPractice
   },
   ar: {
     common: arCommon,
@@ -124,7 +135,8 @@ const resources = {
     game2: arGame2,
     resources: arResource,
     choropleth: arChoropleth,
-    guide: arGuide
+    guide: arGuide,
+    callPractice: arCallPractice
   },
   vi: {
     common: viCommon,
@@ -137,7 +149,8 @@ const resources = {
     game2:viGame2,
     resources: viResource,
     choropleth: viChoropleth,
-    guide: viGuide
+    guide: viGuide,
+    callPractice: viCallPractice
   }
 }
 
@@ -147,7 +160,7 @@ i18next
     resources,
     fallbackLng: 'en',
     defaultNS: 'common',
-    ns: ['common', 'home', 'faq', 'data', 'gpRunner', 'game3', 'gpFinder', 'game2', 'resources', 'choropleth', 'guide'],
+    ns: ['common', 'home', 'faq', 'data', 'gpRunner', 'game3', 'gpFinder', 'game2', 'resources', 'choropleth', 'guide', 'callPractice'],
 
     detection: {
       order: ['localStorage', 'navigator'],

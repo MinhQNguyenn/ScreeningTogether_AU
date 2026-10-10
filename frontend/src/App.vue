@@ -2126,4 +2126,333 @@ onUnmounted(() => {
   background: #b65d6e;
   color: #fff;
 }
+
+/* =========================================
+HomeView theme support
+========================================= */
+
+/* Shared text and card behaviour */
+.site-shell :deep(.hero-section),
+.site-shell :deep(.screening-info),
+.site-shell :deep(.intro-section),
+.site-shell :deep(.stats-section),
+.site-shell :deep(.faq-preview),
+.site-shell :deep(.stats-preview),
+.site-shell :deep(.closing-section) {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.site-shell :deep(.hero-card-face),
+.site-shell :deep(.info-card-front),
+.site-shell :deep(.info-card-back),
+.site-shell :deep(.step-card),
+.site-shell :deep(.faq-preview-card),
+.site-shell :deep(.chart-card) {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* ---------- Blush theme ---------- */
+.site-shell.theme-blush :deep(.hero-section) {
+  background: #f8e9e9;
+  color: #302a2d;
+}
+
+.site-shell.theme-blush :deep(.screening-info) {
+  background: #fdf2ef;
+  color: #302a2d;
+}
+
+.site-shell.theme-blush :deep(.intro-section) {
+  background: #fffaf8;
+  color: #302a2d;
+}
+
+.site-shell.theme-blush :deep(.faq-preview) {
+  background: #fcf2eb;
+  color: #302a2d;
+}
+
+.site-shell.theme-blush :deep(.stats-preview) {
+  background: #261417;
+  color: #fff4f0;
+}
+
+.site-shell.theme-blush :deep(.closing-section) {
+  background: #f6e4df;
+  color: #302a2d;
+}
+
+.site-shell.theme-blush :deep(.hero-card-front),
+.site-shell.theme-blush :deep(.info-card-front),
+.site-shell.theme-blush :deep(.faq-preview-card) {
+  background: #fffaf8;
+  color: #302a2d;
+}
+
+.site-shell.theme-blush :deep(.hero-card-back),
+.site-shell.theme-blush :deep(.info-card-back) {
+  background: #f6e1df;
+  color: #6e5558;
+}
+
+.site-shell.theme-blush :deep(.step-card) {
+  background: #fffaf8;
+  border-color: #eadedb;
+  color: #302a2d;
+}
+
+.site-shell.theme-blush :deep(.step-card.featured) {
+  background: #f6e1df;
+}
+
+.site-shell.theme-blush :deep(.faq-preview-card) {
+  border-color: #e7deda;
+}
+
+.site-shell.theme-blush :deep(.hero-copy h1),
+.site-shell.theme-blush :deep(.screening-info-heading h2),
+.site-shell.theme-blush :deep(.intro-grid h2) {
+  color: #282326;
+}
+
+.site-shell.theme-blush :deep(.hero-text),
+.site-shell.theme-blush :deep(.screening-info-heading > p),
+.site-shell.theme-blush :deep(.lead),
+.site-shell.theme-blush :deep(.step-card p) {
+  color: #6e6263;
+}
+
+/* ---------- Teal theme ---------- */
+.site-shell.theme-teal :deep(.hero-section),
+.site-shell.theme-teal :deep(.closing-section) {
+  background: #d9f1ee;
+  color: #123b3c;
+}
+
+.site-shell.theme-teal :deep(.screening-info),
+.site-shell.theme-teal :deep(.faq-preview) {
+  background: #effcfb;
+  color: #123b3c;
+}
+
+.site-shell.theme-teal :deep(.intro-section) {
+  background: #f3fbfa;
+  color: #123b3c;
+}
+
+.site-shell.theme-teal :deep(.stats-section),
+.site-shell.theme-teal :deep(.stats-preview) {
+  background: #123b3c;
+  color: #effcfb;
+}
+
+.site-shell.theme-teal :deep(.hero-card-front),
+.site-shell.theme-teal :deep(.info-card-front),
+.site-shell.theme-teal :deep(.faq-preview-card) {
+  background: #f5fcfb;
+  border-color: #b8ded9;
+  color: #123b3c;
+}
+
+.site-shell.theme-teal :deep(.hero-card-back),
+.site-shell.theme-teal :deep(.info-card-back),
+.site-shell.theme-teal :deep(.step-card.featured) {
+  background: #c7e8e3;
+  color: #123b3c;
+}
+
+.site-shell.theme-teal :deep(.step-card),
+.site-shell.theme-teal :deep(.chart-card) {
+  background: #e0f2ef;
+  border-color: #b8ded9;
+  color: #123b3c;
+}
+
+.site-shell.theme-teal :deep(.hero-copy h1),
+.site-shell.theme-teal :deep(.screening-info-heading h2),
+.site-shell.theme-teal :deep(.intro-grid h2),
+.site-shell.theme-teal :deep(.closing-section h2) {
+  color: #123b3c;
+}
+
+.site-shell.theme-teal :deep(.hero-text),
+.site-shell.theme-teal :deep(.screening-info-heading > p),
+.site-shell.theme-teal :deep(.lead),
+.site-shell.theme-teal :deep(.step-card p),
+.site-shell.theme-teal :deep(.faq-preview-card small) {
+  color: #365e5e;
+}
+
+.site-shell.theme-teal :deep(.hero-copy h1 em),
+.site-shell.theme-teal :deep(.screening-info-heading h2 em),
+.site-shell.theme-teal :deep(.intro-grid em),
+.site-shell.theme-teal :deep(.closing-section em),
+.site-shell.theme-teal :deep(.arrow-link),
+.site-shell.theme-teal :deep(.faq-all-link) {
+  color: #0b7372;
+}
+
+.site-shell.theme-teal :deep(.faq-preview-card > span:first-child) {
+  color: #123b3c;
+}
+
+.site-shell.theme-teal :deep(.faq-plus) {
+  color: #0b7372;
+  border-color: #0b7372;
+}
+
+/* ---------- Accessible theme ---------- */
+.site-shell.theme-accessible :deep(.hero-section),
+.site-shell.theme-accessible :deep(.closing-section) {
+  background: #fff1b8;
+  color: #14213d;
+}
+
+.site-shell.theme-accessible :deep(.screening-info),
+.site-shell.theme-accessible :deep(.intro-section),
+.site-shell.theme-accessible :deep(.faq-preview) {
+  background: #fffdf3;
+  color: #14213d;
+}
+
+.site-shell.theme-accessible :deep(.stats-section),
+.site-shell.theme-accessible :deep(.stats-preview) {
+  background: #14213d;
+  color: #fffdf3;
+}
+
+.site-shell.theme-accessible :deep(.hero-card-front),
+.site-shell.theme-accessible :deep(.info-card-front),
+.site-shell.theme-accessible :deep(.faq-preview-card) {
+  background: #fffdf3;
+  border-color: #a8c7df;
+  color: #14213d;
+}
+
+.site-shell.theme-accessible :deep(.hero-card-back),
+.site-shell.theme-accessible :deep(.info-card-back),
+.site-shell.theme-accessible :deep(.step-card.featured) {
+  background: #dbe9f7;
+  color: #14213d;
+}
+
+.site-shell.theme-accessible :deep(.step-card),
+.site-shell.theme-accessible :deep(.chart-card) {
+  background: #edf4fb;
+  border-color: #a8c7df;
+  color: #14213d;
+}
+
+.site-shell.theme-accessible :deep(.hero-copy h1),
+.site-shell.theme-accessible :deep(.screening-info-heading h2),
+.site-shell.theme-accessible :deep(.intro-grid h2),
+.site-shell.theme-accessible :deep(.closing-section h2) {
+  color: #14213d;
+}
+
+.site-shell.theme-accessible :deep(.hero-text),
+.site-shell.theme-accessible :deep(.screening-info-heading > p),
+.site-shell.theme-accessible :deep(.lead),
+.site-shell.theme-accessible :deep(.step-card p),
+.site-shell.theme-accessible :deep(.faq-preview-card small) {
+  color: #354b68;
+}
+
+.site-shell.theme-accessible :deep(.hero-copy h1 em),
+.site-shell.theme-accessible :deep(.screening-info-heading h2 em),
+.site-shell.theme-accessible :deep(.intro-grid em),
+.site-shell.theme-accessible :deep(.closing-section em),
+.site-shell.theme-accessible :deep(.arrow-link),
+.site-shell.theme-accessible :deep(.faq-all-link) {
+  color: #1769aa;
+}
+
+.site-shell.theme-accessible :deep(.faq-preview-card > span:first-child) {
+  color: #14213d;
+}
+
+.site-shell.theme-accessible :deep(.faq-plus) {
+  color: #1769aa;
+  border-color: #1769aa;
+}
+
+/* Keep decorative and statistics text legible on dark sections */
+.site-shell.theme-teal :deep(.stats-heading h2),
+.site-shell.theme-teal :deep(.stats-preview > h2),
+.site-shell.theme-accessible :deep(.stats-heading h2),
+.site-shell.theme-accessible :deep(.stats-preview > h2) {
+  color: #fffdf3;
+}
+
+.site-shell.theme-teal :deep(.stats-preview-note),
+.site-shell.theme-accessible :deep(.stats-preview-note) {
+  color: #dbe9f7;
+}
+
+.site-shell.theme-teal :deep(.stats-data-link),
+.site-shell.theme-accessible :deep(.stats-data-link),
+.site-shell.theme-teal :deep(.stats-preview .section-next-link),
+.site-shell.theme-accessible :deep(.stats-preview .section-next-link) {
+  color: #f4c542;
+}
+
+/* Respect enlarged text without clipping content */
+.site-shell.text-size-larger :deep(.hero-card),
+.site-shell.text-size-largest :deep(.hero-card) {
+  height: auto;
+  min-height: 120px;
+}
+
+.site-shell.text-size-largest :deep(.hero-card) {
+  min-height: 140px;
+}
+
+.site-shell.text-size-larger :deep(.hero-card-face),
+.site-shell.text-size-largest :deep(.hero-card-face) {
+  overflow-wrap: anywhere;
+  padding: 12px;
+}
+
+.site-shell.text-size-larger :deep(.hero-card-back p),
+.site-shell.text-size-largest :deep(.hero-card-back p) {
+  line-height: 1.5;
+}
+
+.site-shell.text-size-larger :deep(.info-card-front h3),
+.site-shell.text-size-largest :deep(.info-card-front h3),
+.site-shell.text-size-larger :deep(.info-card-back p),
+.site-shell.text-size-largest :deep(.info-card-back p) {
+  overflow-wrap: anywhere;
+}
+
+.site-shell.text-size-larger :deep(.faq-preview-card),
+.site-shell.text-size-largest :deep(.faq-preview-card) {
+  height: auto;
+  min-height: 112px;
+  overflow-wrap: anywhere;
+}
+
+.site-shell.text-size-larger :deep(.chart-top),
+.site-shell.text-size-largest :deep(.chart-top) {
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.site-shell.text-size-larger :deep(.stats-filters),
+.site-shell.text-size-largest :deep(.stats-filters) {
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.site-shell.text-size-larger :deep(.stats-filters label),
+.site-shell.text-size-largest :deep(.stats-filters label) {
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
 </style>

@@ -80,6 +80,8 @@
     "disclaimer": "This is a practice conversation only. It cannot book appointments or give medical advice.",
     "datadisclaimer": "We do not collect or store any personal information that you have shared with our AI.",
     "backToStart": "Back to the start",
-    "findGp": "Prefer to see a GP in person?"
+    "findGp": "Prefer to see a GP in person?",
+    "practicePrompt": "Click here for a practice call"
   }
+  
 }

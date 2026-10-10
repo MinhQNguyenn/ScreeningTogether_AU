@@ -80,6 +80,7 @@
     "disclaimer": "这只是练习对话，无法预约，也不提供医疗建议。",
     "datadisclaimer": "我们不会收集或存储您与我们的人工智能分享的任何个人信息。",
     "backToStart": "回到顶部",
-    "findGp": "想亲自去看全科医生？"
+    "findGp": "想亲自去看全科医生？",
+    "practicePrompt": "点击这里练习模拟通话"
   }
 }

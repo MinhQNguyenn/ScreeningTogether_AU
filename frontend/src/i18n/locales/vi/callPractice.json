@@ -1,0 +1,97 @@
+{
+  "callPractice": {
+    "workspaceLabel": "Không gian luyện tập cuộc gọi",
+    "intro": {
+      "eyebrow": "Luyện tập cuộc gọi",
+      "title": "Tự tin trao đổi về tầm soát cổ tử cung",
+      "description": "Luyện tập gọi điện cho phòng khám để tìm hiểu cách đặt lịch và chuẩn bị cho buổi tầm soát cổ tử cung."
+    },
+    "privacy": {
+      "notice": "Đây là buổi luyện tập mô phỏng. Không chia sẻ thông tin cá nhân hoặc chi tiết y tế nhạy cảm. Nội dung cuộc trò chuyện không được lưu trên trang này."
+    },
+    "connection": {
+      "idle": "Sẵn sàng bắt đầu",
+      "connecting": "Đang kết nối...",
+      "connected": "Đã kết nối",
+      "finishing": "Đang chuẩn bị bản tóm tắt...",
+      "complete": "Đã hoàn thành",
+      "error": "Đã xảy ra lỗi",
+      "live": "Cuộc gọi trực tiếp"
+    },
+    "welcome": {
+      "title": "Bạn đã sẵn sàng luyện tập chưa?",
+      "description": "Hãy tưởng tượng bạn đang gọi điện đến phòng khám để đặt lịch tầm soát cổ tử cung. Luna sẽ hướng dẫn bạn luyện tập từng bước.",
+      "steps": [
+        "Đảm bảo micro hoạt động và bạn đang ở nơi yên tĩnh.",
+        "Lắng nghe nhân viên phòng khám và nói khi đến lượt bạn.",
+        "Xem lại bản tóm tắt sau cuộc gọi để chuẩn bị cho buổi hẹn."
+      ],
+      "start": "Bắt đầu luyện tập",
+      "browserNote": "Cho phép trình duyệt sử dụng micro khi được yêu cầu."
+    },
+    "complete": {
+      "eyebrow": "Làm tốt lắm!",
+      "title": "Bạn đã hoàn thành buổi luyện tập",
+      "description": "Cuộc gọi mô phỏng đã kết thúc. Hãy xem lại bản tóm tắt để kiểm tra câu trả lời và những thông tin cần chuẩn bị trước khi liên hệ phòng khám.",
+      "download": "Tải bản tóm tắt",
+      "restart": "Luyện tập lại"
+    },
+    "live": {
+      "practitioner": "Nhân viên phòng khám",
+      "luna": "Luna",
+      "settingUp": "Đang chuẩn bị cuộc gọi...",
+      "preparing": "Đang chuẩn bị bản tóm tắt...",
+      "ringing": "Điện thoại đang đổ chuông...",
+      "speaking": "{{speaker}} đang nói...",
+      "yourTurn": "Đến lượt bạn nói",
+      "pleaseWait": "Vui lòng chờ...",
+      "ringHelp": "Lắng nghe tiếng chuông và chờ người nhận cuộc gọi trả lời.",
+      "speakHelp": "Hãy nói rõ ràng khi bạn đã sẵn sàng.",
+      "speakingHelp": "Hãy lắng nghe trước khi trả lời. Bạn có thể nói khi đến lượt mình.",
+      "continueHelp": "Vui lòng chờ để cuộc trò chuyện tiếp tục.",
+      "ringStatus": "Đang phát âm thanh chuông điện thoại",
+      "audioStatus": "Đang phát âm thanh",
+      "listeningStatus": "Micro đang nghe bạn nói",
+      "pausedStatus": "Âm thanh đang tạm dừng",
+      "questions": "Câu hỏi luyện tập",
+      "finish": "Kết thúc cuộc gọi",
+      "leave": "Thoát buổi luyện tập"
+    },
+    "transcript": {
+      "eyebrow": "Cuộc trò chuyện",
+      "title": "Nội dung cuộc gọi",
+      "notSaved": "Không được lưu",
+      "empty": "Nội dung cuộc trò chuyện sẽ xuất hiện ở đây khi bạn bắt đầu luyện tập.",
+      "you": "Bạn",
+      "listening": "Bạn (đang nghe)",
+      "speaking": "{{speaker}} (đang nói)"
+    },
+    "summary": {
+      "eyebrow": "Tóm tắt buổi luyện tập",
+      "title": "Chuẩn bị cho cuộc gọi của bạn",
+      "download": "Tải bản tóm tắt",
+      "answers": "Câu trả lời của bạn",
+      "prepare": "Thông tin cần chuẩn bị",
+      "questions": "Câu hỏi có thể hỏi phòng khám",
+      "notes": "Lưu ý quan trọng"
+    },
+    "scope": {
+      "title": "Xin lưu ý:",
+      "description": "Đây là mô phỏng phục vụ mục đích giáo dục, không phải dịch vụ y tế. Để được tư vấn y tế hoặc đặt lịch khám thực tế, hãy liên hệ phòng khám hoặc chuyên gia y tế."
+    },
+    "download": {
+      "title": "Tóm tắt buổi luyện tập cuộc gọi",
+      "answers": "Câu trả lời của bạn",
+      "prepare": "Thông tin cần chuẩn bị",
+      "questions": "Câu hỏi có thể hỏi phòng khám",
+      "notes": "Lưu ý quan trọng"
+    },
+    "errors": {
+      "unsupported": "Trình duyệt của bạn không hỗ trợ các tính năng âm thanh cần thiết. Hãy thử trình duyệt mới hơn.",
+      "microphone": "Không thể truy cập micro. Hãy kiểm tra quyền truy cập và thử lại.",
+      "connection": "Đã xảy ra sự cố kết nối. Hãy kiểm tra kết nối Internet và thử lại.",
+      "unexpected": "Kết nối bị ngắt đột ngột. Vui lòng bắt đầu lại buổi luyện tập.",
+      "practice": "Đã xảy ra lỗi trong buổi luyện tập. Vui lòng thử lại."
+    }
+  }
+}

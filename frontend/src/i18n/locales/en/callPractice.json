@@ -1,0 +1,97 @@
+{
+  "callPractice": {
+    "workspaceLabel": "Call practice workspace",
+    "intro": {
+      "eyebrow": "Practise your phone call",
+      "title": "Feel confident talking about cervical screening",
+      "description": "Practise calling a clinic to learn how to book an appointment for cervical screening and what to prepare beforehand."
+    },
+    "privacy": {
+      "notice": "This is a practice session. Do not share personal information or sensitive medical details. The conversation transcript is not saved on this page."
+    },
+    "connection": {
+      "idle": "Ready to start",
+      "connecting": "Connecting...",
+      "connected": "Connected",
+      "finishing": "Preparing your summary...",
+      "complete": "Practice completed",
+      "error": "Something went wrong",
+      "live": "Live call"
+    },
+    "welcome": {
+      "title": "Ready to practise?",
+      "description": "Imagine you are calling a clinic to book a cervical screening appointment. Luna will guide you through the practice call step by step.",
+      "steps": [
+        "Check your microphone and find a quiet place.",
+        "Listen to the practitioner and respond when prompted.",
+        "Review your summary to prepare for your appointment."
+      ],
+      "start": "Start practice",
+      "browserNote": "Allow your browser to access your microphone when prompted."
+    },
+    "complete": {
+      "eyebrow": "Well done!",
+      "title": "Practice completed",
+      "description": "Your practice call has ended. Review your summary to see your answers and what you can prepare before contacting the clinic.",
+      "download": "Download summary",
+      "restart": "Practise again"
+    },
+    "live": {
+      "practitioner": "Clinic practitioner",
+      "luna": "Luna",
+      "settingUp": "Setting up your call...",
+      "preparing": "Preparing your summary...",
+      "ringing": "The phone is ringing...",
+      "speaking": "{{speaker}} is speaking...",
+      "yourTurn": "It's your turn to speak",
+      "pleaseWait": "Please wait...",
+      "ringHelp": "Listen to the phone ringing and wait for the call to be answered.",
+      "speakHelp": "Speak clearly when you are ready.",
+      "speakingHelp": "Listen before responding. You can speak when it is your turn.",
+      "continueHelp": "Please wait for the conversation to continue.",
+      "ringStatus": "Playing phone ringing sound",
+      "audioStatus": "Playing audio",
+      "listeningStatus": "Microphone is listening",
+      "pausedStatus": "Audio is paused",
+      "questions": "Practice questions",
+      "finish": "Finish call",
+      "leave": "Leave practice"
+    },
+    "transcript": {
+      "eyebrow": "Conversation",
+      "title": "Call transcript",
+      "notSaved": "Not saved",
+      "empty": "Your conversation will appear here when you start practising.",
+      "you": "You",
+      "listening": "You (listening)",
+      "speaking": "{{speaker}} (speaking)"
+    },
+    "summary": {
+      "eyebrow": "Practice summary",
+      "title": "Prepare for your call",
+      "download": "Download summary",
+      "answers": "Your answers",
+      "prepare": "Information to prepare",
+      "questions": "Questions to ask the clinic",
+      "notes": "Important notes"
+    },
+    "scope": {
+      "title": "Please note:",
+      "description": "This is an educational simulation, not a medical service. For medical advice or an actual appointment, contact a clinic or healthcare professional."
+    },
+    "download": {
+      "title": "Call Practice Summary",
+      "answers": "Your answers",
+      "prepare": "Information to prepare",
+      "questions": "Questions to ask the clinic",
+      "notes": "Important notes"
+    },
+    "errors": {
+      "unsupported": "Your browser does not support the required audio features. Please try a modern browser.",
+      "microphone": "Unable to access your microphone. Check your permissions and try again.",
+      "connection": "A connection problem occurred. Check your internet connection and try again.",
+      "unexpected": "The connection was interrupted unexpectedly. Please start the practice again.",
+      "practice": "An error occurred during the practice session. Please try again."
+    }
+  }
+}
