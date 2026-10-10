@@ -102,7 +102,7 @@
             <span class="swatch" :style="{ background: item.color }"></span>{{ item.label }}
           </li>
           <li>
-            <span class="swatch" :style="{ background: NO_DATA_COLOR }"></span>
+            <span class="swatch" :style="{ background: NO_DATA_COLORS[mapTheme] }"></span>
             {{ t('map.noData', ns) }}
           </li>
         </ul>
@@ -150,7 +150,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch, nextTick } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import type { Feature, FeatureCollection, Geometry } from 'geojson'
@@ -169,8 +169,8 @@ const BOUNDARY_URL = `${import.meta.env.BASE_URL}geo/sa3.geojson`
 const AUSTRALIA_BOUNDS = L.latLngBounds([-44.5, 112], [-9.5, 154.5])
 
 // Light to dark pink, 5 classes
-const RAMP = ['#fbe9e6', '#f4c9c5', '#e8a0a4', '#cf6f80', '#a84560']
-const NO_DATA_COLOR = '#ffc107'
+//const RAMP = ['#fbe9e6', '#f4c9c5', '#e8a0a4', '#cf6f80', '#a84560']
+//const NO_DATA_COLOR = '#ffc107'
 
 type MetricField = 'rate_pct' | 'pct_born_overseas' | 'pct_other_language' | 'pct_low_proficiency'
 type MetricKey = 'participation' | 'bornOverseas' | 'otherLanguage' | 'lowProficiency'
@@ -185,6 +185,44 @@ const METRICS: { key: MetricKey; field: MetricField }[] = [
 /* ---------- State ---------- */
 
 const mapEl = ref<HTMLDivElement | null>(null)
+
+type MapTheme = 'blush' | 'teal' | 'accessible'
+
+const mapTheme = ref<MapTheme>('blush')
+
+function readMapTheme(): MapTheme {
+  const root = mapEl.value?.closest('.theme-blush, .theme-teal, .theme-accessible')
+
+  if (root?.classList.contains('theme-teal')) return 'teal'
+  if (root?.classList.contains('theme-accessible')) return 'accessible'
+
+  return 'blush'
+}
+
+const MAP_RAMPS: Record<MapTheme, string[]> = {
+  blush: ['#fbe9e6', '#f4c9c5', '#e8a0a4', '#cf6f80', '#a84560'],
+  teal: ['#e0f4ef', '#b6e2d8', '#79c8b8', '#369f91', '#08736b'],
+  accessible: ['#e5effb', '#b8d2ef', '#7faee0', '#397fbd', '#14528a'],
+}
+
+const NO_DATA_COLORS: Record<MapTheme, string> = {
+  blush: '#ffc107',
+  teal: '#f0b429',
+  accessible: '#f0b429',
+}
+
+const POLYGON_OUTLINES: Record<MapTheme, string> = {
+  blush: '#fff4f0',
+  teal: '#effcfb',
+  accessible: '#ffffff',
+}
+
+const SELECTED_OUTLINES: Record<MapTheme, string> = {
+  blush: '#302a2d',
+  teal: '#083f43',
+  accessible: '#142d4e',
+}
+
 let map: L.Map | null = null
 let geoLayer: L.GeoJSON | null = null
 let labelLayer: L.LayerGroup | null = null
@@ -236,11 +274,19 @@ function classIndex(value: number): number {
 
 const legend = computed(() => {
   const { thresholds, min, max } = classBreaks.value
+
   if (!thresholds.length) return []
-  return RAMP.map((color, i) => {
+
+  const ramp = MAP_RAMPS[mapTheme.value]
+
+  return ramp.map((color, i) => {
     const lo = i === 0 ? min : thresholds[i - 1]
-    const hi = i === RAMP.length - 1 ? max : thresholds[i]
-    return { color, label: `${lo.toFixed(0)}–${hi.toFixed(0)}%` }
+    const hi = i === ramp.length - 1 ? max : thresholds[i]
+
+    return {
+      color,
+      label: `${lo.toFixed(0)}–${hi.toFixed(0)}%`,
+    }
   })
 })
 
@@ -251,10 +297,12 @@ function valueFor(code: string): number | null {
 function styleFor(code: string): L.PathOptions {
   const value = valueFor(code)
   const isSelected = code === selectedCode.value
+  const ramp = MAP_RAMPS[mapTheme.value]
+
   return {
-    fillColor: value === null ? NO_DATA_COLOR : RAMP[classIndex(value)],
+    fillColor: value === null ? NO_DATA_COLORS[mapTheme.value] : ramp[classIndex(value)],
     fillOpacity: 0.92,
-    color: isSelected ? '#302a2d' : '#fffaf8',
+    color: isSelected ? SELECTED_OUTLINES[mapTheme.value] : POLYGON_OUTLINES[mapTheme.value],
     weight: isSelected ? 2.5 : 0.6,
   }
 }
@@ -500,7 +548,15 @@ function buildLayer(geo: FeatureCollection<Geometry>) {
       polygon.on({
         click: () => selectArea(code, false),
         mouseover: () => {
-          polygon.setStyle({ weight: 1.8, color: '#7d3e51' })
+          polygon.setStyle({
+            weight: 1.8,
+            color:
+              mapTheme.value === 'teal'
+                ? '#15595c'
+                : mapTheme.value === 'accessible'
+                  ? '#145da0'
+                  : '#7d3e51',
+          })
           polygon.bringToFront()
         },
         mouseout: () => applyStyle(code),
@@ -566,6 +622,7 @@ function onSearchKeydown(event: KeyboardEvent) {
 }
 
 /* ---------- Lifecycle ---------- */
+let themeObserver: MutationObserver | null = null
 
 onMounted(async () => {
   if (!mapEl.value) return
@@ -608,6 +665,26 @@ onMounted(async () => {
   } finally {
     loading.value = false
   }
+
+  mapTheme.value = readMapTheme()
+
+  const themeObserver = new MutationObserver(() => {
+    const nextTheme = readMapTheme()
+
+    if (nextTheme !== mapTheme.value) {
+      mapTheme.value = nextTheme
+      restyleAll()
+    }
+  })
+
+  const themeRoot = mapEl.value.closest('.theme-blush, .theme-teal, .theme-accessible')
+
+  if (themeRoot) {
+    themeObserver.observe(themeRoot, {
+      attributes: true,
+      attributeFilter: ['class'],
+    })
+  }
 })
 
 onBeforeUnmount(() => {
@@ -618,12 +695,111 @@ onBeforeUnmount(() => {
   map = null
   geoLayer = null
   layersByCode.clear()
+
+  themeObserver?.disconnect()
+  themeObserver = null
 })
 </script>
 
 <style scoped>
 .choropleth-section {
+  --map-bg: #261417;
+  --map-text: #fff4f0;
+  --map-muted: #ddcbca;
+  --map-accent: #dda6a8;
+
+  --map-card-bg: #301d20;
+  --map-card-border: #493236;
+  --map-input-bg: #301d20;
+  --map-input-border: #6c5557;
+  --map-input-text: #fff4f0;
+  --map-hover-bg: #493236;
+
+  --map-detail-value: #efc6b9;
+  --map-detail-muted: #b9a3a4;
+  --map-tooltip-bg: #fff4f0;
+  --map-tooltip-text: #301d20;
+
+  --map-label-text: #302a2d;
+  --map-label-halo: #fff4f0;
+
   margin-top: 72px;
+  color: var(--map-text);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Blush: dark background with pink accents */
+.theme-blush .choropleth-section {
+  --map-bg: #23181a;
+  --map-text: #fff4f0;
+  --map-muted: #ddcbca;
+  --map-accent: #dda6a8;
+
+  --map-card-bg: #301d20;
+  --map-panel-bg: #301d20;
+  --map-card-border: #493236;
+
+  --map-input-bg: #301d20;
+  --map-input-border: #6c5557;
+  --map-input-text: #fff4f0;
+  --map-hover-bg: #493236;
+
+  --map-detail-value: #efc6b9;
+  --map-detail-muted: #b9a3a4;
+  --map-tooltip-bg: #fff4f0;
+  --map-tooltip-text: #301d20;
+  --map-label-text: #302a2d;
+  --map-label-halo: #fff4f0;
+}
+
+/* Teal: light mint card with teal accents */
+.theme-teal .choropleth-section {
+  --map-bg: #123b3c;
+  --map-text: #123b3c;
+  --map-muted: #496b68;
+  --map-accent: #087b78;
+
+  --map-card-bg: #effcfb;
+  --map-panel-bg: #effcfb;
+  --map-card-border: #b8ded9;
+
+  --map-input-bg: #ffffff;
+  --map-input-border: #86aaa5;
+  --map-input-text: #123b3c;
+  --map-hover-bg: #d0e6e2;
+
+  --map-detail-value: #087b78;
+  --map-detail-muted: #496b68;
+  --map-tooltip-bg: #effcfb;
+  --map-tooltip-text: #123b3c;
+  --map-label-text: #123b3c;
+  --map-label-halo: #effcfb;
+}
+
+/* Accessible: white card with strong blue contrast */
+.theme-accessible .choropleth-section {
+  --map-bg: #172b43;
+  --map-text: #172b43;
+  --map-muted: #344b63;
+  --map-accent: #145da0;
+
+  --map-card-bg: #ffffff;
+  --map-panel-bg: #ffffff;
+  --map-card-border: #9db7d2;
+
+  --map-input-bg: #ffffff;
+  --map-input-border: #829fbd;
+  --map-input-text: #172b43;
+  --map-hover-bg: #d3dfec;
+
+  --map-detail-value: #145da0;
+  --map-detail-muted: #344b63;
+  --map-tooltip-bg: #ffffff;
+  --map-tooltip-text: #172b43;
+  --map-label-text: #172b43;
+  --map-label-halo: #ffffff;
 }
 
 .choropleth-section h2 {
@@ -631,13 +807,13 @@ onBeforeUnmount(() => {
   font-size: clamp(30px, 3.4vw, 46px);
   line-height: 1.05;
   letter-spacing: -0.05em;
-  color: floralwhite;
+  color: var(--map-text);
 }
 
 .choropleth-intro {
   max-width: 560px;
   margin: 0 0 28px;
-  color: #716567;
+  color: var(--map-muted);
   font-size: 15px;
   line-height: 1.7;
 }
@@ -662,7 +838,7 @@ onBeforeUnmount(() => {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #b06b70;
+  color: var(--map-accent);
 }
 
 .choropleth-search {
@@ -680,17 +856,22 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 44px;
   padding: 0 18px;
-  border: 1px solid #d9b9b6;
   border-radius: 100px;
-  background: #fffaf8;
-  color: #302a2d;
+  background: var(--map-input-bg);
+  color: var(--map-input-text);
+  border-color: var(--map-input-border);
   font: inherit;
   font-size: 14px;
 }
 
+.choropleth-field select option {
+  background: var(--map-input-bg);
+  color: var(--map-input-text);
+}
+
 .choropleth-field input:focus,
 .choropleth-field select:focus {
-  outline: 2px solid #e9b9a8;
+  outline: 2px solid var(--map-accent);
   outline-offset: 2px;
 }
 
@@ -703,8 +884,8 @@ onBeforeUnmount(() => {
   margin: 0;
   padding: 6px;
   list-style: none;
-  background: #fffaf8;
-  border: 1px solid #eadedb;
+  background: var(--map-card-bg);
+  border: 1px solid var(--map-card-border);
   border-radius: 16px;
   box-shadow: 0 12px 26px #7c555522;
   max-height: 300px;
@@ -714,18 +895,18 @@ onBeforeUnmount(() => {
 .choropleth-results li {
   padding: 10px 14px;
   border-radius: 10px;
-  color: #302a2d;
+  color: var(--map-text);
   font-size: 14px;
   cursor: pointer;
 }
 
 .choropleth-results li.active,
 .choropleth-results li:hover {
-  background: #f6e1df;
+  background: var(--map-hover-bg);
 }
 
 .choropleth-results .choropleth-no-results {
-  color: #8d7c7e;
+  color: var(--map-muted);
   cursor: default;
 }
 
@@ -736,17 +917,17 @@ onBeforeUnmount(() => {
 .choropleth-reset {
   height: 44px;
   padding: 0 20px;
-  border: 1px solid #bd7d84;
+  border: 1px solid var(--map-accent);
   border-radius: 100px;
-  background: #fff8f4;
-  color: #9e5260;
+  background: var(--map-card-bg);
+  color: var(--map-accent);
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
 }
 
 .choropleth-reset:hover {
-  background: #f6e1df;
+  background: var(--map-hover-bg);
 }
 
 /* ---------- Map + panel ---------- */
@@ -760,17 +941,17 @@ onBeforeUnmount(() => {
 .choropleth-map-wrap {
   position: relative;
   min-height: 560px;
-  border: 1px solid #eadedb;
+  border: 1px solid var(--map-card-border);
   border-radius: 18px;
   overflow: hidden;
-  background: #f8e9e9;
+  background: var(--map-bg);
   isolation: isolate;
 }
 
 .choropleth-map {
   position: absolute;
   inset: 0;
-  background: #352a2d;
+  background: var(--map-bg);
   font-family: inherit;
 }
 
@@ -796,15 +977,20 @@ onBeforeUnmount(() => {
 
 .choropleth-panel {
   padding: 22px;
-  border: 1px solid #eadedb;
+  border: 1px solid var(--map-card-border);
   border-radius: 18px;
-  background: #fffaf8;
+  background: var(--map-panel-bg);
+  color: var(--map-text);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .choropleth-panel h3 {
   margin: 0 0 12px;
   font-size: 15px;
-  color: #332a2d;
+  color: var(--map-text);
 }
 
 .choropleth-legend {
@@ -814,7 +1000,7 @@ onBeforeUnmount(() => {
   padding: 0;
   list-style: none;
   font-size: 12.5px;
-  color: #6e5558;
+  color: var(--map-muted);
 }
 
 .choropleth-legend li {
@@ -826,13 +1012,13 @@ onBeforeUnmount(() => {
 .swatch {
   width: 22px;
   height: 14px;
-  border: 1px solid #e0cfcc;
+  border: 1px solid var(--map-card-border);
   border-radius: 4px;
 }
 
 .choropleth-detail {
   padding-top: 18px;
-  border-top: 1px solid #eadedb;
+  border-top: 1px solid var(--map-card-border);
 }
 
 .choropleth-detail dl {
@@ -849,25 +1035,25 @@ onBeforeUnmount(() => {
 
 .choropleth-detail dt {
   font-size: 11.5px;
-  color: #8d7c7e;
+  color: var(--map-detail-muted);
 }
 
 .choropleth-detail dd {
   margin: 0;
   font-size: 18px;
   font-weight: 700;
-  color: #8f3f55;
+  color: var(--map-detail-value);
 }
 
 .choropleth-detail dd small {
   font-size: 11px;
   font-weight: 400;
-  color: #8d7c7e;
+  color: var(--map-detail-muted);
 }
 
 .choropleth-hint {
   margin: 0;
-  color: #806e70;
+  color: var(--map-muted);
   font-size: 13px;
   line-height: 1.6;
 }
@@ -883,10 +1069,10 @@ onBeforeUnmount(() => {
 /* Leaflet tooltip (created outside this component's template) */
 :deep(.map-tooltip) {
   padding: 8px 12px;
-  border: 1px solid #d39a9a;
+  border: 1px solid var(--map-accent);
   border-radius: 8px;
-  background: #fffaf6;
-  color: #302a2d;
+  background: var(--map-tooltip-bg);
+  color: var(--map-tooltip-text);
   font-size: 12px;
   line-height: 1.5;
   box-shadow: 0 6px 16px #7c555530;
@@ -894,7 +1080,7 @@ onBeforeUnmount(() => {
 
 :deep(.map-tooltip strong) {
   display: block;
-  color: #73484e;
+  color: var(--map-detail-value);
 }
 
 :deep(.leaflet-container) {
@@ -902,7 +1088,8 @@ onBeforeUnmount(() => {
 }
 
 :deep(.leaflet-control-attribution) {
-  background: #fffaf8cc;
+  background: var(--map-card-bg);
+  color: var(--map-text);
   font-size: 10px;
 }
 
@@ -941,10 +1128,10 @@ onBeforeUnmount(() => {
   width: 42px;
   height: 42px;
   padding: 0;
-  border: 1px solid #eadedb;
+  border: 1px solid var(--map-card-border);
   border-radius: 5px;
-  background: #fff;
-  color: #5d454b;
+  background: var(--map-card-bg);
+  color: var(--map-text);
   box-shadow: 0 2px 6px rgb(0 0 0 / 18%);
   cursor: pointer;
   transition:
@@ -952,15 +1139,15 @@ onBeforeUnmount(() => {
     box-shadow 0.2s ease;
 }
 .choropleth-map-reset:hover {
-  background: #f8e9e9;
+  background: var(--map-hover-bg);
   box-shadow: 0 3px 8px rgb(0 0 0 / 22%);
 }
 .choropleth-map-reset:focus-visible {
-  outline: 2px solid #b7626d;
+  outline-color: var(--map-accent);
   outline-offset: 2px;
 }
 .choropleth-map-reset:active {
-  background: #f6e1df;
+  background: var(--map-hover-bg);
 }
 @media (prefers-reduced-motion: reduce) {
   .choropleth-map-reset {
@@ -974,7 +1161,6 @@ onBeforeUnmount(() => {
   justify-content: center;
   background: transparent;
   border: none;
-  color: #302a2d;
   font-family: inherit;
   font-size: 10px;
   font-weight: 700;
@@ -982,11 +1168,12 @@ onBeforeUnmount(() => {
   text-align: center;
   white-space: normal;
   overflow-wrap: break-word;
+  color: var(--map-label-text);
   text-shadow:
-    -1px -1px 2px #fffaf8,
-     1px -1px 2px #fffaf8,
-    -1px  1px 2px #fffaf8,
-     1px  1px 2px #fffaf8;
+    -1px -1px 2px var(--map-label-halo),
+    1px -1px 2px var(--map-label-halo),
+    -1px 1px 2px var(--map-label-halo),
+    1px 1px 2px var(--map-label-halo);
   pointer-events: none;
 }
 </style>

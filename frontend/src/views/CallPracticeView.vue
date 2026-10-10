@@ -747,7 +747,6 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-
 .call-practice-page {
   --cp-page-bg: #fffaf8;
   --cp-glow: rgba(231, 181, 187, 0.28);
@@ -767,12 +766,7 @@ onBeforeUnmount(() => {
   padding: 72px clamp(20px, 6vw, 88px) 90px;
   background:
     radial-gradient(circle at 85% 8%, var(--cp-glow), transparent 26rem),
-    linear-gradient(
-      180deg,
-      var(--cp-page-bg) 0%,
-      var(--cp-card-bg) 46%,
-      var(--cp-page-bg) 100%
-    );
+    linear-gradient(180deg, var(--cp-page-bg) 0%, var(--cp-card-bg) 46%, var(--cp-page-bg) 100%);
   color: var(--cp-text);
   font-size: 16px;
 }
@@ -1501,7 +1495,7 @@ onBeforeUnmount(() => {
 
 @media (max-width: 640px) {
   .call-practice-page {
-    padding: 48px 14px 64px;
+    padding: 32px 14px 48px;
   }
 
   .practice-intro {
@@ -1509,17 +1503,18 @@ onBeforeUnmount(() => {
   }
 
   .practice-intro h1 {
-    font-size: 42px;
+    font-size: clamp(2rem, 9vw, 2.625rem);
+    overflow-wrap: anywhere;
   }
 
   .intro-copy {
-    font-size: 15px;
+    font-size: 1rem;
   }
 
   .privacy-strip {
     align-items: flex-start;
     border-radius: 16px;
-    text-align: left;
+    text-align: start;
   }
 
   .call-card,
@@ -1531,7 +1526,7 @@ onBeforeUnmount(() => {
   .welcome-state,
   .complete-state,
   .live-call {
-    min-height: 540px;
+    min-height: 380px;
     padding: 34px 20px;
   }
 
@@ -1539,12 +1534,38 @@ onBeforeUnmount(() => {
     padding: 20px;
   }
 
+  .transcript-heading,
+  .summary-heading {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
   .summary-grid {
     grid-template-columns: 1fr;
   }
 
-  .summary-heading {
+  .summary-card {
+    padding: 22px 18px;
+  }
+
+  .summary-section {
+    padding: 18px;
+  }
+
+  .summary-section dl {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px 12px;
+  }
+
+  .call-controls,
+  .complete-actions {
+    width: 100%;
     flex-direction: column;
+  }
+
+  .call-controls button,
+  .complete-actions button {
+    width: 100%;
   }
 
   .scope-note {
@@ -1553,15 +1574,13 @@ onBeforeUnmount(() => {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .orb-ring,
-  .audio-bars i {
-    animation: none !important;
-  }
-
-  .primary-action,
-  .finish-button,
-  .progress-track span {
-    transition: none;
+  .call-practice-page *,
+  .call-practice-page *::before,
+  .call-practice-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
