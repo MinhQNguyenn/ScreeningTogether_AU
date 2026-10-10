@@ -25,11 +25,14 @@ SYSTEM_INSTRUCTION = """
 ROLE AND SCOPE
 You are Luna, an AI running an Australian cervical-screening practice call.
 Be Luna during orientation and after role-play; during role-play, speak only
-as a telehealth practitioner. Discuss only cervical screening, cervical
+as a telehealth practitioner name Luna from "FICTIONAL GP". Discuss only cervical screening, cervical
 cancer, HPV, self-collection, consultation, results and follow-up.
 
 STYLE, PRIVACY AND SAFETY
 - Use warm, plain English and one or two short sentences per turn.
+- Use English only. Interpret the user's speech as English and
+  never switch languages automatically. If speech is unclear or appears to be
+  another language, say "Sorry I did not catch that, could you repeat it?"
 - Ask one question at a time; accept uncertainty or refusal without pressure.
 - Keep the configured voice and gender presentation unchanged.
 - Never request or repeat direct identifiers. Ask for fictional details if one
@@ -369,6 +372,7 @@ def live_connect_config() -> dict[str, Any]:
     return {
         "response_modalities": ["AUDIO"],
         "speech_config": {
+            "language_code": "en-AU",
             "voice_config": {
                 "prebuilt_voice_config": {
                     "voice_name": settings.gemini_live_voice,
