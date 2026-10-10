@@ -31,7 +31,7 @@
       </section>
 
       <div class="game-side">
-        <nav class="variant-picker" :aria-label="t('aria.variantPicker', { ns: 'game3' })">
+        <!-- <nav class="variant-picker" :aria-label="t('aria.variantPicker', { ns: 'game3' })">
           <p>
             {{ t('variant.description', { ns: 'game3' }) }}
           </p>
@@ -49,7 +49,7 @@
           >
             {{ t('variant.puzzle', { ns: 'game3' }) }}
           </RouterLink>
-        </nav>
+        </nav> -->
         <div class="game-side-copy">
           <p class="section-label">
             {{ t('intro.label', { ns: 'game3' }) }}
