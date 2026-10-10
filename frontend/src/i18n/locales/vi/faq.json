@@ -1,0 +1,68 @@
+
+{
+  "title": "Câu hỏi thường gặp",
+  "eyebrow": "Những câu hỏi thường gặp",
+  "heading": "Giải đáp rõ ràng,",
+  "headingEmphasis": "tất cả trong một nơi.",
+  "intro": "Các câu hỏi được sắp xếp theo những điều mọi người thường muốn biết trước tiên. Nhấn vào bất kỳ câu hỏi nào để xem câu trả lời. Bạn không bị giới hạn thời gian và không bị theo dõi khi đọc, vì vậy bạn có thể quay lại bất cứ lúc nào.",
+  "groups": {
+    "screening": "Về tầm soát cổ tử cung",
+    "appointment": "Buổi hẹn khám",
+    "access": "Chi phí và các lựa chọn"
+  },
+  "questions": {
+    "what": {
+      "question": "Tầm soát cổ tử cung là gì?",
+      "answer": "Đây là xét nghiệm đơn giản nhằm kiểm tra HPV trong các tế bào cổ tử cung. HPV là loại vi-rút có thể gây ra những thay đổi ở tế bào theo thời gian. Hầu hết các kết quả đều bình thường."
+    },
+    "why": {
+      "question": "Tại sao việc tầm soát lại quan trọng?",
+      "answer": "Tầm soát có thể phát hiện HPV trước khi vi-rút gây ra những thay đổi ở tế bào. Phát hiện sớm giúp theo dõi những thay đổi này trước khi chúng tiến triển thành ung thư cổ tử cung."
+    },
+    "who": {
+      "question": "Ai nên tầm soát và bắt đầu từ độ tuổi nào?",
+      "answer": "Tại Úc, người từ 25 đến 74 tuổi có cổ tử cung được khuyến nghị tầm soát cổ tử cung mỗi năm năm một lần, kể cả những người đã tiêm vắc-xin HPV."
+    },
+    "howOften": {
+      "question": "Tôi cần đi tầm soát bao lâu một lần?",
+      "answer": "Hầu hết mọi người cần làm xét nghiệm mỗi năm năm một lần. Nhân viên y tế có thể đề xuất lịch tầm soát khác dựa trên kết quả xét nghiệm hoặc tiền sử sức khỏe của bạn."
+    },
+    "test": {
+      "question": "Quá trình xét nghiệm diễn ra như thế nào?",
+      "answer": "Nhân viên y tế đã được đào tạo sẽ lấy một mẫu nhỏ từ cổ tử cung. Xét nghiệm thường chỉ mất vài phút và bạn có thể yêu cầu tạm dừng bất cứ lúc nào."
+    },
+    "femaleClinician": {
+      "question": "Tôi có thể yêu cầu bác sĩ hoặc điều dưỡng nữ không?",
+      "answer": "Có. Bạn có thể yêu cầu nhân viên y tế nữ khi đặt lịch hẹn. Bạn cũng có thể đi cùng một người hỗ trợ hoặc yêu cầu thông dịch viên."
+    },
+    "cost": {
+      "question": "Tầm soát có mất phí không?",
+      "answer": "Chi phí có thể khác nhau tùy nơi bạn đến và hoàn cảnh của bạn. Hãy hỏi phòng khám về các khoản phí trước khi đặt lịch hẹn."
+    },
+    "selfCollect": {
+      "question": "Tôi có thể tự lấy mẫu xét nghiệm không?",
+      "answer": "Một số người đủ điều kiện có thể tự lấy mẫu. Hãy hỏi nhân viên y tế xem lựa chọn này có phù hợp với bạn hay không."
+    }
+  },
+  "results": {
+    "heading": "Tìm hiểu kết quả tầm soát cổ tử cung",
+    "intro": "Kết quả giúp xác định liệu bạn có cần làm xét nghiệm tầm soát khác hay cần được theo dõi thêm hay không. Dưới đây là ý nghĩa của từng nhóm kết quả.",
+    "lowRisk": {
+      "title": "Nguy cơ thấp (không phát hiện HPV)",
+      "description": "Không phát hiện HPV nguy cơ cao trong mẫu xét nghiệm của bạn. Khả năng xuất hiện những thay đổi ở tế bào cổ tử cung cần điều trị trong năm năm tới là rất thấp. Thông thường, bạn sẽ được khuyến nghị thực hiện xét nghiệm tầm soát cổ tử cung tiếp theo sau năm năm."
+    },
+    "intermediateRisk": {
+      "title": "Nguy cơ trung bình",
+      "description": "Không phát hiện HPV tuýp 16 và 18, là những tuýp có nguy cơ cao nhất, nhưng phát hiện một tuýp HPV nguy cơ cao khác. Mẫu xét nghiệm cũng đã được kiểm tra để tìm những thay đổi bất thường ở tế bào. Kết quả cho thấy không có thay đổi hoặc chỉ có những thay đổi nhẹ. Thông thường, bạn sẽ được yêu cầu quay lại sau 12 tháng để làm xét nghiệm HPV theo dõi, vì cơ thể thường có thể tự loại bỏ vi-rút theo thời gian."
+    },
+    "higherRisk": {
+      "title": "Nguy cơ cao",
+      "description": "Kết quả này có thể có nghĩa là phát hiện HPV tuýp 16 hoặc 18, phát hiện những thay đổi mức độ cao ở tế bào cổ tử cung, hoặc tình trạng nhiễm một tuýp HPV nguy cơ cao khác kéo dài. Việc theo dõi thêm rất quan trọng để đánh giá nguy cơ và xác định liệu bạn có cần điều trị hay không. Kết quả nguy cơ cao không nhất thiết có nghĩa là bạn mắc ung thư cổ tử cung."
+    },
+    "unsatisfactory": {
+      "title": "Kết quả không đạt yêu cầu",
+      "description": "Mẫu xét nghiệm không thể được đánh giá đầy đủ. Điều này có thể xảy ra khi số lượng tế bào quá ít hoặc lượng mẫu không đủ để thực hiện các xét nghiệm cần thiết. Kết quả này không có nghĩa là đã phát hiện HPV hoặc có bất thường. Bạn nên làm lại xét nghiệm vào thời điểm mà nhân viên y tế khuyến nghị."
+    }
+  }
+}
+

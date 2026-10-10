@@ -118,6 +118,14 @@
             <span aria-hidden="true">←</span>
             {{ t('navigation.previousGame', { ns: 'game3' }) }}
           </RouterLink>
+
+          <RouterLink
+            class="game-route-link game-route-link-next"
+            to="/faq/#result"
+          >
+            {{ t('navigation.cervicalResults', { ns: 'game3' }) }}
+            <span aria-hidden="true">→</span>
+          </RouterLink>
         </div>
       </div>
     </section>

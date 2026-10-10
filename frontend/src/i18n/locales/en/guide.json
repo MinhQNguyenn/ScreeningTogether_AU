@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "eyebrow": "Your guide",
+    "title": "Two ways to",
+    "titleEmphasis": "take the test.",
+    "description": "Cervical screening is a short test that looks for HPV. Choose how you would like to do it and we will walk you through what to expect.",
+    "prompt": "How would you like to be screened?",
+    "choicesAria": "Choose how to be screened",
+    "choices": {
+      "home": {
+        "title": "From home",
+        "description": "Order a self-collection kit by phone and do the swab in private.",
+        "cta": "See the steps"
+      },
+      "gp": {
+        "title": "At a GP clinic",
+        "description": "Have your GP or nurse do the test, or collect your own swab in a private space.",
+        "cta": "See the steps"
+      }
+    }
+  },
+
+  "home": {
+    "label": "Option 1 · From home",
+    "title": "Screening",
+    "titleEmphasis": "from home.",
+    "description": "If you can't get to a clinic, you may be able to book a telehealth appointment and have a self-collection kit sent to you. The swab is quick, private and just as accurate at detecting HPV.",
+    "note": "Kits can't be bought at a pharmacy or posted out automatically. You need to arrange one through a healthcare provider. If you have unusual bleeding, pain or discharge, see your GP instead.",
+    "steps": {
+      "call": {
+        "title": "Call to order your kit",
+        "description": "Phone your GP or a telehealth service and ask for a self-collection kit. Ask about cost too: the test is free, but a consultation fee may apply."
+      },
+      "collect": {
+        "title": "Collect your sample",
+        "description": "Wash your hands, then gently insert the swab and rotate it 2 to 3 times for about 10 seconds. It should not hurt."
+      },
+      "return": {
+        "title": "Return it and get your result",
+        "description": "Put the swab back in its tube and return it as your provider instructs. They will contact you with your result."
+      }
+    },
+    "next": "Next: practise the phone call"
+  },
+
+  "gp": {
+    "label": "Option 2 · At a GP clinic",
+    "title": "Screening",
+    "titleEmphasis": "at a GP.",
+    "description": "A doctor or specially trained nurse can do your test in a few minutes. You can choose a clinician-collected test, or collect your own swab in a private space.",
+    "note": "Ask for a self-collection swab if you prefer. It is a good idea to call ahead to confirm the clinic offers it.",
+    "steps": {
+      "book": {
+        "title": "Find and book",
+        "description": "Book with a GP, community health centre or women's health centre. Call ahead to ask about self-collection and any consultation fee."
+      },
+      "test": {
+        "title": "Have your test",
+        "description": "Your clinician takes a sample with a small brush, or you swab yourself behind a screen. You can ask questions at any time."
+      },
+      "result": {
+        "title": "Get your result",
+        "description": "Your sample goes to a lab and your provider will let you know the result. Most people only need to repeat it every 5 years."
+      }
+    },
+    "next": "Find a GP near you"
+  },
+
+  "ai": {
+    "label": "Practise first",
+    "title": "Nervous about",
+    "titleEmphasis": "making the call?",
+    "description": "To order a kit you will need to phone a clinic or telehealth service. Our AI lets you rehearse that conversation first, at your own pace, so the real call feels familiar.",
+    "points": {
+      "ask": "Ask for a self-collection kit",
+      "questions": "Answer the questions you may be asked",
+      "next": "Learn what to ask about cost and returning the kit"
+    },
+    "button": "Practise the call with AI",
+    "disclaimer": "This is a practice conversation only. It cannot book appointments or give medical advice.",
+    "datadisclaimer": "We do not collect or store any personal information that you have shared with our AI.",
+    "backToStart": "Back to the start",
+    "findGp": "Prefer to see a GP in person?"
+  }
+}

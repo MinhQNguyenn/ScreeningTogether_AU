@@ -14,6 +14,16 @@ import zhHKHome from './locales/zh-HK/home.json'
 import zhCNHome from './locales/zh-CN/home.json'
 import arHome from './locales/ar/home.json'
 import viHome from './locales/vi/home.json'
+import enFaq from './locales/en/faq.json'
+import zhHKFaq from './locales/zh-HK/faq.json'
+import zhCNFaq from './locales/zh-CN/faq.json'
+import arFaq from './locales/ar/faq.json'
+import viFaq from './locales/vi/faq.json'
+import enData from './locales/en/data.json'
+import zhHKData from './locales/zh-HK/data.json'
+import zhCNData from './locales/zh-CN/data.json'
+import arData from './locales/ar/data.json'
+import viData from './locales/vi/data.json'
 
 // GPRunnerGameView.vue
 import enGpRunner from './locales/en/gpRunner.json'
@@ -42,47 +52,92 @@ import arGame2 from './locales/ar/game2.json'
 import viGame2 from './locales/vi/game2.json'
 
 
+// resoucrce page
+import enResource from './locales/en/resources.json'
+import zhHKResource from './locales/zh-HK/resources.json'
+import zhCNResource from './locales/zh-CN/resources.json'  
+import arResource from './locales/ar/resources.json'
+import viResource from './locales/vi/resources.json'
+
+// Choropleth map 
+import enChoropleth from './locales/en/data-map.json'
+import zhHKChoropleth from './locales/zh-HK/data-map.json'
+import zhCNChoropleth from './locales/zh-CN/data-map.json'
+import arChoropleth from './locales/ar/data-map.json'
+import viChoropleth from './locales/vi/data-map.json'
+
+// Guide
+import enGuide from './locales/en/guide.json'
+import zhHKGuide from './locales/zh-HK/guide.json'
+import zhCNGuide from './locales/zh-CN/guide.json'
+import arGuide from './locales/ar/guide.json'
+import viGuide from './locales/vi/guide.json'
 
 const resources = {
   en: {
     common: enCommon,
     home: enHome,
+    faq: enFaq,
+    data: enData,
     gpRunner: enGpRunner,
     game3: game3En,
     gpFinder: enGpFinder,
-    game2: enGame2
+    game2: enGame2,
+    resources: enResource,
+    choropleth: enChoropleth,
+    guide: enGuide
   },
   'zh-HK': {
     common: zhHKCommon,
     home: zhHKHome,
+    faq: zhHKFaq,
+    data: zhHKData,
     gpRunner: zhHKGpRunner,
     game3: game3ZhHK,
     gpFinder: zhHKGpFinder,
-    game2: zhHKGame2
+    game2: zhHKGame2,
+    resources: zhHKResource,
+    choropleth: zhHKChoropleth,
+    guide: zhHKGuide
   },
   'zh-CN': {
     common: zhCNCommon,
     home: zhCNHome,
+    faq: zhCNFaq,
+    data: zhCNData,
     gpRunner: zhCNGpRunner,
     game3: game3ZhCN,
     gpFinder: zhCNGpFinder,
-    game2:zhCNGame2
+    game2:zhCNGame2,
+    resources: zhCNResource,
+    choropleth: zhCNChoropleth,
+    guide: zhCNGuide
   },
   ar: {
     common: arCommon,
     home: arHome,
+    faq: arFaq,
+    data: arData,
     gpRunner: arGpRunner,
     game3: game3Ar,
     gpFinder: arGpFinder,
-    game2: arGame2
+    game2: arGame2,
+    resources: arResource,
+    choropleth: arChoropleth,
+    guide: arGuide
   },
   vi: {
     common: viCommon,
     home: viHome,
+    faq: viFaq,
+    data: viData,
     gpRunner: viGpRunner,
     game3: game3Vi,
     gpFinder: viGpFinder,
-    game2:viGame2
+    game2:viGame2,
+    resources: viResource,
+    choropleth: viChoropleth,
+    guide: viGuide
   }
 }
 
@@ -92,7 +147,7 @@ i18next
     resources,
     fallbackLng: 'en',
     defaultNS: 'common',
-    ns: ['common', 'home', 'gpRunner', 'game3', 'gpFinder', 'game2'],
+    ns: ['common', 'home', 'faq', 'data', 'gpRunner', 'game3', 'gpFinder', 'game2', 'resources', 'choropleth', 'guide'],
 
     detection: {
       order: ['localStorage', 'navigator'],

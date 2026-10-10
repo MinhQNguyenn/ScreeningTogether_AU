@@ -8,10 +8,14 @@ import GPRunnerGameView from '../views/GpRunnerGameView.vue'
 import GPDetailsView from '../views/GpFinderDetailView.vue'
 import Game2View from '../views/Game2View.vue'
 import Game3View from '../views/Game3View.vue'
+import FAQView from '../views/FAQView.vue'
+import DataView from '../views/DataView.vue'
+import GuideView from '../views/GuideView.vue'
+import resourceView from '../views/ResourceView.vue'
 
 //Iteration 1
-import Iteration1Home from "../views/Iteration 1/HomeView.vue"
-import Iteration1Game1 from "../views/Iteration 1/GpRunnerGameView.vue"
+import Iteration1Home from '../views/Iteration 1/HomeView.vue'
+import Iteration1Game1 from '../views/Iteration 1/GpRunnerGameView.vue'
 
 //Iteration 2
 import Iteration2HomeView from '../views/Iteration 2/HomeView.vue'
@@ -24,17 +28,34 @@ const router = createRouter({
   history: createWebHistory(),
 
   scrollBehavior(to, from, savedPosition) {
-    // Restore the previous position when using browser Back/Forward
     if (savedPosition) {
       return savedPosition
+    } // Scroll to a specific section when the URL contains a hash
+    if (to.hash) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            el: to.hash,
+            top: 100,
+            // Offset for the sticky header
+            behavior: 'smooth',
+          })
+        }, 200)
+      })
     }
-
-    // Start new pages at the top
     return { top: 0 }
   },
 
   routes: [
     { path: '/', component: HomeView, meta: { title: 'Home | ScreeningTogether AU' } },
+    { path: '/faq', component: FAQView, meta: { title: 'FAQ | ScreeningTogether AU' } },
+    { path: '/data', component: DataView, meta: { title: 'The numbers | ScreeningTogether AU' } },
+    { path: '/guide', component: GuideView, meta: { title: 'Guide | ScreeningTogether AU' } },
+    {
+      path: '/resourceinfo',
+      component: resourceView,
+      meta: { title: 'Resources | ScreeningTogether AU' },
+    },
     {
       path: '/resources',
       component: PlaceholderView,
@@ -57,11 +78,18 @@ const router = createRouter({
       component: Game3View,
       meta: { title: 'A few minutes with Luna | ScreeningTogether AU' },
     },
-    { path: '/details', component: GPDetailsView, meta: { title: 'GP Details | ScreeningTogether AU' } },
-
+    {
+      path: '/details',
+      component: GPDetailsView,
+      meta: { title: 'GP Details | ScreeningTogether AU' },
+    },
 
     // ROUTER FOR ITERATION 1
-    { path: '/iteration1', component: Iteration1Home, meta: { title: 'Home | ScreeningTogether AU' } },
+    {
+      path: '/iteration1',
+      component: Iteration1Home,
+      meta: { title: 'Home | ScreeningTogether AU' },
+    },
     {
       path: '/iteration1/gprunner',
       component: Iteration1Game1,
@@ -69,9 +97,21 @@ const router = createRouter({
     },
 
     // ROUTER FOR ITERATION 2
-    { path: '/iteration2', component: Iteration2HomeView, meta: { title: 'Home | ScreeningTogether AU' } },
-    { path: '/iteration2/game', component: Iteration2GPRunnerGameView, meta: { title: 'Games | ScreeningTogether AU' } },
-    { path: '/iteration2/gpfinder', component: Iteration2GpFinder, meta: { title: 'GP Finder | ScreeningTogether AU' } },
+    {
+      path: '/iteration2',
+      component: Iteration2HomeView,
+      meta: { title: 'Home | ScreeningTogether AU' },
+    },
+    {
+      path: '/iteration2/game',
+      component: Iteration2GPRunnerGameView,
+      meta: { title: 'Games | ScreeningTogether AU' },
+    },
+    {
+      path: '/iteration2/gpfinder',
+      component: Iteration2GpFinder,
+      meta: { title: 'GP Finder | ScreeningTogether AU' },
+    },
     {
       path: '/iteration2/gprunner',
       component: Iteration2GPRunnerGameView,
