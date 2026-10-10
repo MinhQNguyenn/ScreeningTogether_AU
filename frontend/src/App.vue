@@ -10,14 +10,14 @@
         ScreeningTogether AU</RouterLink
       >
       <nav :class="['main-nav', { open: menuOpen }]" aria-label="Main navigation">
-        <RouterLink to="/">{{ t('header.home') }}</RouterLink>
-        <RouterLink to="/data">{{ t('header.data') }}</RouterLink>
-        <RouterLink to="/faq">{{ t('header.faq') }}</RouterLink>
+        <RouterLink to="/" @click="closeMenu">{{ t('header.home') }}</RouterLink>
+        <RouterLink to="/data" @click="closeMenu">{{ t('header.data') }}</RouterLink>
+        <RouterLink to="/faq" @click="closeMenu">{{ t('header.faq') }}</RouterLink>
 
-        <RouterLink to="/guide">{{ t('header.guide') }}</RouterLink>
+        <RouterLink to="/guide" @click="closeMenu">{{ t('header.guide') }}</RouterLink>
         <RouterLink to="/gpfinder" @click="closeMenu">{{ t('header.gpFinder') }}</RouterLink>
-        <RouterLink to="/resourceinfo">{{ t('header.resourceInfo') }}</RouterLink>
-        <RouterLink to="/call-practice">{{ t('header.practice') }}</RouterLink>
+        <RouterLink to="/resourceinfo" @click="closeMenu">{{ t('header.resourceInfo') }}</RouterLink>
+        <RouterLink to="/call-practice" @click="closeMenu">{{ t('header.practice') }}</RouterLink>
       </nav>
       <button class="header-cta" type="button" @click="openExplore">
         <span v-if="isMobile">{{ t('header.exploreMobile') }}</span>
