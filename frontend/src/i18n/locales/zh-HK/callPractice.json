@@ -1,0 +1,97 @@
+{
+  "callPractice": {
+    "workspaceLabel": "電話練習區",
+    "intro": {
+      "eyebrow": "電話溝通練習",
+      "title": "自信地查詢子宮頸篩查",
+      "description": "練習致電診所，了解如何預約子宮頸篩查，以及需要預先準備甚麼。"
+    },
+    "privacy": {
+      "notice": "這是模擬練習。請勿分享個人資料或敏感醫療資訊。本頁面不會儲存對話內容。"
+    },
+    "connection": {
+      "idle": "準備開始",
+      "connecting": "正在連線...",
+      "connected": "已連線",
+      "finishing": "正在準備摘要...",
+      "complete": "練習已完成",
+      "error": "發生錯誤",
+      "live": "即時通話"
+    },
+    "welcome": {
+      "title": "準備好開始練習未？",
+      "description": "想像一下，你正致電診所預約子宮頸篩查。Luna 會一步步引導你進行練習。",
+      "steps": [
+        "確認咪高峰運作正常，並盡量身處安靜的地方。",
+        "聆聽診所職員說話，輪到你時再作回應。",
+        "通話結束後查看摘要，為實際預約做好準備。"
+      ],
+      "start": "開始練習",
+      "browserNote": "當瀏覽器要求使用咪高峰時，請允許存取。"
+    },
+    "complete": {
+      "eyebrow": "做得好！",
+      "title": "練習已完成",
+      "description": "模擬通話已經結束。請查看摘要，了解你的回答，以及聯絡診所前需要準備的資料。",
+      "download": "下載摘要",
+      "restart": "重新練習"
+    },
+    "live": {
+      "practitioner": "診所職員",
+      "luna": "Luna",
+      "settingUp": "正在準備通話...",
+      "preparing": "正在準備摘要...",
+      "ringing": "電話正在響...",
+      "speaking": "{{speaker}}正在說話...",
+      "yourTurn": "輪到你說話了",
+      "pleaseWait": "請稍候...",
+      "ringHelp": "聆聽電話鈴聲，等待對方接聽。",
+      "speakHelp": "準備好後，請清楚地表達。",
+      "speakingHelp": "請先聆聽，再作回應。輪到你時便可以說話。",
+      "continueHelp": "請稍候，讓對話繼續。",
+      "ringStatus": "正在播放電話鈴聲",
+      "audioStatus": "正在播放語音",
+      "listeningStatus": "咪高峰正在收音",
+      "pausedStatus": "音訊已暫停",
+      "questions": "練習問題",
+      "finish": "結束通話",
+      "leave": "離開練習"
+    },
+    "transcript": {
+      "eyebrow": "對話",
+      "title": "通話紀錄",
+      "notSaved": "不會儲存",
+      "empty": "開始練習後，對話內容會顯示在這裡。",
+      "you": "你",
+      "listening": "你（正在聆聽）",
+      "speaking": "{{speaker}}（正在說話）"
+    },
+    "summary": {
+      "eyebrow": "練習摘要",
+      "title": "為你的電話溝通做好準備",
+      "download": "下載摘要",
+      "answers": "你的回答",
+      "prepare": "需要準備的資料",
+      "questions": "可以向診所查詢的問題",
+      "notes": "重要提示"
+    },
+    "scope": {
+      "title": "請注意：",
+      "description": "這是教育用途的模擬練習，並非醫療服務。如需醫療建議或實際預約，請聯絡診所或醫護人員。"
+    },
+    "download": {
+      "title": "電話練習摘要",
+      "answers": "你的回答",
+      "prepare": "需要準備的資料",
+      "questions": "可以向診所查詢的問題",
+      "notes": "重要提示"
+    },
+    "errors": {
+      "unsupported": "你的瀏覽器不支援所需的音訊功能。請嘗試使用較新版本的瀏覽器。",
+      "microphone": "無法使用咪高峰。請檢查咪高峰權限，然後再試一次。",
+      "connection": "連線出現問題。請檢查網絡連線，然後再試一次。",
+      "unexpected": "連線意外中斷。請重新開始練習。",
+      "practice": "練習期間發生錯誤，請再試一次。"
+    }
+  }
+}

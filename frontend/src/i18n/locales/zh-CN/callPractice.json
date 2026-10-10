@@ -1,0 +1,97 @@
+{
+  "callPractice": {
+    "workspaceLabel": "电话练习区",
+    "intro": {
+      "eyebrow": "电话沟通练习",
+      "title": "自信地咨询宫颈筛查",
+      "description": "练习致电诊所，了解如何预约宫颈筛查以及需要提前做哪些准备。"
+    },
+    "privacy": {
+      "notice": "这是一次模拟练习。请勿分享个人信息或敏感医疗详情。本页面不会保存对话记录。"
+    },
+    "connection": {
+      "idle": "准备开始",
+      "connecting": "正在连接...",
+      "connected": "已连接",
+      "finishing": "正在生成摘要...",
+      "complete": "练习已完成",
+      "error": "发生错误",
+      "live": "实时通话"
+    },
+    "welcome": {
+      "title": "准备好开始练习了吗？",
+      "description": "想象一下，你正在致电诊所预约宫颈筛查。Luna 会一步步引导你进行练习。",
+      "steps": [
+        "确认麦克风可以正常使用，并尽量待在安静的地方。",
+        "认真聆听诊所工作人员说话，并在轮到你时回应。",
+        "通话结束后查看摘要，为实际预约做好准备。"
+      ],
+      "start": "开始练习",
+      "browserNote": "浏览器请求使用麦克风时，请允许访问。"
+    },
+    "complete": {
+      "eyebrow": "做得很好！",
+      "title": "练习已完成",
+      "description": "模拟通话已经结束。请查看摘要，了解你的回答以及联系诊所前需要准备的信息。",
+      "download": "下载摘要",
+      "restart": "重新练习"
+    },
+    "live": {
+      "practitioner": "诊所工作人员",
+      "luna": "Luna",
+      "settingUp": "正在准备通话...",
+      "preparing": "正在生成摘要...",
+      "ringing": "电话正在响铃...",
+      "speaking": "{{speaker}}正在说话...",
+      "yourTurn": "轮到你说话了",
+      "pleaseWait": "请稍候...",
+      "ringHelp": "请听电话铃声，并等待对方接听。",
+      "speakHelp": "准备好后，请清楚地表达。",
+      "speakingHelp": "请先聆听，再作回应。轮到你时就可以说话。",
+      "continueHelp": "请稍候，让对话继续进行。",
+      "ringStatus": "正在播放电话铃声",
+      "audioStatus": "正在播放语音",
+      "listeningStatus": "麦克风正在收听",
+      "pausedStatus": "音频已暂停",
+      "questions": "练习问题",
+      "finish": "结束通话",
+      "leave": "退出练习"
+    },
+    "transcript": {
+      "eyebrow": "对话",
+      "title": "通话记录",
+      "notSaved": "不会保存",
+      "empty": "开始练习后，对话内容会显示在这里。",
+      "you": "你",
+      "listening": "你（正在聆听）",
+      "speaking": "{{speaker}}（正在说话）"
+    },
+    "summary": {
+      "eyebrow": "练习摘要",
+      "title": "为你的电话沟通做好准备",
+      "download": "下载摘要",
+      "answers": "你的回答",
+      "prepare": "需要准备的信息",
+      "questions": "可以向诊所咨询的问题",
+      "notes": "重要提示"
+    },
+    "scope": {
+      "title": "请注意：",
+      "description": "这是用于教育目的的模拟练习，并非医疗服务。如需医疗建议或实际预约，请联系诊所或医疗专业人员。"
+    },
+    "download": {
+      "title": "电话练习摘要",
+      "answers": "你的回答",
+      "prepare": "需要准备的信息",
+      "questions": "可以向诊所咨询的问题",
+      "notes": "重要提示"
+    },
+    "errors": {
+      "unsupported": "你的浏览器不支持所需的音频功能。请尝试使用较新版本的浏览器。",
+      "microphone": "无法访问麦克风。请检查麦克风权限后重试。",
+      "connection": "连接出现问题。请检查网络连接后重试。",
+      "unexpected": "连接意外中断。请重新开始练习。",
+      "practice": "练习过程中发生错误。请重试。"
+    }
+  }
+}

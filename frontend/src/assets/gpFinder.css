@@ -503,7 +503,7 @@
 .service-type {
   margin: 3px 0 7px;
   color: #a75d68;
-  font-size: 10px;
+  font-size: 15px;
   line-height: 1;
   font-weight: 600;
 }
@@ -513,7 +513,7 @@
   gap: 2px;
   margin: 0;
   color: #5e5052;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.25;
   font-weight: 600;
 }

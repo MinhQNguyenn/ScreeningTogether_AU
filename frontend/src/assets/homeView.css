@@ -1,20 +1,45 @@
 .hero-section {
-  height: 100dvh;
+  min-height: 100vh;
   min-height: 100dvh;
+  height: auto;
   box-sizing: border-box;
   background: #f8e9e9;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
+  gap: clamp(24px, 4vw, 60px);
   margin-top: -78px;
-  padding: calc(78px + clamp(40px, 8vh, 76px)) max(6vw, 40px) clamp(32px, 6vh, 64px);
-  overflow: hidden;
+  padding: calc(78px + clamp(40px, 8vh, 76px)) max(6vw, 40px) clamp(40px, 6vh, 64px);
+  overflow: visible;
 }
 
 .hero-copy {
+  width: 100%;
+  min-width: 0;
   max-width: 570px;
   z-index: 1;
+  overflow-wrap: anywhere;
   animation: hero-fade-in 800ms ease-out both;
+}
+
+.hero-copy h1 {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-size: clamp(42px, 6vw, 90px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  margin: 24px 0;
+  color: #282326;
+  font-weight: 700;
+}
+
+.hero-text {
+  width: 100%;
+  max-width: 420px;
+  line-height: 1.7;
+  color: #6e6263;
+  font-size: 16px;
+  overflow-wrap: anywhere;
 }
 
 .hero-art {
@@ -89,9 +114,19 @@
 
 .hero-actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 28px;
+  gap: 12px 20px;
   margin-top: 34px;
+  max-width: 100%;
+}
+
+.hero-actions .button {
+  max-width: 100%;
+  min-width: 0;
+  white-space: normal;
+  text-align: center;
+  justify-content: center;
 }
 
 .button {
@@ -246,16 +281,20 @@
 .hero-card {
   position: absolute;
   z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   width: 210px;
-  height: 100px;
+  min-height: 100px;
   perspective: 1000px;
   outline: none;
 }
 
 .hero-card-inner {
   position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   width: 100%;
-  height: 100%;
+  min-height: 100px;
   transform-style: preserve-3d;
   transition: transform 0.6s ease;
 }
@@ -265,16 +304,21 @@
   transform: rotateY(180deg);
 }
 
+/* Front and back share one grid cell, so the taller face sets the height */
 .hero-card-face {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
+  position: relative;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 100px;
   padding: 14px 18px;
   border-radius: 4px;
   box-shadow: 0 9px 25px #7c555522;
+  overflow-wrap: anywhere;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
@@ -347,7 +391,12 @@
 @media (max-width: 760px) {
   .hero-card {
     width: 158px;
-    height: 104px;
+    min-height: 104px;
+  }
+
+  .hero-card-inner,
+  .hero-card-face {
+    min-height: 104px;
   }
 
   .hero-card-face {
@@ -416,124 +465,123 @@
   gap: 16px;
 }
 
-/* Flip-card perspective */
+/* Flip cards: let the back content determine card height */
 .info-card {
   position: relative;
   width: 100%;
-  height: 205px;
+  height: auto;
+  min-height: 205px;
   min-width: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
   perspective: 1200px;
+  box-sizing: border-box;
 }
 
-/* Element that actually rotates */
+/* The back face stays in normal document flow and sets the height */
 .info-card-inner {
-  position: absolute;
-  inset: 0;
-
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-
+  height: auto;
+  min-height: 205px;
   transform-style: preserve-3d;
   transition: transform 0.6s ease;
 }
 
-/* Rotate the whole card */
-.info-card:hover .info-card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Both sides of the card */
+/* Both faces overlap in the same grid cell */
 .info-card-front,
 .info-card-back {
-  position: absolute;
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
+  grid-area: 1 / 1;
   box-sizing: border-box;
-
-  margin: 0;
+  width: 100%;
+  min-width: 0;
+  min-height: 205px;
   padding: 23px;
-
-  border: 0;
-  border-radius: 0;
-
+  margin: 0;
+  overflow-wrap: anywhere;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
 /* Front */
 .info-card-front {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-
   background: #fffaf8;
   text-align: center;
-
   transform: rotateY(0deg);
 }
 
 .info-card-front h3 {
-  margin: 0;
   max-width: 80%;
+  margin: 0;
   font-size: 18px;
-  line-height: 1.15;
-  color: #332a2d;
-  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
 }
 
 .info-card-front .info-index {
   position: absolute;
   top: 23px;
   left: 23px;
-
   font-size: 10px;
   letter-spacing: 0.1em;
-  color: #b06b70;
 }
 
-/* Back */
+/* Back: remains in normal flow and controls the height */
 .info-card-back {
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-
-  /* FULL BACKGROUND */
+  gap: 12px;
+  height: auto;
   background: #f8e9e9;
-
   text-align: center;
-
   transform: rotateY(180deg);
 }
 
 .info-card-back p {
-  margin: 0;
+  width: 100%;
   max-width: 310px;
-
+  margin: 0;
   font-size: 13px;
   line-height: 1.6;
-  color: #806f70;
+  overflow-wrap: anywhere;
 }
 
-/* Accent card */
 .info-card-accent .info-card-front,
 .info-card-accent .info-card-back {
   background: #e9f0e7;
   border: 0;
 }
 
-/* GP Finder link */
 .info-card-back .arrow-link {
   display: inline-block;
-  margin-top: 18px;
+  max-width: 100%;
+  margin-top: 6px;
+  overflow-wrap: anywhere;
+}
+
+.info-card:hover .info-card-inner {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .info-card-inner {
+    transition: none;
+  }
+}
+
+/* Respect reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+  .info-card-inner {
+    transition: none;
+  }
 }
 
 .intro-section {
@@ -793,15 +841,29 @@
 
 @media (max-width: 760px) {
   .hero-section {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     height: auto;
     min-height: 100dvh;
-    padding: 118px 24px 20px;
+    padding: 118px 24px 32px;
+    gap: 12px;
+    overflow: visible;
+  }
+
+  .hero-copy {
+    max-width: none;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(38px, 10vw, 58px);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
   }
 
   .hero-art {
+    width: 100%;
+    max-width: 490px;
     height: 390px;
-    margin-top: 15px;
+    margin: 15px auto 0;
   }
 
   .sun {
@@ -879,6 +941,16 @@
 
   .hero-copy h1 {
     font-size: 58px;
+  }
+}
+
+@media (min-width: 761px) {
+  .site-shell.text-size-larger .hero-card {
+    width: 235px;
+  }
+
+  .site-shell.text-size-largest .hero-card {
+    width: 260px;
   }
 }
 
@@ -991,7 +1063,6 @@
   color: #7d3e51;
   cursor: pointer;
 }
-
 
 .hero-actions .button.button-secondary:hover {
   background: #fff8f4;
@@ -1228,4 +1299,125 @@
   .faq-preview-card {
     padding-left: 16px;
   }
+}
+/* Allow HomeView to grow when accessibility text is enlarged */
+.site-shell.text-size-larger .hero-section,
+.site-shell.text-size-largest .hero-section {
+  height: auto;
+  min-height: 100dvh;
+  overflow: visible;
+}
+
+.site-shell.text-size-larger .hero-card {
+  min-height: 115px;
+}
+
+.site-shell.text-size-largest .hero-card {
+  min-height: 135px;
+}
+
+.hero-section,
+.screening-info,
+.intro-section,
+.stats-section,
+.faq-preview,
+.stats-preview,
+.closing-section {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-copy,
+.hero-art,
+.screening-info-heading,
+.intro-grid,
+.stats-layout,
+.stats-preview-content,
+.info-grid,
+.steps-grid,
+.faq-preview-grid {
+  min-width: 0;
+}
+
+@media (max-width: 760px) {
+  .hero-section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-art {
+    max-width: 100%;
+  }
+}
+
+/* ==============================
+   THEME-AWARE BUTTON COLOURS
+   ============================== */
+
+/* Blush theme */
+.theme-blush .button-primary,
+.theme-blush .button-explore {
+  background-color: #b85c70 !important;
+  border-color: #b85c70 !important;
+  color: #fff !important;
+}
+
+.theme-blush .button-primary:hover,
+.theme-blush .button-explore:hover {
+  background-color: #964357 !important;
+  border-color: #964357 !important;
+}
+
+.theme-blush .button-secondary {
+  color: #964357 !important;
+  border-color: #b85c70 !important;
+}
+
+.theme-blush .button-secondary:hover {
+  background-color: #f6e1df !important;
+}
+
+/* Teal theme */
+.theme-teal .button-primary,
+.theme-teal .button-explore {
+  background-color: #0b7372 !important;
+  border-color: #0b7372 !important;
+  color: #fff !important;
+}
+
+.theme-teal .button-primary:hover,
+.theme-teal .button-explore:hover {
+  background-color: #075957 !important;
+  border-color: #075957 !important;
+}
+
+.theme-teal .button-secondary {
+  color: #075957 !important;
+  border-color: #0b7372 !important;
+}
+
+.theme-teal .button-secondary:hover {
+  background-color: #d9f1ee !important;
+}
+
+/* Accessible theme */
+.theme-accessible .button-primary,
+.theme-accessible .button-explore {
+  background-color: #1769aa !important;
+  border-color: #1769aa !important;
+  color: #fff !important;
+}
+
+.theme-accessible .button-primary:hover,
+.theme-accessible .button-explore:hover {
+  background-color: #104b7b !important;
+  border-color: #104b7b !important;
+}
+
+.theme-accessible .button-secondary {
+  color: #104b7b !important;
+  border-color: #1769aa !important;
+}
+
+.theme-accessible .button-secondary:hover {
+  background-color: #dbe9f7 !important;
 }

@@ -130,10 +130,10 @@
                 <dt>{{ t('map.metrics.otherLanguage', ns) }}</dt>
                 <dd>{{ fmtPct(selectedStat.pct_other_language) }}</dd>
               </div>
-              <div>
+              <!-- <div>
                 <dt>{{ t('map.metrics.lowProficiency', ns) }}</dt>
                 <dd>{{ fmtPct(selectedStat.pct_low_proficiency) }}</dd>
-              </div>
+              </div> -->
               <div>
                 <dt>{{ t('map.detail.birthplaceNotStated', ns) }}</dt>
                 <dd>{{ fmtPct(selectedStat.pct_birthplace_ns) }}</dd>
@@ -187,6 +187,8 @@ const METRICS: { key: MetricKey; field: MetricField }[] = [
 const mapEl = ref<HTMLDivElement | null>(null)
 let map: L.Map | null = null
 let geoLayer: L.GeoJSON | null = null
+let labelLayer: L.LayerGroup | null = null
+
 const layersByCode = new Map<string, L.Polygon>()
 
 const stats = ref<Record<string, Sa3Statistic>>({})
@@ -291,6 +293,127 @@ function nameOf(feature: Feature | undefined): string {
   return String(p.SA3_NAME21 ?? p.SA3_NAME_2021 ?? p.sa3_name ?? p.name ?? '')
 }
 
+function pointInPolygon(point: L.LatLng, polygon: L.Polygon): boolean {
+  const rings = polygon.getLatLngs()
+  const latLngRings = Array.isArray(rings[0]) ? (rings as L.LatLng[][]) : [rings as L.LatLng[]]
+
+  const x = point.lng
+  const y = point.lat
+
+  return latLngRings.some((ring) => {
+    let inside = false
+
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const xi = ring[i].lng
+      const yi = ring[i].lat
+      const xj = ring[j].lng
+      const yj = ring[j].lat
+
+      const intersects = yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi
+
+      if (intersects) inside = !inside
+    }
+
+    return inside
+  })
+}
+
+function findLabelPosition(polygon: L.Polygon): L.LatLng {
+  const bounds = polygon.getBounds()
+  const center = bounds.getCenter()
+
+  if (pointInPolygon(center, polygon)) return center
+
+  // Try progressively smaller offsets around the bounding-box centre.
+  const latSpan = bounds.getNorth() - bounds.getSouth()
+  const lngSpan = bounds.getEast() - bounds.getWest()
+
+  for (const factor of [0.2, -0.2, 0.35, -0.35, 0.1, -0.1]) {
+    for (const [latFactor, lngFactor] of [
+      [factor, 0],
+      [0, factor],
+      [factor, factor],
+      [factor, -factor],
+      [-factor, factor],
+      [-factor, -factor],
+    ]) {
+      const candidate = L.latLng(center.lat + latSpan * latFactor, center.lng + lngSpan * lngFactor)
+
+      if (pointInPolygon(candidate, polygon)) return candidate
+    }
+  }
+
+  // Fallback if no candidate is found.
+  return center
+}
+
+function addAreaLabel(polygon: L.Polygon, areaName: string, code: string) {
+  if (!map || !areaName.trim()) return
+
+  const labelElement = document.createElement('span')
+  labelElement.textContent = areaName
+
+  const icon = L.divIcon({
+    className: 'sa3-area-label',
+    html: labelElement,
+    iconSize: [110, 30],
+    iconAnchor: [55, 15],
+  })
+
+  const marker = L.marker(findLabelPosition(polygon), {
+    icon,
+    title: code,
+    interactive: false,
+    keyboard: false,
+    pane: 'sa3Labels',
+  })
+
+  labelLayer?.addLayer(marker)
+}
+
+function updateAreaLabelVisibility() {
+  if (!map || !labelLayer) return
+
+  const mapBounds = map.getBounds()
+  const mapSize = map.getSize()
+
+  labelLayer.eachLayer((layer) => {
+    const marker = layer as L.Marker
+    const code = marker.options.title
+    const polygon = code ? layersByCode.get(code) : undefined
+
+    if (!polygon) {
+      map!.removeLayer(marker)
+      return
+    }
+
+    const bounds = polygon.getBounds()
+
+    // Hide labels for areas outside the current viewport.
+    if (!bounds.intersects(mapBounds)) {
+      map!.removeLayer(marker)
+      return
+    }
+
+    // Estimate how much screen space the area's bounding box occupies.
+    const northWest = map!.latLngToContainerPoint(bounds.getNorthWest())
+    const southEast = map!.latLngToContainerPoint(bounds.getSouthEast())
+
+    const width = Math.abs(southEast.x - northWest.x)
+    const height = Math.abs(southEast.y - northWest.y)
+    const screenArea = width * height
+
+    // Show labels only when the area's bounding box is large enough.
+    const showLabel = screenArea >= 12000 && width >= 90 && height >= 45
+
+    if (showLabel) {
+      if (!map!.hasLayer(marker)) marker.addTo(map!)
+    } else {
+      map!.removeLayer(marker)
+    }
+  })
+}
+
 function buildTooltip(code: string, fallbackName: string): HTMLElement {
   const el = document.createElement('div')
   const name = document.createElement('strong')
@@ -311,11 +434,12 @@ function prefersReducedMotion() {
 function zoomTo(code: string) {
   const layer = layersByCode.get(code)
   if (!map || !layer) return
+
   map.flyToBounds(layer.getBounds(), {
     padding: [40, 40],
-    maxZoom: 9,
+    maxZoom: 11,
     animate: !prefersReducedMotion(),
-    duration: 0.8,
+    duration: 1.2,
   })
 }
 
@@ -338,6 +462,21 @@ function resetView() {
 function buildLayer(geo: FeatureCollection<Geometry>) {
   if (!map) return
 
+  // Recreate the label layer whenever the GeoJSON layer is rebuilt.
+  labelLayer?.remove()
+  labelLayer = L.layerGroup().addTo(map)
+
+  // Keep labels above the polygons without intercepting mouse events.
+  if (!map.getPane('sa3Labels')) {
+    map.createPane('sa3Labels')
+  }
+
+  const labelPane = map.getPane('sa3Labels')
+  if (labelPane) {
+    labelPane.style.zIndex = '650'
+    labelPane.style.pointerEvents = 'none'
+  }
+
   const usable: FeatureCollection<Geometry> = {
     type: 'FeatureCollection',
     features: geo.features.filter((f) => f.geometry && codeOf(f)),
@@ -350,6 +489,9 @@ function buildLayer(geo: FeatureCollection<Geometry>) {
       if (!code) return
       const polygon = layer as L.Polygon
       layersByCode.set(code, polygon)
+
+      // Display the SA3 name permanently on the map.
+      addAreaLabel(polygon, nameOf(feature), code)
 
       polygon.bindTooltip(() => buildTooltip(code, nameOf(feature)), {
         sticky: true,
@@ -365,6 +507,12 @@ function buildLayer(geo: FeatureCollection<Geometry>) {
       })
     },
   }).addTo(map)
+
+  // Update label visibility whenever the zoom level changes.
+  map.on('zoomend moveend', updateAreaLabelVisibility)
+
+  // Apply the correct visibility when the map first loads.
+  updateAreaLabelVisibility()
 }
 
 /* ---------- Search ---------- */
@@ -425,9 +573,17 @@ onMounted(async () => {
   map = L.map(mapEl.value, {
     preferCanvas: true,
     minZoom: 3,
-    maxZoom: 12,
-    zoomSnap: 0.25,
+    maxZoom: 16,
+    zoomSnap: 1,
+    zoomDelta: 0.5,
+    wheelPxPerZoomLevel: 120,
+    wheelDebounceTime: 40,
     worldCopyJump: false,
+    zoomAnimation: true,
+    fadeAnimation: true,
+    markerZoomAnimation: true,
+    maxBounds: AUSTRALIA_BOUNDS,
+    maxBoundsViscosity: 1,
   })
   map.attributionControl.setPrefix(false)
   map.attributionControl.addAttribution('Boundaries © Australian Bureau of Statistics')
@@ -455,6 +611,9 @@ onMounted(async () => {
 })
 
 onBeforeUnmount(() => {
+  labelLayer?.clearLayers()
+  labelLayer = null
+
   map?.remove()
   map = null
   geoLayer = null
@@ -807,5 +966,27 @@ onBeforeUnmount(() => {
   .choropleth-map-reset {
     transition: none;
   }
+}
+
+:deep(.sa3-area-label) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #302a2d;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: break-word;
+  text-shadow:
+    -1px -1px 2px #fffaf8,
+     1px -1px 2px #fffaf8,
+    -1px  1px 2px #fffaf8,
+     1px  1px 2px #fffaf8;
+  pointer-events: none;
 }
 </style>

@@ -160,20 +160,12 @@
 <script setup lang="ts">
 import '../assets/guide.css'
 import { computed } from 'vue'
-import { RouterLink, useRouter } from 'vue-router'
+import { RouterLink } from 'vue-router'
 
 import { useTranslation } from '../i18n/useTranslation'
 
 const { t } = useTranslation()
-const router = useRouter()
 const ns = { ns: 'guide' }
-
-// Route of the AI call practice feature (not built yet, update when it exists)
-const AI_PRACTICE_ROUTE = '/call-practice'
-
-const startAiPractice = () => {
-  router.push(AI_PRACTICE_ROUTE)
-}
 
 const choices = computed(() => [
   {
@@ -254,13 +246,111 @@ const aiPoints = computed(() => [
   }
 }
 
+/* =========================================
+   Theme colours (Blush is the default)
+   ========================================= */
 .guide-page {
-  background: #fffaf8;
+  --g-page-bg: #fffaf8;
+  --g-hero-bg: #f8e9e9;
+  --g-home-bg: #fffaf8;
+  --g-gp-bg: #fdf2ef;
+  --g-ai-bg: #f6e4df;
+  --g-heading: #282326;
+  --g-body: #6e6263;
+  --g-muted: #806e70;
+  --g-label: #b06b70;
+  --g-accent: #a75d68;
+  --g-accent-strong: #8f3f55;
+  --g-card-bg: #fffaf6;
+  --g-card-border: #eadedb;
+  --g-edge: #d47a82;
+  --g-edge-hover: #b9626d;
+  --g-chip-bg: #f6e1df;
+  --g-chip-fg: #b7626d;
+  --g-note-bar: #e9b9a8;
+  --g-bloom: #efc1b3;
+  --g-shadow: #7c555526;
+}
+
+.theme-teal .guide-page {
+  --g-page-bg: #eaf7f5;
+  --g-hero-bg: #d9f1ee;
+  --g-home-bg: #f3fbfa;
+  --g-gp-bg: #effcfb;
+  --g-ai-bg: #d9f1ee;
+  --g-heading: #123b3c;
+  --g-body: #365e5e;
+  --g-muted: #4d7070;
+  --g-label: #0b7372;
+  --g-accent: #0b7372;
+  --g-accent-strong: #075957;
+  --g-card-bg: #f5fcfb;
+  --g-card-border: #b8ded9;
+  --g-edge: #0b7372;
+  --g-edge-hover: #075957;
+  --g-chip-bg: #c7e8e3;
+  --g-chip-fg: #0b7372;
+  --g-note-bar: #8ed2cb;
+  --g-bloom: #b8ded9;
+  --g-shadow: #0b737226;
+}
+
+.theme-accessible .guide-page {
+  --g-page-bg: #fffdf3;
+  --g-hero-bg: #fff1b8;
+  --g-home-bg: #fffdf3;
+  --g-gp-bg: #fff8dc;
+  --g-ai-bg: #fff1b8;
+  --g-heading: #14213d;
+  --g-body: #354b68;
+  --g-muted: #4a5f7d;
+  --g-label: #1769aa;
+  --g-accent: #1769aa;
+  --g-accent-strong: #104b7b;
+  --g-card-bg: #fffdf3;
+  --g-card-border: #a8c7df;
+  --g-edge: #1769aa;
+  --g-edge-hover: #104b7b;
+  --g-chip-bg: #dbe9f7;
+  --g-chip-fg: #1769aa;
+  --g-note-bar: #f4c542;
+  --g-bloom: #ffe08a;
+  --g-shadow: #14213d26;
+}
+
+/* =========================================
+   Base
+   ========================================= */
+:global(html) {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html) {
+    scroll-behavior: auto;
+  }
+}
+
+.guide-page {
+  background: var(--g-page-bg);
 }
 
 /* Anchor links land just below the 78px sticky header */
 .guide-anchor {
   scroll-margin-top: 78px;
+}
+
+.guide-page .section-label,
+.guide-page .eyebrow {
+  color: var(--g-label);
+}
+
+.guide-page .eyebrow-dot {
+  background: var(--g-edge);
+}
+
+.guide-page .arrow-link {
+  color: var(--g-accent);
 }
 
 /* ---------- 1. Hero / choice ---------- */
@@ -272,7 +362,7 @@ const aiPoints = computed(() => [
   min-height: calc(100vh - 78px);
   min-height: calc(100dvh - 78px);
   padding: clamp(24px, 5vh, 56px) max(6vw, 40px);
-  background: #f8e9e9;
+  background: var(--g-hero-bg);
   text-align: center;
 }
 
@@ -292,19 +382,19 @@ const aiPoints = computed(() => [
   font-weight: 700;
   line-height: 0.98;
   letter-spacing: -0.065em;
-  color: #282326;
+  color: var(--g-heading);
 }
 
 .guide-hero h1 em {
   font-family: Georgia, serif;
   font-weight: 400;
-  color: #a75d68;
+  color: var(--g-accent);
 }
 
 .guide-lead {
   max-width: 540px;
   margin: 0 auto;
-  color: #6e6263;
+  color: var(--g-body);
   font-size: 16px;
   line-height: 1.7;
 }
@@ -315,7 +405,7 @@ const aiPoints = computed(() => [
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #8f3f55;
+  color: var(--g-accent-strong);
 }
 
 .choice-grid {
@@ -334,11 +424,11 @@ const aiPoints = computed(() => [
   min-height: 250px;
   box-sizing: border-box;
   padding: 32px 28px 26px;
-  border: 1px solid #eadedb;
-  border-bottom: 5px solid #d47a82;
+  border: 1px solid var(--g-card-border);
+  border-bottom: 5px solid var(--g-edge);
   border-radius: 22px;
-  background: #fffaf6;
-  color: #302a2d;
+  background: var(--g-card-bg);
+  color: var(--g-heading);
   text-align: center;
   text-decoration: none;
   transition:
@@ -350,8 +440,8 @@ const aiPoints = computed(() => [
 .choice-card:hover,
 .choice-card:focus-visible {
   transform: translateY(-4px);
-  border-bottom-color: #b9626d;
-  box-shadow: 0 16px 32px #7c555526;
+  border-bottom-color: var(--g-edge-hover);
+  box-shadow: 0 16px 32px var(--g-shadow);
   outline: none;
 }
 
@@ -361,8 +451,8 @@ const aiPoints = computed(() => [
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #f6e1df;
-  color: #b7626d;
+  background: var(--g-chip-bg);
+  color: var(--g-chip-fg);
   font-size: 26px;
   line-height: 1;
 }
@@ -371,7 +461,7 @@ const aiPoints = computed(() => [
   display: block;
   font-size: 23px;
   line-height: 1.2;
-  color: #8f3f55;
+  color: var(--g-accent-strong);
 }
 
 .choice-text small {
@@ -380,14 +470,14 @@ const aiPoints = computed(() => [
   margin: 8px auto 0;
   font-size: 15px;
   line-height: 1.55;
-  color: #806e70;
+  color: var(--g-muted);
 }
 
 .choice-cta {
   margin-top: auto;
   font-size: 13px;
   font-weight: 700;
-  color: #a75d68;
+  color: var(--g-accent);
 }
 
 /* ---------- 2 + 3. Option sections ---------- */
@@ -402,31 +492,44 @@ const aiPoints = computed(() => [
 }
 
 .guide-section-home {
-  background: #fffaf8;
+  background: var(--g-home-bg);
 }
 
 .guide-section-gp {
-  background: #fdf2ef;
+  background: var(--g-gp-bg);
 }
 
 .guide-section .intro-grid {
   margin: 18px 0 clamp(24px, 4vh, 44px);
 }
 
+.guide-section .intro-grid h2 {
+  color: var(--g-heading);
+}
+
+.guide-section .intro-grid em {
+  color: var(--g-accent);
+}
+
+.guide-section .lead {
+  color: var(--g-body);
+}
+
 .guide-note {
   max-width: 410px;
   margin: 0;
   padding-left: 14px;
-  border-left: 3px solid #e9b9a8;
+  border-left: 3px solid var(--g-note-bar);
   font-size: 13px;
   line-height: 1.6;
-  color: #8d7c7e;
+  color: var(--g-muted);
 }
 
 .guide-section .section-next-link {
   margin-top: auto;
   margin-bottom: 0;
   padding-top: clamp(20px, 4vh, 40px);
+  color: var(--g-accent);
 }
 
 /* ---------- Flip step cards ---------- */
@@ -438,7 +541,7 @@ const aiPoints = computed(() => [
 }
 
 .step-flip:focus-visible {
-  outline: 2px solid #e9b9a8;
+  outline: 2px solid var(--g-edge);
   outline-offset: 4px;
 }
 
@@ -473,6 +576,7 @@ const aiPoints = computed(() => [
 .step-front .step-icon {
   margin: 0;
   font-size: 46px;
+  color: var(--g-chip-fg);
 }
 
 .step-front h3 {
@@ -480,6 +584,7 @@ const aiPoints = computed(() => [
   max-width: 85%;
   font-size: 21px;
   line-height: 1.2;
+  color: var(--g-heading);
 }
 
 .step-back {
@@ -487,11 +592,16 @@ const aiPoints = computed(() => [
   transform: rotateY(180deg);
 }
 
+.step-back .step-number {
+  color: var(--g-accent);
+}
+
 .step-back p {
   max-width: 310px;
   margin: 0;
   font-size: 14px;
   line-height: 1.65;
+  color: var(--g-body);
 }
 
 .flip-hint {
@@ -502,11 +612,11 @@ const aiPoints = computed(() => [
   place-items: center;
   width: 26px;
   height: 26px;
-  border: 1px solid #b77b84;
+  border: 1px solid var(--g-accent);
   border-radius: 50%;
   font-size: 14px;
   line-height: 1;
-  color: #a75d68;
+  color: var(--g-accent);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -549,10 +659,24 @@ const aiPoints = computed(() => [
   box-sizing: border-box;
   min-height: calc(100vh - 78px);
   min-height: calc(100dvh - 78px);
+  background: var(--g-ai-bg);
+}
+
+.guide-ai .closing-bloom {
+  background: var(--g-bloom);
+}
+
+.guide-ai h2 {
+  color: var(--g-heading);
+}
+
+.guide-ai h2 em {
+  color: var(--g-accent);
 }
 
 .guide-ai .guide-ai-lead {
   max-width: 560px;
+  color: var(--g-body);
 }
 
 .guide-ai-points {
@@ -571,19 +695,19 @@ const aiPoints = computed(() => [
   gap: 10px;
   font-size: 14px;
   line-height: 1.5;
-  color: #6e5558;
+  color: var(--g-body);
 }
 
 .guide-ai-points li span {
   font-weight: 800;
-  color: #b7626d;
+  color: var(--g-chip-fg);
 }
 
 .guide-ai .guide-disclaimer {
   margin: 16px auto 0;
   font-size: 12px;
   line-height: 1.6;
-  color: #8d7c7e;
+  color: var(--g-muted);
 }
 
 .guide-ai-links {
@@ -599,16 +723,87 @@ const aiPoints = computed(() => [
   margin-top: 0;
 }
 
-.guide-ai .button {
+/* ---------- Luna practice-call assistant ---------- */
+.luna-practice-link {
+  position: relative;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 11px 22px;
-  font-size: 12px;
+  gap: 10px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 20px auto;
+  color: var(--g-accent-strong);
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.guide-ai .button span {
-  font-size: 15px;
-  line-height: 1;
+.luna-doctor-image {
+  display: block;
+  width: 85px;
+  height: 95px;
+  flex-shrink: 0;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.luna-chatbox {
+  position: relative;
+  display: block;
+  max-width: 210px;
+  padding: 12px 16px;
+  border: 1px solid var(--g-card-border);
+  border-radius: 16px;
+  background: var(--g-card-bg);
+  box-shadow: 0 4px 12px var(--g-shadow);
+  color: var(--g-accent-strong);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: left;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Small pointer connecting the bubble to Luna */
+.luna-chatbox::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -7px;
+  width: 12px;
+  height: 12px;
+  border-left: 1px solid var(--g-card-border);
+  border-bottom: 1px solid var(--g-card-border);
+  background: var(--g-card-bg);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.luna-practice-link:hover .luna-doctor-image {
+  transform: translateY(-3px);
+}
+
+.luna-practice-link:hover .luna-chatbox {
+  background: var(--g-hero-bg);
+  box-shadow: 0 6px 16px var(--g-shadow);
+}
+
+.luna-practice-link:hover .luna-chatbox::before {
+  background: var(--g-hero-bg);
+}
+
+.luna-practice-link:focus-visible {
+  outline: 3px solid var(--g-accent);
+  outline-offset: 5px;
+  border-radius: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .luna-doctor-image,
+  .luna-chatbox {
+    transition: none;
+  }
 }
 
 /* ---------- Responsive ---------- */
@@ -638,78 +833,6 @@ const aiPoints = computed(() => [
   }
 }
 
-
-/* Luna practice-call assistant */
-.luna-practice-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: fit-content;
-  max-width: 100%;
-  margin: 20px auto;
-  color: #8f3f55;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.luna-doctor-image {
-  display: block;
-  width: 85px;
-  height: 95px;
-  flex-shrink: 0;
-  object-fit: contain;
-  transition: transform 0.2s ease;
-}
-
-.luna-chatbox {
-  position: relative;
-  display: block;
-  max-width: 210px;
-  padding: 12px 16px;
-  border: 1px solid #ead3d3;
-  border-radius: 16px;
-  background: #fffaf6;
-  box-shadow: 0 4px 12px #7c55551a;
-  color: #8f3f55;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.5;
-  text-align: left;
-  transition:
-    background 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-/* Small pointer connecting the bubble to Luna */
-.luna-chatbox::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -7px;
-  width: 12px;
-  height: 12px;
-  border-left: 1px solid #ead3d3;
-  border-bottom: 1px solid #ead3d3;
-  background: #fffaf6;
-  transform: translateY(-50%) rotate(45deg);
-}
-
-.luna-practice-link:hover .luna-doctor-image {
-  transform: translateY(-3px);
-}
-
-.luna-practice-link:hover .luna-chatbox {
-  background: #f8e9e9;
-  box-shadow: 0 6px 16px #7c555526;
-}
-
-.luna-practice-link:focus-visible {
-  outline: 3px solid #b7626d;
-  outline-offset: 5px;
-  border-radius: 12px;
-}
-
 @media (max-width: 480px) {
   .luna-doctor-image {
     width: 68px;
@@ -722,12 +845,4 @@ const aiPoints = computed(() => [
     font-size: 12px;
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .luna-doctor-image,
-  .luna-chatbox {
-    transition: none;
-  }
-}
-
 </style>
