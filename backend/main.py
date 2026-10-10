@@ -2,9 +2,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 # import routers here:
-from routers import gp, stats
+from routers import gp, mock_call, stats
 
-app = FastAPI(title="ScreeningTogether API", docs_url=None, redoc_url=None, openapi_url=None)
+app = FastAPI(title="ScreeningTogether API", docs_url=None,  redoc_url=None, openapi_url=None)
 
 origins = [
     "http://localhost:5173",
@@ -30,3 +30,4 @@ def health_check():
 # include routers here:
 app.include_router(gp.router)
 app.include_router(stats.router)
+app.include_router(mock_call.router)
