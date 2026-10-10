@@ -191,11 +191,23 @@ type MapTheme = 'blush' | 'teal' | 'accessible'
 const mapTheme = ref<MapTheme>('blush')
 
 function readMapTheme(): MapTheme {
-  const root = mapEl.value?.closest('.theme-blush, .theme-teal, .theme-accessible')
+  const element = mapEl.value
+  if (!element) return 'blush'
 
-  if (root?.classList.contains('theme-teal')) return 'teal'
-  if (root?.classList.contains('theme-accessible')) return 'accessible'
+  const themeClasses = ['theme-blush', 'theme-teal', 'theme-accessible']
 
+  // Search the map's ancestors for the active theme.
+  let current: HTMLElement | null = element
+
+  while (current) {
+    if (current.classList.contains('theme-teal')) return 'teal'
+    if (current.classList.contains('theme-accessible')) return 'accessible'
+    if (current.classList.contains('theme-blush')) return 'blush'
+
+    current = current.parentElement
+  }
+
+  // Fallback if the theme class is temporarily unavailable.
   return 'blush'
 }
 
@@ -666,18 +678,39 @@ onMounted(async () => {
     loading.value = false
   }
 
+  // Detect the currently active theme.
   mapTheme.value = readMapTheme()
 
-  const themeObserver = new MutationObserver(() => {
+  // The polygons were initially created before the active theme was detected.
+  // Reapply their styles immediately using the correct theme.
+  restyleAll()
+
+  // Observe theme changes on the map's ancestors.
+  themeObserver?.disconnect()
+
+  themeObserver = new MutationObserver(() => {
     const nextTheme = readMapTheme()
 
     if (nextTheme !== mapTheme.value) {
       mapTheme.value = nextTheme
+
+      // Immediately update every polygon's fill and outline.
       restyleAll()
     }
   })
 
-  const themeRoot = mapEl.value.closest('.theme-blush, .theme-teal, .theme-accessible')
+  let themeRoot: HTMLElement | null = mapEl.value
+
+  while (
+    themeRoot &&
+    !(
+      themeRoot.classList.contains('theme-blush') ||
+      themeRoot.classList.contains('theme-teal') ||
+      themeRoot.classList.contains('theme-accessible')
+    )
+  ) {
+    themeRoot = themeRoot.parentElement
+  }
 
   if (themeRoot) {
     themeObserver.observe(themeRoot, {
