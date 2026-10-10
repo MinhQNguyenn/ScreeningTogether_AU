@@ -537,6 +537,17 @@ function buildLayer(geo: FeatureCollection<Geometry>) {
     labelPane.style.pointerEvents = 'none'
   }
 
+  // Keep hover tooltips above the permanent SA3 area labels.
+  if (!map.getPane('sa3Tooltips')) {
+    map.createPane('sa3Tooltips')
+  }
+
+  const tooltipPane = map.getPane('sa3Tooltips')
+  if (tooltipPane) {
+    tooltipPane.style.zIndex = '700'
+    tooltipPane.style.pointerEvents = 'none'
+  }
+
   const usable: FeatureCollection<Geometry> = {
     type: 'FeatureCollection',
     features: geo.features.filter((f) => f.geometry && codeOf(f)),
@@ -556,6 +567,7 @@ function buildLayer(geo: FeatureCollection<Geometry>) {
       polygon.bindTooltip(() => buildTooltip(code, nameOf(feature)), {
         sticky: true,
         className: 'map-tooltip',
+        pane: 'sa3Tooltips',
       })
       polygon.on({
         click: () => selectArea(code, false),
