@@ -68,6 +68,29 @@
           role="region"
           :aria-label="t('map.ariaLabel', ns)"
         ></div>
+        <button
+          type="button"
+          class="choropleth-map-reset"
+          :aria-label="t('map.resetView', ns)"
+          :title="t('map.resetView', ns)"
+          @click="resetView"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M3 11a9 9 0 1 1 2.5 6.2" />
+            <path d="M3 4v7h7" />
+          </svg>
+        </button>
         <p v-if="loading" class="choropleth-status">{{ t('map.loading', ns) }}</p>
         <p v-else-if="error" class="choropleth-status choropleth-error">{{ error }}</p>
       </div>
@@ -156,7 +179,7 @@ const METRICS: { key: MetricKey; field: MetricField }[] = [
   { key: 'participation', field: 'rate_pct' },
   { key: 'bornOverseas', field: 'pct_born_overseas' },
   { key: 'otherLanguage', field: 'pct_other_language' },
-  { key: 'lowProficiency', field: 'pct_low_proficiency' },
+  //  { key: 'lowProficiency', field: 'pct_low_proficiency' },
 ]
 
 /* ---------- State ---------- */
@@ -746,6 +769,43 @@ onBeforeUnmount(() => {
   .choropleth-field,
   .choropleth-reset {
     flex: 1 1 100%;
+  }
+}
+/* Reset map button in the bottom-right corner */
+.choropleth-map-reset {
+  position: absolute;
+  right: 16px;
+  bottom: 28px;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid #eadedb;
+  border-radius: 5px;
+  background: #fff;
+  color: #5d454b;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 18%);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.choropleth-map-reset:hover {
+  background: #f8e9e9;
+  box-shadow: 0 3px 8px rgb(0 0 0 / 22%);
+}
+.choropleth-map-reset:focus-visible {
+  outline: 2px solid #b7626d;
+  outline-offset: 2px;
+}
+.choropleth-map-reset:active {
+  background: #f6e1df;
+}
+@media (prefers-reduced-motion: reduce) {
+  .choropleth-map-reset {
+    transition: none;
   }
 }
 </style>

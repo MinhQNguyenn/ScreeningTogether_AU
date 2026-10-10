@@ -134,9 +134,15 @@
       </ul>
 
       <!-- TODO: point this at the AI call practice feature once it exists -->
-      <button type="button" class="button button-primary" @click="startAiPractice">
-        {{ t('ai.button', ns) }} <span aria-hidden="true">→</span>
-      </button>
+      <RouterLink
+        to="/call-practice"
+        class="luna-practice-link"
+        :aria-label="t('ai.practicePrompt', ns)"
+      >
+        <img src="/luna_doctor.png" alt="" class="luna-doctor-image" />
+        <span class="luna-chatbox"> {{ t('ai.practicePrompt', ns) }} </span>
+      </RouterLink>
+
       <p class="guide-disclaimer">
         {{ t('ai.disclaimer', ns) }}<br />{{ t('ai.datadisclaimer', ns) }}
       </p>
@@ -631,4 +637,97 @@ const aiPoints = computed(() => [
     min-height: 220px;
   }
 }
+
+
+/* Luna practice-call assistant */
+.luna-practice-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 20px auto;
+  color: #8f3f55;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.luna-doctor-image {
+  display: block;
+  width: 85px;
+  height: 95px;
+  flex-shrink: 0;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.luna-chatbox {
+  position: relative;
+  display: block;
+  max-width: 210px;
+  padding: 12px 16px;
+  border: 1px solid #ead3d3;
+  border-radius: 16px;
+  background: #fffaf6;
+  box-shadow: 0 4px 12px #7c55551a;
+  color: #8f3f55;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: left;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Small pointer connecting the bubble to Luna */
+.luna-chatbox::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -7px;
+  width: 12px;
+  height: 12px;
+  border-left: 1px solid #ead3d3;
+  border-bottom: 1px solid #ead3d3;
+  background: #fffaf6;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.luna-practice-link:hover .luna-doctor-image {
+  transform: translateY(-3px);
+}
+
+.luna-practice-link:hover .luna-chatbox {
+  background: #f8e9e9;
+  box-shadow: 0 6px 16px #7c555526;
+}
+
+.luna-practice-link:focus-visible {
+  outline: 3px solid #b7626d;
+  outline-offset: 5px;
+  border-radius: 12px;
+}
+
+@media (max-width: 480px) {
+  .luna-doctor-image {
+    width: 68px;
+    height: 78px;
+  }
+
+  .luna-chatbox {
+    max-width: 190px;
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .luna-doctor-image,
+  .luna-chatbox {
+    transition: none;
+  }
+}
+
 </style>
