@@ -167,7 +167,8 @@ def load_sa_participation_csv(cur, filepath, table_code, year_start, year_end, a
     rows = []
     skipped = []
     for _, row in df.iterrows():
-        age_code = age_lookup.get(str(row["Age group"]))
+        label = str(row["Age group"])
+        age_code = age_lookup.get(label) or ("ages_25-74_years" if label == "25–74" else None)
         if age_code is None:
             skipped.append(row["Age group"])
             continue
