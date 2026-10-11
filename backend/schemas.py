@@ -136,7 +136,8 @@ class ChoroplethResponse(ChoroplethBase):
     pct_low_proficiency: float | None = None
     pct_birthplace_ns: float | None = None  # data-quality flag
     gap_pct: float | None = None  # rate_pct minus the national average for the same window
-
+    # 'low' | 'mid' | 'high' tercile of pct_born_overseas across all areas; null = show no label
+    born_overseas_tier: str | None = None
 
 # One area's rate, for painting every SA3 area on the map at once. null
 # where the latest window is suppressed/over-100% for that area.
