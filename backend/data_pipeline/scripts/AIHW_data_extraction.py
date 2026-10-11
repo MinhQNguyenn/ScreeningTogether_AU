@@ -489,19 +489,19 @@ if __name__ == "__main__":
  
     #S2.1: response to invitation by age
     print("\n--- S2.1: response to invitation, by age ---")
-    s2_1 = extract_two_level_header_AIHW(RECRUITMENT_FILE, "Table S2.1", "B:AE", "B", top_header_row=4, sub_header_row=5, data_end_row=17)
+    s2_1 = extract_two_level_header_AIHW(RECRUITMENT_FILE, "Table S2.1", "B:AF", "B", top_header_row=4, sub_header_row=5, data_end_row=17)
     print(f"S2.1: columns={list(s2_1.columns)}")
     s2_1.to_csv(extracted_dir / "s2_1_response_to_invitation_by_age.csv", index=False)
  
     #S2.2: response to invitation by state/territory
     print("\n--- S2.2: response to invitation, by state ---")
-    s2_2 = extract_two_level_header_AIHW(RECRUITMENT_FILE, "Table S2.2", "B:AC", "B", top_header_row=4, sub_header_row=5, data_end_row=14)
+    s2_2 = extract_two_level_header_AIHW(RECRUITMENT_FILE, "Table S2.2", "B:AF", "B", top_header_row=4, sub_header_row=5, data_end_row=14)
     print(f"S2.2: columns={list(s2_2.columns)}")
     s2_2.to_csv(extracted_dir / "s2_2_response_to_invitation_by_state.csv", index=False)
  
     #S2.3: response to invitation by letter type
     print("\n--- S2.3: response to invitation, by letter type ---")
-    s2_3 = extract_two_level_header_AIHW(RECRUITMENT_FILE, "Table S2.3", "B:AE", "B", top_header_row=4, sub_header_row=5, data_end_row=13)
+    s2_3 = extract_two_level_header_AIHW(RECRUITMENT_FILE, "Table S2.3", "B:AF", "B", top_header_row=4, sub_header_row=5, data_end_row=13)
     print(f"S2.3: columns={list(s2_3.columns)}")
     s2_3.to_csv(extracted_dir / "s2_3_response_to_invitation_by_letter_type.csv", index=False)
  
@@ -520,3 +520,4 @@ if __name__ == "__main__":
         extract_and_save_wide_table(OUTCOMES_FILE, sheet_name, table_col, "B", extracted_dir, out_prefix, label_text=label_text)
  
     print(f"\nAll extracted tables saved to: {extracted_dir}")
+    

@@ -124,7 +124,10 @@
               </div>
               <div>
                 <dt>{{ t('map.metrics.bornOverseas', ns) }}</dt>
-                <dd>{{ fmtPct(selectedStat.pct_born_overseas) }}</dd>
+                <dd>
+                  {{ fmtPct(selectedStat.pct_born_overseas) }}
+                  <small v-if="bornOverseasTierText" class="tier-note">· {{ bornOverseasTierText }}</small>
+                </dd>
               </div>
               <div>
                 <dt>{{ t('map.metrics.otherLanguage', ns) }}</dt>
@@ -145,6 +148,18 @@
       </aside>
     </div>
 
+    <aside class="choropleth-info">
+      <svg class="info-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6" />
+        <line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        <circle cx="12" cy="7.8" r="1.1" fill="currentColor" />
+      </svg>
+      <div>
+        <p class="info-kicker">{{ t('map.whyVariesKicker', ns) }}</p>
+        <p class="info-main">{{ t('map.diversityLine', ns) }}</p>
+        <p class="info-caveat">{{ t('map.areaCaveat', ns) }}</p>
+      </div>
+    </aside>
     <p class="choropleth-note">{{ t('map.note', ns) }}</p>
   </section>
 </template>
@@ -258,6 +273,16 @@ const selectedStat = computed(() =>
   selectedCode.value ? (stats.value[selectedCode.value] ?? null) : null,
 )
 
+// Fixed wording for the born-overseas tier. Only these three keys are allowed;
+// anything else (including null) shows no label.
+const TIER_KEYS = ['low', 'mid', 'high'] as const
+
+const bornOverseasTierText = computed(() => {
+  const tier = selectedStat.value?.born_overseas_tier
+  if (!tier || !(TIER_KEYS as readonly string[]).includes(tier)) return ''
+  return t(`map.bornOverseasTier.${tier}`, ns)
+})
+
 /* ---------- Colour scale (quantiles of the current metric) ---------- */
 
 const classBreaks = computed(() => {
@@ -270,8 +295,9 @@ const classBreaks = computed(() => {
     return { thresholds: [] as number[], min: 0, max: 0 }
   }
 
-  const thresholds = [1, 2, 3, 4].map(
-    (i) => values[Math.min(values.length - 1, Math.floor((i * values.length) / 5))],
+  // Cut-offs rounded to whole numbers so each area's colour matches the legend label
+  const thresholds = [1, 2, 3, 4].map((i) =>
+    Math.round(values[Math.min(values.length - 1, Math.floor((i * values.length) / 5))]),
   )
   return { thresholds, min: values[0], max: values[values.length - 1] }
 })
@@ -1125,7 +1151,8 @@ onBeforeUnmount(() => {
 
 :deep(.map-tooltip strong) {
   display: block;
-  color: var(--map-detail-value);
+  color: var(--map-tooltip-text);
+  font-weight: 800;
 }
 
 :deep(.leaflet-container) {
@@ -1220,5 +1247,58 @@ onBeforeUnmount(() => {
     -1px 1px 2px var(--map-label-halo),
     1px 1px 2px var(--map-label-halo);
   pointer-events: none;
+}
+/* born-overseas tier: small, same colour family as the row, no alert colours */
+.choropleth-detail dd .tier-note {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--map-detail-muted);
+}
+
+/* map-level insight + area caveat, same look as the Data page "why this varies" boxes */
+.choropleth-info {
+  display: flex;
+  gap: 12px;
+  max-width: 640px;
+  margin: 18px 0 0;
+  padding: 14px 18px;
+  border-left: 3px solid var(--map-accent);
+  border-radius: 0 12px 12px 0;
+  background: var(--map-card-bg);
+}
+
+.choropleth-info .info-icon {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  color: var(--map-muted);
+}
+
+.choropleth-info p {
+  margin: 0;
+}
+
+.choropleth-info .info-kicker {
+  color: var(--map-accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.choropleth-info .info-main {
+  margin-top: 4px;
+  color: var(--map-text);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.choropleth-info .info-caveat {
+  margin-top: 8px;
+  color: var(--map-detail-muted);
+  font-size: 12px;
+  line-height: 1.5;
 }
 </style>
