@@ -54,6 +54,64 @@ class ParticipationGraphPoint(BaseModel):
 class ParticipationGraphResponse(ParticipationBase):
     points: list[ParticipationGraphPoint]
 
+# =====================================================================
+# ADD TO schemas.py (below the existing Participation... classes)
+# Uses the same BaseModel import the file already has.
+# =====================================================================
+
+class AgeParticipationPoint(BaseModel):
+    age_group: str            # "25–29" (en dash, like AIHW)
+    percent: float            # number / population * 100, 1 decimal
+    number: int               # people screened
+    population: int           # eligible people (AIHW 5-year average, rounded)
+
+
+class AgeParticipationResponse(BaseModel):
+    state: str                # geo_code, e.g. "Australia", "NSW"
+    window: str               # the window shown, e.g. "2020-2024"
+    windows: list[str]        # every window available, oldest first (for the dropdown)
+    points: list[AgeParticipationPoint]
+    # ready-made for the caption, so the frontend doesn't work them out itself
+    highest_age_group: str
+    highest_percent: float
+    lowest_age_group: str
+    lowest_percent: float
+
+
+class SocioeconomicPoint(BaseModel):
+    quintile: int             # 1 = most disadvantaged areas ... 5 = least disadvantaged
+    percent: float
+    number: int
+
+
+class SocioeconomicResponse(BaseModel):
+    window: str
+    windows: list[str]
+    points: list[SocioeconomicPoint]
+
+
+class SelfCollectionMonth(BaseModel):
+    year: int
+    month: int                # 1-12
+    self_collected: int
+    all_tests: int
+    self_collected_percent: float | None
+
+
+class SelfCollectionYear(BaseModel):
+    year: int
+    months_covered: int
+    partial_year: bool        # True for 2025 (Jan-Jun): label it, don't show it as a fall
+    self_collected: int
+    all_tests: int
+    self_collected_percent: float | None
+
+
+class SelfCollectionResponse(BaseModel):
+    months: list[SelfCollectionMonth]
+    years: list[SelfCollectionYear]
+    latest_full_year: int     # the year the headline should use (2024, not partial 2025)
+
 
 class ChoroplethBase(BaseModel):
     sa3_code: str
