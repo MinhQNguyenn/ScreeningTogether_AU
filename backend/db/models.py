@@ -1,6 +1,6 @@
 """
-SQLAlchemy models for the live schema (see backend/data_pipeline/DATASET_README.md -
-schema.sql in this repo predates the Census tables, so it's stale).
+SQLAlchemy models for the live schema (see backend/data_pipeline/DATASET_README.md
+and backend/data_pipeline/scripts/schema.sql, which includes the Census tables).
 
 This describes the schema for querying purposes, but it does not create the
 tables.
