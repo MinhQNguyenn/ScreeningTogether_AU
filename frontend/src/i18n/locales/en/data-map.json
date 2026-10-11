@@ -14,15 +14,23 @@
       "lowProficiency": "Low English proficiency"
     },
     "resetView": "Reset view",
-    "noData": "No reliable data",
+    "noData": "Data not available",
     "loading": "Loading map…",
     "error": "Unable to load the map data.",
     "ariaLabel": "Map of Australia coloured by local area",
     "hint": "Select an area on the map, or search for one, to see its details.",
+        "bornOverseasTier": {
+      "low": "fewer than most areas",
+      "mid": "around the middle",
+      "high": "more than most areas"
+    },
+    "areaCaveat": "These are area-level figures. They describe areas, not individual women or communities.",
+    "diversityLine": "Across areas, screening rates don’t rise or fall steadily with the share of women born overseas, who speak another language at home, or who don't speak English well, and they vary widely within every group.",
+    "whyVariesKicker": "Why this varies",
     "detail": {
       "women": "Women aged 25–74",
       "birthplaceNotStated": "Birthplace not stated"
     },
-    "note": "Participation uses the most recent reporting window available. Population figures are from the 2021 Census. Areas where participation data is suppressed or unreliable are shown in grey."
+    "note": "Participation uses the most recent reporting window available. Population figures are from the 2021 Census. Areas where participation data is suppressed or unreliable are shown in yellow."
   }
 }
