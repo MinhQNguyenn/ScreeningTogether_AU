@@ -183,13 +183,11 @@
               v-for="(point, index) in ageData.points"
               :key="point.age_group"
               class="data-bar-group"
-              :class="{ highlight: index === ageHighlight }"
               tabindex="0"
               :aria-label="`${point.age_group}: ${point.percent}%`"
             >
               <span class="data-bar-tip">{{ point.age_group }} · {{ point.percent }}%</span>
-              <span v-if="index === ageHighlight" class="data-value-chip">{{ point.percent.toFixed(1) }}%</span>
-              <strong v-else>{{ Math.round(point.percent) }}%</strong>
+              <strong>{{ Math.round(point.percent) }}%</strong>
               <span class="data-bar" :style="{ height: `${point.percent * 1.8}px` }"></span>
             </div>
           </div>
@@ -399,13 +397,11 @@
               v-for="(point, index) in sesData.points"
               :key="point.quintile"
               class="data-bar-group"
-              :class="{ highlight: index === sesHighlight }"
               tabindex="0"
               :aria-label="`${quintileLabel(point.quintile)}: ${point.percent}%`"
             >
               <span class="data-bar-tip">{{ quintileLabel(point.quintile) }} · {{ point.percent }}%</span>
-              <span v-if="index === sesHighlight" class="data-value-chip">{{ point.percent.toFixed(1) }}%</span>
-              <strong v-else>{{ Math.round(point.percent) }}%</strong>
+              <strong>{{ Math.round(point.percent) }}%</strong>
               <span class="data-bar" :style="{ height: `${point.percent * 1.8}px` }"></span>
             </div>
           </div>
@@ -775,6 +771,7 @@ const chartAreaPath = computed(() => {
   return `${line} L ${lastPoint.x} 180 L ${firstPoint.x} 180 Z`
 })
  
+
 // self-collection chart
 const selfLatestYear = computed(() => {
   const data = selfData.value
