@@ -22,7 +22,7 @@ func configure(name_text: String, color: Color) -> void:
 	barrier_name = name_text
 	if is_node_ready():
 		label.text = barrier_name
-	$Sign.color = color
+	$Accent.color = color
 
 
 func set_dormant() -> void:
@@ -59,7 +59,7 @@ func clear_with_support(clear_color: Color = Color("#6bbf87")) -> void:
 		return
 	is_active = false
 	set_deferred("monitoring", false)
-	$Sign.color = clear_color
+	$Accent.color = clear_color
 	var tween: Tween = create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(self, "scale", Vector2(0.15, 0.15), 0.28)

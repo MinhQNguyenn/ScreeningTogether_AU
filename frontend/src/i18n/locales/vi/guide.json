@@ -1,0 +1,86 @@
+{
+  "hero": {
+    "eyebrow": "Hướng dẫn của bạn",
+    "title": "Hai cách để",
+    "titleEmphasis": "thực hiện xét nghiệm.",
+    "description": "Tầm soát ung thư cổ tử cung là xét nghiệm ngắn tìm virus HPV. Hãy chọn cách bạn muốn thực hiện, chúng tôi sẽ hướng dẫn bạn những gì sẽ diễn ra.",
+    "prompt": "Bạn muốn tầm soát bằng cách nào?",
+    "choicesAria": "Chọn cách tầm soát",
+    "choices": {
+      "home": {
+        "title": "Tại nhà",
+        "description": "Đặt bộ tự lấy mẫu qua điện thoại và tự lấy mẫu kín đáo.",
+        "cta": "Xem các bước"
+      },
+      "gp": {
+        "title": "Tại phòng khám bác sĩ gia đình",
+        "description": "Bác sĩ hoặc y tá thực hiện xét nghiệm, hoặc bạn tự lấy mẫu trong không gian riêng tư.",
+        "cta": "Xem các bước"
+      }
+    }
+  },
+
+  "home": {
+    "label": "Lựa chọn 1 · Tại nhà",
+    "title": "Tầm soát",
+    "titleEmphasis": "tại nhà.",
+    "description": "Nếu không thể đến phòng khám, bạn có thể đặt lịch khám từ xa (telehealth) và được gửi bộ tự lấy mẫu. Que lấy mẫu nhanh, riêng tư và chính xác không kém trong việc phát hiện HPV.",
+    "note": "Không thể mua bộ này ở hiệu thuốc và cũng không được gửi tự động. Bạn cần sắp xếp thông qua nhân viên y tế. Nếu bạn bị chảy máu bất thường, đau hoặc tiết dịch bất thường, hãy đến gặp bác sĩ gia đình.",
+    "steps": {
+      "call": {
+        "title": "Gọi điện để đặt bộ xét nghiệm",
+        "description": "Gọi cho bác sĩ gia đình hoặc dịch vụ khám từ xa và xin bộ tự lấy mẫu. Hãy hỏi cả về chi phí: xét nghiệm miễn phí, nhưng có thể phát sinh phí khám."
+      },
+      "collect": {
+        "title": "Tự lấy mẫu",
+        "description": "Rửa tay, nhẹ nhàng đưa que lấy mẫu vào rồi xoay 2 đến 3 lần trong khoảng 10 giây. Việc này không được gây đau."
+      },
+      "return": {
+        "title": "Gửi lại và nhận kết quả",
+        "description": "Cho que vào lại ống và gửi lại theo hướng dẫn của nhân viên y tế. Họ sẽ liên hệ với bạn để báo kết quả."
+      }
+    },
+    "next": "Tiếp theo: luyện tập cuộc gọi"
+  },
+
+  "gp": {
+    "label": "Lựa chọn 2 · Tại phòng khám bác sĩ gia đình",
+    "title": "Tầm soát",
+    "titleEmphasis": "tại phòng khám.",
+    "description": "Bác sĩ hoặc y tá được đào tạo có thể thực hiện xét nghiệm chỉ trong vài phút. Bạn có thể chọn để nhân viên y tế lấy mẫu, hoặc tự lấy mẫu trong không gian riêng tư.",
+    "note": "Bạn có thể yêu cầu que tự lấy mẫu nếu muốn. Nên gọi trước để xác nhận phòng khám có cung cấp.",
+    "steps": {
+      "book": {
+        "title": "Tìm và đặt lịch",
+        "description": "Đặt lịch với bác sĩ gia đình, trung tâm y tế cộng đồng hoặc trung tâm sức khỏe phụ nữ. Hãy gọi trước để hỏi về tự lấy mẫu và phí khám."
+      },
+      "test": {
+        "title": "Thực hiện xét nghiệm",
+        "description": "Nhân viên y tế lấy mẫu bằng chổi nhỏ, hoặc bạn tự lấy mẫu sau tấm màn. Bạn có thể đặt câu hỏi bất cứ lúc nào."
+      },
+      "result": {
+        "title": "Nhận kết quả",
+        "description": "Mẫu được gửi đến phòng xét nghiệm và nhân viên y tế sẽ báo kết quả cho bạn. Hầu hết mọi người chỉ cần lặp lại sau 5 năm."
+      }
+    },
+    "next": "Tìm bác sĩ gia đình gần bạn"
+  },
+
+  "ai": {
+    "label": "Luyện tập trước",
+    "title": "Lo lắng khi",
+    "titleEmphasis": "gọi điện?",
+    "description": "Để đặt bộ xét nghiệm, bạn sẽ cần gọi cho phòng khám hoặc dịch vụ khám từ xa. AI của chúng tôi cho phép bạn tập trước cuộc trò chuyện này theo tốc độ riêng, để cuộc gọi thật trở nên quen thuộc hơn.",
+    "points": {
+      "ask": "Xin bộ tự lấy mẫu",
+      "questions": "Trả lời những câu hỏi có thể được hỏi",
+      "next": "Biết cần hỏi gì về chi phí và cách gửi lại bộ xét nghiệm"
+    },
+    "button": "Luyện cuộc gọi với AI",
+    "disclaimer": "Đây chỉ là cuộc trò chuyện luyện tập. Nó không thể đặt lịch hẹn hay đưa ra lời khuyên y tế.",
+    "datadisclaimer": "Chúng tôi không thu thập hoặc lưu trữ bất kỳ thông tin cá nhân nào mà bạn đã chia sẻ với AI của chúng tôi.",
+    "backToStart": "Quay lại đầu trang",
+    "findGp": "Bạn muốn gặp bác sĩ trực tiếp?",
+    "practicePrompt": "Nhấn vào đây để thực hành cuộc gọi"
+  }
+}

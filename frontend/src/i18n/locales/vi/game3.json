@@ -1,0 +1,41 @@
+{
+  "aria": {
+    "gameFrame": "Lịch hẹn tầm soát ung thư cổ tử cung của Luna | Giai đoạn 3",
+    "fullscreenExit": "Thoát chế độ toàn màn hình",
+    "fullscreenOpen": "Mở trò chơi toàn màn hình",
+    "variantPicker": "Các phiên bản thử nghiệm của Trò chơi 3"
+  },
+  "iframe": {
+    "title": "Vài phút cùng Luna"
+  },
+  "variant": {
+    "description": "Chọn một phiên bản. Việc chuyển phiên bản sẽ bắt đầu lại lịch hẹn.",
+    "animation": "A · Hoạt ảnh đồng hồ",
+    "puzzle": "B · Trò chơi ghép hình"
+  },
+  "intro": {
+    "label": "Hành trình tầm soát cổ tử cung | Giai đoạn 3",
+    "title": "Điều gì xảy ra khi tầm soát?",
+    "description": "Đồng hành cùng Luna trong buổi hẹn, khám phá các lựa chọn tầm soát của cô ấy và trải nghiệm thời gian lấy mẫu có thể trôi qua nhanh như thế nào."
+  },
+  "learning": {
+    "label": "Bạn sẽ học được gì",
+    "choices": {
+      "title": "Lựa chọn và quyền kiểm soát",
+      "description": "Giúp Luna trao đổi về lần tầm soát trước, các lựa chọn lấy mẫu và cách tạm dừng hoặc dừng lại."
+    },
+    "minutes": {
+      "title": "Vài phút",
+      "animationDescription": "Quan sát đồng hồ để thấy thời gian trôi qua trong quá trình lấy mẫu.",
+      "puzzleDescription": "Chơi trò ghép hình trong tối đa hai phút để trải nghiệm thời gian trôi qua trong quá trình lấy mẫu."
+    },
+    "after": {
+      "title": "Sau khi tầm soát",
+      "description": "Tìm hiểu điều gì xảy ra với mẫu xét nghiệm và khi nào thường cần thực hiện tầm soát lại."
+    }
+  },
+  "navigation": {
+    "previousGame": "Luyện nghe trong phòng chờ",
+    "cervicalResults": "Tìm hiểu kết quả tầm soát cổ tử cung"
+  }
+}

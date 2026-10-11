@@ -1,0 +1,41 @@
+{
+  "aria": {
+    "gameFrame": "Luna's cervical screening appointment | Phase 3",
+    "fullscreenExit": "Exit fullscreen",
+    "fullscreenOpen": "Open game fullscreen",
+    "variantPicker": "Game 3 test versions"
+  },
+  "iframe": {
+    "title": "A few minutes with Luna"
+  },
+  "variant": {
+    "description": "Choose a version. Switching restarts the appointment.",
+    "animation": "A · Clock animation",
+    "puzzle": "B · Picture puzzle"
+  },
+  "intro": {
+    "label": "Cervical screening journey | Phase 3",
+    "title": "What happens at screening?",
+    "description": "Join Luna during her appointment, explore her screening choices, and experience how quickly the sample collection part can feel."
+  },
+  "learning": {
+    "label": "What you will learn",
+    "choices": {
+      "title": "Choices and control",
+      "description": "Help Luna discuss previous screening, sample options, and how to pause or stop."
+    },
+    "minutes": {
+      "title": "A few minutes",
+      "animationDescription": "Watch the clock show time passing during sample collection.",
+      "puzzleDescription": "Play a picture puzzle for up to two minutes to experience time passing during sample collection."
+    },
+    "after": {
+      "title": "After screening",
+      "description": "Learn what happens to the sample and when screening is usually due again."
+    }
+  },
+  "navigation": {
+    "previousGame": "Waiting Room Listening Practice",
+    "cervicalResults": "Understanding cervical screening results"
+  }
+}

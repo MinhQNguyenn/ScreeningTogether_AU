@@ -1,0 +1,34 @@
+{
+  "page": {
+    "ariaLabel": "Trò chơi 2: luyện nghe trong phòng chờ",
+    "iframeTitle": "Luyện nghe trong phòng chờ",
+    "fullscreenOpen": "Mở trò chơi toàn màn hình",
+    "fullscreenExit": "Thoát chế độ toàn màn hình"
+  },
+  "intro": {
+    "label": "Cuộc hẹn tầm soát | Giai đoạn 2",
+    "title": "Lắng nghe tên của bạn",
+    "description": "Luyện tập giữ sự chú ý trong phòng chờ đông người, nhận biết khi tên của bạn được gọi và khám phá những hỗ trợ hữu ích trong khi chờ đợi."
+  },
+  "howToPlay": {
+    "label": "Cách chơi",
+    "steps": {
+      "watchAndListen": {
+        "title": "Quan sát và lắng nghe",
+        "description": "Tên sẽ lần lượt xuất hiện trên màn hình thông báo màu xanh."
+      },
+      "respondInTime": {
+        "title": "Phản hồi đúng lúc",
+        "description": "Chỉ chọn “Đó là tôi” khi tên đầy đủ của bạn xuất hiện."
+      },
+      "exploreWhileWaiting": {
+        "title": "Khám phá trong khi chờ",
+        "description": "Tìm các vật dụng và thông tin hữu ích để hoàn thành các nhiệm vụ phụ tùy chọn."
+      }
+    }
+  },
+  "navigation": {
+    "game1": "Vượt qua sự kỳ thị",
+    "game3": "Lịch hẹn tầm soát ung thư cổ tử cung của Luna"
+  }
+}

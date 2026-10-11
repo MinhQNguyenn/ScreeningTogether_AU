@@ -1,0 +1,27 @@
+{
+  "title": "The numbers",
+  "eyebrow": "The numbers",
+  "heading": "The full picture,",
+  "headingEmphasis": "updated each year.",
+  "intro": "National screening participation, broken down a few different ways. Numbers describe the system, not any one person's choices.",
+  "participation": {
+    "label": "National participation",
+    "description": "of eligible people had an HPV screening test between 2020 and 2024.",
+    "period": "2020–2024"
+  },
+  "chart": {
+    "title": "Screening participation rate",
+    "range": "2020–2024",
+    "ariaLabel": "Participation trend over the years 2020 to 2024",
+    "change": "2.9% change over the period"
+  },
+  "ageGroups": {
+    "label": "By age group",
+    "title": "Participation varies by age.",
+    "note": "Differences between groups can reflect access to services, language support, and how familiar the system feels — not personal choice."
+  },
+  "sources": {
+    "title": "Where the data comes from",
+    "description": "National screening data from Cancer Australia. Participation figures are updated as new reporting becomes available."
+  }
+}

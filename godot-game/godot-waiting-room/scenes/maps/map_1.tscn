@@ -1,0 +1,611 @@
+[gd_scene format=3 uid="uid://cylfy3t1d0i4r"]
+
+[ext_resource type="Script" uid="uid://d27ppmw7u61in" path="res://scripts/map_1.gd" id="1_map"]
+[ext_resource type="Texture2D" uid="uid://dgd332ll5mb7e" path="res://assets/Room_background.png" id="2_lolil"]
+[ext_resource type="Texture2D" uid="uid://bmnfnsds6uvnk" path="res://assets/luna_doctor.png" id="3_1q0j8"]
+[ext_resource type="Script" uid="uid://o6rnaf7pw33s" path="res://scripts/announcement_ui.gd" id="4_announcement"]
+[ext_resource type="PackedScene" uid="uid://bo4qoqi0flci5" path="res://scenes/main_char.tscn" id="4_p4o1l"]
+[ext_resource type="Script" uid="uid://b1jhx8f1m4vif" path="res://scripts/side_quest_ui.gd" id="5_sidequest"]
+[ext_resource type="PackedScene" uid="uid://7mxshc28ahmc" path="res://scenes/npc.tscn" id="6_npc"]
+[ext_resource type="Texture2D" uid="uid://csxvb1vj7qh66" path="res://assets/heart_pixel.png" id="7_646el"]
+[ext_resource type="PackedScene" uid="uid://bb2dk5uwbkyxf" path="res://scenes/player_name_popup.tscn" id="7_name_entry"]
+[ext_resource type="AudioStream" uid="uid://bgkinvt5ycv7l" path="res://resources/alex-morgan-lofi-cocktail-bar-568153.mp3" id="8_background_music"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lolil"]
+content_margin_left = 22.0
+content_margin_top = 20.0
+content_margin_right = 22.0
+content_margin_bottom = 20.0
+bg_color = Color(0.68235296, 0.5529412, 0.40784314, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.6627451, 0.4392157, 0.2, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color(0, 0, 0, 0.5019608)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1q0j8"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.050980393, 0.18039216, 0.42745098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6627451, 0.4392157, 0.2, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.5019608)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgk5e"]
+bg_color = Color(0.83137256, 0.83137256, 0.84705883, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjyr5"]
+bg_color = Color(0.85882354, 0.8509804, 0.8745098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qp2t3"]
+bg_color = Color(0.101960786, 0.18431373, 0.35686275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2bu5"]
+bg_color = Color(0.88235295, 0.8784314, 0.89411765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e65wt"]
+bg_color = Color(1, 1, 1, 0.01)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hotspot_pressed"]
+bg_color = Color(1, 0.9254902, 0.47058824, 0.28)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.9490196, 0.6509804, 0.9)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smh7c"]
+bg_color = Color(0.9254902, 0.94509804, 0.827451, 0.18039216)
+border_color = Color(1, 0.93333334, 0.5137255, 0.7)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+shadow_color = Color(0.8719688, 0.9078707, 0.9988789, 0.2509804)
+shadow_size = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hotspot_disabled"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_that_me_hint"]
+content_margin_left = 16.0
+content_margin_top = 9.0
+content_margin_right = 12.0
+content_margin_bottom = 9.0
+bg_color = Color(1, 1, 1, 0.9411765)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.99238235, 0.6856215, 0.5295202, 0.9490196)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgk5e"]
+size = Vector2(338.5, 166.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2lx5"]
+size = Vector2(468, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d31ot"]
+size = Vector2(418, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_646el"]
+size = Vector2(418, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnico"]
+size = Vector2(456, 47)
+
+[node name="Map1" type="Node2D" unique_id=743532204]
+texture_filter = 1
+script = ExtResource("1_map")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=21048718]
+process_mode = 3
+stream = ExtResource("8_background_music")
+volume_db = -22.0
+autoplay = true
+
+[node name="RoomBackground" type="Sprite2D" parent="." unique_id=2117797756]
+position = Vector2(638.8333, 432.87497)
+scale = Vector2(0.88374764, 0.88374764)
+texture = ExtResource("2_lolil")
+
+[node name="MainChar" parent="." unique_id=2139615358 instance=ExtResource("4_p4o1l")]
+position = Vector2(527, 261)
+scale = Vector2(3.5, 3.5)
+
+[node name="NPCs" type="Node2D" parent="." unique_id=1957634123]
+y_sort_enabled = true
+
+[node name="NPC1" parent="NPCs" unique_id=736799022 instance=ExtResource("6_npc")]
+position = Vector2(456, 405)
+scale = Vector2(3, 3)
+
+[node name="NPC2" parent="NPCs" unique_id=1582612651 instance=ExtResource("6_npc")]
+position = Vector2(579, 405)
+scale = Vector2(3, 3)
+
+[node name="NPC3" parent="NPCs" unique_id=1008972339 instance=ExtResource("6_npc")]
+position = Vector2(690, 504.00003)
+scale = Vector2(3, 3)
+
+[node name="NPC4" parent="NPCs" unique_id=1737498614 instance=ExtResource("6_npc")]
+position = Vector2(807, 503.00003)
+scale = Vector2(3, 3)
+
+[node name="Canvas" type="CanvasLayer" parent="." unique_id=1333476723]
+layer = 10
+
+[node name="SideQuestUI" type="PanelContainer" parent="Canvas" unique_id=2088149313]
+layout_direction = 2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -403.0
+offset_top = -520.0
+offset_right = -16.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lolil")
+script = ExtResource("5_sidequest")
+
+[node name="QuestContent" type="VBoxContainer" parent="Canvas/SideQuestUI" unique_id=794659121]
+layout_direction = 1
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="QuestTitle" type="Label" parent="Canvas/SideQuestUI/QuestContent" unique_id=1373841309]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95686275, 0.8745098, 1)
+theme_override_colors/font_outline_color = Color(0.31764707, 0.21176471, 0.1254902, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 28
+text = "SIDE QUESTS"
+autowrap_mode = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestProgress" type="Label" parent="Canvas/SideQuestUI/QuestContent" unique_id=893860491]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.23921569, 0.15294118, 0.09411765, 1)
+theme_override_font_sizes/font_size = 17
+text = "0 / 6 completed"
+horizontal_alignment = 1
+
+[node name="WaterQuestLabel" type="Label" parent="Canvas/SideQuestUI/QuestContent" unique_id=781375620]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95686275, 0.8745098, 1)
+theme_override_colors/font_outline_color = Color(0.31764707, 0.21176471, 0.1254902, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 19
+text = "[ ]  Stay hydrated"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="InformationQuestLabel" type="Label" parent="Canvas/SideQuestUI/QuestContent" unique_id=720722786]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95686275, 0.8745098, 1)
+theme_override_colors/font_outline_color = Color(0.31764707, 0.21176471, 0.1254902, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 19
+text = "[ ]  Get general help/information"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ScreeningInfoQuestLabel" type="Label" parent="Canvas/SideQuestUI/QuestContent" unique_id=436328513]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95686275, 0.8745098, 1)
+theme_override_colors/font_outline_color = Color(0.31764707, 0.21176471, 0.1254902, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 19
+text = "[ ]  Screening facts found: 0 / 4"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="QuestFeedback" type="Label" parent="Canvas/SideQuestUI/QuestContent" unique_id=1546648461]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.23921569, 0.15294118, 0.09411765, 1)
+theme_override_font_sizes/font_size = 15
+text = "Hover over objects to investigate."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="AnnouncementUI" type="PanelContainer" parent="Canvas" unique_id=649555450]
+layout_direction = 2
+clip_contents = true
+offset_left = 716.0
+offset_top = 13.0
+offset_right = 885.0
+offset_bottom = 123.0
+tooltip_text = "Listen for your name"
+theme_override_styles/panel = SubResource("StyleBoxFlat_1q0j8")
+script = ExtResource("4_announcement")
+that_me_arrow_path = NodePath("")
+
+[node name="AnnouncementContent" type="VBoxContainer" parent="Canvas/AnnouncementUI" unique_id=1389470353]
+layout_direction = 1
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="AnnouncementTitle" type="Label" parent="Canvas/AnnouncementUI/AnnouncementContent" unique_id=1516248379]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95686275, 0.8745098, 1)
+theme_override_colors/font_outline_color = Color(0.31764707, 0.21176471, 0.1254902, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 18
+text = "Please listen..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CoverUpUI" type="PanelContainer" parent="Canvas" unique_id=383268993]
+layout_direction = 2
+anchors_preset = -1
+anchor_right = 0.031000001
+anchor_bottom = 0.028
+offset_left = 1069.0
+offset_top = 16.0
+offset_right = 1118.32
+offset_bottom = 30.84
+theme_override_styles/panel = SubResource("StyleBoxFlat_rgk5e")
+
+[node name="CoverUpContent" type="VBoxContainer" parent="Canvas/CoverUpUI" unique_id=2090234452]
+layout_direction = 1
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="CoverUpLabel" type="Label" parent="Canvas/CoverUpUI/CoverUpContent" unique_id=755060479]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Screening
+Information"
+horizontal_alignment = 1
+
+[node name="CoverUpUI3" type="PanelContainer" parent="Canvas" unique_id=1221854621]
+layout_direction = 2
+anchors_preset = -1
+offset_left = 276.0
+offset_top = 14.0
+offset_right = 358.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rgk5e")
+
+[node name="CoverUpContent" type="VBoxContainer" parent="Canvas/CoverUpUI3" unique_id=1951096014]
+layout_direction = 1
+layout_mode = 2
+
+[node name="CoverUpLabel" type="Label" parent="Canvas/CoverUpUI3/CoverUpContent" unique_id=1115088078]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.07123137, 0.07123139, 0.07123137, 1)
+theme_override_font_sizes/font_size = 14
+text = "Screening
+Information"
+horizontal_alignment = 1
+
+[node name="CoverUpUI4" type="PanelContainer" parent="Canvas" unique_id=1343169915]
+layout_direction = 2
+anchors_preset = -1
+offset_left = 64.0
+offset_top = 245.0
+offset_right = 122.0
+offset_bottom = 300.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rgk5e")
+
+[node name="CoverUpContent" type="VBoxContainer" parent="Canvas/CoverUpUI4" unique_id=1201119015]
+layout_direction = 1
+layout_mode = 2
+
+[node name="CoverUpLabel" type="Label" parent="Canvas/CoverUpUI4/CoverUpContent" unique_id=671115964]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.011702106, 0.011702109, 0.011702107, 1)
+theme_override_font_sizes/font_size = 10
+text = "Screening
+Information"
+horizontal_alignment = 1
+
+[node name="CoverUpUI5" type="PanelContainer" parent="Canvas" unique_id=1972816804]
+layout_direction = 2
+anchors_preset = -1
+offset_left = 502.0
+offset_top = 187.0
+offset_right = 594.0
+offset_bottom = 207.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hjyr5")
+
+[node name="CoverUpContent" type="VBoxContainer" parent="Canvas/CoverUpUI5" unique_id=247815706]
+layout_direction = 1
+layout_mode = 2
+
+[node name="CoverUpLabel" type="Label" parent="Canvas/CoverUpUI5/CoverUpContent" unique_id=2024482842]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.50669384, 0.23641318, 0.025861952, 1)
+theme_override_colors/font_outline_color = Color(0.12298488, 0.12298488, 0.12298488, 1)
+theme_override_font_sizes/font_size = 13
+text = "Reception"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CoverUpUI6" type="PanelContainer" parent="Canvas" unique_id=1544423217]
+layout_direction = 2
+offset_left = 119.0
+offset_top = 634.0
+offset_right = 179.0
+offset_bottom = 650.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qp2t3")
+
+[node name="CoverUpContent" type="VBoxContainer" parent="Canvas/CoverUpUI6" unique_id=1149775994]
+layout_direction = 1
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/CoverUpUI6/CoverUpContent" unique_id=1224007546]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Restrooms"
+
+[node name="CoverUpUI7" type="PanelContainer" parent="Canvas" unique_id=589861139]
+layout_direction = 2
+anchors_preset = -1
+offset_left = 298.0
+offset_top = 474.0
+offset_right = 356.0
+offset_bottom = 552.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n2bu5")
+
+[node name="CoverUpContent" type="VBoxContainer" parent="Canvas/CoverUpUI7" unique_id=807962436]
+layout_direction = 1
+layout_mode = 2
+
+[node name="CoverUpLabel" type="Label" parent="Canvas/CoverUpUI7/CoverUpContent" unique_id=1047741443]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Screening
+Information"
+horizontal_alignment = 1
+
+[node name="HeartPixel2" type="Sprite2D" parent="Canvas" unique_id=2024255618]
+position = Vector2(94.00003, 288)
+scale = Vector2(0.0072845034, 0.0072845034)
+texture = ExtResource("7_646el")
+
+[node name="HeartPixel" type="Sprite2D" parent="Canvas" unique_id=439038494]
+position = Vector2(327, 533)
+scale = Vector2(0.016465511, 0.016465511)
+texture = ExtResource("7_646el")
+
+[node name="CoverUpUI8" type="PanelContainer" parent="Canvas" unique_id=32201278]
+layout_direction = 2
+anchors_preset = -1
+offset_left = 69.0
+offset_top = 366.0
+offset_right = 127.0
+offset_bottom = 383.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n2bu5")
+
+[node name="CoverUpContent" type="VBoxContainer" parent="Canvas/CoverUpUI8" unique_id=2143301686]
+layout_direction = 1
+layout_mode = 2
+
+[node name="CoverUpLabel" type="Label" parent="Canvas/CoverUpUI8/CoverUpContent" unique_id=158062028]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+
+[node name="LunaDoctor" type="Sprite2D" parent="Canvas" unique_id=1840170590]
+position = Vector2(607, 107.00001)
+scale = Vector2(1.5156243, 1.5156243)
+texture = ExtResource("3_1q0j8")
+
+[node name="ReceptionClick" type="Button" parent="Canvas" unique_id=649866851]
+layout_direction = 2
+offset_left = 590.0
+offset_top = 80.0
+offset_right = 625.0
+offset_bottom = 141.0
+tooltip_text = "General information desk"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_e65wt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hotspot_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_smh7c")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
+
+[node name="WaterClick" type="Button" parent="Canvas" unique_id=952978009]
+layout_direction = 2
+offset_left = 251.0
+offset_top = 292.0
+offset_right = 281.0
+offset_bottom = 392.0
+tooltip_text = "Water fountain"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_e65wt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hotspot_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_smh7c")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
+
+[node name="ScreeningInfo" type="Button" parent="Canvas" unique_id=457504336]
+layout_direction = 2
+offset_left = 58.0
+offset_top = 234.0
+offset_right = 127.0
+offset_bottom = 306.0
+tooltip_text = "Screening information 1"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_e65wt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hotspot_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_smh7c")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
+
+[node name="ScreeningInfo2" type="Button" parent="Canvas" unique_id=1179869416]
+layout_direction = 2
+offset_left = 268.0
+offset_top = 10.0
+offset_right = 364.0
+offset_bottom = 74.0
+tooltip_text = "Screening information 2"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_e65wt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hotspot_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_smh7c")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
+
+[node name="ScreeningInfo3" type="Button" parent="Canvas" unique_id=1869993137]
+layout_direction = 2
+offset_left = 294.0
+offset_top = 466.0
+offset_right = 360.0
+offset_bottom = 561.0
+tooltip_text = "Screening information 3"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_e65wt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hotspot_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_smh7c")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
+
+[node name="ScreeningInfo4" type="Button" parent="Canvas" unique_id=100906177]
+layout_direction = 2
+offset_left = 1066.0
+offset_top = 14.0
+offset_right = 1162.0
+offset_bottom = 53.0
+tooltip_text = "Screening information 4"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_e65wt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hotspot_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_smh7c")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
+
+[node name="ThatMeHint" type="PanelContainer" parent="Canvas" unique_id=755328164]
+layout_direction = 2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -339.0
+offset_top = -101.0
+offset_right = -73.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_that_me_hint")
+
+[node name="HintRow" type="HBoxContainer" parent="Canvas/ThatMeHint" unique_id=1968877695]
+layout_direction = 1
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Instruction" type="Label" parent="Canvas/ThatMeHint/HintRow" unique_id=2087366771]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 17
+text = "Click here when 
+you see your name"
+autowrap_mode = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainChar2" parent="Canvas/ThatMeHint" unique_id=349741940 instance=ExtResource("4_p4o1l")]
+position = Vector2(222, 0)
+scale = Vector2(4, 4)
+
+[node name="ThatMeButton" type="Button" parent="Canvas" unique_id=145374315]
+layout_direction = 2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -337.0
+offset_top = -98.0
+offset_right = -75.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+tooltip_text = "Respond when your name is called"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_e65wt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hotspot_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_smh7c")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
+
+[node name="PlayerNamePopup" parent="Canvas" unique_id=25163167 instance=ExtResource("7_name_entry")]
+visible = false
+
+[node name="EnvironmentCollisions" type="StaticBody2D" parent="." unique_id=726143529]
+collision_mask = 0
+
+[node name="ReceptionDeskCollision" type="CollisionShape2D" parent="EnvironmentCollisions" unique_id=224945093]
+position = Vector2(542.75, 131.75)
+shape = SubResource("RectangleShape2D_rgk5e")
+
+[node name="ChairCollision" type="CollisionShape2D" parent="EnvironmentCollisions" unique_id=1864379881]
+position = Vector2(630, 303.5)
+shape = SubResource("RectangleShape2D_l2lx5")
+
+[node name="ChairCollision2" type="CollisionShape2D" parent="EnvironmentCollisions" unique_id=421662290]
+position = Vector2(633, 418)
+shape = SubResource("RectangleShape2D_d31ot")
+
+[node name="ChairCollision3" type="CollisionShape2D" parent="EnvironmentCollisions" unique_id=631418180]
+position = Vector2(632, 505)
+shape = SubResource("RectangleShape2D_646el")
+
+[node name="ChairCollision4" type="CollisionShape2D" parent="EnvironmentCollisions" unique_id=1270435855]
+position = Vector2(636, 617.5)
+shape = SubResource("RectangleShape2D_wnico")

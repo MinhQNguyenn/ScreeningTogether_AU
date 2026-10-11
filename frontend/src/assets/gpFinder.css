@@ -393,6 +393,7 @@
   border-color: #d5a4a3;
   padding: 22px 28px;
   min-height: 170px;
+  
 }
 .service-card h2 {
   font-size: 24px;
@@ -442,4 +443,127 @@
 }
 .service-card + .service-card {
   margin-top: 16px;
+}
+.results-section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 36px max(4vw, 28px) 80px;
+}
+.results-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.filter-button {
+  background: #dedede;
+  color: #151515;
+  border: 0;
+  border-radius: 11px;
+  padding: 10px 18px;
+  font-size: 20px;
+  font-weight: 500;
+}
+.sort-control {
+  color: #151515;
+  font-size: 11px;
+  font-weight: 600;
+}
+.sort-control select {
+  font-weight: 700;
+}
+.service-card {
+  display: block;
+  background: #fff0ed;
+  border: 1.5px solid #d5a4a3;
+  border-radius: 12px;
+  color: #302a2d;
+  padding: 20px 40px 20px;
+  min-height: 138px;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+.service-card:hover {
+  background: #f8e2df;
+  box-shadow: 0 8px 18px #a75d6824;
+  transform: translateY(-2px);
+}
+.service-card h2 {
+  max-width: 360px;
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #302a2d;
+  font-weight: 800;
+}
+.service-type {
+  margin: 3px 0 7px;
+  color: #a75d68;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 600;
+}
+.service-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  color: #5e5052;
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+.service-details p {
+  margin: 0;
+  text-transform: none;
+}
+.detail-icon {
+  display: inline-block;
+  width: 14px;
+  font-size: 12px;
+  line-height: 1;
+  color: #a75d68;
+}
+.service-card + .service-card {
+  margin-top: 0;
+}
+@media (min-width: 701px) {
+  .results-section {
+    padding-top: 22px;
+  }
+  .results-section > .service-card {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(50% - 9px);
+    margin-bottom: 16px;
+  }
+  .results-section > .service-card:nth-of-type(2n + 1) {
+    margin-right: 14px;
+  }
+}
+@media (max-width: 700px) {
+  .results-section {
+    padding: 28px 18px 60px;
+  }
+  .results-toolbar {
+    margin-bottom: 18px;
+  }
+  .filter-button {
+    font-size: 17px;
+    padding: 9px 15px;
+  }
+  .service-card {
+    padding: 18px 22px;
+    min-height: 132px;
+  }
+  .service-card h2 {
+    font-size: 19px;
+  }
+  .service-details {
+    font-size: 9px;
+  }
 }

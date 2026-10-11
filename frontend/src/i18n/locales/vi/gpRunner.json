@@ -1,0 +1,32 @@
+{
+  "educationalGame": "Giai đoạn 1 | Vượt qua sự kỳ thị",
+  "howToPlay": "Cách chơi",
+  "navigation": {
+    "title": "Điều khiển",
+    "description": "Sử dụng các phím mũi tên → ← hoặc phím 'A', 'D' để di chuyển sang trái và phải. Sử dụng phím 'W' hoặc ↑ để nhảy."
+  },
+  "rule": {
+    "title": "Luật chơi",
+    "description": "Tránh chướng ngại vật và giữ ít nhất 1 điểm sức khỏe trước khi gặp GP. Mỗi lần va chạm mất 1 điểm sức khỏe"
+  },
+  "funFact": {
+    "title": "Bạn có biết?",
+    "description": "Bạn có biết rằng việc tham gia tầm soát cổ tử cung có thể giúp ngăn ngừa tới 90% các trường hợp ung thư cổ tử cung không?"
+  },
+  "games": {
+    "knowYourBody": {
+      "title": "Lộ trình tầm soát",
+      "description": "Niềm tin văn hóa, sự ngại ngùng, rào cản ngôn ngữ và nỗi sợ bị đánh giá có thể khiến việc nói về tầm soát cổ tử cung trở nên khó khăn. Hãy cùng phá bỏ sự kỳ thị và giúp mọi người cảm thấy dễ dàng hơn khi trao đổi về tầm soát."
+    },
+    "throughTheProcess": {
+      "title": "Tìm hiểu quy trình",
+      "description": "Trải nghiệm quy trình tầm soát cổ tử cung và tìm hiểu các lựa chọn, dù là đến bác sĩ đa khoa (GP) hay thực hiện tại nhà."
+    }
+  },
+  "fullscreen": {
+    "exit": "Thoát toàn màn hình",
+    "open": "Mở trò chơi toàn màn hình"
+  },
+  "gameArea": "Khu vực trò chơi giáo dục",
+  "nextGame": "Tiếp tục đến bác sĩ đa khoa"
+}

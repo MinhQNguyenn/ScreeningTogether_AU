@@ -1,0 +1,28 @@
+{
+  "map": {
+    "eyebrow": "Khám phá bản đồ",
+    "title": "Tầm soát tại khu vực của bạn",
+    "description": "Xem tỷ lệ tham gia tầm soát ung thư cổ tử cung và nền tảng cộng đồng khác nhau thế nào trên khắp nước Úc theo khu vực địa phương (SA3). Hãy tìm một khu vực để phóng to.",
+    "searchLabel": "Tìm khu vực",
+    "searchPlaceholder": "Tìm theo tên khu vực",
+    "noResults": "Không có khu vực phù hợp",
+    "metricLabel": "Tô màu bản đồ theo",
+    "metrics": {
+      "participation": "Tỷ lệ tham gia tầm soát",
+      "bornOverseas": "Sinh ra ở nước ngoài",
+      "otherLanguage": "Nói ngôn ngữ khác tiếng Anh ở nhà",
+      "lowProficiency": "Trình độ tiếng Anh thấp"
+    },
+    "resetView": "Đặt lại chế độ xem",
+    "noData": "Không có dữ liệu đáng tin cậy",
+    "loading": "Đang tải bản đồ…",
+    "error": "Không thể tải dữ liệu bản đồ.",
+    "ariaLabel": "Bản đồ nước Úc được tô màu theo khu vực địa phương",
+    "hint": "Chọn một khu vực trên bản đồ, hoặc tìm kiếm, để xem chi tiết.",
+    "detail": {
+      "women": "Phụ nữ từ 25 đến 74 tuổi",
+      "birthplaceNotStated": "Không nêu nơi sinh"
+    },
+    "note": "Tỷ lệ tham gia dùng giai đoạn báo cáo gần nhất hiện có. Số liệu dân số lấy từ Điều tra dân số 2021. Các khu vực có dữ liệu tham gia bị ẩn hoặc không đáng tin cậy được hiển thị màu xám."
+  }
+}

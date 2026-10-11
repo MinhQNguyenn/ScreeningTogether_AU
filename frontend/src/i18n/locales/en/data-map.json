@@ -1,0 +1,28 @@
+{
+  "map": {
+    "eyebrow": "Explore the map",
+    "title": "Screening across your area",
+    "description": "See how cervical screening participation and community background differ across Australia by local area (SA3). Search for an area to zoom in.",
+    "searchLabel": "Find an area",
+    "searchPlaceholder": "Search by area name",
+    "noResults": "No matching areas",
+    "metricLabel": "Colour the map by",
+    "metrics": {
+      "participation": "Screening participation",
+      "bornOverseas": "Born overseas",
+      "otherLanguage": "Language other than English at home",
+      "lowProficiency": "Low English proficiency"
+    },
+    "resetView": "Reset view",
+    "noData": "No reliable data",
+    "loading": "Loading map…",
+    "error": "Unable to load the map data.",
+    "ariaLabel": "Map of Australia coloured by local area",
+    "hint": "Select an area on the map, or search for one, to see its details.",
+    "detail": {
+      "women": "Women aged 25–74",
+      "birthplaceNotStated": "Birthplace not stated"
+    },
+    "note": "Participation uses the most recent reporting window available. Population figures are from the 2021 Census. Areas where participation data is suppressed or unreliable are shown in grey."
+  }
+}

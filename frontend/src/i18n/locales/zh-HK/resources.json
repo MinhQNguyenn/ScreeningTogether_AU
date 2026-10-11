@@ -1,0 +1,62 @@
+{
+  "page": {
+    "eyebrow": "資源",
+    "title": "支援同資訊",
+    "titleEmphasis": "就喺你身邊。",
+    "description": "可靠嘅服務、求助熱線同指南，幫你了解子宮頸篩查，踏出下一步，而且用返你慣用嘅語言。"
+  },
+
+  "sections": {
+    "support": "支援同服務",
+    "site": "瀏覽本網站",
+    "info": "了解更多子宮頸篩查資訊"
+  },
+
+  "cards": {
+    "cancerCouncil": {
+      "title": "13 11 20",
+      "description": "致電 Cancer Council，獲取癌症支援同資訊。"
+    },
+    "interpreter": {
+      "title": "傳譯服務（131 450）",
+      "description": "透過 TIS National，用你嘅語言同醫生或服務機構溝通。"
+    },
+    "healthdirect": {
+      "title": "Healthdirect",
+      "description": "致電 1800 022 222，隨時同註冊護士傾下。"
+    },
+    "ncsr": {
+      "title": "國家癌症篩查登記處",
+      "description": "查閱你嘅篩查紀錄或更新個人資料。致電 1800 627 701。"
+    },
+    "data": {
+      "title": "篩查數據",
+      "description": "睇下各州同歷年嘅參與率。"
+    },
+    "faq": {
+      "title": "常見問題",
+      "description": "快速解答大家最常問嘅問題。"
+    },
+    "gp": {
+      "title": "搵家庭醫生",
+      "description": "搵你附近嘅家庭醫生做篩查。"
+    },
+    "guide": {
+      "title": "家用檢測套裝指南",
+      "description": "逐步睇下點樣獲取自我採樣套裝，喺屋企完成檢測。"
+    },
+    "program": {
+      "title": "國家子宮頸篩查計劃",
+      "description": "有關邊啲人應該做篩查同幾耐做一次嘅官方資訊。"
+    },
+    "cancerCouncilInfo": {
+      "title": "Cancer Council：子宮頸癌",
+      "description": "用淺白文字介紹子宮頸癌同篩查。"
+    }
+  },
+
+  "notes": {
+    "external": "喺新分頁開啟",
+    "disclaimer": "本頁只提供一般資訊，並非醫療建議。外部網站內容並非由我哋管理。"
+  }
+}

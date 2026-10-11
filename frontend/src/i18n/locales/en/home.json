@@ -1,0 +1,144 @@
+{
+  "hero": {
+    "eyebrow": "Prevention is powerful",
+    "title": "Women's health",
+    "titleEmphasis": "deserves a voice.",
+    "description": "Cervical cancer is preventable, and cervical screening can help protect your health. Whether you come from a different culture, speak another language, or have a diverse background, find clear information and support in a language that works for you.",
+    "startLearning": "Learn about cervical screening",
+    "exploreTogether": "Explore together",
+    "explore": "Explore",
+    "seeNumbers": "See the numbers",
+    "resources": "Check our other resources",
+    "cards": {
+      "data": {
+        "prompt": "Curious about the data?",
+        "title": "See the numbers",
+        "description": "Explore cervical screening participation by state and over time.",
+        "link": "View data"
+      },
+      "faq": {
+        "prompt": "Got questions?",
+        "title": "Read the FAQs",
+        "description": "Clear, quick answers to the most common questions about cervical cancer.",
+        "link": "See FAQs"
+      },
+      "gp": {
+        "prompt": "Ready to book?",
+        "title": "Find a GP near you",
+        "description": "Find a GP in your area who can help with your screening.",
+        "link": "Find a GP"
+      },
+      "guide": {
+        "prompt": "Prefer to test at home?",
+        "title": "Get your test kit",
+        "description": "Step by step: how to get a self-collection kit and do it at home.",
+        "link": "Read the guide"
+      }
+    }
+  },
+
+  "essentials": {
+    "label": "01 / Learn the essentials",
+    "title": "A little knowledge",
+    "titleEmphasis": "goes a long way.",
+    "description": "Cervical cancer starts in the cervix, but with regular screening and HPV vaccination, it can often be prevented before it starts.",
+    "faqLink": "Frequently Asked Question",
+    "nextSection": "Next: a couple of quick answers",
+
+    "steps": {
+      "vaccination": {
+        "title": "HPV vaccination",
+        "description": "HPV (human papillomavirus) is a common virus that can cause cervical cancer. Vaccination helps prevent HPV infection."
+      },
+      "screening": {
+        "title": "Regular screening",
+        "description": "Finds cell changes early, when they are easier to treat and manage."
+      },
+      "body": {
+        "title": "Do you know?",
+        "highlight": "4 in 5 people",
+        "description": " will have HPV at some point in their lives"
+      }
+    }
+  },
+
+  "screening": {
+    "label": "A couple of quick answers",
+    "title": "Wondering something?",
+    "titleEmphasis": "You're not the only one.",
+    "description": "These are the two questions people ask most. The full list — screening process, cost, culture and language, vaccination — lives on its own page whenever you want it.",
+    "seeAll": "See all FAQs",
+    "nextSection": "Next: why it matters",
+    "preview": { "first": "Most asked", "second": "2nd most asked" },
+
+    "cards": {
+      "what": {
+        "title": "What is cervical screening?",
+        "description": "A quick health check for high-risk HPV and early cell changes in the cervix. Finding changes early helps prevent cervical cancer."
+      },
+      "why": {
+        "title": "Why is it important?",
+        "description": "Screening can find HPV and early cell changes before they become cancer. It is one of the best ways to protect your future health."
+      },
+      "who": {
+        "title": "Who is it for?",
+        "description": "In Australia, cervical screening is recommended for people aged 25 to 74 who have a cervix, whether or not they have had the HPV vaccine."
+      },
+      "howOften": {
+        "title": "How often?",
+        "description": "Most people need screening every five years. Your healthcare provider may recommend a different plan based on your result or health history."
+      },
+      "whatHappens": {
+        "title": "What happens?",
+        "description": "A small sample is collected from the cervix by a trained healthcare professional. It usually takes a few minutes, and you can ask questions at any time."
+      },
+      "options": {
+        "title": "Your screening options",
+        "description": "Choose a healthcare provider for a clinician-collected test, or ask if self-collection is available for you. Both options check for HPV.",
+        "findGp": "Look for a GP near you",
+        "theNumber": "See the participation number in Australia"
+      }
+    }
+  },
+
+  "stats": {
+    "label": "The numbers",
+    "title": "There's room",
+    "titleEmphasis": "to do better.",
+    "previewDescription": "The full picture, updated each year. Numbers describe the system, not anyone's personal choice.",
+    "seeData": "See the full picture",
+    "nextSection": "Next: your next step",
+    "state": "State",
+    "allStates": "All states",
+    "eligibleWomen": "eligible women had an HPV test between January 2020 to June 2025.",
+    "period": "2020 - 2025 ",
+    "chartTitle": "Screening Participation Rate",
+    "participationRate": "participation rate",
+    "chartAriaLabel": "Line chart showing cervical screening participation over time"
+  },
+
+  "closing": {
+    "label": "04 / Your next step",
+    "title": "Care for yourself.",
+    "titleEmphasis": "Share what you know.",
+    "description": "Every conversation can help someone take their next step toward prevention.",
+    "checkGp": "Check your nearest GP"
+  },
+
+  "states": {
+    "all": "All states",
+    "victoria": "Victoria",
+    "newSouthWales": "New South Wales",
+    "queensland": "Queensland",
+    "westernAustralia": "Western Australia",
+    "southAustralia": "South Australia",
+    "tasmania": "Tasmania",
+    "australianCapitalTerritory": "Australian Capital Territory",
+    "northernTerritory": "Northern Territory"
+  },
+
+  "errors": {
+    "percentage": "Unable to load participation percentage.",
+    "graph": "Unable to load participation graph."
+  }
+}

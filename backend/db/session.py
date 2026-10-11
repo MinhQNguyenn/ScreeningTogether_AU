@@ -3,5 +3,9 @@ from sqlalchemy.orm import sessionmaker
 
 from config import settings
 
-engine = create_engine(settings.database_url.get_secret_value())
+# pre-ping replaces a dead connection instead of erroring on first use.
+engine = create_engine(
+    settings.database_url.get_secret_value(),
+    pool_pre_ping=True,
+)
 SessionLocal = sessionmaker(bind=engine)

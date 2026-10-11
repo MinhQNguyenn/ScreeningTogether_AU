@@ -1,0 +1,95 @@
+{
+  "header": {
+    "home": "Home",
+    "faq": "FAQ",
+    "numbers": "The numbers",
+    "data": "Data",
+    "gpFinder": "GP Finder",
+    "guide": "Guide",
+    "resourceInfo": "Resource",
+    "game": "Game",
+    "learnThroughGame": "Explore together",
+    "exploreTogether": "Explore together",
+    "exploreMobile": "Explore",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mainNavigation": "Main navigation",
+    "practice": "AI practice"
+  },
+
+  "footer": {
+    "tagline": "Know what the work is doing to your body, and where other women in your job went next. Free, and there is no account to make.",
+    "acknowledgement": "We acknowledge the Traditional Custodians of Country throughout Australia and their continuing connection to land, waters and community. We pay our respects to Elders past and present, and extend that respect to all Aboriginal and Torres Strait Islander peoples.",
+    "pages": "Pages",
+    "dataSources": "Where the data comes from",
+    "cancerAustralia": "Cancer Australia",
+    "healthDepartment": "Australian Government Department of Health",
+    "copyright": "© 2026 ScreeningTogether AU"
+  },
+  "navigation": {
+    "nextPage": "Go to the next page"
+  },
+  "explore": {
+    "eyebrow": "Explore together",
+    "title": "Where would you like to start?",
+    "intro": "There's no wrong answer here — just pick whatever feels closest to you right now. You can always come back and try a different path later.",
+    "close": "Close explore options",
+    "startBeginning": "Not sure? Start from the beginning",
+    "options": {
+      "nervous": {
+        "title": "I'm feeling a little nervous or unsure about it",
+        "description": "We'll ease you in gently, one step at a time."
+      },
+      "new": {
+        "title": "I've never been through this system before",
+        "description": "See what to expect, from the waiting room to the appointment."
+      },
+      "room": {
+        "title": "I just want to know what happens in the room",
+        "description": "Jump straight to a walkthrough of the appointment itself."
+      },
+      "book": {
+        "title": "I'm ready — just help me book",
+        "description": "Skip ahead and find a GP near you now."
+      }
+    }
+  },
+  "gameStart": {
+    "eyebrow": "Phase 1 · Move past the stigma",
+    "eyebrowGame2": "Phase 2 · Screening appointment",
+    "eyebrowGame3": "Phase 3 · Cervical screening journey",
+    "title": "Dodge what's in your way.",
+    "description": "Every obstacle on this road is a real barrier someone feels before screening. Get past them, and you reach a GP.",
+    "goal": "Reach the GP at the end of the road",
+    "move": "Move",
+    "jump": "Jump",
+    "rule": "Hitting an obstacle costs 1 health — 0 sends you back",
+    "begin": "Let's go"
+  },
+
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "fontSize": "Text size"
+  },
+  "displayOptions": {
+    "ariaLabel": "Display options",
+    "close": "Close display options",
+    "title": "Display options",
+    "intro": "Choose how the app looks for you. Saved only in this browser",
+    "appearance": "Appearance",
+    "themes": {
+      "blush": "Blush & sage",
+      "teal": "Teal",
+      "accessible": "Colour friendly"
+    },
+    "textSize": {
+      "title": "Text size",
+      "normal": "Normal",
+      "larger": "Larger",
+      "largest": "Largest"
+    },
+    "reset": "Reset to default"
+  }
+}

@@ -3,7 +3,9 @@
     <section ref="gameFrame" class="game-frame" aria-label="Educational game area">
         <iframe 
          class="game_1" 
-          src="/public/godot/screening-game/index.html" 
+          ref="gameIframe"
+          :src="`/godot/screening-game/index.html?v=languages&lang=${initialLanguage}`"
+          @load="sendLanguage"
           allowfullscreen
         ></iframe>
       <button
@@ -43,6 +45,10 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { useGameLanguage } from '../i18n/useGameLanguage'
+
+const gameIframe = ref<HTMLIFrameElement | null>(null)
+const { initialLanguage, sendLanguage } = useGameLanguage(gameIframe)
 
 const gameFrame = ref<HTMLElement | null>(null)
 const selectedGame = ref(1)
@@ -53,7 +59,8 @@ const games = [
     title: 'Break Through the Barriers',
     description:
       'Navigate common hurdles, fears and stigma around cancer screening to build confidence and take the next step towards getting screened.',
-  },
+  }
+  /*,
   {
     number: 2,
     title: 'Your Screening Journey',
@@ -66,6 +73,7 @@ const games = [
     description:
       'Learn about the steps and support available after a cancer diagnosis, including treatment, follow-up care and other ways to manage your health.',
   },
+  */
 ]
 const currentGame = computed(
   () => games.find((game) => game.number === selectedGame.value) ?? games[0],
