@@ -30,5 +30,6 @@
   "navigation": {
     "game1": "Move pass the stigma",
     "game3": "Luna's cervical screening appointment"
-  }
+  },
+  "gameStart": { "eyebrowGame2": "Phase 2 · Screening appointment" }
 }

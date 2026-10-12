@@ -3,7 +3,7 @@
     <!-- 1. Choose a path -->
     <section class="guide-hero guide-anchor" id="guide-top">
       <div class="guide-hero-inner">
-        <p class="eyebrow"><span class="eyebrow-dot"></span> {{ t('hero.eyebrow', ns) }}</p>
+        <p class="eyebrow"> {{ t('hero.eyebrow', ns) }}</p>
         <h1>
           {{ t('hero.title', ns) }}<br /><em>{{ t('hero.titleEmphasis', ns) }}</em>
         </h1>

@@ -126,7 +126,9 @@
                 <dt>{{ t('map.metrics.bornOverseas', ns) }}</dt>
                 <dd>
                   {{ fmtPct(selectedStat.pct_born_overseas) }}
-                  <small v-if="bornOverseasTierText" class="tier-note">· {{ bornOverseasTierText }}</small>
+                  <small v-if="bornOverseasTierText" class="tier-note"
+                    >· {{ bornOverseasTierText }}</small
+                  >
                 </dd>
               </div>
               <div>
@@ -151,7 +153,15 @@
     <aside class="choropleth-info">
       <svg class="info-icon" viewBox="0 0 24 24" aria-hidden="true">
         <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6" />
-        <line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        <line
+          x1="12"
+          y1="11"
+          x2="12"
+          y2="16.5"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
         <circle cx="12" cy="7.8" r="1.1" fill="currentColor" />
       </svg>
       <div>
@@ -160,7 +170,7 @@
         <p class="info-caveat">{{ t('map.areaCaveat', ns) }}</p>
       </div>
     </aside>
-    <p class="choropleth-note">{{ t('map.note', ns) }}</p>
+    <p class="choropleth-note">{{ t('map.note', { ns: 'choropleth' }) }}</p>
   </section>
 </template>
 
