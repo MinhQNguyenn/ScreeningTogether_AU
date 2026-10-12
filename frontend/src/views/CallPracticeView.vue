@@ -691,7 +691,22 @@ function resetPractice(): void {
 }
 
 function setMicrophone(enabled: boolean): void {
-  microphoneOpen.value = enabled && connectionState.value === 'connected'
+  const wasOpen = microphoneOpen.value
+
+  microphoneOpen.value =
+    enabled && connectionState.value === 'connected'
+
+  if (
+    wasOpen &&
+    !microphoneOpen.value &&
+    socket?.readyState === WebSocket.OPEN
+  ) {
+    socket.send(
+      JSON.stringify({
+        type: 'audio_stream_end',
+      }),
+    )
+  }
 }
 
 function downloadSummary(): void {

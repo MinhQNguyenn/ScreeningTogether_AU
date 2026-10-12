@@ -25,4 +25,10 @@ class Settings(BaseSettings):
 
     rag_embedding_dimensions: int = 768
 
+    # Team-only RAG document upload endpoint.
+    rag_admin_secret: SecretStr | None = None
+    rag_upload_max_bytes: int = 15 * 1024 * 1024
+    rag_upload_max_pages: int = 100
+    rag_upload_max_chunks: int = 300
+
 settings = Settings()
