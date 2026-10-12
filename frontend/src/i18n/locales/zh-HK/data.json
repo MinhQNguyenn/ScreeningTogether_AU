@@ -1,11 +1,65 @@
 {
-  "title": "數據",
-  "eyebrow": "數據",
-  "heading": "完整數據，",
+  "title": "數據概覽",
+  "eyebrow": "數據概覽",
+  "heading": "全面了解篩查情況，",
   "headingEmphasis": "每年更新。",
-  "intro": "從不同角度了解全國篩查參與情況。數字反映整個系統，並非任何個人的選擇。",
-  "participation": { "label": "全國參與率", "description": "符合資格人士在 2020 至 2024 年間接受了 HPV 篩查。", "period": "2020–2024" },
-  "chart": { "title": "篩查參與率", "range": "2020–2024", "ariaLabel": "2020 至 2024 年的參與趨勢", "change": "期間變化 2.9%" },
-  "ageGroups": { "label": "按年齡組別", "title": "參與率因年齡而異。", "note": "組別差異可能反映服務可及性、語言支援及對系統的熟悉程度，並非個人選擇。" },
-  "sources": { "title": "數據來源", "description": "數據來自 Cancer Australia 的全國篩查資料，並會隨新報告發布而更新。" }
+  "intro": "從不同角度展示澳洲全國的子宮頸篩查參與情況。這些數字反映醫療服務系統的整體情況，並不代表任何個人的選擇。",
+  "participation": {
+    "label": "全國參與率",
+    "description": "在最近一個統計時段內，25至74歲符合資格的人士中接受HPV篩查測試的比例。",
+    "period": "2020–2024年"
+  },
+  "chart": {
+    "title": "篩查參與率",
+    "range": "2020–2024年",
+    "ariaLabel": "折線圖顯示三個互相重疊的統計時段內，篩查參與率的變化趨勢",
+    "change": "該統計時段內變化了2.9%",
+    "caption": "在{{window}}期間，25至74歲符合資格的人士中有{{percent}}%接受了篩查測試。參與率由{{firstWindow}}期間的{{firstPercent}}%變化了{{change}}個百分點。",
+    "captionState": "在{{window}}期間，{{place}}的25至74歲符合資格人士中有{{percent}}%接受了篩查測試。參與率由{{firstWindow}}期間的{{firstPercent}}%變化了{{change}}個百分點。",
+    "axisNote": "縱軸由{{min}}%開始，讓變化更容易辨識。",
+    "caveatWindows": "每個統計時段涵蓋5.5年的測試數據，因此不同時段之間會有重疊。這些數據反映整體趨勢，而不是互相獨立的年份。",
+    "caveatStates": "澳洲健康與福利研究所（AIHW）不建議直接比較各州份及領地的數據，因為各地的人口組成、地理環境及政策均有所不同。"
+  },
+  "windowLabel": "統計時段",
+  "whyVaries": "為甚麼會有差異？",
+  "mapKicker": "按本地地區查看",
+  "ageGroups": {
+    "label": "按年齡組別劃分",
+    "title": "參與率因年齡而異。",
+    "note": "不同組別之間的差異可能與醫療服務的可及性、語言支援，以及人們對醫療系統的熟悉程度有關，而不一定是個人選擇造成的。",
+    "caption": "在{{window}}期間，參與率介乎{{lowestAge}}年齡組別的{{lowestPercent}}%至{{highestAge}}年齡組別的{{highestPercent}}%。",
+    "showing": "目前顯示：{{place}}",
+    "quote": "70至74歲的參與者在更新後的國家子宮頸篩查計劃（NCSP）下重新納入目標年齡組別。他們在舊計劃中超過69歲後曾不再屬於目標組別，因此預期這個年齡組別的參與率會較低。",
+    "quoteSource": "澳洲健康與福利研究所（AIHW），《2025年國家子宮頸篩查計劃監察報告》"
+  },
+  "selfCollection": {
+    "label": "自行採樣",
+    "title": "按月份統計的自行採樣HPV測試",
+    "description": "{{year}}年，約有{{share}}%的HPV測試採用自行採樣方式。",
+    "caption": "相比之下，{{firstYear}}年的自行採樣測試數量為{{firstCount}}次。",
+    "partialYear": "{{year}}年只顯示1月至6月的數據。",
+    "modeCount": "數量",
+    "modeShare": "測試佔比",
+    "july2022": "2022年7月：開放予所有符合資格人士",
+    "accuracy": "與由醫護人員採集的樣本相比，自行採樣的子宮頸篩查測試在檢測HPV方面同樣安全及準確。",
+    "accuracySource": "昆士蘭州衛生部",
+    "caveatTests": "這些數字統計的是測試次數，而不是人數。"
+  },
+  "socioeconomic": {
+    "label": "按地區劃分",
+    "title": "按地區社會經濟劣勢程度劃分的參與率",
+    "caption": "在{{window}}期間，社會經濟劣勢最明顯地區的參與率為{{q1Percent}}%，而劣勢最不明顯地區則為{{q5Percent}}%。",
+    "q1": "1 · 劣勢最明顯",
+    "q5": "5 · 劣勢最不明顯",
+    "caveatArea": "這些數據反映地區層面的模式，而非個人情況。它們不能說明任何個人或任何背景的人如何選擇是否接受篩查。",
+    "caveatStructural": "地區之間的差異可能與醫療服務的可及性、費用及時間等因素有關，而不是個人選擇造成的。",
+    "quote": "面對社會經濟困難的人士在接受篩查時可能遇到額外障礙，例如需要自行承擔的費用，以及工作等互相衝突的生活優先事項。",
+    "quoteSource": "摘編自澳洲政府網站 health.gov.au 的NCSP醫療服務提供者工具包"
+  },
+  "learnMore": "了解更多",
+  "dataNotAvailable": "暫無可用數據",
+  "sources": {
+    "title": "數據來源",
+    "description": "澳洲健康與福利研究所（AIHW），《2025年國家子宮頸篩查計劃監察報告》；澳洲統計局（ABS），《2021年人口及房屋普查》（本地地區地圖）。有新報告發布時，相關數據將持續更新。"
+  }
 }

@@ -1421,3 +1421,87 @@
 .theme-accessible .button-secondary:hover {
   background-color: #dbe9f7 !important;
 }
+
+
+
+/* ==============================
+   THEME-AWARE HERO FLIP CARDS
+   ============================== */
+
+/* Blush theme */
+.theme-blush .hero-card-front {
+  background: #fffaf6;
+}
+
+.theme-blush .hero-card-front small {
+  color: #806f70;
+}
+
+.theme-blush .hero-card-front strong {
+  color: #8f3f55;
+}
+
+.theme-blush .hero-card-back {
+  background: #f6e1df;
+}
+
+.theme-blush .hero-card-back p {
+  color: #6e5558;
+}
+
+.theme-blush .hero-card-link,
+.theme-blush .hero-card-link:hover {
+  color: #a75d68;
+}
+
+/* Teal theme */
+.theme-teal .hero-card-front {
+  background: #f0fbf9;
+}
+
+.theme-teal .hero-card-front small {
+  color: #426967;
+}
+
+.theme-teal .hero-card-front strong {
+  color: #075957;
+}
+
+.theme-teal .hero-card-back {
+  background: #d9f1ee;
+}
+
+.theme-teal .hero-card-back p {
+  color: #285653;
+}
+
+.theme-teal .hero-card-link,
+.theme-teal .hero-card-link:hover {
+  color: #075957;
+}
+
+/* Accessible theme */
+.theme-accessible .hero-card-front {
+  background: #ffffff;
+}
+
+.theme-accessible .hero-card-front small {
+  color: #303030;
+}
+
+.theme-accessible .hero-card-front strong {
+  color: #104b7b;
+}
+
+.theme-accessible .hero-card-back {
+  background: #dbe9f7;
+}
+
+.theme-accessible .hero-card-back p {
+  color: #202020;
+}
+
+.theme-accessible .hero-card-link,
+.theme-accessible .hero-card-link:hover {
+  color: #104b7b;
+}

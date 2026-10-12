@@ -30,7 +30,7 @@
     "caption": "In {{window}}, participation ranged from {{lowestPercent}}% (ages {{lowestAge}}) to {{highestPercent}}% (ages {{highestAge}}).",
     "showing": "Showing: {{place}}",
     "quote": "Participants aged 70–74 have re-entered the target age group under the renewed NCSP after leaving the previous NCSP after age 69, so lower participation is expected in this age group.",
-    "quoteSource": "AIHW, National Cervical Screening Program monitoring report 2025"  
+    "quoteSource": "AIHW, National Cervical Screening Program monitoring report 2025"
   },
   "selfCollection": {
     "label": "Self-collection",
@@ -60,6 +60,6 @@
   "dataNotAvailable": "Data not available",
   "sources": {
     "title": "Where the data comes from",
-        "description": "Australian Institute of Health and Welfare (AIHW), National Cervical Screening Program monitoring report 2025; Australian Bureau of Statistics (ABS), Census of Population and Housing 2021 (local area map). Figures are updated as new reporting becomes available."
+    "description": "Australian Institute of Health and Welfare (AIHW), National Cervical Screening Program monitoring report 2025; Australian Bureau of Statistics (ABS), Census of Population and Housing 2021 (local area map). Figures are updated as new reporting becomes available."
   }
 }

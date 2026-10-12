@@ -1,28 +1,36 @@
 {
   "map": {
     "eyebrow": "探索地圖",
-    "title": "你所在地區嘅篩查情況",
-    "description": "睇下澳洲各個地區（SA3）嘅子宮頸篩查參與率同社區背景有咩分別。搜尋一個地區就可以放大睇。",
-    "searchLabel": "搵地區",
-    "searchPlaceholder": "輸入地區名稱搜尋",
-    "noResults": "搵唔到相符嘅地區",
-    "metricLabel": "地圖顏色顯示",
+    "title": "查看你所在區域的子宮頸篩查情況",
+    "description": "了解澳洲不同地區（SA3）的子宮頸篩查參與率及社區背景差異。搜尋地區名稱即可放大查看。",
+    "searchLabel": "搜尋地區",
+    "searchPlaceholder": "搜尋地區名稱",
+    "noResults": "找不到符合的地區",
+    "metricLabel": "地圖顯示指標",
     "metrics": {
-      "participation": "篩查參與率",
-      "bornOverseas": "海外出生",
-      "otherLanguage": "屋企講英語以外嘅語言",
-      "lowProficiency": "英語能力偏低"
+      "participation": "子宮頸篩查參與率",
+      "bornOverseas": "海外出生人口",
+      "otherLanguage": "在家使用英語以外語言的人口",
+      "lowProficiency": "英語能力較低的人口"
     },
     "resetView": "重設地圖",
-    "noData": "冇可靠數據",
-    "loading": "地圖載入緊…",
-    "error": "載入唔到地圖數據。",
-    "ariaLabel": "按地區着色嘅澳洲地圖",
-    "hint": "喺地圖上揀一個地區，或者搜尋一個地區，就可以睇到詳細資料。",
-    "detail": {
-      "women": "25至74歲女性",
-      "birthplaceNotStated": "未註明出生地"
+    "noData": "沒有可用數據",
+    "loading": "正在載入地圖…",
+    "error": "無法載入地圖數據。",
+    "ariaLabel": "按地區顯示不同數據的澳洲地圖",
+    "hint": "選擇地圖上的地區，或搜尋地區名稱，以查看詳細資料。",
+    "bornOverseasTier": {
+      "low": "低於大多數地區",
+      "mid": "接近中間水平",
+      "high": "高於大多數地區"
     },
-    "note": "參與率採用最新可用嘅報告期。人口數字來自2021年人口普查。參與數據被隱藏或者唔可靠嘅地區會顯示為灰色。"
+    "areaCaveat": "這些數據反映地區整體情況，並不代表個別女性或社群的情況。",
+    "diversityLine": "不同地區的篩查率並不會隨着海外出生、在家使用其他語言或英語能力較低的女性比例增加或減少而呈現固定趨勢，而且每個群組內的篩查率也存在很大差異。",
+    "whyVariesKicker": "為甚麼會有差異",
+    "detail": {
+      "women": "25–74歲女性",
+      "birthplaceNotStated": "出生地未有註明"
+    },
+    "note": "參與率採用目前可取得的最新報告期數據。人口數據來自2021年人口普查。參與率數據被隱藏或不可靠的地區會以黃色顯示。"
   }
 }

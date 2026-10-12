@@ -1,28 +1,36 @@
 {
   "map": {
     "eyebrow": "探索地图",
-    "title": "您所在地区的筛查情况",
-    "description": "按本地区域（SA3）查看澳大利亚各地宫颈癌筛查参与率和社区背景的差异。搜索一个地区即可放大查看。",
+    "title": "查看您所在地区的筛查情况",
+    "description": "了解澳大利亚不同地区（SA3）的宫颈癌筛查参与率和社区背景差异。搜索地区名称即可放大查看。",
     "searchLabel": "查找地区",
-    "searchPlaceholder": "按地区名称搜索",
+    "searchPlaceholder": "搜索地区名称",
     "noResults": "没有匹配的地区",
-    "metricLabel": "地图着色依据",
+    "metricLabel": "地图显示指标",
     "metrics": {
-      "participation": "筛查参与率",
-      "bornOverseas": "海外出生",
-      "otherLanguage": "在家说英语以外的语言",
-      "lowProficiency": "英语水平较低"
+      "participation": "宫颈癌筛查参与率",
+      "bornOverseas": "海外出生人口",
+      "otherLanguage": "在家使用英语以外语言的人口",
+      "lowProficiency": "英语能力较低的人口"
     },
-    "resetView": "重置视图",
-    "noData": "无可靠数据",
+    "resetView": "重置地图",
+    "noData": "暂无可用数据",
     "loading": "正在加载地图…",
     "error": "无法加载地图数据。",
-    "ariaLabel": "按本地区域着色的澳大利亚地图",
-    "hint": "在地图上选择一个地区，或搜索某个地区，即可查看详情。",
-    "detail": {
-      "women": "25至74岁女性",
-      "birthplaceNotStated": "未说明出生地"
+    "ariaLabel": "按地区显示不同数据的澳大利亚地图",
+    "hint": "选择地图上的地区，或搜索地区名称，以查看详细信息。",
+    "bornOverseasTier": {
+      "low": "低于大多数地区",
+      "mid": "处于中间水平",
+      "high": "高于大多数地区"
     },
-    "note": "参与率采用可用的最新报告期。人口数据来自2021年人口普查。参与数据被隐藏或不可靠的地区以灰色显示。"
+    "areaCaveat": "这些数据反映的是地区整体情况，并不代表个别女性或社区的情况。",
+    "diversityLine": "不同地区的筛查率并不会随着海外出生、在家使用其他语言或英语能力较低的女性比例增加或减少而呈现固定趋势，而且每个群体内部的筛查率也存在很大差异。",
+    "whyVariesKicker": "为什么会有差异",
+    "detail": {
+      "women": "25–74岁女性",
+      "birthplaceNotStated": "出生地未注明"
+    },
+    "note": "参与率采用目前可获得的最新报告期数据。人口数据来自2021年人口普查。参与率数据被隐去或不可靠的地区将以黄色显示。"
   }
 }

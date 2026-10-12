@@ -1,28 +1,36 @@
 {
   "map": {
     "eyebrow": "Khám phá bản đồ",
-    "title": "Tầm soát tại khu vực của bạn",
-    "description": "Xem tỷ lệ tham gia tầm soát ung thư cổ tử cung và nền tảng cộng đồng khác nhau thế nào trên khắp nước Úc theo khu vực địa phương (SA3). Hãy tìm một khu vực để phóng to.",
+    "title": "Tình hình tầm soát tại khu vực của bạn",
+    "description": "Tìm hiểu sự khác biệt về tỷ lệ tham gia tầm soát cổ tử cung và đặc điểm cộng đồng giữa các khu vực tại Úc (SA3). Tìm kiếm tên khu vực để phóng to bản đồ.",
     "searchLabel": "Tìm khu vực",
     "searchPlaceholder": "Tìm theo tên khu vực",
-    "noResults": "Không có khu vực phù hợp",
+    "noResults": "Không tìm thấy khu vực phù hợp",
     "metricLabel": "Tô màu bản đồ theo",
     "metrics": {
       "participation": "Tỷ lệ tham gia tầm soát",
-      "bornOverseas": "Sinh ra ở nước ngoài",
-      "otherLanguage": "Nói ngôn ngữ khác tiếng Anh ở nhà",
-      "lowProficiency": "Trình độ tiếng Anh thấp"
+      "bornOverseas": "Sinh ở nước ngoài",
+      "otherLanguage": "Sử dụng ngôn ngữ khác ngoài tiếng Anh tại nhà",
+      "lowProficiency": "Hạn chế về khả năng sử dụng tiếng Anh"
     },
-    "resetView": "Đặt lại chế độ xem",
-    "noData": "Không có dữ liệu đáng tin cậy",
+    "resetView": "Đặt lại bản đồ",
+    "noData": "Không có dữ liệu",
     "loading": "Đang tải bản đồ…",
     "error": "Không thể tải dữ liệu bản đồ.",
-    "ariaLabel": "Bản đồ nước Úc được tô màu theo khu vực địa phương",
-    "hint": "Chọn một khu vực trên bản đồ, hoặc tìm kiếm, để xem chi tiết.",
+    "ariaLabel": "Bản đồ Úc được tô màu theo từng khu vực",
+    "hint": "Chọn một khu vực trên bản đồ hoặc tìm kiếm tên khu vực để xem thông tin chi tiết.",
+    "bornOverseasTier": {
+      "low": "thấp hơn phần lớn các khu vực",
+      "mid": "xấp xỉ mức trung bình",
+      "high": "cao hơn phần lớn các khu vực"
+    },
+    "areaCaveat": "Các số liệu này phản ánh tình hình ở cấp độ khu vực, không đại diện cho từng phụ nữ hoặc từng cộng đồng.",
+    "diversityLine": "Tỷ lệ tầm soát giữa các khu vực không tăng hoặc giảm theo một xu hướng nhất quán khi tỷ lệ phụ nữ sinh ở nước ngoài, sử dụng ngôn ngữ khác ngoài tiếng Anh tại nhà hoặc hạn chế khả năng sử dụng tiếng Anh thay đổi. Tỷ lệ này cũng khác nhau đáng kể trong từng nhóm.",
+    "whyVariesKicker": "Vì sao có sự khác biệt?",
     "detail": {
-      "women": "Phụ nữ từ 25 đến 74 tuổi",
+      "women": "Phụ nữ từ 25–74 tuổi",
       "birthplaceNotStated": "Không nêu nơi sinh"
     },
-    "note": "Tỷ lệ tham gia dùng giai đoạn báo cáo gần nhất hiện có. Số liệu dân số lấy từ Điều tra dân số 2021. Các khu vực có dữ liệu tham gia bị ẩn hoặc không đáng tin cậy được hiển thị màu xám."
+    "note": "Tỷ lệ tham gia sử dụng kỳ báo cáo mới nhất hiện có. Số liệu dân số lấy từ Điều tra dân số năm 2021. Các khu vực có dữ liệu tham gia bị ẩn hoặc không đáng tin cậy được hiển thị bằng màu vàng."
   }
 }

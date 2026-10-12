@@ -1,66 +1,86 @@
 {
-  "title": "FAQ",
-  "eyebrow": "Frequently asked questions",
-  "heading": "Clear answers,",
-  "headingEmphasis": "all in one place.",
-  "intro": "Grouped by what people usually want to know first. Tap any question to open it — nothing here is timed or tracked, so come back as often as you like.",
+  "title": "الأسئلة الشائعة",
+  "eyebrow": "الأسئلة الشائعة",
+  "heading": "إجابات واضحة،",
+  "headingEmphasis": "كلها في مكان واحد.",
+  "intro": "نظّمنا الأسئلة بحسب ما يرغب الناس عادةً في معرفته أولاً. اضغطي على أي سؤال لعرض الإجابة. لا يوجد توقيت أو تتبّع هنا، ويمكنك العودة متى شئت.",
   "groups": {
-    "screening": "About screening",
-    "appointment": "The appointment",
-    "access": "Access and options"
+    "hpv": "حول فيروس الورم الحليمي البشري",
+    "screening": "حول فحص عنق الرحم",
+    "appointment": "موعد الفحص",
+    "access": "إمكانية الوصول والخيارات"
   },
   "questions": {
     "what": {
-      "question": "What is cervical screening?",
-      "answer": "A simple test that checks cervical cells for HPV, the virus that can lead to changes over time. Most results are normal."
+      "question": "ما هو فحص عنق الرحم؟",
+      "answer": "هو فحص بسيط يتحقق من وجود فيروس الورم الحليمي البشري (HPV) في خلايا عنق الرحم. قد يؤدي هذا الفيروس إلى تغيّرات في الخلايا مع مرور الوقت. تكون معظم النتائج طبيعية."
     },
     "why": {
-      "question": "Why is it important?",
-      "answer": "Screening can find HPV before it causes cell changes. Finding changes early means they can be followed up before they develop into cervical cancer."
+      "question": "لماذا يُعدّ هذا الفحص مهماً؟",
+      "answer": "يمكن للفحص اكتشاف فيروس HPV قبل أن يسبب تغيّرات في الخلايا. ويساعد اكتشاف هذه التغيّرات مبكراً على متابعتها قبل أن تتطور إلى سرطان عنق الرحم."
     },
     "who": {
-      "question": "Who should be screened, and from what age?",
-      "answer": "In Australia, cervical screening is recommended every five years for people aged 25 to 74 who have a cervix, including people who have had the HPV vaccine."
+      "question": "من ينبغي أن يخضع للفحص، وفي أي عمر؟",
+      "answer": "في أستراليا، يُنصح الأشخاص الذين تتراوح أعمارهم بين 25 و74 عاماً ولديهم عنق رحم بإجراء فحص عنق الرحم كل خمس سنوات، بمن فيهم من تلقّوا لقاح HPV."
     },
     "howOften": {
-      "question": "How often do I need to go?",
-      "answer": "Most people need a test every five years. Your healthcare provider may suggest a different plan based on your result or health history."
+      "question": "كم مرة أحتاج إلى إجراء الفحص؟",
+      "answer": "يحتاج معظم الأشخاص إلى الفحص كل خمس سنوات. وقد يقترح مقدم الرعاية الصحية جدولاً مختلفاً بناءً على نتيجتك أو تاريخك الصحي."
     },
     "test": {
-      "question": "What actually happens during the test?",
-      "answer": "A small sample is collected from the cervix by a trained healthcare professional. The test usually takes a few minutes, and you can ask to pause at any time."
+      "question": "ماذا يحدث فعلياً أثناء الفحص؟",
+      "answer": "يجمع أحد المختصين المدربين في الرعاية الصحية عينة صغيرة من عنق الرحم. يستغرق الفحص عادةً بضع دقائق، ويمكنك طلب التوقف مؤقتاً في أي وقت."
     },
     "femaleClinician": {
-      "question": "Can I ask for a female doctor or nurse?",
-      "answer": "Yes. You can request a female healthcare provider when booking. You can also bring a support person or ask for an interpreter."
+      "question": "هل يمكنني طلب طبيبة أو ممرضة؟",
+      "answer": "نعم. يمكنك طلب مقدمة رعاية صحية عند حجز الموعد. ويمكنك أيضاً إحضار شخص داعم أو طلب مترجم شفهي."
     },
     "cost": {
-      "question": "Does screening cost anything?",
-      "answer": "The cost can depend on where you go and your circumstances. Ask the clinic about any fees before making an appointment."
+      "question": "هل يتطلب فحص عنق الرحم دفع رسوم؟",
+      "answer": "قد تختلف التكلفة بحسب مكان إجراء الفحص وظروفك. اسألي العيادة عن أي رسوم قبل حجز الموعد."
     },
     "selfCollect": {
-      "question": "Can I collect my own sample?",
-      "answer": "Self-collection may be available for eligible people. Ask your healthcare provider whether it is an option for you."
+      "question": "هل يمكنني جمع العينة بنفسي؟",
+      "answer": "قد يكون جمع العينة ذاتياً متاحاً للأشخاص المؤهلين. اسألي مقدم الرعاية الصحية عما إذا كان هذا الخيار مناسباً لك."
+    },
+    "hpv": {
+      "whatIs": {
+        "question": "ما هو فيروس HPV؟",
+        "answer": "فيروس الورم الحليمي البشري (HPV) مجموعة شائعة من الفيروسات. تزول معظم حالات العدوى تلقائياً، لكن بعض الأنواع قد تسبب تغيّرات في الخلايا يمكن أن تؤدي في النهاية إلى سرطان عنق الرحم."
+      },
+      "howSpread": {
+        "question": "كيف ينتقل فيروس HPV؟",
+        "answer": "ينتقل فيروس HPV غالباً عبر التلامس الجلدي الحميم أثناء النشاط الجنسي، بما في ذلك الجنس المهبلي والشرجي والفموي. وقد ينتقل حتى عندما لا تظهر أعراض على أي من الشخصين."
+      },
+      "prevention": {
+        "question": "كيف يمكنني الوقاية من فيروس HPV؟",
+        "answer": "يساعد لقاح HPV على الحماية من الأنواع الأكثر احتمالاً للتسبب في سرطان عنق الرحم. وقد يقلل استخدام الواقي الذكري من الخطر، لكنه لا يمنع جميع حالات العدوى. ويظل فحص عنق الرحم مهماً لأنه يستطيع اكتشاف الفيروس وتحديد الأشخاص الذين يحتاجون إلى متابعة."
+      },
+      "positiveResult": {
+        "question": "ماذا أفعل إذا كانت نتيجة فحص HPV إيجابية؟",
+        "answer": "لا تعني النتيجة الإيجابية لفيروس HPV أنك مصابة بسرطان عنق الرحم. فالعدوى شائعة وغالباً ما تزول تلقائياً. اتبعي الإرشادات الواردة في نتيجة الفحص واحضري أي فحوصات متابعة أو مواعيد يوصي بها مختص الرعاية الصحية."
+      }
     }
   },
   "results": {
-    "heading": "Understanding your cervical screening results",
-    "intro": "Your result helps determine whether you need another screening test or further follow-up. Here is what each result category means.",
+    "heading": "فهم نتائج فحص عنق الرحم",
+    "intro": "تساعد نتيجتك في تحديد ما إذا كنت بحاجة إلى فحص آخر أو متابعة إضافية. إليك معنى كل فئة من النتائج.",
     "lowRisk": {
-      "title": "Low risk (HPV not detected)",
-      "description": "No high-risk HPV was found in your sample. Your chance of developing cervical cell changes that need treatment in the next five years is very low. You will generally be invited to have another cervical screening test in five years."
+      "title": "خطورة منخفضة (لم يُكتشف فيروس HPV)",
+      "description": "لم يُعثر على فيروس HPV عالي الخطورة في عينتك. واحتمال حدوث تغيّرات في خلايا عنق الرحم تحتاج إلى علاج خلال السنوات الخمس المقبلة منخفض جداً. عادةً ستُدعين لإجراء فحص عنق الرحم مرة أخرى بعد خمس سنوات."
     },
     "intermediateRisk": {
-      "title": "Intermediate risk",
-      "description": "HPV types 16 and 18, which carry the highest risk, were not detected, but another high-risk HPV type was found. Your sample has also been checked for abnormal cell changes, and there are either no changes or only minor changes. You will generally be asked to return in 12 months for a follow-up HPV test, as your body will often clear the infection over time."
+      "title": "خطورة متوسطة",
+      "description": "لم يُكتشف النوعان 16 و18 من فيروس HPV، وهما الأعلى خطورة، لكن كُشف نوع آخر عالي الخطورة. كما فُحصت عينتك بحثاً عن تغيّرات غير طبيعية في الخلايا، ولم تظهر أي تغيّرات أو ظهرت تغيّرات طفيفة فقط. عادةً سيُطلب منك العودة بعد 12 شهراً لإجراء فحص متابعة لفيروس HPV، إذ غالباً ما يتخلص الجسم من العدوى مع مرور الوقت."
     },
     "higherRisk": {
-      "title": "Higher risk",
-      "description": "This may mean HPV types 16 or 18 were detected, high-grade cervical cell changes were found, or another high-risk HPV infection has persisted. Further follow-up is important to assess your risk and determine whether treatment is needed. A higher-risk result does not necessarily mean you have cervical cancer."
+      "title": "خطورة أعلى",
+      "description": "قد يعني ذلك اكتشاف النوع 16 أو 18 من فيروس HPV، أو وجود تغيّرات عالية الدرجة في خلايا عنق الرحم، أو استمرار عدوى بنوع آخر عالي الخطورة. من المهم إجراء متابعة إضافية لتقييم مستوى الخطورة وتحديد ما إذا كان العلاج ضرورياً. ولا تعني النتيجة ذات الخطورة الأعلى بالضرورة أنك مصابة بسرطان عنق الرحم."
     },
     "unsatisfactory": {
-      "title": "Unsatisfactory result",
-      "description": "Your sample could not be examined adequately. This may happen if there were too few cells or insufficient sample material for the required tests. It does not mean that HPV was detected or that an abnormality was found. You should repeat the test at the time recommended by your healthcare professional."
+      "title": "نتيجة غير كافية للتقييم",
+      "description": "لم يكن من الممكن فحص عينتك بشكل كافٍ. وقد يحدث ذلك بسبب قلة عدد الخلايا أو عدم كفاية العينة لإجراء الفحوصات المطلوبة. ولا يعني هذا اكتشاف فيروس HPV أو وجود خلل. ينبغي إعادة الفحص في الوقت الذي يوصي به مختص الرعاية الصحية."
     }
-  }
+  },
+  "learnMore": "اعرفي المزيد"
 }

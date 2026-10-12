@@ -1,37 +1,40 @@
 {
   "aria": {
-    "gameFrame": "Luna 的宫颈筛查预约 | 第 3 阶段",
-    "fullscreenExit": "退出全屏模式",
-    "fullscreenOpen": "打开游戏全屏模式",
+    "gameFrame": "Luna 的宫颈筛查预约｜第 3 阶段",
+    "fullscreenExit": "退出全屏",
+    "fullscreenOpen": "全屏打开游戏",
     "variantPicker": "游戏 3 测试版本"
   },
   "iframe": {
-    "title": "与 Luna 一起几分钟"
+    "title": "与 Luna 共度几分钟"
   },
   "variant": {
-    "description": "选择一个版本。切换版本会重新开始预约。",
+    "description": "选择一个版本。切换版本会重新开始预约流程。",
     "animation": "A · 时钟动画",
     "puzzle": "B · 图片拼图"
   },
   "intro": {
-    "label": "宫颈筛查之旅 | 第3阶段",
+    "label": "宫颈筛查历程 | 第 3 阶段",
     "title": "筛查时会发生什么？",
-    "description": "陪伴 Luna 进行筛查预约，探索她的筛查选择，并体验取样过程中的几分钟可以过得多快。"
+    "description": "陪伴 Luna 参加预约，了解她的筛查选择，并体验采集样本的过程可以多快完成。"
+  },
+  "gameStart": {
+    "eyebrowGame3": "第 3 阶段 · 宫颈筛查历程"
   },
   "learning": {
-    "label": "你将学到什么",
+    "label": "你将了解",
     "choices": {
       "title": "选择与自主权",
-      "description": "帮助 Luna 讨论之前的筛查、取样选择，以及如何暂停或停止。"
+      "description": "帮助 Luna 讨论以往的筛查经历、样本采集选项，以及如何要求暂停或停止。"
     },
     "minutes": {
-      "title": "几分钟的时间",
-      "animationDescription": "观看时钟显示取样过程中的时间流逝。",
-      "puzzleDescription": "玩图片拼图最多两分钟，体验取样过程中几分钟时间的流逝。"
+      "title": "只需几分钟",
+      "animationDescription": "观察时钟，了解采集样本期间时间如何流逝。",
+      "puzzleDescription": "玩图片拼图，最多两分钟，体验采集样本期间时间流逝的感觉。"
     },
     "after": {
       "title": "筛查之后",
-      "description": "了解取样后会发生什么，以及通常什么时候需要再次进行筛查。"
+      "description": "了解样本会如何处理，以及通常何时需要再次接受筛查。"
     }
   },
   "navigation": {

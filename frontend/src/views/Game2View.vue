@@ -336,4 +336,137 @@ onBeforeUnmount(() => {
     aspect-ratio: 16 / 9;
   }
 }
+
+
+/* ==================================================
+   Game 2: Theme support for all four buttons
+   ================================================== */
+
+/* Blush theme */
+.site-shell.theme-blush .game2-page .audio-button,
+.site-shell.theme-blush .game2-page .fullscreen-button {
+  background: #fffaf8;
+  color: #302a2d;
+  border: 1px solid #eadfdb;
+}
+
+.site-shell.theme-blush .game2-page .audio-button:hover,
+.site-shell.theme-blush .game2-page .fullscreen-button:hover {
+  background: #f4e8e4;
+}
+
+.site-shell.theme-blush .game2-page .game-route-link {
+  border-color: #a65364;
+  color: #a65364;
+}
+
+.site-shell.theme-blush .game2-page .game-route-link:hover {
+  background: #f8e9e9;
+  color: #8e4f59;
+}
+
+.site-shell.theme-blush .game2-page .game-route-link-next {
+  background: #a65364;
+  border-color: #a65364;
+  color: #ffffff;
+}
+
+.site-shell.theme-blush .game2-page .game-route-link-next:hover {
+  background: #8e4f59;
+  border-color: #8e4f59;
+  color: #ffffff;
+}
+
+
+/* Teal theme */
+.site-shell.theme-teal .game2-page .audio-button,
+.site-shell.theme-teal .game2-page .fullscreen-button {
+  background: #f3fbfa;
+  color: #123b3c;
+  border: 1px solid #b8ded9;
+}
+
+.site-shell.theme-teal .game2-page .audio-button:hover,
+.site-shell.theme-teal .game2-page .fullscreen-button:hover {
+  background: #d9f1ee;
+}
+
+.site-shell.theme-teal .game2-page .game-route-link {
+  border-color: #087b78;
+  color: #087b78;
+}
+
+.site-shell.theme-teal .game2-page .game-route-link:hover {
+  background: #d9f1ee;
+  color: #065f5c;
+}
+
+.site-shell.theme-teal .game2-page .game-route-link-next {
+  background: #087b78;
+  border-color: #087b78;
+  color: #ffffff;
+}
+
+.site-shell.theme-teal .game2-page .game-route-link-next:hover {
+  background: #065f5c;
+  border-color: #065f5c;
+  color: #ffffff;
+}
+
+
+/* Accessible theme */
+.site-shell.theme-accessible .game2-page .audio-button,
+.site-shell.theme-accessible .game2-page .fullscreen-button {
+  background: #ffffff;
+  color: #14213d;
+  border: 1px solid #a8c7df;
+}
+
+.site-shell.theme-accessible .game2-page .audio-button:hover,
+.site-shell.theme-accessible .game2-page .fullscreen-button:hover {
+  background: #dbe9f7;
+}
+
+.site-shell.theme-accessible .game2-page .game-route-link {
+  border-color: #145da0;
+  color: #145da0;
+}
+
+.site-shell.theme-accessible .game2-page .game-route-link:hover {
+  background: #dbe9f7;
+  color: #0d467b;
+}
+
+.site-shell.theme-accessible .game2-page .game-route-link-next {
+  background: #145da0;
+  border-color: #145da0;
+  color: #ffffff;
+}
+
+.site-shell.theme-accessible .game2-page .game-route-link-next:hover {
+  background: #0d467b;
+  border-color: #0d467b;
+  color: #ffffff;
+}
+
+
+/* Keyboard focus */
+.site-shell .game2-page .audio-button:focus-visible,
+.site-shell .game2-page .fullscreen-button:focus-visible,
+.site-shell .game2-page .game-route-link:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* Smooth theme transitions */
+.game2-page .audio-button,
+.game2-page .fullscreen-button,
+.game2-page .game-route-link {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
 </style>

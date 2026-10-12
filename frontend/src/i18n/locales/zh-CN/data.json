@@ -1,27 +1,65 @@
 {
-  "title": "数据",
-  "eyebrow": "数据",
-  "heading": "完整数据，",
+  "title": "数据概览",
+  "eyebrow": "数据概览",
+  "heading": "全面了解筛查情况，",
   "headingEmphasis": "每年更新。",
-  "intro": "从不同角度了解全国筛查参与情况。数字反映整个系统，并非任何个人的选择。",
+  "intro": "从多个角度展示澳大利亚全国宫颈筛查参与情况。这些数字反映的是医疗服务体系的整体情况，而不是任何个人的选择。",
   "participation": {
     "label": "全国参与率",
-    "description": "符合条件的人士在 2020 至 2024 年间接受了 HPV 筛查。",
-    "period": "2020–2024"
+    "description": "在最近一个统计周期内，25至74岁符合条件的人群中接受了HPV筛查检测的比例。",
+    "period": "2020–2024年"
   },
   "chart": {
     "title": "筛查参与率",
-    "range": "2020–2024",
-    "ariaLabel": "2020 至 2024 年的参与趋势",
-    "change": "期间变化 2.9%"
+    "range": "2020–2024年",
+    "ariaLabel": "展示三个时间段相互重叠的统计周期内筛查参与率变化趋势的折线图",
+    "change": "该统计周期内变化了2.9%",
+    "caption": "在{{window}}期间，25至74岁符合条件的人群中有{{percent}}%接受了筛查检测。该比例从{{firstWindow}}期间的{{firstPercent}}%变化了{{change}}个百分点。",
+    "captionState": "在{{window}}期间，{{place}}的25至74岁符合条件人群中有{{percent}}%接受了筛查检测。该比例从{{firstWindow}}期间的{{firstPercent}}%变化了{{change}}个百分点。",
+    "axisNote": "纵轴从{{min}}%开始，以便更清楚地观察变化。",
+    "caveatWindows": "每个统计周期涵盖5.5年的检测数据，因此不同周期之间存在重叠。这些数据展示的是变化趋势，而不是彼此独立的年份。",
+    "caveatStates": "澳大利亚健康与福利研究所（AIHW）建议不要直接比较各州和领地的数据，因为各地的人口构成、地理环境和政策有所不同。"
   },
+  "windowLabel": "统计周期",
+  "whyVaries": "为什么会有差异？",
+  "mapKicker": "按当地地区查看",
   "ageGroups": {
-    "label": "按年龄组别",
-    "title": "参与率因年龄而异。",
-    "note": "组别差异可能反映服务可及性、语言支持及对系统的熟悉程度，并非个人选择。"
+    "label": "按年龄组划分",
+    "title": "筛查参与率因年龄而异。",
+    "note": "不同群体之间的差异可能与医疗服务的可及性、语言支持以及人们对医疗体系的熟悉程度有关，而不一定是个人选择造成的。",
+    "caption": "在{{window}}期间，参与率从{{lowestAge}}年龄组的{{lowestPercent}}%到{{highestAge}}年龄组的{{highestPercent}}%不等。",
+    "showing": "当前显示：{{place}}",
+    "quote": "70至74岁的参与者在国家宫颈筛查计划（NCSP）更新后重新纳入目标年龄组。他们在旧计划中超过69岁后曾不再属于目标人群，因此预计这一年龄组的参与率会较低。",
+    "quoteSource": "澳大利亚健康与福利研究所（AIHW），《2025年国家宫颈筛查计划监测报告》"
   },
+  "selfCollection": {
+    "label": "自行采样",
+    "title": "按月统计的自行采样HPV检测数量",
+    "description": "{{year}}年，约有{{share}}%的HPV检测采用自行采样方式。",
+    "caption": "相比之下，{{firstYear}}年的自行采样检测数量为{{firstCount}}次。",
+    "partialYear": "{{year}}年仅显示1月至6月的数据。",
+    "modeCount": "数量",
+    "modeShare": "检测占比",
+    "july2022": "2022年7月：向所有符合条件的人开放",
+    "accuracy": "与由医护人员采集的样本相比，自行采样的宫颈筛查检测在检测HPV方面同样安全、准确。",
+    "accuracySource": "昆士兰州卫生部",
+    "caveatTests": "这些数字统计的是检测次数，而不是人数。"
+  },
+  "socioeconomic": {
+    "label": "按地区划分",
+    "title": "按地区社会经济劣势程度划分的参与率",
+    "caption": "在{{window}}期间，社会经济劣势最明显地区的参与率为{{q1Percent}}%，而劣势最不明显地区为{{q5Percent}}%。",
+    "q1": "1 · 劣势最明显",
+    "q5": "5 · 劣势最不明显",
+    "caveatArea": "这些数据反映的是地区层面的模式，而非个人情况。它们不能说明任何个人或任何背景的人如何选择是否接受筛查。",
+    "caveatStructural": "地区之间的差异可能与医疗服务可及性、费用和时间等因素有关，而不是个人选择造成的。",
+    "quote": "面临社会经济困难的人可能在接受筛查时遇到更多障碍，例如需要自行承担的费用，以及工作等相互冲突的生活优先事项。",
+    "quoteSource": "摘编自澳大利亚卫生与老年护理部网站 health.gov.au 的NCSP医疗服务提供者工具包"
+  },
+  "learnMore": "了解更多",
+  "dataNotAvailable": "暂无可用数据",
   "sources": {
     "title": "数据来源",
-    "description": "数据来自 Cancer Australia 的全国筛查资料，并会随新报告发布而更新。"
+    "description": "澳大利亚健康与福利研究所（AIHW），《2025年国家宫颈筛查计划监测报告》；澳大利亚统计局（ABS），《2021年人口与住房普查》（当地地区地图）。随着新报告发布，相关数据将持续更新。"
   }
 }
