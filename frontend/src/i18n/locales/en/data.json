@@ -6,22 +6,60 @@
   "intro": "National screening participation, broken down a few different ways. Numbers describe the system, not any one person's choices.",
   "participation": {
     "label": "National participation",
-    "description": "of eligible people had an HPV screening test between 2020 and 2024.",
+    "description": "of eligible people aged 25–74 had an HPV screening test in the latest reporting period.",
     "period": "2020–2024"
   },
   "chart": {
     "title": "Screening participation rate",
     "range": "2020–2024",
-    "ariaLabel": "Participation trend over the years 2020 to 2024",
-    "change": "2.9% change over the period"
+    "ariaLabel": "Participation trend across three overlapping reporting periods",
+    "change": "2.9% change over the period",
+    "caption": "In {{window}}, {{percent}}% of eligible people aged 25–74 had a screening test. This changed from {{firstPercent}}% in {{firstWindow}} ({{change}} percentage points).",
+    "captionState": "In {{window}}, {{percent}}% of eligible people aged 25–74 in {{place}} had a screening test. This changed from {{firstPercent}}% in {{firstWindow}} ({{change}} percentage points).",
+    "axisNote": "The scale starts at {{min}}% so changes are easier to see.",
+    "caveatWindows": "Each period counts tests over 5.5 years, so periods overlap. They show a trend, not separate years.",
+    "caveatStates": "AIHW advises against directly comparing states and territories, because their populations, geography and policies differ."
   },
+  "windowLabel": "Reporting period",
+  "whyVaries": "Why this varies",
+  "mapKicker": "By local area",
   "ageGroups": {
     "label": "By age group",
     "title": "Participation varies by age.",
-    "note": "Differences between groups can reflect access to services, language support, and how familiar the system feels — not personal choice."
+    "note": "Differences between groups can reflect access to services, language support, and how familiar the system feels — not personal choice.",
+    "caption": "In {{window}}, participation ranged from {{lowestPercent}}% (ages {{lowestAge}}) to {{highestPercent}}% (ages {{highestAge}}).",
+    "showing": "Showing: {{place}}",
+    "quote": "Participants aged 70–74 have re-entered the target age group under the renewed NCSP after leaving the previous NCSP after age 69, so lower participation is expected in this age group.",
+    "quoteSource": "AIHW, National Cervical Screening Program monitoring report 2025"  
   },
+  "selfCollection": {
+    "label": "Self-collection",
+    "title": "Self-collected HPV tests, by month",
+    "description": "HPV screening tests were self-collected in {{year}}, about {{share}}% of all HPV tests.",
+    "caption": "Up from {{firstCount}} self-collected tests in {{firstYear}}.",
+    "partialYear": "{{year}} shows January–June only.",
+    "modeCount": "Number",
+    "modeShare": "Share of tests",
+    "july2022": "Jul 2022: open to everyone eligible",
+    "accuracy": "A self-collected cervical screening test is just as safe and accurate at detecting HPV as a clinician-collected sample.",
+    "accuracySource": "Queensland Health",
+    "caveatTests": "These are counts of tests, not people."
+  },
+  "socioeconomic": {
+    "label": "By area",
+    "title": "Participation by area disadvantage",
+    "caption": "In {{window}}, participation was {{q1Percent}}% in the areas with the most disadvantage and {{q5Percent}}% in the areas with the least disadvantage.",
+    "q1": "1 · Most disadvantaged",
+    "q5": "5 · Least disadvantaged",
+    "caveatArea": "These are area-level patterns. They describe areas, not individual people, and say nothing about how any one person, or people of any background, choose to screen.",
+    "caveatStructural": "Differences between areas reflect things like access to services, cost and time, not individual choices.",
+    "quote": "People experiencing socio-economic disadvantage can face extra barriers to screening, such as out-of-pocket costs and competing priorities like work.",
+    "quoteSource": "Summarised from health.gov.au, NCSP Healthcare Provider Toolkit"
+  },
+  "learnMore": "Learn more",
+  "dataNotAvailable": "Data not available",
   "sources": {
     "title": "Where the data comes from",
-    "description": "National screening data from Cancer Australia. Participation figures are updated as new reporting becomes available."
+        "description": "Australian Institute of Health and Welfare (AIHW), National Cervical Screening Program monitoring report 2025; Australian Bureau of Statistics (ABS), Census of Population and Housing 2021 (local area map). Figures are updated as new reporting becomes available."
   }
 }
