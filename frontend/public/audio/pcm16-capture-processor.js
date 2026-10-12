@@ -38,8 +38,10 @@ class Pcm16CaptureProcessor extends AudioWorkletProcessor {
     this.carry = samples.slice(consumed)
     this.sourcePosition -= consumed
 
-    while (this.pendingSamples.length >= 320) {
-      const frame = new Int16Array(this.pendingSamples.splice(0, 320))
+    while (this.pendingSamples.length >= 1600) {
+      const frame = new Int16Array(
+        this.pendingSamples.splice(0, 1600),
+      )
       this.port.postMessage(frame.buffer, [frame.buffer])
     }
 
