@@ -37,5 +37,6 @@
   "navigation": {
     "previousGame": "Waiting Room Listening Practice",
     "cervicalResults": "Understanding cervical screening results"
-  }
+  },
+  "gameStart": { "eyebrowGame3": "Phase 3 · Cervical screening journey" }
 }

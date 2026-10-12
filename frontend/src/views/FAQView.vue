@@ -30,6 +30,14 @@
             }}</span>
           </button>
           <p v-if="openItem === `${group.key}-${index}`">{{ item.answer }}</p>
+          <RouterLink
+  v-if="openItem === `${group.key}-${index}` && item.showArrow"
+  :to="item.link || '/'"
+  class="faq-answer-link"
+>
+  <span>{{ t('learnMore', { ns: 'faq' }) }}</span>
+  <span class="faq-answer-arrow" aria-hidden="true">→</span>
+</RouterLink>
         </article>
       </div>
     </section>
@@ -56,6 +64,14 @@
           <p v-if="openItem === `result-${index}`">
             {{ t(`results.${result.key}.description`, { ns: 'faq' }) }}
           </p>
+          <RouterLink
+  v-if="openItem === `result-${index}` && result.showArrow"
+  :to="result.link || '/'"
+  class="faq-answer-link"
+>
+  <span>{{ t('learnMore', { ns: 'faq' }) }}</span>
+  <span class="faq-answer-arrow" aria-hidden="true">→</span>
+</RouterLink>
         </article>
       </div>
     </section>
@@ -63,27 +79,63 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useTranslation } from '../i18n/useTranslation'
 import '../assets/contentPages.css'
+import { RouterLink } from 'vue-router'
 
 const { t } = useTranslation()
-const openItem = ref('screening-0')
-const groups = [
+const openItem = ref('hpv-0')
+const groups = computed(() => [
+  {
+    key: 'hpv',
+    items: [
+      {
+        question: t('questions.hpv.whatIs.question', { ns: 'faq' }),
+        answer: t('questions.hpv.whatIs.answer', { ns: 'faq' }),
+        showArrow: false,
+        link: undefined,
+      },
+      {
+        question: t('questions.hpv.howSpread.question', { ns: 'faq' }),
+        answer: t('questions.hpv.howSpread.answer', { ns: 'faq' }),
+        showArrow: false,
+        link: undefined,
+      },
+      {
+        question: t('questions.hpv.prevention.question', { ns: 'faq' }),
+        answer: t('questions.hpv.prevention.answer', { ns: 'faq' }),
+        showArrow: false,
+        link: undefined,
+      },
+      {
+        question: t('questions.hpv.positiveResult.question', { ns: 'faq' }),
+        answer: t('questions.hpv.positiveResult.answer', { ns: 'faq' }),
+        showArrow: true,
+        link: '/game1'
+      },
+    ],
+  },
   {
     key: 'screening',
     items: [
       {
         question: t('questions.what.question', { ns: 'faq' }),
         answer: t('questions.what.answer', { ns: 'faq' }),
+        showArrow: false,
+        link: undefined,
       },
       {
         question: t('questions.why.question', { ns: 'faq' }),
         answer: t('questions.why.answer', { ns: 'faq' }),
+        showArrow: false,
+        link: undefined,
       },
       {
         question: t('questions.who.question', { ns: 'faq' }),
         answer: t('questions.who.answer', { ns: 'faq' }),
+        showArrow: true,
+        link: '/data'
       },
     ],
   },
@@ -93,14 +145,20 @@ const groups = [
       {
         question: t('questions.howOften.question', { ns: 'faq' }),
         answer: t('questions.howOften.answer', { ns: 'faq' }),
+        showArrow: false,
+        link: undefined,
       },
       {
         question: t('questions.test.question', { ns: 'faq' }),
         answer: t('questions.test.answer', { ns: 'faq' }),
+        showArrow: true,
+        link: '/game3'
       },
       {
         question: t('questions.femaleClinician.question', { ns: 'faq' }),
         answer: t('questions.femaleClinician.answer', { ns: 'faq' }),
+        showArrow: false,
+        link: undefined,
       },
     ],
   },
@@ -110,20 +168,24 @@ const groups = [
       {
         question: t('questions.cost.question', { ns: 'faq' }),
         answer: t('questions.cost.answer', { ns: 'faq' }),
+        showArrow: false,
+        link: undefined,
       },
       {
         question: t('questions.selfCollect.question', { ns: 'faq' }),
         answer: t('questions.selfCollect.answer', { ns: 'faq' }),
+        showArrow: true,
+        link: '/guide#guide-home'
       },
     ],
   },
-]
+])
 
 const results = [
-  { key: 'lowRisk' },
-  { key: 'intermediateRisk' },
-  { key: 'higherRisk' },
-  { key: 'unsatisfactory' },
+  { key: 'lowRisk', showArrow: false , link: undefined,},
+  { key: 'intermediateRisk', showArrow: false , link: undefined,},
+  { key: 'higherRisk', showArrow: false , link: undefined,},
+  { key: 'unsatisfactory', showArrow: false , link: undefined,},
 ]
 
 const toggleItem = (key: string) => {

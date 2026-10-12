@@ -3,7 +3,7 @@
     <section class="finder-hero">
       <div class="finder-hero-inner">
         <p class="eyebrow">
-          <span class="eyebrow-dot"></span> {{ t('findCare', { ns: 'gpFinder' }) }}
+           {{ t('findCare', { ns: 'gpFinder' }) }}
         </p>
         <h1>{{ t('title', { ns: 'gpFinder' }) }}</h1>
         <form class="search-card" @submit.prevent="searchLocation">

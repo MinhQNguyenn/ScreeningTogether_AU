@@ -3,7 +3,7 @@
     <section class="hero-section" id="top">
       <div class="hero-copy">
         <p class="eyebrow">
-          <span class="eyebrow-dot"></span> {{ t('hero.eyebrow', { ns: 'home' }) }}
+           {{ t('hero.eyebrow', { ns: 'home' }) }}
         </p>
         <h1>
           {{ t('hero.title', { ns: 'home' }) }}<br /><em>{{

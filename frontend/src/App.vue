@@ -16,8 +16,11 @@
 
         <RouterLink to="/guide" @click="closeMenu">{{ t('header.guide') }}</RouterLink>
         <RouterLink to="/gpfinder" @click="closeMenu">{{ t('header.gpFinder') }}</RouterLink>
-        <RouterLink to="/resourceinfo" @click="closeMenu">{{ t('header.resourceInfo') }}</RouterLink>
         <RouterLink to="/call-practice" @click="closeMenu">{{ t('header.practice') }}</RouterLink>
+
+        <RouterLink to="/resourceinfo" @click="closeMenu">{{
+          t('header.resourceInfo')
+        }}</RouterLink>
       </nav>
       <button class="header-cta" type="button" @click="openExplore">
         <span v-if="isMobile">{{ t('header.exploreMobile') }}</span>
@@ -92,14 +95,18 @@
           >
           <p>{{ t('footer.tagline') }}</p>
         </div>
-        <div>
+        <div class="footer-pages">
           <h2>{{ t('footer.pages') }}</h2>
-          <RouterLink to="/">{{ t('header.home') }}</RouterLink>
-          <RouterLink to="/data">{{ t('header.data') }}</RouterLink>
-          <RouterLink to="/faq">{{ t('header.faq') }}</RouterLink>
-          <RouterLink to="/gpfinder">{{ t('header.gpFinder') }}</RouterLink>
-          <RouterLink to="/guide">{{ t('header.guide') }}</RouterLink>
-          <RouterLink to="/resourceinfo">{{ t('header.resourceInfo') }}</RouterLink>
+
+          <div class="footer-pages-grid">
+            <RouterLink to="/">{{ t('header.home') }}</RouterLink>
+            <RouterLink to="/data">{{ t('header.data') }}</RouterLink>
+            <RouterLink to="/faq">{{ t('header.faq') }}</RouterLink>
+
+            <RouterLink to="/gpfinder">{{ t('header.gpFinder') }}</RouterLink>
+            <RouterLink to="/guide">{{ t('header.guide') }}</RouterLink>
+            <RouterLink to="/resourceinfo">{{ t('header.resourceInfo') }}</RouterLink>
+          </div>
         </div>
         <div>
           <h2>{{ t('footer.dataSources') }}</h2>
@@ -148,7 +155,7 @@
             >
           </button>
         </div>
-        <RouterLink to="/">
+        <RouterLink to="/gprunner">
           <button class="start-over-link" type="button" @click="closeExplore">
             {{ t('explore.startBeginning') }} <span aria-hidden="true">→</span>
           </button>
@@ -411,7 +418,7 @@ const game3Ns = { ns: 'game3' }
 const extraGuide = computed(() => {
   if (currentGameGuide.value === 'game2') {
     return {
-      eyebrow: t('gameStart.eyebrowGame2'),
+      eyebrow: t('gameStart.eyebrowGame2', game2Ns),
       title: t('howToPlay.label', game2Ns),
       steps: [
         {
@@ -435,7 +442,7 @@ const extraGuide = computed(() => {
 
   if (currentGameGuide.value === 'game3') {
     return {
-      eyebrow: t('gameStart.eyebrowGame3'),
+      eyebrow: t('gameStart.eyebrowGame3', game3Ns),
       title: t('learning.label', game3Ns),
       steps: [
         {
@@ -1726,12 +1733,13 @@ onUnmounted(() => {
 }
 .footer-columns {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  gap: 48px;
-  max-width: 880px;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  gap: 32px;
+  max-width: 1000px;
   margin: 0 auto;
   padding-bottom: 28px;
   border-bottom: 1px solid #e7d5d4;
+  align-items: start;
 }
 .footer-columns > div {
   display: flex;
@@ -2453,6 +2461,285 @@ HomeView theme support
 .site-shell.text-size-largest :deep(.stats-filters label) {
   min-width: 0;
   flex-wrap: wrap;
+}
+
+/* Footer Pages */
+.footer-columns > .footer-pages {
+  align-items: stretch;
+  gap: 16px;
+  min-width: 0;
+}
+
+.footer-pages h2 {
+  width: 100%;
+  margin: 0;
+  text-align: center; /* "Pages" centred over the middle column */
+}
+
+.footer-pages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  width: 100%;
+  column-gap: 50px; /* was 16px */
+  row-gap: 10px;
+}
+
+.footer-pages-grid a {
+  display: block;
+  text-align: left;
+  white-space: nowrap; /* keep "GP Finder" / "Resource Info" on one line */
+}
+
+@media (max-width: 600px) {
+  /* Give the pages block its own full-width row so 3 columns fit */
+  .footer-columns > .footer-pages {
+    grid-column: 1 / -1;
+  }
+
+  .footer-pages h2 {
+    text-align: left;        /* heading aligns left like the other titles */
+  }
+
+  .footer-pages-grid {
+    justify-content: start;  
+    column-gap: 6px; 
+    row-gap: 8px;
+  }
+}
+
+
+/* =========================================
+   Explore and game guide popup theme support
+   ========================================= */
+
+/* ---------- Blush theme ---------- */
+.site-shell.theme-blush .explore-modal,
+.site-shell.theme-blush .game-start-modal {
+  background: #fff8f6;
+  color: #302a2d;
+  border-color: #e8c2be;
+}
+
+.site-shell.theme-blush .explore-modal h2,
+.site-shell.theme-blush .game-start-modal h2,
+.site-shell.theme-blush .game-guide-steps strong {
+  color: #302a2d;
+}
+
+.site-shell.theme-blush .modal-eyebrow,
+.site-shell.theme-blush .game-start-controls {
+  color: #a65364;
+}
+
+.site-shell.theme-blush .explore-intro,
+.site-shell.theme-blush .game-start-copy,
+.site-shell.theme-blush .game-start-rule,
+.site-shell.theme-blush .explore-option small,
+.site-shell.theme-blush .game-guide-steps small {
+  color: #706468;
+}
+
+.site-shell.theme-blush .explore-option,
+.site-shell.theme-blush .game-guide-steps li {
+  background: #fffaf8;
+  border-color: #eadfdb;
+  color: #302a2d;
+}
+
+.site-shell.theme-blush .explore-option:hover,
+.site-shell.theme-blush .explore-option.selected {
+  background: #f8e9e9;
+  border-color: #d47a82;
+}
+
+.site-shell.theme-blush .option-icon,
+.site-shell.theme-blush .guide-step-icon {
+  background: #f6e1df;
+  color: #a65364;
+}
+
+.site-shell.theme-blush .explore-option.selected .option-icon {
+  background: #a65364;
+  color: #fff;
+}
+
+.site-shell.theme-blush .game-start-goal {
+  background: #f6e1df;
+  color: #302a2d;
+}
+
+.site-shell.theme-blush .game-start-controls kbd {
+  background: #fff;
+  color: #302a2d;
+}
+
+.site-shell.theme-blush .modal-close {
+  color: #706468;
+}
+
+.site-shell.theme-blush .start-over-link {
+  color: #a65364;
+}
+
+.site-shell.theme-blush .game-start-button {
+  background: #a65364;
+  color: #fff;
+}
+
+/* ---------- Teal theme ---------- */
+.site-shell.theme-teal .explore-modal,
+.site-shell.theme-teal .game-start-modal {
+  background: #f3fbfa;
+  color: #123b3c;
+  border-color: #b8ded9;
+}
+
+.site-shell.theme-teal .explore-modal h2,
+.site-shell.theme-teal .game-start-modal h2,
+.site-shell.theme-teal .game-guide-steps strong {
+  color: #123b3c;
+}
+
+.site-shell.theme-teal .modal-eyebrow,
+.site-shell.theme-teal .game-start-controls {
+  color: #087b78;
+}
+
+.site-shell.theme-teal .explore-intro,
+.site-shell.theme-teal .game-start-copy,
+.site-shell.theme-teal .game-start-rule,
+.site-shell.theme-teal .explore-option small,
+.site-shell.theme-teal .game-guide-steps small {
+  color: #496b68;
+}
+
+.site-shell.theme-teal .explore-option,
+.site-shell.theme-teal .game-guide-steps li {
+  background: #effcfb;
+  border-color: #b8ded9;
+  color: #123b3c;
+}
+
+.site-shell.theme-teal .explore-option:hover,
+.site-shell.theme-teal .explore-option.selected {
+  background: #d9f1ee;
+  border-color: #087b78;
+}
+
+.site-shell.theme-teal .option-icon,
+.site-shell.theme-teal .guide-step-icon {
+  background: #d9f1ee;
+  color: #087b78;
+}
+
+.site-shell.theme-teal .explore-option.selected .option-icon {
+  background: #087b78;
+  color: #fff;
+}
+
+.site-shell.theme-teal .game-start-goal {
+  background: #d9f1ee;
+  color: #123b3c;
+}
+
+.site-shell.theme-teal .game-start-controls kbd {
+  background: #fff;
+  color: #123b3c;
+}
+
+.site-shell.theme-teal .modal-close {
+  color: #496b68;
+}
+
+.site-shell.theme-teal .start-over-link {
+  color: #087b78;
+}
+
+.site-shell.theme-teal .game-start-button {
+  background: #087b78;
+  color: #fff;
+}
+
+/* ---------- Accessible theme ---------- */
+.site-shell.theme-accessible .explore-modal,
+.site-shell.theme-accessible .game-start-modal {
+  background: #fffdf3;
+  color: #14213d;
+  border-color: #a8c7df;
+}
+
+.site-shell.theme-accessible .explore-modal h2,
+.site-shell.theme-accessible .game-start-modal h2,
+.site-shell.theme-accessible .game-guide-steps strong {
+  color: #14213d;
+}
+
+.site-shell.theme-accessible .modal-eyebrow,
+.site-shell.theme-accessible .game-start-controls {
+  color: #145da0;
+}
+
+.site-shell.theme-accessible .explore-intro,
+.site-shell.theme-accessible .game-start-copy,
+.site-shell.theme-accessible .game-start-rule,
+.site-shell.theme-accessible .explore-option small,
+.site-shell.theme-accessible .game-guide-steps small {
+  color: #344b63;
+}
+
+.site-shell.theme-accessible .explore-option,
+.site-shell.theme-accessible .game-guide-steps li {
+  background: #edf4fb;
+  border-color: #a8c7df;
+  color: #14213d;
+}
+
+.site-shell.theme-accessible .explore-option:hover,
+.site-shell.theme-accessible .explore-option.selected {
+  background: #dbe9f7;
+  border-color: #145da0;
+}
+
+.site-shell.theme-accessible .option-icon,
+.site-shell.theme-accessible .guide-step-icon {
+  background: #dbe9f7;
+  color: #145da0;
+}
+
+.site-shell.theme-accessible .explore-option.selected .option-icon {
+  background: #145da0;
+  color: #fffdf3;
+}
+
+.site-shell.theme-accessible .game-start-goal {
+  background: #fff1b8;
+  color: #14213d;
+}
+
+.site-shell.theme-accessible .game-start-controls kbd {
+  background: #fff;
+  color: #14213d;
+}
+
+.site-shell.theme-accessible .modal-close {
+  color: #344b63;
+}
+
+.site-shell.theme-accessible .start-over-link {
+  color: #145da0;
+}
+
+.site-shell.theme-accessible .game-start-button {
+  background: #145da0;
+  color: #fffdf3;
+}
+
+/* Visible keyboard focus */
+.site-shell .explore-modal button:focus-visible,
+.site-shell .game-start-modal button:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
 }
 
 </style>
