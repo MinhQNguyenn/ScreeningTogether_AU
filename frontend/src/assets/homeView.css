@@ -1505,3 +1505,26 @@
 .theme-accessible .hero-card-link:hover {
   color: #104b7b;
 }
+
+
+.hero-copy {
+  overflow-wrap: normal;
+}
+
+.hero-copy h1 {
+  overflow-wrap: normal;
+  word-break: normal;
+  max-width: none;
+}
+
+.hero-copy h1 .hero-title-main,
+.hero-copy h1 .hero-title-emphasis {
+  white-space: nowrap;
+}
+
+@media (max-width: 400px) {
+  .hero-copy h1 {
+    font-size: clamp(28px, 7.5vw, 38px);
+    letter-spacing: -0.04em;
+  }
+}

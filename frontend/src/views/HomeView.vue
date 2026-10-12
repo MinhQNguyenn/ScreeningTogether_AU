@@ -3,12 +3,14 @@
     <section class="hero-section" id="top">
       <div class="hero-copy">
         <p class="eyebrow">
-           {{ t('hero.eyebrow', { ns: 'home' }) }}
+          {{ t('hero.eyebrow', { ns: 'home' }) }}
         </p>
         <h1>
-          {{ t('hero.title', { ns: 'home' }) }}<br /><em>{{
-            t('hero.titleEmphasis', { ns: 'home' })
-          }}</em>
+          <span class="hero-title-main">{{ t('hero.title', { ns: 'home' }) }}</span>
+          <br />
+          <em class="hero-title-emphasis">
+            {{ t('hero.titleEmphasis', { ns: 'home' }) }}
+          </em>
         </h1>
         <p class="hero-text">
           {{ t('hero.description', { ns: 'home' }) }}
@@ -63,7 +65,7 @@
 import '../assets/homeView.css'
 import { RouterLink } from 'vue-router'
 
-import { computed} from 'vue'
+import { computed } from 'vue'
 
 import { useTranslation } from '../i18n/useTranslation'
 const { t } = useTranslation()
