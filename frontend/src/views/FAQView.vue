@@ -32,7 +32,7 @@
           <p v-if="openItem === `${group.key}-${index}`">{{ item.answer }}</p>
           <RouterLink
   v-if="openItem === `${group.key}-${index}` && item.showArrow"
-  :to="item.link || '/learn'"
+  :to="item.link || '/'"
   class="faq-answer-link"
 >
   <span>{{ t('learnMore', { ns: 'faq' }) }}</span>
@@ -66,7 +66,7 @@
           </p>
           <RouterLink
   v-if="openItem === `result-${index}` && result.showArrow"
-  :to="result.link || '/learn'"
+  :to="result.link || '/'"
   class="faq-answer-link"
 >
   <span>{{ t('learnMore', { ns: 'faq' }) }}</span>
@@ -94,16 +94,19 @@ const groups = computed(() => [
         question: t('questions.hpv.whatIs.question', { ns: 'faq' }),
         answer: t('questions.hpv.whatIs.answer', { ns: 'faq' }),
         showArrow: false,
+        link: undefined,
       },
       {
         question: t('questions.hpv.howSpread.question', { ns: 'faq' }),
         answer: t('questions.hpv.howSpread.answer', { ns: 'faq' }),
         showArrow: false,
+        link: undefined,
       },
       {
         question: t('questions.hpv.prevention.question', { ns: 'faq' }),
         answer: t('questions.hpv.prevention.answer', { ns: 'faq' }),
         showArrow: false,
+        link: undefined,
       },
       {
         question: t('questions.hpv.positiveResult.question', { ns: 'faq' }),
@@ -120,11 +123,13 @@ const groups = computed(() => [
         question: t('questions.what.question', { ns: 'faq' }),
         answer: t('questions.what.answer', { ns: 'faq' }),
         showArrow: false,
+        link: undefined,
       },
       {
         question: t('questions.why.question', { ns: 'faq' }),
         answer: t('questions.why.answer', { ns: 'faq' }),
         showArrow: false,
+        link: undefined,
       },
       {
         question: t('questions.who.question', { ns: 'faq' }),
@@ -141,6 +146,7 @@ const groups = computed(() => [
         question: t('questions.howOften.question', { ns: 'faq' }),
         answer: t('questions.howOften.answer', { ns: 'faq' }),
         showArrow: false,
+        link: undefined,
       },
       {
         question: t('questions.test.question', { ns: 'faq' }),
@@ -152,6 +158,7 @@ const groups = computed(() => [
         question: t('questions.femaleClinician.question', { ns: 'faq' }),
         answer: t('questions.femaleClinician.answer', { ns: 'faq' }),
         showArrow: false,
+        link: undefined,
       },
     ],
   },
@@ -162,6 +169,7 @@ const groups = computed(() => [
         question: t('questions.cost.question', { ns: 'faq' }),
         answer: t('questions.cost.answer', { ns: 'faq' }),
         showArrow: false,
+        link: undefined,
       },
       {
         question: t('questions.selfCollect.question', { ns: 'faq' }),
@@ -174,10 +182,10 @@ const groups = computed(() => [
 ])
 
 const results = [
-  { key: 'lowRisk', showArrow: false },
-  { key: 'intermediateRisk', showArrow: false },
-  { key: 'higherRisk', showArrow: false },
-  { key: 'unsatisfactory', showArrow: false },
+  { key: 'lowRisk', showArrow: false , link: undefined,},
+  { key: 'intermediateRisk', showArrow: false , link: undefined,},
+  { key: 'higherRisk', showArrow: false , link: undefined,},
+  { key: 'unsatisfactory', showArrow: false , link: undefined,},
 ]
 
 const toggleItem = (key: string) => {
