@@ -16,8 +16,11 @@
 
         <RouterLink to="/guide" @click="closeMenu">{{ t('header.guide') }}</RouterLink>
         <RouterLink to="/gpfinder" @click="closeMenu">{{ t('header.gpFinder') }}</RouterLink>
-        <RouterLink to="/resourceinfo" @click="closeMenu">{{ t('header.resourceInfo') }}</RouterLink>
         <RouterLink to="/call-practice" @click="closeMenu">{{ t('header.practice') }}</RouterLink>
+
+        <RouterLink to="/resourceinfo" @click="closeMenu">{{
+          t('header.resourceInfo')
+        }}</RouterLink>
       </nav>
       <button class="header-cta" type="button" @click="openExplore">
         <span v-if="isMobile">{{ t('header.exploreMobile') }}</span>
@@ -2454,5 +2457,4 @@ HomeView theme support
   min-width: 0;
   flex-wrap: wrap;
 }
-
 </style>
