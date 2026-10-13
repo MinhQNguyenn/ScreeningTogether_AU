@@ -22,15 +22,6 @@ general/text_to_speech=true
 
 GameLanguage="*res://scripts/game_language.gd"
 
-[gui]
-
-theme/custom="res://assets/fonts/game_theme.tres"
-
-[internationalization]
-
-locale/fallback="en"
-locale/include_text_server_data=true
-
 [display]
 
 window/size/viewport_width=1280
@@ -39,9 +30,17 @@ window/size/window_width_override=960
 window/size/window_height_override=540
 window/stretch/mode="canvas_items"
 
+[gui]
+
+theme/custom="res://assets/fonts/game_theme.tres"
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[internationalization]
+
+locale/include_text_server_data=true
 
 [physics]
 
