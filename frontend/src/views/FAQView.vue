@@ -112,7 +112,7 @@ const groups = computed(() => [
         question: t('questions.hpv.positiveResult.question', { ns: 'faq' }),
         answer: t('questions.hpv.positiveResult.answer', { ns: 'faq' }),
         showArrow: true,
-        link: '/game1'
+        link: '/gprunner'
       },
     ],
   },
@@ -182,10 +182,10 @@ const groups = computed(() => [
 ])
 
 const results = [
-  { key: 'lowRisk', showArrow: false , link: undefined,},
-  { key: 'intermediateRisk', showArrow: false , link: undefined,},
-  { key: 'higherRisk', showArrow: false , link: undefined,},
-  { key: 'unsatisfactory', showArrow: false , link: undefined,},
+  { key: 'lowRisk', showArrow: true , link: '/guide',},
+  { key: 'intermediateRisk', showArrow: true , link: '/guide',},
+  { key: 'higherRisk', showArrow: true , link: '/guide',},
+  { key: 'unsatisfactory', showArrow: true , link: '/guide',},
 ]
 
 const toggleItem = (key: string) => {

@@ -76,9 +76,9 @@
       "notes": "Lưu ý quan trọng"
     },
     "scope": {
-      "title": "Xin lưu ý:",
-      "description": "Đây là mô phỏng phục vụ mục đích giáo dục, không phải dịch vụ y tế. Để được tư vấn y tế hoặc đặt lịch khám thực tế, hãy liên hệ phòng khám hoặc chuyên gia y tế."
-    },
+      "title": "Lưu ý về ngôn ngữ",
+      "description": "Cuộc gọi thực hành này sử dụng tiếng Anh, mô phỏng tình huống phổ biến khi liên hệ bác sĩ đa khoa tại Úc để hỏi về xét nghiệm tầm soát cổ tử cung.",
+"interpreterLink": "Cần phiên dịch viên? Đặt lịch tại đây"    },
     "download": {
       "title": "Tóm tắt buổi luyện tập cuộc gọi",
       "answers": "Câu trả lời của bạn",

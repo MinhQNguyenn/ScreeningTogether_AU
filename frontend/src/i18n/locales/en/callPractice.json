@@ -76,8 +76,9 @@
       "notes": "Important notes"
     },
     "scope": {
-      "title": "Please note:",
-      "description": "This is an educational simulation, not a medical service. For medical advice or an actual appointment, contact a clinic or healthcare professional."
+      "title": "Language note",
+      "description": "This practice call is in English, reflecting a common situation when contacting an Australian GP about cervical screening.",
+      "interpreterLink": "Need an interpreter? Book one here"
     },
     "download": {
       "title": "Call Practice Summary",
