@@ -14,7 +14,7 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "mainNavigation": "Main navigation",
-    "practice": "AI practice"
+    "practice": "Call practice"
   },
 
   "footer": {
@@ -24,6 +24,7 @@
     "dataSources": "Where the data comes from",
     "cancerAustralia": "Cancer Australia",
     "healthDepartment": "Australian Government Department of Health",
+    "AIHW": "Australian Institute of Health and Welfare (AIHW)",
     "copyright": "© 2026 ScreeningTogether AU"
   },
   "navigation": {
