@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 # import routers here:
-from routers import choropleth, gp, stats, mock_call
+from routers import choropleth, gp, mock_call, rag_admin, stats
 
 app = FastAPI(title="ScreeningTogether API", docs_url=None,  redoc_url=None, openapi_url=None)
 
@@ -32,3 +32,4 @@ app.include_router(choropleth.router)
 app.include_router(gp.router)
 app.include_router(stats.router)
 app.include_router(mock_call.router)
+app.include_router(rag_admin.router)
