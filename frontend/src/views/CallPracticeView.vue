@@ -238,6 +238,9 @@
     <section class="scope-note">
       <strong>{{ tCall('scope.title') }}</strong>
       <span>{{ tCall('scope.description') }}</span>
+      <RouterLink to="/resourceinfo" class="scope-note-link">
+        {{ tCall('scope.interpreterLink') }} <span aria-hidden="true">→</span>
+      </RouterLink>
     </section>
   </main>
 </template>
@@ -929,8 +932,7 @@ onBeforeUnmount(() => {
 .phone-illustration svg {
   display: block;
   width: 100%;
-    height: 100%;
-
+  height: 100%;
 }
 
 .welcome-state h2,
@@ -1791,5 +1793,43 @@ onBeforeUnmount(() => {
 
 .phone-icon {
   transform: translate(-5px, -7px);
+}
+
+.scope-note {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 18px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--page-accent);
+  border-radius: 8px;
+  background: var(--faq-card-bg);
+  color: var(--page-text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.scope-note strong {
+  font-size: 13px;
+}
+
+.scope-note-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  align-self: flex-start;
+  color: var(--page-accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.scope-note-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.scope-note-link:focus-visible {
+  outline: 2px solid var(--page-accent);
+  outline-offset: 3px;
 }
 </style>

@@ -116,6 +116,9 @@
           <a href="https://www.health.gov.au/" target="_blank" rel="noreferrer">{{
             t('footer.healthDepartment')
           }}</a>
+          <a href="https://www.aihw.gov.au/" target="_blank" rel="noreferrer">{{
+            t('footer.AIHW')
+          }}</a>
         </div>
       </div>
       <div class="footer-bottom">{{ t('footer.copyright') }}</div>
