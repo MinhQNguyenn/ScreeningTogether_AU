@@ -5,9 +5,9 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBox_panel"]
 content_margin_left = 38.0
-content_margin_top = 24.0
+content_margin_top = 14.0
 content_margin_right = 38.0
-content_margin_bottom = 24.0
+content_margin_bottom = 14.0
 bg_color = Color(0.96862745, 0.9529412, 0.8745098, 1)
 border_width_left = 4
 border_width_top = 4
@@ -97,40 +97,40 @@ color = Color(0.03529412, 0.08627451, 0.06666667, 0.84)
 script = ExtResource("1_script")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1002417970]
-custom_minimum_size = Vector2(660, 640)
+custom_minimum_size = Vector2(620, 540)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -330.0
-offset_top = -320.0
-offset_right = 330.0
-offset_bottom = 320.0
+offset_left = -310.0
+offset_top = -270.0
+offset_right = 310.0
+offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBox_panel")
 
 [node name="Content" type="VBoxContainer" parent="PanelContainer" unique_id=1268602464]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 4
 
 [node name="TitleLabel" type="Label" parent="PanelContainer/Content" unique_id=344022406]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.15686275, 0.30980393, 0.20784314, 1)
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 24
 text = "WELCOME TO THE CLINICAL CENTER"
 horizontal_alignment = 1
 
 autowrap_mode = 3
 
 [node name="InstructionLabel" type="Label" parent="PanelContainer/Content" unique_id=981104512]
-custom_minimum_size = Vector2(0, 54)
+custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.14117648, 0.19215687, 0.15294118, 1)
-theme_override_font_sizes/font_size = 19
-text = "May I ask for your name and the purpose of your visit today?"
+theme_override_font_sizes/font_size = 16
+text = "May I ask for your name, date of birth and the purpose of your visit today?"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -138,17 +138,17 @@ autowrap_mode = 3
 [node name="FirstNameLabel" type="Label" parent="PanelContainer/Content" unique_id=71323766]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.15686275, 0.30980393, 0.20784314, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 15
 text = "First name"
 
 autowrap_mode = 3
 
 [node name="FirstNameInput" type="LineEdit" parent="PanelContainer/Content" unique_id=961362534]
-custom_minimum_size = Vector2(0, 62)
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.105882354, 0.16078432, 0.11764706, 1)
 theme_override_colors/font_placeholder_color = Color(0.4, 0.45, 0.41, 0.7)
-theme_override_font_sizes/font_size = 21
+theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBox_input_normal")
 theme_override_styles/focus = SubResource("StyleBox_input_focus")
 placeholder_text = "e.g. Emily"
@@ -158,33 +158,52 @@ clear_button_enabled = true
 [node name="LastNameLabel" type="Label" parent="PanelContainer/Content" unique_id=104468563]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.15686275, 0.30980393, 0.20784314, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 15
 text = "Last name"
 
 autowrap_mode = 3
 
 [node name="LastNameInput" type="LineEdit" parent="PanelContainer/Content" unique_id=1224307103]
-custom_minimum_size = Vector2(0, 62)
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.105882354, 0.16078432, 0.11764706, 1)
 theme_override_colors/font_placeholder_color = Color(0.4, 0.45, 0.41, 0.7)
-theme_override_font_sizes/font_size = 21
+theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBox_input_normal")
 theme_override_styles/focus = SubResource("StyleBox_input_focus")
 placeholder_text = "e.g. Taylor"
 max_length = 32
 clear_button_enabled = true
 
+[node name="DateOfBirthLabel" type="Label" parent="PanelContainer/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15686275, 0.30980393, 0.20784314, 1)
+theme_override_font_sizes/font_size = 15
+text = "Date of birth"
+autowrap_mode = 3
+
+[node name="DateOfBirthInput" type="LineEdit" parent="PanelContainer/Content"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.105882354, 0.16078432, 0.11764706, 1)
+theme_override_colors/font_placeholder_color = Color(0.4, 0.45, 0.41, 0.7)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBox_input_normal")
+theme_override_styles/focus = SubResource("StyleBox_input_focus")
+placeholder_text = "e.g. DD/MM/YYYY"
+max_length = 10
+clear_button_enabled = true
+
 [node name="VisitingPurpose" type="Label" parent="PanelContainer/Content" unique_id=701543154]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.15686275, 0.30980393, 0.20784314, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 15
 text = "Purpose of visit"
 
 autowrap_mode = 3
 
 [node name="VisitingPurposeCard" type="PanelContainer" parent="PanelContainer/Content" unique_id=754543441]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBox_purpose_card")
@@ -196,26 +215,26 @@ theme_override_constants/separation = 2
 [node name="PurposeTitle" type="Label" parent="PanelContainer/Content/VisitingPurposeCard/PurposeContent" unique_id=1765939424]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.15686275, 0.30980393, 0.20784314, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 17
 text = "Cervical cancer screening"
 
 autowrap_mode = 3
 
 [node name="ErrorLabel" type="Label" parent="PanelContainer/Content" unique_id=1110933401]
-custom_minimum_size = Vector2(0, 28)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7607843, 0.16078432, 0.14117648, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 horizontal_alignment = 1
 
 autowrap_mode = 3
 
 [node name="StartButton" type="Button" parent="PanelContainer/Content" unique_id=141805769]
-custom_minimum_size = Vector2(0, 70)
+custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBox_button_normal")
 theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
 theme_override_styles/hover = SubResource("StyleBox_button_hover")
@@ -226,13 +245,13 @@ autowrap_mode = 3
 [node name="PrivacyLabel" type="Label" parent="PanelContainer/Content" unique_id=600245287]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.39215687, 0.44705883, 0.40392157, 1)
-theme_override_font_sizes/font_size = 14
-text = "Your name is used only during this game session."
+theme_override_font_sizes/font_size = 12
+text = "Your name and date of birth are used only during this game session."
 horizontal_alignment = 1
 
 autowrap_mode = 3
 
 [node name="LunaDoctor" type="Sprite2D" parent="PanelContainer/Content" unique_id=478843040]
-position = Vector2(-164.99998, 347.5)
+position = Vector2(-164.99998, 270)
 scale = Vector2(6.03125, 6.03125)
 texture = ExtResource("2_5jwdy")

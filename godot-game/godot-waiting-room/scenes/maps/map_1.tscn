@@ -166,7 +166,6 @@ scale = Vector2(3, 3)
 layer = 10
 
 [node name="SideQuestUI" type="PanelContainer" parent="Canvas" unique_id=2088149313]
-layout_direction = 2
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -178,12 +177,13 @@ offset_right = -16.0
 offset_bottom = 8.0
 grow_horizontal = 0
 grow_vertical = 0
+layout_direction = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lolil")
 script = ExtResource("5_sidequest")
 
 [node name="QuestContent" type="VBoxContainer" parent="Canvas/SideQuestUI" unique_id=794659121]
-layout_direction = 1
 layout_mode = 2
+layout_direction = 1
 theme_override_constants/separation = 12
 
 [node name="QuestTitle" type="Label" parent="Canvas/SideQuestUI/QuestContent" unique_id=1373841309]
@@ -194,9 +194,9 @@ theme_override_colors/font_outline_color = Color(0.31764707, 0.21176471, 0.12549
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 28
 text = "SIDE QUESTS"
-autowrap_mode = 3
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestProgress" type="Label" parent="Canvas/SideQuestUI/QuestContent" unique_id=893860491]
 layout_mode = 2
@@ -248,20 +248,20 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="AnnouncementUI" type="PanelContainer" parent="Canvas" unique_id=649555450]
-layout_direction = 2
 clip_contents = true
 offset_left = 716.0
 offset_top = 13.0
 offset_right = 885.0
 offset_bottom = 123.0
+layout_direction = 2
 tooltip_text = "Listen for your name"
 theme_override_styles/panel = SubResource("StyleBoxFlat_1q0j8")
 script = ExtResource("4_announcement")
 that_me_arrow_path = NodePath("")
 
 [node name="AnnouncementContent" type="VBoxContainer" parent="Canvas/AnnouncementUI" unique_id=1389470353]
-layout_direction = 1
 layout_mode = 2
+layout_direction = 1
 theme_override_constants/separation = 12
 
 [node name="AnnouncementTitle" type="Label" parent="Canvas/AnnouncementUI/AnnouncementContent" unique_id=1516248379]
@@ -277,7 +277,6 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="CoverUpUI" type="PanelContainer" parent="Canvas" unique_id=383268993]
-layout_direction = 2
 anchors_preset = -1
 anchor_right = 0.031000001
 anchor_bottom = 0.028
@@ -285,96 +284,101 @@ offset_left = 1069.0
 offset_top = 16.0
 offset_right = 1118.32
 offset_bottom = 30.84
+layout_direction = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rgk5e")
 
 [node name="CoverUpContent" type="VBoxContainer" parent="Canvas/CoverUpUI" unique_id=2090234452]
-layout_direction = 1
 layout_mode = 2
+layout_direction = 1
 theme_override_constants/separation = 5
 
 [node name="CoverUpLabel" type="Label" parent="Canvas/CoverUpUI/CoverUpContent" unique_id=755060479]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 12
+theme_override_constants/line_spacing = -10
+theme_override_font_sizes/font_size = 11
 text = "Screening
 Information"
 horizontal_alignment = 1
 
 [node name="CoverUpUI3" type="PanelContainer" parent="Canvas" unique_id=1221854621]
-layout_direction = 2
 anchors_preset = -1
 offset_left = 276.0
 offset_top = 14.0
 offset_right = 358.0
 offset_bottom = 64.0
+layout_direction = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rgk5e")
 
 [node name="CoverUpContent" type="VBoxContainer" parent="Canvas/CoverUpUI3" unique_id=1951096014]
-layout_direction = 1
 layout_mode = 2
+layout_direction = 1
 
 [node name="CoverUpLabel" type="Label" parent="Canvas/CoverUpUI3/CoverUpContent" unique_id=1115088078]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.07123137, 0.07123139, 0.07123137, 1)
+theme_override_constants/line_spacing = -10
 theme_override_font_sizes/font_size = 14
 text = "Screening
 Information"
 horizontal_alignment = 1
 
 [node name="CoverUpUI4" type="PanelContainer" parent="Canvas" unique_id=1343169915]
-layout_direction = 2
 anchors_preset = -1
 offset_left = 64.0
 offset_top = 245.0
 offset_right = 122.0
 offset_bottom = 300.0
+layout_direction = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rgk5e")
 
 [node name="CoverUpContent" type="VBoxContainer" parent="Canvas/CoverUpUI4" unique_id=1201119015]
-layout_direction = 1
 layout_mode = 2
+layout_direction = 1
 
 [node name="CoverUpLabel" type="Label" parent="Canvas/CoverUpUI4/CoverUpContent" unique_id=671115964]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.011702106, 0.011702109, 0.011702107, 1)
+theme_override_constants/line_spacing = -10
 theme_override_font_sizes/font_size = 10
 text = "Screening
 Information"
 horizontal_alignment = 1
 
 [node name="CoverUpUI5" type="PanelContainer" parent="Canvas" unique_id=1972816804]
-layout_direction = 2
 anchors_preset = -1
 offset_left = 502.0
 offset_top = 187.0
 offset_right = 594.0
 offset_bottom = 207.0
+layout_direction = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hjyr5")
 
 [node name="CoverUpContent" type="VBoxContainer" parent="Canvas/CoverUpUI5" unique_id=247815706]
-layout_direction = 1
 layout_mode = 2
+layout_direction = 1
 
 [node name="CoverUpLabel" type="Label" parent="Canvas/CoverUpUI5/CoverUpContent" unique_id=2024482842]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.50669384, 0.23641318, 0.025861952, 1)
 theme_override_colors/font_outline_color = Color(0.12298488, 0.12298488, 0.12298488, 1)
+theme_override_constants/line_spacing = -10
 theme_override_font_sizes/font_size = 13
 text = "Reception"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CoverUpUI6" type="PanelContainer" parent="Canvas" unique_id=1544423217]
-layout_direction = 2
 offset_left = 119.0
 offset_top = 634.0
 offset_right = 179.0
 offset_bottom = 650.0
+layout_direction = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qp2t3")
 
 [node name="CoverUpContent" type="VBoxContainer" parent="Canvas/CoverUpUI6" unique_id=1149775994]
-layout_direction = 1
 layout_mode = 2
+layout_direction = 1
 
 [node name="Label" type="Label" parent="Canvas/CoverUpUI6/CoverUpContent" unique_id=1224007546]
 layout_mode = 2
@@ -382,21 +386,22 @@ theme_override_font_sizes/font_size = 11
 text = "Restrooms"
 
 [node name="CoverUpUI7" type="PanelContainer" parent="Canvas" unique_id=589861139]
-layout_direction = 2
 anchors_preset = -1
 offset_left = 298.0
 offset_top = 474.0
 offset_right = 356.0
 offset_bottom = 552.0
+layout_direction = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_n2bu5")
 
 [node name="CoverUpContent" type="VBoxContainer" parent="Canvas/CoverUpUI7" unique_id=807962436]
-layout_direction = 1
 layout_mode = 2
+layout_direction = 1
 
 [node name="CoverUpLabel" type="Label" parent="Canvas/CoverUpUI7/CoverUpContent" unique_id=1047741443]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -10
 theme_override_font_sizes/font_size = 10
 text = "Screening
 Information"
@@ -413,17 +418,17 @@ scale = Vector2(0.016465511, 0.016465511)
 texture = ExtResource("7_646el")
 
 [node name="CoverUpUI8" type="PanelContainer" parent="Canvas" unique_id=32201278]
-layout_direction = 2
 anchors_preset = -1
 offset_left = 69.0
 offset_top = 366.0
 offset_right = 127.0
 offset_bottom = 383.0
+layout_direction = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_n2bu5")
 
 [node name="CoverUpContent" type="VBoxContainer" parent="Canvas/CoverUpUI8" unique_id=2143301686]
-layout_direction = 1
 layout_mode = 2
+layout_direction = 1
 
 [node name="CoverUpLabel" type="Label" parent="Canvas/CoverUpUI8/CoverUpContent" unique_id=158062028]
 layout_mode = 2
@@ -435,11 +440,11 @@ scale = Vector2(1.5156243, 1.5156243)
 texture = ExtResource("3_1q0j8")
 
 [node name="ReceptionClick" type="Button" parent="Canvas" unique_id=649866851]
-layout_direction = 2
 offset_left = 590.0
 offset_top = 80.0
 offset_right = 625.0
 offset_bottom = 141.0
+layout_direction = 2
 tooltip_text = "General information desk"
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -450,11 +455,11 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
 theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
 
 [node name="WaterClick" type="Button" parent="Canvas" unique_id=952978009]
-layout_direction = 2
 offset_left = 251.0
 offset_top = 292.0
 offset_right = 281.0
 offset_bottom = 392.0
+layout_direction = 2
 tooltip_text = "Water fountain"
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -465,11 +470,11 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
 theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
 
 [node name="ScreeningInfo" type="Button" parent="Canvas" unique_id=457504336]
-layout_direction = 2
 offset_left = 58.0
 offset_top = 234.0
 offset_right = 127.0
 offset_bottom = 306.0
+layout_direction = 2
 tooltip_text = "Screening information 1"
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -480,11 +485,11 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
 theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
 
 [node name="ScreeningInfo2" type="Button" parent="Canvas" unique_id=1179869416]
-layout_direction = 2
 offset_left = 268.0
 offset_top = 10.0
 offset_right = 364.0
-offset_bottom = 74.0
+offset_bottom = 67.0
+layout_direction = 2
 tooltip_text = "Screening information 2"
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -495,11 +500,11 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
 theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
 
 [node name="ScreeningInfo3" type="Button" parent="Canvas" unique_id=1869993137]
-layout_direction = 2
 offset_left = 294.0
 offset_top = 466.0
 offset_right = 360.0
 offset_bottom = 561.0
+layout_direction = 2
 tooltip_text = "Screening information 3"
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -510,11 +515,11 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
 theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
 
 [node name="ScreeningInfo4" type="Button" parent="Canvas" unique_id=100906177]
-layout_direction = 2
 offset_left = 1066.0
 offset_top = 14.0
 offset_right = 1162.0
 offset_bottom = 53.0
+layout_direction = 2
 tooltip_text = "Screening information 4"
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -525,7 +530,6 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_hotspot_disabled")
 theme_override_styles/focus = SubResource("StyleBoxFlat_e65wt")
 
 [node name="ThatMeHint" type="PanelContainer" parent="Canvas" unique_id=755328164]
-layout_direction = 2
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -533,16 +537,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -339.0
 offset_top = -101.0
-offset_right = -73.0
+offset_right = -143.0
 offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
+layout_direction = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_that_me_hint")
 
 [node name="HintRow" type="HBoxContainer" parent="Canvas/ThatMeHint" unique_id=1968877695]
-layout_direction = 1
 layout_mode = 2
+layout_direction = 1
 mouse_filter = 2
 theme_override_constants/separation = 8
 
@@ -554,16 +559,14 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 17
 text = "Click here when 
 you see your name"
-autowrap_mode = 3
-horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="MainChar2" parent="Canvas/ThatMeHint" unique_id=349741940 instance=ExtResource("4_p4o1l")]
-position = Vector2(222, 0)
+position = Vector2(245, 0)
 scale = Vector2(4, 4)
 
 [node name="ThatMeButton" type="Button" parent="Canvas" unique_id=145374315]
-layout_direction = 2
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -571,10 +574,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -337.0
 offset_top = -98.0
-offset_right = -75.0
+offset_right = -144.0
 offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
+layout_direction = 2
 tooltip_text = "Respond when your name is called"
 focus_mode = 0
 mouse_default_cursor_shape = 2
