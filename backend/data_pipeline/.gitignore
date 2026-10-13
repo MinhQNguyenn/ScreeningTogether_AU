@@ -7,4 +7,5 @@ data
 EDA notebooks/data_eligibility_check.ipynb
 EDA notebooks/data_page_charts.ipynb
 scripts/data_page_cards.py
+scripts/link.sql
 __pycache__/
