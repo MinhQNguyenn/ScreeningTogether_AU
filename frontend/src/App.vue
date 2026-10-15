@@ -339,6 +339,7 @@
         {{ t('displayOptions.reset') }}
       </button>
     </aside>
+    <IterationAuthModal />
   </div>
 </template>
 
@@ -346,6 +347,7 @@
 import { onMounted, onUnmounted, ref, computed, watch } from 'vue'
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 import { useTranslation } from './i18n/useTranslation'
+import IterationAuthModal from './components/IterationAuthModal.vue'
 
 const menuOpen = ref(window.innerWidth > 900)
 const isMobile = ref(window.innerWidth <= 900)

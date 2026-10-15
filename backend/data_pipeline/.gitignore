@@ -4,12 +4,8 @@ data
 .env
 
 # TEMP (Oct 2026): local data-page work, not cleaned yet.
-EDA notebooks/ABS Census EDA.ipynb
 EDA notebooks/data_eligibility_check.ipynb
 EDA notebooks/data_page_charts.ipynb
-EDA notebooks/sa3_correlation.ipynb
-scripts/Census_data_extraction.py
 scripts/data_page_cards.py
 scripts/link.sql
-scripts/load_census_data_to_db.py
 __pycache__/
