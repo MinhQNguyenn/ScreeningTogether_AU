@@ -27,6 +27,7 @@ window/stretch/aspect="expand"
 [autoload]
 
 GameLanguage="*res://scripts/game_language.gd"
+BackgroundMusic="*res://scripts/background_music.gd"
 
 [gui]
 

@@ -8,13 +8,13 @@
       >
         <iframe
           class="game_3"
-          :key="variant"
           :src="gameSource"
           ref="gameIframe"
           @load="sendLanguage"
           :title="t('iframe.title', { ns: 'game3' })"
           allowfullscreen
         ></iframe>
+        <GameMusicControl :frame="gameIframe" />
 
         <button
           class="fullscreen-button"
@@ -31,25 +31,6 @@
       </section>
 
       <div class="game-side">
-        <!-- <nav class="variant-picker" :aria-label="t('aria.variantPicker', { ns: 'game3' })">
-          <p>
-            {{ t('variant.description', { ns: 'game3' }) }}
-          </p>
-
-          <RouterLink
-            :to="{ path: '/game3', query: { variant: 'animation' } }"
-            :aria-current="variant === 'animation' ? 'page' : undefined"
-          >
-            {{ t('variant.animation', { ns: 'game3' }) }}
-          </RouterLink>
-
-          <RouterLink
-            :to="{ path: '/game3', query: { variant: 'puzzle' } }"
-            :aria-current="variant === 'puzzle' ? 'page' : undefined"
-          >
-            {{ t('variant.puzzle', { ns: 'game3' }) }}
-          </RouterLink>
-        </nav> -->
         <div class="game-side-copy">
           <p class="section-label">
             {{ t('intro.label', { ns: 'game3' }) }}
@@ -93,9 +74,7 @@
 
               <p>
                 {{
-                  variant === 'animation'
-                    ? t('learning.minutes.animationDescription', { ns: 'game3' })
-                    : t('learning.minutes.puzzleDescription', { ns: 'game3' })
+                  t('learning.minutes.animationDescription', { ns: 'game3' })
                 }}
               </p>
             </article>
@@ -133,8 +112,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { RouterLink, useRoute, useRouter } from 'vue-router'
+import GameMusicControl from '../components/GameMusicControl.vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
 import '../assets/gpRunnerGame.css'
 import { useTranslation } from '../i18n/useTranslation'
 import { useGameLanguage } from '../i18n/useGameLanguage'
@@ -144,13 +124,9 @@ const { t } = useTranslation()
 const gameFrame = ref<HTMLElement | null>(null)
 const isFullscreen = ref(false)
 const router = useRouter()
-const route = useRoute()
 const gameIframe = ref<HTMLIFrameElement | null>(null)
 const { initialLanguage, sendLanguage } = useGameLanguage(gameIframe)
-const variant = computed(() => (route.query.variant === 'puzzle' ? 'puzzle' : 'animation'))
-const gameSource = computed(
-  () => `/godot/game3/index.html?v=languages&variant=${variant.value}&lang=${initialLanguage}`,
-)
+const gameSource = `/godot/game3/index.html?v=music-clock&lang=${initialLanguage}`
 
 const toggleFullscreen = async () => {
   if (!document.fullscreenElement) {
@@ -184,33 +160,6 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.variant-picker {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.variant-picker p {
-  flex-basis: 100%;
-  font-size: 13px;
-  margin: 0;
-}
-.variant-picker a {
-  padding: 10px 14px;
-  border: 2px solid #8e4f59;
-  border-radius: 6px;
-  color: #8e4f59;
-  text-decoration: none;
-  font-size: 13px;
-}
-.variant-picker a[aria-current='page'] {
-  background: #302a2d;
-  border-color: #302a2d;
-  color: white;
-}
-.variant-picker a:focus-visible {
-  outline: 3px solid #d5a653;
-  outline-offset: 3px;
-}
 .game3-page .fullscreen-button {
   top: 16px;
   bottom: auto;

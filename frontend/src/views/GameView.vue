@@ -4,10 +4,11 @@
         <iframe 
          class="game_1" 
           ref="gameIframe"
-          :src="`/godot/screening-game/index.html?v=languages&lang=${initialLanguage}`"
+          :src="`/godot/screening-game/index.html?v=music-clock&lang=${initialLanguage}`"
           @load="sendLanguage"
           allowfullscreen
         ></iframe>
+        <GameMusicControl :frame="gameIframe" />
       <button
         class="fullscreen-button"
         type="button"
@@ -44,6 +45,7 @@
 </template>
 
 <script setup lang="ts">
+import GameMusicControl from '../components/GameMusicControl.vue'
 import { computed, ref } from 'vue'
 import { useGameLanguage } from '../i18n/useGameLanguage'
 
