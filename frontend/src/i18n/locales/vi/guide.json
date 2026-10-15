@@ -9,7 +9,7 @@
     "choices": {
       "home": {
         "title": "Tại nhà",
-        "description": "Đặt bộ tự lấy mẫu qua điện thoại và tự lấy mẫu kín đáo.",
+        "description": "Đặt lịch tư vấn từ xa trực tuyến. Chuyên viên y tế sẽ gọi lại để kiểm tra bạn có đủ điều kiện tự lấy mẫu tại nhà hay không.",
         "cta": "Xem các bước"
       },
       "gp": {
@@ -28,8 +28,8 @@
     "note": "Không thể mua bộ này ở hiệu thuốc và cũng không được gửi tự động. Bạn cần sắp xếp thông qua nhân viên y tế. Nếu bạn bị chảy máu bất thường, đau hoặc tiết dịch bất thường, hãy đến gặp bác sĩ gia đình.",
     "steps": {
       "call": {
-        "title": "Gọi điện để đặt bộ xét nghiệm",
-        "description": "Gọi cho bác sĩ gia đình hoặc dịch vụ khám từ xa và xin bộ tự lấy mẫu. Hãy hỏi cả về chi phí: xét nghiệm miễn phí, nhưng có thể phát sinh phí khám."
+        "title": "Đặt lịch tư vấn từ xa",
+        "description": "Đặt lịch tư vấn từ xa trực tuyến. Chuyên viên y tế sẽ gọi lại để kiểm tra bạn có đủ điều kiện tự lấy mẫu tại nhà hay không. Hãy hỏi cả về chi phí: xét nghiệm miễn phí, nhưng có thể phát sinh phí tư vấn."
       },
       "collect": {
         "title": "Tự lấy mẫu",
@@ -70,7 +70,7 @@
     "label": "Luyện tập trước",
     "title": "Lo lắng khi",
     "titleEmphasis": "gọi điện?",
-    "description": "Để đặt bộ xét nghiệm, bạn sẽ cần gọi cho phòng khám hoặc dịch vụ khám từ xa. AI của chúng tôi cho phép bạn tập trước cuộc trò chuyện này theo tốc độ riêng, để cuộc gọi thật trở nên quen thuộc hơn.",
+    "description": "Sau khi bạn đặt lịch tư vấn từ xa trực tuyến, chuyên viên y tế sẽ gọi lại để kiểm tra bạn có đủ điều kiện tự lấy mẫu tại nhà hay không. AI của chúng tôi giúp bạn luyện tập cuộc tư vấn này theo tốc độ riêng để cuộc gọi thật trở nên quen thuộc hơn.",
     "points": {
       "ask": "Xin bộ tự lấy mẫu",
       "questions": "Trả lời những câu hỏi có thể được hỏi",

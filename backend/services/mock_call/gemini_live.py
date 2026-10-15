@@ -1069,7 +1069,7 @@ class GeminiLivePracticeSession:
                 spoken_response = (
                     "Thank you very much. That completes the intake questions."
                     "Normally there will be a dicussion involving personal address and shiping method for the screening kit. But that is all for today."
-                    "You can show the summary to a real practitioner to verify this information. "
+                    "Nothing will be assessed or diagnosed in this practice session, but you can show the summary to a real practitioner to verify this information. "
                     "Would you like to ask a cervical screening question "
                     "or finish and view your practice summary?"
                 )

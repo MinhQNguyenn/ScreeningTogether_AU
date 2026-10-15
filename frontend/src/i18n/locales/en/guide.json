@@ -9,7 +9,7 @@
     "choices": {
       "home": {
         "title": "From home",
-        "description": "Order a self-collection kit by phone and do the swab in private.",
+        "description": "Book a telehealth consultation online. A practitioner will call to check whether you are eligible for at-home self-collection.",
         "cta": "See the steps"
       },
       "gp": {
@@ -28,8 +28,8 @@
     "note": "Kits can't be bought at a pharmacy or posted out automatically. You need to arrange one through a healthcare provider. If you have unusual bleeding, pain or discharge, see your GP instead.",
     "steps": {
       "call": {
-        "title": "Call to order your kit",
-        "description": "Phone your GP or a telehealth service and ask for a self-collection kit. Ask about cost too: the test is free, but a consultation fee may apply."
+        "title": "Book a telehealth consultation",
+        "description": "Book a telehealth consultation online. A practitioner will call you to check whether you are eligible for at-home self-collection. Ask about costs too: the test is free, but a consultation fee may apply."
       },
       "collect": {
         "title": "Collect your sample",
@@ -70,7 +70,7 @@
     "label": "Practise first",
     "title": "Nervous about",
     "titleEmphasis": "making the call?",
-    "description": "To order a kit you will need to phone a clinic or telehealth service. Our AI lets you rehearse that conversation first, at your own pace, so the real call feels familiar.",
+    "description": "After you book a telehealth consultation online, a practitioner will call to check whether you are eligible for at-home self-collection. Our AI lets you rehearse this consultation at your own pace, so the real call feels familiar.",
     "points": {
       "ask": "Ask for a self-collection kit",
       "questions": "Answer the questions you may be asked",
