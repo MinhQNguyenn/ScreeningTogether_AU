@@ -4,7 +4,7 @@
     "intro": {
       "eyebrow": "Practise your phone call",
       "title": "Feel confident talking about cervical screening",
-      "description": "Practise calling a clinic to learn how to book an appointment for cervical screening and what to prepare beforehand."
+      "description": "Practise the follow-up telehealth consultation that takes place after you request an at-home cervical screening self-collection kit. Rehearse the questions a practitioner may ask to check whether at-home self-collection is suitable for you."
     },
     "privacy": {
       "notice": "This is a practice session. Do not share personal information or sensitive medical details. The conversation transcript is not saved on this page."
@@ -20,11 +20,11 @@
     },
     "welcome": {
       "title": "Ready to practise?",
-      "description": "Imagine you are calling a clinic to book a cervical screening appointment. Luna will guide you through the practice call step by step.",
+      "description": "Luna simulates the follow-up telehealth consultation so you can practise the questions you may be asked. This simulation does not assess your eligibility or order a kit.",
       "steps": [
         "Check your microphone and find a quiet place.",
-        "Listen to the practitioner and respond when prompted.",
-        "Review your summary to prepare for your appointment."
+        "Practise answering questions about your age, screening history and symptoms.",
+        "Review your summary to prepare for the real telehealth consultation."
       ],
       "start": "Start practice",
       "browserNote": "Allow your browser to access your microphone when prompted."

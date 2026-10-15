@@ -4,7 +4,7 @@
     "intro": {
       "eyebrow": "Luyện tập cuộc gọi",
       "title": "Tự tin trao đổi về tầm soát cổ tử cung",
-      "description": "Luyện tập gọi điện cho phòng khám để tìm hiểu cách đặt lịch và chuẩn bị cho buổi tầm soát cổ tử cung."
+      "description": "Luyện tập cuộc tư vấn từ xa diễn ra sau khi bạn yêu cầu bộ dụng cụ tự lấy mẫu tầm soát cổ tử cung tại nhà. Làm quen với những câu hỏi chuyên viên y tế có thể hỏi để kiểm tra việc tự lấy mẫu tại nhà có phù hợp với bạn hay không."
     },
     "privacy": {
       "notice": "Đây là buổi luyện tập mô phỏng. Không chia sẻ thông tin cá nhân hoặc chi tiết y tế nhạy cảm. Nội dung cuộc trò chuyện không được lưu trên trang này."
@@ -20,11 +20,11 @@
     },
     "welcome": {
       "title": "Bạn đã sẵn sàng luyện tập chưa?",
-      "description": "Hãy tưởng tượng bạn đang gọi điện đến phòng khám để đặt lịch tầm soát cổ tử cung. Luna sẽ hướng dẫn bạn luyện tập từng bước.",
+      "description": "Luna mô phỏng cuộc tư vấn từ xa tiếp theo để bạn luyện tập những câu hỏi có thể được hỏi. Buổi mô phỏng không đánh giá điều kiện thực tế hoặc đặt bộ dụng cụ.",
       "steps": [
         "Đảm bảo micro hoạt động và bạn đang ở nơi yên tĩnh.",
-        "Lắng nghe nhân viên phòng khám và nói khi đến lượt bạn.",
-        "Xem lại bản tóm tắt sau cuộc gọi để chuẩn bị cho buổi hẹn."
+        "Luyện trả lời các câu hỏi về độ tuổi, lịch sử tầm soát và triệu chứng.",
+        "Xem lại bản tóm tắt để chuẩn bị cho cuộc tư vấn từ xa thực tế."
       ],
       "start": "Bắt đầu luyện tập",
       "browserNote": "Cho phép trình duyệt sử dụng micro khi được yêu cầu."
