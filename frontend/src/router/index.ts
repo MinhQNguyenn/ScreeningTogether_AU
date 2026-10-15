@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { requestAuth } from './iterationAuth'
 
 import PlaceholderView from '../views/PlaceholderView.vue'
 import EducationGame from '../views/GameView.vue'
@@ -134,6 +135,27 @@ const router = createRouter({
       meta: { title: 'A few minutes with Luna | ScreeningTogether AU' },
     },
   ],
+})
+
+router.beforeEach(async (to) => {
+  const requiresAuth =
+    to.path === '/iteration1' ||
+    to.path.startsWith('/iteration1/') ||
+    to.path === '/iteration2' ||
+    to.path.startsWith('/iteration2/')
+
+  if (!requiresAuth) {
+    return true
+  }
+
+  // Ask for credentials unless the current session is authenticated
+  const authenticated = await requestAuth()
+
+  if (!authenticated) {
+    return false
+  }
+
+  return true
 })
 
 router.afterEach((to) => {
