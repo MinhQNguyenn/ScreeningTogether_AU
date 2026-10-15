@@ -8,13 +8,13 @@
       >
         <iframe
           class="game_3"
-          :key="variant"
           :src="gameSource"
           ref="gameIframe"
           @load="sendLanguage"
           :title="t('iframe.title', { ns: 'game3' })"
           allowfullscreen
         ></iframe>
+        <GameMusicControl :frame="gameIframe" />
 
         <button
           class="fullscreen-button"
@@ -31,25 +31,6 @@
       </section>
 
       <div class="game-side">
-        <!-- <nav class="variant-picker" :aria-label="t('aria.variantPicker', { ns: 'game3' })">
-          <p>
-            {{ t('variant.description', { ns: 'game3' }) }}
-          </p>
-
-          <RouterLink
-            :to="{ path: '/game3', query: { variant: 'animation' } }"
-            :aria-current="variant === 'animation' ? 'page' : undefined"
-          >
-            {{ t('variant.animation', { ns: 'game3' }) }}
-          </RouterLink>
-
-          <RouterLink
-            :to="{ path: '/game3', query: { variant: 'puzzle' } }"
-            :aria-current="variant === 'puzzle' ? 'page' : undefined"
-          >
-            {{ t('variant.puzzle', { ns: 'game3' }) }}
-          </RouterLink>
-        </nav> -->
         <div class="game-side-copy">
           <p class="section-label">
             {{ t('intro.label', { ns: 'game3' }) }}
@@ -93,9 +74,7 @@
 
               <p>
                 {{
-                  variant === 'animation'
-                    ? t('learning.minutes.animationDescription', { ns: 'game3' })
-                    : t('learning.minutes.puzzleDescription', { ns: 'game3' })
+                  t('learning.minutes.animationDescription', { ns: 'game3' })
                 }}
               </p>
             </article>
@@ -133,8 +112,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { RouterLink, useRoute, useRouter } from 'vue-router'
+import GameMusicControl from '../components/GameMusicControl.vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
 import '../assets/gpRunnerGame.css'
 import { useTranslation } from '../i18n/useTranslation'
 import { useGameLanguage } from '../i18n/useGameLanguage'
@@ -144,13 +124,9 @@ const { t } = useTranslation()
 const gameFrame = ref<HTMLElement | null>(null)
 const isFullscreen = ref(false)
 const router = useRouter()
-const route = useRoute()
 const gameIframe = ref<HTMLIFrameElement | null>(null)
 const { initialLanguage, sendLanguage } = useGameLanguage(gameIframe)
-const variant = computed(() => (route.query.variant === 'puzzle' ? 'puzzle' : 'animation'))
-const gameSource = computed(
-  () => `/godot/game3/index.html?v=languages&variant=${variant.value}&lang=${initialLanguage}`,
-)
+const gameSource = `/godot/game3/index.html?v=music-clock&lang=${initialLanguage}`
 
 const toggleFullscreen = async () => {
   if (!document.fullscreenElement) {
@@ -184,33 +160,6 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.variant-picker {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.variant-picker p {
-  flex-basis: 100%;
-  font-size: 13px;
-  margin: 0;
-}
-.variant-picker a {
-  padding: 10px 14px;
-  border: 2px solid #8e4f59;
-  border-radius: 6px;
-  color: #8e4f59;
-  text-decoration: none;
-  font-size: 13px;
-}
-.variant-picker a[aria-current='page'] {
-  background: #302a2d;
-  border-color: #302a2d;
-  color: white;
-}
-.variant-picker a:focus-visible {
-  outline: 3px solid #d5a653;
-  outline-offset: 3px;
-}
 .game3-page .fullscreen-button {
   top: 16px;
   bottom: auto;
@@ -300,4 +249,135 @@ onBeforeUnmount(() => {
   border-color: #302a2d;
   color: #fffaf8;
 }
+
+
+/* ==================================================
+   Game 3: Theme support
+   ================================================== */
+
+/* Blush theme */
+.site-shell.theme-blush .game3-page .fullscreen-button {
+  background: #fffaf8;
+  color: #302a2d;
+  border: 1px solid #eadfdb;
+}
+
+.site-shell.theme-blush .game3-page .fullscreen-button:hover {
+  background: #f4e8e4;
+}
+
+.site-shell.theme-blush .game3-page .game-route-link {
+  background: transparent;
+  border-color: #a65364;
+  color: #a65364;
+}
+
+.site-shell.theme-blush .game3-page .game-route-link:hover {
+  background: #f8e9e9;
+  border-color: #8e4f59;
+  color: #8e4f59;
+}
+
+.site-shell.theme-blush .game3-page .game-route-link-next {
+  background: #a65364;
+  border-color: #a65364;
+  color: #ffffff;
+}
+
+.site-shell.theme-blush .game3-page .game-route-link-next:hover {
+  background: #8e4f59;
+  border-color: #8e4f59;
+  color: #ffffff;
+}
+
+
+/* Teal theme */
+.site-shell.theme-teal .game3-page .fullscreen-button {
+  background: #f3fbfa;
+  color: #123b3c;
+  border: 1px solid #b8ded9;
+}
+
+.site-shell.theme-teal .game3-page .fullscreen-button:hover {
+  background: #d9f1ee;
+}
+
+.site-shell.theme-teal .game3-page .game-route-link {
+  background: transparent;
+  border-color: #087b78;
+  color: #087b78;
+}
+
+.site-shell.theme-teal .game3-page .game-route-link:hover {
+  background: #d9f1ee;
+  border-color: #065f5c;
+  color: #065f5c;
+}
+
+.site-shell.theme-teal .game3-page .game-route-link-next {
+  background: #087b78;
+  border-color: #087b78;
+  color: #ffffff;
+}
+
+.site-shell.theme-teal .game3-page .game-route-link-next:hover {
+  background: #065f5c;
+  border-color: #065f5c;
+  color: #ffffff;
+}
+
+
+/* Accessible theme */
+.site-shell.theme-accessible .game3-page .fullscreen-button {
+  background: #ffffff;
+  color: #14213d;
+  border: 1px solid #a8c7df;
+}
+
+.site-shell.theme-accessible .game3-page .fullscreen-button:hover {
+  background: #dbe9f7;
+}
+
+.site-shell.theme-accessible .game3-page .game-route-link {
+  background: transparent;
+  border-color: #145da0;
+  color: #145da0;
+}
+
+.site-shell.theme-accessible .game3-page .game-route-link:hover {
+  background: #dbe9f7;
+  border-color: #0d467b;
+  color: #0d467b;
+}
+
+.site-shell.theme-accessible .game3-page .game-route-link-next {
+  background: #145da0;
+  border-color: #145da0;
+  color: #ffffff;
+}
+
+.site-shell.theme-accessible .game3-page .game-route-link-next:hover {
+  background: #0d467b;
+  border-color: #0d467b;
+  color: #ffffff;
+}
+
+
+/* Keyboard focus */
+.site-shell .game3-page .fullscreen-button:focus-visible,
+.site-shell .game3-page .game-route-link:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* Smooth theme transitions */
+.game3-page .fullscreen-button,
+.game3-page .game-route-link {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
 </style>

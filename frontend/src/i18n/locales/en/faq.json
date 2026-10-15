@@ -5,6 +5,7 @@
   "headingEmphasis": "all in one place.",
   "intro": "Grouped by what people usually want to know first. Tap any question to open it — nothing here is timed or tracked, so come back as often as you like.",
   "groups": {
+    "hpv": "About HPV",
     "screening": "About screening",
     "appointment": "The appointment",
     "access": "Access and options"
@@ -41,6 +42,24 @@
     "selfCollect": {
       "question": "Can I collect my own sample?",
       "answer": "Self-collection may be available for eligible people. Ask your healthcare provider whether it is an option for you."
+    },
+    "hpv": {
+      "whatIs": {
+        "question": "What is HPV?",
+        "answer": "Human papillomavirus (HPV) is a common group of viruses. Most HPV infections clear naturally, but some types can cause cell changes that may eventually lead to cervical cancer."
+      },
+      "howSpread": {
+        "question": "How do people get HPV?",
+        "answer": "HPV spreads mainly through intimate skin-to-skin contact during sexual activity, including vaginal, anal and oral sex. It can spread even when neither person has symptoms."
+      },
+      "prevention": {
+        "question": "How can I prevent HPV?",
+        "answer": "HPV vaccination helps protect against the types most likely to cause cervical cancer. Using condoms can reduce the risk but cannot prevent all HPV infections. Cervical screening is also important because it can detect HPV and help identify people who need follow-up."
+      },
+      "positiveResult": {
+        "question": "What should I do if I test positive for HPV?",
+        "answer": "A positive HPV result does not mean you have cervical cancer. HPV is common and often clears naturally. Follow the advice in your screening results and attend any recommended follow-up tests or appointments with your healthcare professional."
+      }
     }
   },
   "results": {
@@ -62,5 +81,6 @@
       "title": "Unsatisfactory result",
       "description": "Your sample could not be examined adequately. This may happen if there were too few cells or insufficient sample material for the required tests. It does not mean that HPV was detected or that an abnormality was found. You should repeat the test at the time recommended by your healthcare professional."
     }
-  }
+  }, 
+  "learnMore": "Learn more"
 }

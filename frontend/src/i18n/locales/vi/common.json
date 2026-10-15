@@ -14,15 +14,16 @@
     "openMenu": "Mở menu",
     "closeMenu": "Đóng menu",
     "mainNavigation": "Điều hướng chính",
-    "practice": "Thực hành với AI"
+    "practice": "Luyện tập cuộc gọi"
   },
   "footer": {
-    "tagline": "Hiểu công việc ảnh hưởng đến cơ thể bạn ra sao và những phụ nữ khác trong nghề đã làm gì tiếp theo. Miễn phí và không cần tạo tài khoản.",
+    "tagline": "Ngôn ngữ của bạn, văn hóa của bạn, sức khỏe của bạn. Tìm hiểu về tầm soát ung thư cổ tử cung tại Úc với sự tự tin.",
     "acknowledgement": "Chúng tôi ghi nhận những Người gìn giữ Truyền thống của vùng đất trên khắp Australia cùng mối gắn kết bền chặt của họ với đất đai, sông nước và cộng đồng. Chúng tôi kính trọng các bậc Trưởng lão xưa và nay, đồng thời dành sự kính trọng đó cho tất cả người Thổ dân và cư dân đảo Torres Strait.",
     "pages": "Trang",
     "dataSources": "Nguồn dữ liệu",
-    "cancerAustralia": "Cancer Australia",
+    "cancerAustralia": "Tổ chức Phòng chống Ung thư Úc",
     "healthDepartment": "Bộ Y tế Chính phủ Australia",
+    "AIHW": "Viện Y tế và Phúc lợi Úc (AIHW)",
     "copyright": "© 2026 ScreeningTogether AU"
   },
   "navigation": { "nextPage": "Đi đến trang tiếp theo" },

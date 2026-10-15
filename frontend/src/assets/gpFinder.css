@@ -567,3 +567,108 @@
     font-size: 9px;
   }
 }
+
+
+
+/* ==============================
+   THEME-AWARE GP FINDER CARDS
+   ============================== */
+
+/* Blush theme */
+.theme-blush .service-card {
+  background: #fff0ed;
+  border-color: #d5a4a3;
+  color: #302a2d;
+}
+
+.theme-blush .service-card:hover {
+  background: #f8e2df;
+}
+
+.theme-blush .service-card h2 {
+  color: #302a2d;
+}
+
+.theme-blush .service-type,
+.theme-blush .distance,
+.theme-blush .detail-icon {
+  color: #a75d68;
+}
+
+.theme-blush .service-details {
+  color: #5e5052;
+}
+
+/* Teal theme */
+.theme-teal .service-card {
+  background: #edf8f6;
+  border-color: #91c8c1;
+  color: #173b39;
+}
+
+.theme-teal .service-card:hover {
+  background: #d9f1ee;
+}
+
+.theme-teal .service-card h2 {
+  color: #173b39;
+}
+
+.theme-teal .service-type,
+.theme-teal .distance,
+.theme-teal .detail-icon {
+  color: #075957;
+}
+
+.theme-teal .service-details {
+  color: #285653;
+}
+
+/* Accessible theme */
+.theme-accessible .service-card {
+  background: #ffffff;
+  border: 2px solid #1769aa;
+  color: #202020;
+}
+
+.theme-accessible .service-card:hover {
+  background: #dbe9f7;
+}
+
+.theme-accessible .service-card h2 {
+  color: #104b7b;
+}
+
+.theme-accessible .service-type,
+.theme-accessible .distance,
+.theme-accessible .detail-icon {
+  color: #104b7b;
+}
+
+.theme-accessible .service-details {
+  color: #202020;
+}
+
+
+
+/* Theme-aware Details button */
+.theme-blush .details-button {
+  background: #302a2d;
+  color: #fffaf8;
+}
+
+.theme-teal .details-button {
+  background: #075957;
+  color: #ffffff;
+}
+
+.theme-accessible .details-button {
+  background: #104b7b;
+  color: #ffffff;
+}
+
+.theme-blush .details-button .brand-mark,
+.theme-teal .details-button .brand-mark,
+.theme-accessible .details-button .brand-mark {
+  color: #ffffff;
+}

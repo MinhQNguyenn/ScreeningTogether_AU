@@ -1,27 +1,65 @@
 {
-  "title": "Số liệu",
-  "eyebrow": "Số liệu",
-  "heading": "Toàn cảnh,",
-  "headingEmphasis": "cập nhật hằng năm.",
-  "intro": "Tỷ lệ tham gia tầm soát trên toàn quốc được phân tích theo một số cách khác nhau. Số liệu mô tả hệ thống, không phải lựa chọn của một cá nhân.",
+  "title": "Các số liệu",
+  "eyebrow": "Các số liệu",
+  "heading": "Bức tranh toàn cảnh,",
+  "headingEmphasis": "được cập nhật hằng năm.",
+  "intro": "Dữ liệu tham gia tầm soát trên toàn quốc được phân tích theo nhiều góc độ. Các con số phản ánh hệ thống y tế, không đại diện cho lựa chọn của bất kỳ cá nhân nào.",
   "participation": {
     "label": "Tỷ lệ tham gia toàn quốc",
-    "description": "người đủ điều kiện đã xét nghiệm HPV trong giai đoạn 2020–2024.",
+    "description": "số người đủ điều kiện trong độ tuổi 25–74 đã thực hiện xét nghiệm tầm soát HPV trong kỳ báo cáo gần nhất.",
     "period": "2020–2024"
   },
   "chart": {
     "title": "Tỷ lệ tham gia tầm soát",
     "range": "2020–2024",
-    "ariaLabel": "Xu hướng tham gia từ năm 2020 đến năm 2024",
-    "change": "Thay đổi 2,9% trong giai đoạn này"
+    "ariaLabel": "Xu hướng tham gia qua ba giai đoạn báo cáo có thời gian chồng lấn",
+    "change": "Thay đổi 2,9% trong giai đoạn",
+    "caption": "Trong giai đoạn {{window}}, {{percent}}% người đủ điều kiện từ 25–74 tuổi đã thực hiện xét nghiệm tầm soát. Tỷ lệ này thay đổi từ {{firstPercent}}% trong giai đoạn {{firstWindow}} ({{change}} điểm phần trăm).",
+    "captionState": "Trong giai đoạn {{window}}, {{percent}}% người đủ điều kiện từ 25–74 tuổi tại {{place}} đã thực hiện xét nghiệm tầm soát. Tỷ lệ này thay đổi từ {{firstPercent}}% trong giai đoạn {{firstWindow}} ({{change}} điểm phần trăm).",
+    "axisNote": "Thang đo bắt đầu từ {{min}}% để giúp dễ nhận thấy những thay đổi.",
+    "caveatWindows": "Mỗi giai đoạn tính số xét nghiệm trong 5,5 năm nên các giai đoạn có thời gian chồng lấn. Dữ liệu thể hiện xu hướng, không phải các năm riêng biệt.",
+    "caveatStates": "Viện Y tế và Phúc lợi Úc (AIHW) khuyến cáo không nên so sánh trực tiếp giữa các bang và vùng lãnh thổ vì dân số, địa lý và chính sách khác nhau."
   },
+  "windowLabel": "Giai đoạn báo cáo",
+  "whyVaries": "Vì sao có sự khác biệt?",
+  "mapKicker": "Theo khu vực địa phương",
   "ageGroups": {
     "label": "Theo nhóm tuổi",
     "title": "Tỷ lệ tham gia khác nhau theo độ tuổi.",
-    "note": "Khác biệt giữa các nhóm có thể phản ánh khả năng tiếp cận dịch vụ, hỗ trợ ngôn ngữ và mức độ quen thuộc với hệ thống — không phải lựa chọn cá nhân."
+    "note": "Sự khác biệt giữa các nhóm có thể phản ánh khả năng tiếp cận dịch vụ, hỗ trợ ngôn ngữ và mức độ quen thuộc với hệ thống, chứ không phải lựa chọn cá nhân.",
+    "caption": "Trong giai đoạn {{window}}, tỷ lệ tham gia dao động từ {{lowestPercent}}% (độ tuổi {{lowestAge}}) đến {{highestPercent}}% (độ tuổi {{highestAge}}).",
+    "showing": "Đang hiển thị: {{place}}",
+    "quote": "Những người tham gia từ 70–74 tuổi đã trở lại nhóm tuổi mục tiêu theo Chương trình Tầm soát Cổ tử cung Quốc gia (NCSP) được đổi mới, sau khi không còn thuộc chương trình trước đây khi vượt quá 69 tuổi. Vì vậy, tỷ lệ tham gia thấp hơn ở nhóm tuổi này là điều có thể dự đoán.",
+    "quoteSource": "Viện Y tế và Phúc lợi Úc (AIHW), Báo cáo giám sát Chương trình Tầm soát Cổ tử cung Quốc gia năm 2025"
   },
+  "selfCollection": {
+    "label": "Tự lấy mẫu",
+    "title": "Số xét nghiệm HPV tự lấy mẫu theo tháng",
+    "description": "Trong năm {{year}}, khoảng {{share}}% tổng số xét nghiệm HPV là các xét nghiệm sử dụng mẫu do người tham gia tự lấy.",
+    "caption": "Tăng so với {{firstCount}} xét nghiệm tự lấy mẫu trong năm {{firstYear}}.",
+    "partialYear": "Dữ liệu năm {{year}} chỉ bao gồm giai đoạn từ tháng 1 đến tháng 6.",
+    "modeCount": "Số lượng",
+    "modeShare": "Tỷ lệ xét nghiệm",
+    "july2022": "Tháng 7 năm 2022: mở rộng cho tất cả người đủ điều kiện",
+    "accuracy": "Xét nghiệm tầm soát cổ tử cung bằng mẫu tự lấy có độ an toàn và độ chính xác trong phát hiện HPV tương đương với mẫu do nhân viên y tế lấy.",
+    "accuracySource": "Bộ Y tế Queensland",
+    "caveatTests": "Đây là số lượng xét nghiệm, không phải số người."
+  },
+  "socioeconomic": {
+    "label": "Theo khu vực",
+    "title": "Tỷ lệ tham gia theo mức độ bất lợi của khu vực",
+    "caption": "Trong giai đoạn {{window}}, tỷ lệ tham gia là {{q1Percent}}% tại các khu vực có mức độ bất lợi cao nhất và {{q5Percent}}% tại các khu vực có mức độ bất lợi thấp nhất.",
+    "q1": "1 · Bất lợi nhiều nhất",
+    "q5": "5 · Bất lợi ít nhất",
+    "caveatArea": "Đây là những xu hướng ở cấp khu vực, phản ánh đặc điểm của địa bàn chứ không phải của từng cá nhân. Dữ liệu không cho biết bất kỳ cá nhân nào, hay những người thuộc bất kỳ nhóm xuất thân nào, lựa chọn tầm soát như thế nào.",
+    "caveatStructural": "Sự khác biệt giữa các khu vực phản ánh những yếu tố như khả năng tiếp cận dịch vụ, chi phí và thời gian, chứ không phải lựa chọn của từng cá nhân.",
+    "quote": "Những người gặp bất lợi về kinh tế - xã hội có thể phải đối mặt với các rào cản bổ sung khi tầm soát, chẳng hạn như chi phí tự chi trả và các ưu tiên khác cần giải quyết, như công việc.",
+    "quoteSource": "Tóm lược từ Bộ công cụ dành cho nhà cung cấp dịch vụ y tế của NCSP trên health.gov.au"
+  },
+  "learnMore": "Tìm hiểu thêm",
+  "dataNotAvailable": "Không có dữ liệu",
   "sources": {
     "title": "Nguồn dữ liệu",
-    "description": "Dữ liệu tầm soát toàn quốc từ Cancer Australia. Số liệu tham gia được cập nhật khi có báo cáo mới."
+    "description": "Viện Y tế và Phúc lợi Úc (AIHW), Báo cáo giám sát Chương trình Tầm soát Cổ tử cung Quốc gia năm 2025; Cục Thống kê Úc (ABS), Điều tra Dân số và Nhà ở năm 2021 (bản đồ khu vực địa phương). Số liệu được cập nhật khi có báo cáo mới."
   }
 }

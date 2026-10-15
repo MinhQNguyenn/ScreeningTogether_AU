@@ -28,13 +28,15 @@
         <template v-if="connectionState === 'idle' || connectionState === 'error'">
           <div class="welcome-state">
             <div class="phone-illustration" aria-hidden="true">
-              <svg viewBox="0 0 120 120" role="img">
-                <circle cx="60" cy="60" r="58" fill="#f8e5e7" />
-                <path
-                  d="M40 31c4-4 11-3 14 2l7 13c2 4 1 9-3 12l-6 5c5 10 13 18 23 23l5-6c3-4 8-5 12-3l13 7c5 3 6 10 2 14l-7 7c-5 5-13 7-20 4-17-7-31-18-43-32S17 50 24 38c3-5 10-8 16-7Z"
-                  fill="#aa5264"
-                />
-              </svg>
+              <div class="phone-illustration" aria-hidden="true">
+                <svg viewBox="0 0 120 120" role="img">
+                  <circle class="phone-icon-bg" cx="60" cy="60" r="58" />
+                  <path
+                    class="phone-icon"
+                    d="M40 31c4-4 11-3 14 2l7 13c2 4 1 9-3 12l-6 5c5 10 13 18 23 23l5-6c3-4 8-5 12-3l13 7c5 3 6 10 2 14l-7 7c-5 5-13 7-20 4-17-7-31-18-43-32S17 50 24 38c3-5 10-8 16-7Z"
+                  />
+                </svg>
+              </div>
             </div>
             <h2>{{ tCall('welcome.title') }}</h2>
 
@@ -236,6 +238,9 @@
     <section class="scope-note">
       <strong>{{ tCall('scope.title') }}</strong>
       <span>{{ tCall('scope.description') }}</span>
+      <RouterLink to="/resourceinfo" class="scope-note-link">
+        {{ tCall('scope.interpreterLink') }} <span aria-hidden="true">→</span>
+      </RouterLink>
     </section>
   </main>
 </template>
@@ -691,7 +696,22 @@ function resetPractice(): void {
 }
 
 function setMicrophone(enabled: boolean): void {
-  microphoneOpen.value = enabled && connectionState.value === 'connected'
+  const wasOpen = microphoneOpen.value
+
+  microphoneOpen.value =
+    enabled && connectionState.value === 'connected'
+
+  if (
+    wasOpen &&
+    !microphoneOpen.value &&
+    socket?.readyState === WebSocket.OPEN
+  ) {
+    socket.send(
+      JSON.stringify({
+        type: 'audio_stream_end',
+      }),
+    )
+  }
 }
 
 function downloadSummary(): void {
@@ -919,12 +939,15 @@ onBeforeUnmount(() => {
   width: 112px;
   max-width: 100%;
   margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .phone-illustration svg {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .welcome-state h2,
@@ -1754,5 +1777,74 @@ onBeforeUnmount(() => {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Blush theme */
+.theme-blush .call-practice-page .phone-icon-bg {
+  fill: #f8e5e7;
+}
+
+.theme-blush .call-practice-page .phone-icon {
+  fill: #aa5264;
+}
+
+/* Teal theme */
+.theme-teal .call-practice-page .phone-icon-bg {
+  fill: #d4eeea;
+}
+
+.theme-teal .call-practice-page .phone-icon {
+  fill: #087b78;
+}
+
+/* Accessible theme */
+.theme-accessible .call-practice-page .phone-icon-bg {
+  fill: #dbe9f7;
+}
+
+.theme-accessible .call-practice-page .phone-icon {
+  fill: #145da0;
+}
+
+.phone-icon {
+  transform: translate(-5px, -7px);
+}
+
+.scope-note {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 18px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--page-accent);
+  border-radius: 8px;
+  background: var(--faq-card-bg);
+  color: var(--page-text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.scope-note strong {
+  font-size: 13px;
+}
+
+.scope-note-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  align-self: flex-start;
+  color: var(--page-accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.scope-note-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.scope-note-link:focus-visible {
+  outline: 2px solid var(--page-accent);
+  outline-offset: 3px;
 }
 </style>

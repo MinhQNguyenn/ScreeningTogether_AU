@@ -14,14 +14,15 @@
     "openMenu": "打开菜单",
     "closeMenu": "关闭菜单",
     "mainNavigation": "主导航",
-    "practice": "AI 练习"
+    "practice": "通话练习"
   },
   "footer": {
-    "tagline": "了解工作如何影响你的身体，以及其他女性在工作后如何继续前行。免费使用，无需创建账户。",
+    "tagline": "你的语言，你的文化，你的健康。了解澳大利亚的宫颈癌筛查，安心迈出第一步。",
     "acknowledgement": "我们承认澳大利亚各地原住民是其土地的传统守护者，并持续与土地、水域及社区保持联系。我们向历代长者致以敬意，并向所有原住民及托雷斯海峡岛民致以同样敬意。",
     "pages": "页面",
     "dataSources": "数据来源",
     "cancerAustralia": "澳大利亞癌症協會",
+    "AIHW": "澳大利亚健康与福利研究所 (AIHW)",
     "healthDepartment": "澳大利亚政府卫生部",
     "copyright": "© 2026 ScreeningTogether AU"
   },

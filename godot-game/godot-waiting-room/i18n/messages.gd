@@ -15,11 +15,11 @@ const STRINGS := {
 		"CHÀO MỪNG ĐẾN PHÒNG KHÁM",
 		"歡迎嚟到診所"
 	],
-	"May I ask for your name and the purpose of your visit today?": [
-		"请问您的姓名和今天就诊的原因是什么？",
-		"ما اسمك وما سبب زيارتك اليوم؟",
-		"Xin cho biết họ tên và lý do bạn đến khám hôm nay?",
-		"請問你叫咩名，同埋今日嚟診所做咩？"
+	"May I ask for your name, date of birth and the purpose of your visit today?": [
+		"请问您的姓名、出生日期和今天就诊的原因是什么？",
+		"ما اسمك وتاريخ ميلادك وما سبب زيارتك اليوم؟",
+		"Xin cho biết họ tên, ngày sinh và lý do bạn đến khám hôm nay?",
+		"請問你叫咩名、出生日期，同埋今日嚟診所做咩？"
 	],
 	"First name": [
 		"名",
@@ -33,6 +33,12 @@ const STRINGS := {
 		"Họ",
 		"姓"
 	],
+	"Date of birth": [
+		"出生日期",
+		"تاريخ الميلاد",
+		"Ngày sinh",
+		"出生日期"
+	],
 	"e.g. Emily": [
 		"例如：Emily",
 		"مثال: Emily",
@@ -44,6 +50,12 @@ const STRINGS := {
 		"مثال: Taylor",
 		"Ví dụ: Taylor",
 		"例如：Taylor"
+	],
+	"e.g. DD/MM/YYYY": [
+		"例如：31/12/1990",
+		"مثال: 31/12/1990",
+		"Ví dụ: 31/12/1990",
+		"例如：31/12/1990"
 	],
 	"Purpose of visit": [
 		"就诊原因",
@@ -63,11 +75,11 @@ const STRINGS := {
 		"ĐĂNG KÝ VÀ NGỒI CHỜ",
 		"登記後請坐"
 	],
-	"Your name is used only during this game session.": [
-		"您的姓名仅用于本次游戏。",
-		"يُستخدم اسمك خلال جلسة اللعب هذه فقط.",
-		"Tên của bạn chỉ được dùng trong lượt chơi này.",
-		"你嘅姓名只會喺今次遊戲入面使用。"
+	"Your name and date of birth are used only during this game session.": [
+		"您的姓名和出生日期仅用于本次游戏。",
+		"يُستخدم اسمك وتاريخ ميلادك خلال جلسة اللعب هذه فقط.",
+		"Tên và ngày sinh của bạn chỉ được dùng trong lượt chơi này.",
+		"你嘅姓名同出生日期只會喺今次遊戲入面使用。"
 	],
 	"Please enter your first name.": [
 		"请输入您的名。",
@@ -80,6 +92,12 @@ const STRINGS := {
 		"يرجى إدخال اسم العائلة.",
 		"Vui lòng nhập họ của bạn.",
 		"請輸入你嘅姓。"
+	],
+	"Please enter your date of birth.": [
+		"请输入您的出生日期。",
+		"يرجى إدخال تاريخ ميلادك.",
+		"Vui lòng nhập ngày sinh của bạn.",
+		"請輸入你嘅出生日期。"
 	],
 	"SIDE QUESTS": [
 		"额外任务",

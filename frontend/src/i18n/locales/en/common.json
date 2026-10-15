@@ -14,16 +14,17 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "mainNavigation": "Main navigation",
-    "practice": "AI practice"
+    "practice": "Call practice"
   },
 
   "footer": {
-    "tagline": "Know what the work is doing to your body, and where other women in your job went next. Free, and there is no account to make.",
+    "tagline": "Your language, your culture, your health. Explore cervical screening in Australia with confidence.",
     "acknowledgement": "We acknowledge the Traditional Custodians of Country throughout Australia and their continuing connection to land, waters and community. We pay our respects to Elders past and present, and extend that respect to all Aboriginal and Torres Strait Islander peoples.",
     "pages": "Pages",
     "dataSources": "Where the data comes from",
     "cancerAustralia": "Cancer Australia",
     "healthDepartment": "Australian Government Department of Health",
+    "AIHW": "Australian Institute of Health and Welfare (AIHW)",
     "copyright": "© 2026 ScreeningTogether AU"
   },
   "navigation": {
