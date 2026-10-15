@@ -494,6 +494,9 @@ function handleServerMessage(message: ServerMessage): void {
     case 'status':
       phase.value = message.phase ?? phase.value
       break
+    case 'processing':
+      setMicrophone(false)
+      break
     case 'transcript':
       if (message.role === 'user') liveUserTranscript.value = message.text ?? ''
       if (message.role === 'assistant') liveAssistantTranscript.value = message.text ?? ''
