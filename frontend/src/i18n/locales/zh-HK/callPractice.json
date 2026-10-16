@@ -18,6 +18,13 @@
       "error": "發生錯誤",
       "live": "即時通話"
     },
+    "mode": {
+      "title": "選擇回應方式",
+      "voice": "語音模式",
+      "voiceDescription": "透過咪高峰說話。",
+      "chat": "文字模式",
+      "chatDescription": "在嘈雜環境中輸入文字；Luna 仍會以語音回覆。"
+    },
     "welcome": {
       "title": "準備好開始練習未？",
       "description": "Luna 會模擬後續遙距醫療諮詢，讓你練習可能被問到的問題。本模擬不會實際評估你的資格或訂購套裝。",
@@ -26,8 +33,10 @@
         "練習回答有關年齡、篩查紀錄和症狀的問題。",
         "查看摘要，為真正的遙距醫療諮詢做好準備。"
       ],
+      "chatStep": "在嘈雜環境中使用文字模式；Luna 仍會讀出回覆。",
       "start": "開始練習",
-      "browserNote": "當瀏覽器要求使用咪高峰時，請允許存取。"
+      "voiceNote": "當瀏覽器要求使用咪高峰時，請允許存取。",
+      "chatNote": "無需咪高峰權限。請開啟裝置聲音以收聽 Luna。"
     },
     "complete": {
       "eyebrow": "做得好！",
@@ -44,18 +53,26 @@
       "ringing": "電話正在響...",
       "speaking": "{{speaker}}正在說話...",
       "yourTurn": "輪到你說話了",
+      "typeYourTurn": "輪到你輸入了",
       "pleaseWait": "請稍候...",
       "ringHelp": "聆聽電話鈴聲，等待對方接聽。",
       "speakHelp": "準備好後，請清楚地表達。",
+      "typeHelp": "在下方輸入回覆，然後選擇「傳送」。",
       "speakingHelp": "請先聆聽，再作回應。輪到你時便可以說話。",
       "continueHelp": "請稍候，讓對話繼續。",
       "ringStatus": "正在播放電話鈴聲",
       "audioStatus": "正在播放語音",
       "listeningStatus": "咪高峰正在收音",
+      "typingStatus": "等待你的訊息",
       "pausedStatus": "音訊已暫停",
       "questions": "練習問題",
       "finish": "結束通話",
       "leave": "離開練習"
+    },
+    "chat": {
+      "label": "你的回覆",
+      "placeholder": "輸入回覆…",
+      "send": "傳送"
     },
     "transcript": {
       "eyebrow": "對話",
@@ -78,7 +95,8 @@
     "scope": {
       "title": "語言提示",
       "description": "這個模擬電話使用英語，模擬在澳洲聯絡全科醫生查詢子宮頸篩查的常見情況。",
-"interpreterLink": "需要傳譯員？請按此預約"    },
+      "interpreterLink": "需要傳譯員？請按此預約"
+    },
     "download": {
       "title": "電話練習摘要",
       "answers": "你的回答",

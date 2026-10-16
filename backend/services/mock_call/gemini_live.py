@@ -19,6 +19,7 @@ from services.mock_call.rag_retrieval import (
 logger = logging.getLogger(__name__)
 INPUT_AUDIO_MIME_TYPE = "audio/pcm;rate=16000"
 MAX_AUDIO_CHUNK_BYTES = 256 * 1024
+MAX_TEXT_INPUT_CHARS = 1000
 RAG_SEARCH_TIMEOUT_SECONDS = 15
 
 ORIENTATION_MESSAGE = (
@@ -1004,6 +1005,8 @@ class GeminiLivePracticeSession:
             message_type = control.get("type")
             if message_type == "ring_complete":
                 self.ring_complete.set()
+            elif message_type == "text_input":
+                await self._handle_text_input(control)
             elif message_type == "finish" and not self.finish_requested:
                 self.finish_requested = True
                 self.state.phase = "creating_summary"
@@ -1029,6 +1032,59 @@ class GeminiLivePracticeSession:
                     )
             elif message_type == "ping":
                 await self._send_json({"type": "pong"})
+
+    async def _handle_text_input(self, control: dict[str, Any]) -> None:
+        if not self.accepting_audio or self.finish_requested:
+            await self._send_json(
+                {
+                    "type": "input_error",
+                    "message": "Please wait until it is your turn.",
+                }
+            )
+            return
+
+        text_input = control.get("text")
+        if not isinstance(text_input, str) or not text_input.strip():
+            await self._send_json(
+                {
+                    "type": "input_error",
+                    "message": "Enter a message before sending.",
+                }
+            )
+            return
+
+        text_input = text_input.strip()
+        if len(text_input) > MAX_TEXT_INPUT_CHARS:
+            await self._send_json(
+                {
+                    "type": "input_error",
+                    "message": (
+                        f"Keep your message under {MAX_TEXT_INPUT_CHARS} "
+                        "characters."
+                    ),
+                }
+            )
+            return
+
+        self.accepting_audio = False
+        current_user_transcript = self.state.add_user_transcription(text_input)
+        await self._send_json(
+            {
+                "type": "transcript",
+                "role": "user",
+                "text": current_user_transcript,
+            }
+        )
+        await self._send_json({"type": "processing"})
+
+        async with self.gemini_send_lock:
+            await self.gemini_session.send_client_content(
+                turns=types.Content(
+                    role="user",
+                    parts=[types.Part(text=text_input)],
+                ),
+                turn_complete=True,
+            )
 
     async def _receive_gemini(self) -> None:
         while True:

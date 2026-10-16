@@ -18,6 +18,13 @@
       "error": "Đã xảy ra lỗi",
       "live": "Cuộc gọi trực tiếp"
     },
+    "mode": {
+      "title": "Chọn cách bạn muốn trả lời",
+      "voice": "Chế độ giọng nói",
+      "voiceDescription": "Nói qua micro của bạn.",
+      "chat": "Chế độ chat",
+      "chatDescription": "Nhập văn bản ở nơi ồn; Luna vẫn trả lời bằng giọng nói."
+    },
     "welcome": {
       "title": "Bạn đã sẵn sàng luyện tập chưa?",
       "description": "Luna mô phỏng cuộc tư vấn từ xa tiếp theo để bạn luyện tập những câu hỏi có thể được hỏi. Buổi mô phỏng không đánh giá điều kiện thực tế hoặc đặt bộ dụng cụ.",
@@ -26,8 +33,10 @@
         "Luyện trả lời các câu hỏi về độ tuổi, lịch sử tầm soát và triệu chứng.",
         "Xem lại bản tóm tắt để chuẩn bị cho cuộc tư vấn từ xa thực tế."
       ],
+      "chatStep": "Dùng chế độ chat ở nơi ồn; Luna vẫn trả lời thành tiếng.",
       "start": "Bắt đầu luyện tập",
-      "browserNote": "Cho phép trình duyệt sử dụng micro khi được yêu cầu."
+      "voiceNote": "Cho phép trình duyệt sử dụng micro khi được yêu cầu.",
+      "chatNote": "Không cần quyền truy cập micro. Hãy bật âm thanh thiết bị để nghe Luna."
     },
     "complete": {
       "eyebrow": "Làm tốt lắm!",
@@ -44,18 +53,26 @@
       "ringing": "Điện thoại đang đổ chuông...",
       "speaking": "{{speaker}} đang nói...",
       "yourTurn": "Đến lượt bạn nói",
+      "typeYourTurn": "Đến lượt bạn nhập câu trả lời",
       "pleaseWait": "Vui lòng chờ...",
       "ringHelp": "Lắng nghe tiếng chuông và chờ người nhận cuộc gọi trả lời.",
       "speakHelp": "Hãy nói rõ ràng khi bạn đã sẵn sàng.",
+      "typeHelp": "Nhập câu trả lời bên dưới rồi chọn Gửi.",
       "speakingHelp": "Hãy lắng nghe trước khi trả lời. Bạn có thể nói khi đến lượt mình.",
       "continueHelp": "Vui lòng chờ để cuộc trò chuyện tiếp tục.",
       "ringStatus": "Đang phát âm thanh chuông điện thoại",
       "audioStatus": "Đang phát âm thanh",
       "listeningStatus": "Micro đang nghe bạn nói",
+      "typingStatus": "Sẵn sàng nhận tin nhắn",
       "pausedStatus": "Âm thanh đang tạm dừng",
       "questions": "Câu hỏi luyện tập",
       "finish": "Kết thúc cuộc gọi",
       "leave": "Thoát buổi luyện tập"
+    },
+    "chat": {
+      "label": "Câu trả lời của bạn",
+      "placeholder": "Nhập câu trả lời…",
+      "send": "Gửi"
     },
     "transcript": {
       "eyebrow": "Cuộc trò chuyện",
@@ -78,7 +95,8 @@
     "scope": {
       "title": "Lưu ý về ngôn ngữ",
       "description": "Cuộc gọi thực hành này sử dụng tiếng Anh, mô phỏng tình huống phổ biến khi liên hệ bác sĩ đa khoa tại Úc để hỏi về xét nghiệm tầm soát cổ tử cung.",
-"interpreterLink": "Cần phiên dịch viên? Đặt lịch tại đây"    },
+      "interpreterLink": "Cần phiên dịch viên? Đặt lịch tại đây"
+    },
     "download": {
       "title": "Tóm tắt buổi luyện tập cuộc gọi",
       "answers": "Câu trả lời của bạn",

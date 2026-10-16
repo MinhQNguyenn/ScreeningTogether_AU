@@ -45,7 +45,7 @@
             <ul class="before-list">
               <li>
                 <span aria-hidden="true">1</span>
-                {{ tCall('welcome.steps.0') }}
+                {{ inputMode === 'chat' ? tCall('welcome.chatStep') : tCall('welcome.steps.0') }}
               </li>
               <li>
                 <span aria-hidden="true">2</span>
@@ -57,6 +57,30 @@
               </li>
             </ul>
 
+            <fieldset class="mode-selector">
+              <legend>{{ tCall('mode.title') }}</legend>
+              <div class="mode-options">
+                <button
+                  type="button"
+                  :class="['mode-option', { active: inputMode === 'voice' }]"
+                  :aria-pressed="inputMode === 'voice'"
+                  @click="inputMode = 'voice'"
+                >
+                  <strong>{{ tCall('mode.voice') }}</strong>
+                  <span>{{ tCall('mode.voiceDescription') }}</span>
+                </button>
+                <button
+                  type="button"
+                  :class="['mode-option', { active: inputMode === 'chat' }]"
+                  :aria-pressed="inputMode === 'chat'"
+                  @click="inputMode = 'chat'"
+                >
+                  <strong>{{ tCall('mode.chat') }}</strong>
+                  <span>{{ tCall('mode.chatDescription') }}</span>
+                </button>
+              </div>
+            </fieldset>
+
             <p v-if="errorMessage" class="error-message" role="alert">{{ errorMessage }}</p>
 
             <button class="primary-action" type="button" @click="startCall">
@@ -65,7 +89,7 @@
             </button>
 
             <p class="browser-note">
-              {{ tCall('welcome.browserNote') }}
+              {{ inputMode === 'voice' ? tCall('welcome.voiceNote') : tCall('welcome.chatNote') }}
             </p>
           </div>
         </template>
@@ -106,6 +130,29 @@
               <span class="audio-bars" aria-hidden="true"> <i></i><i></i><i></i><i></i> </span>
               {{ audioStatus }}
             </div>
+
+            <form
+              v-if="inputMode === 'chat'"
+              class="chat-composer"
+              @submit.prevent="sendChatMessage"
+            >
+              <label for="practice-chat-input">{{ tCall('chat.label') }}</label>
+              <div class="chat-input-row">
+                <textarea
+                  id="practice-chat-input"
+                  v-model="chatMessage"
+                  rows="2"
+                  maxlength="1000"
+                  :placeholder="tCall('chat.placeholder')"
+                  :disabled="!canSendChat"
+                  @keydown.enter.exact.prevent="sendChatMessage"
+                ></textarea>
+                <button type="submit" :disabled="!canSendChat || !chatMessage.trim()">
+                  {{ tCall('chat.send') }}
+                </button>
+              </div>
+              <p v-if="chatError" class="chat-error" role="alert">{{ chatError }}</p>
+            </form>
 
             <div v-if="progress.total > 0" class="progress-block">
               <div class="progress-copy">
@@ -259,6 +306,7 @@ function tCall(key: string, options: Record<string, string> = {}) {
 }
 
 type ConnectionState = 'idle' | 'connecting' | 'connected' | 'finishing' | 'complete' | 'error'
+type InputMode = 'voice' | 'chat'
 
 interface ConversationTurn {
   user: string
@@ -296,8 +344,12 @@ interface ServerMessage {
 }
 
 const connectionState = ref<ConnectionState>('idle')
+const inputMode = ref<InputMode>('voice')
 const phase = ref('orientation')
 const errorMessage = ref('')
+const chatError = ref('')
+const chatMessage = ref('')
+const chatInputReady = ref(false)
 const assistantSpeaking = ref(false)
 const microphoneOpen = ref(false)
 const ringPlaying = ref(false)
@@ -322,6 +374,15 @@ let manualClose = false
 let microphoneCooldown: number | null = null
 
 const connectionLabel = computed(() => tCall(`connection.${connectionState.value}`))
+
+const canSendChat = computed(
+  () =>
+    inputMode.value === 'chat' &&
+    connectionState.value === 'connected' &&
+    chatInputReady.value &&
+    !assistantSpeaking.value &&
+    !ringPlaying.value,
+)
 
 const speakerLabel = computed(() =>
   ['practitioner', 'collecting', 'follow_up'].includes(phase.value)
@@ -350,12 +411,17 @@ const callPrompt = computed(() => {
     return tCall('live.yourTurn')
   }
 
+  if (canSendChat.value) {
+    return tCall('live.typeYourTurn')
+  }
+
   return tCall('live.pleaseWait')
 })
 
 const callHelp = computed(() => {
   if (ringPlaying.value) return tCall('live.ringHelp')
   if (microphoneOpen.value) return tCall('live.speakHelp')
+  if (canSendChat.value) return tCall('live.typeHelp')
   if (assistantSpeaking.value) return tCall('live.speakingHelp')
   return tCall('live.continueHelp')
 })
@@ -364,6 +430,7 @@ const audioStatus = computed(() => {
   if (ringPlaying.value) return tCall('live.ringStatus')
   if (assistantSpeaking.value) return tCall('live.audioStatus')
   if (microphoneOpen.value) return tCall('live.listeningStatus')
+  if (canSendChat.value) return tCall('live.typingStatus')
   return tCall('live.pausedStatus')
 })
 
@@ -400,34 +467,38 @@ async function startCall(): Promise<void> {
   manualClose = false
 
   try {
-    if (!navigator.mediaDevices?.getUserMedia || !window.AudioWorkletNode) {
+    if (
+      !window.AudioWorkletNode ||
+      (inputMode.value === 'voice' && !navigator.mediaDevices?.getUserMedia)
+    ) {
       throw new Error(tCall('errors.unsupported'))
     }
-
-    mediaStream = await navigator.mediaDevices.getUserMedia({
-      audio: {
-        echoCancellation: true,
-        noiseSuppression: true,
-        autoGainControl: true,
-        channelCount: 1,
-      },
-      video: false,
-    })
 
     audioContext = new AudioContext()
     await audioContext.resume()
     await audioContext.audioWorklet.addModule('/audio/pcm16-capture-processor.js?v=3')
 
-    microphoneSource = audioContext.createMediaStreamSource(mediaStream)
-    captureNode = new AudioWorkletNode(audioContext, 'pcm16-capture-processor')
     playbackNode = new AudioWorkletNode(audioContext, 'pcm16-playback-processor')
-    silentOutput = audioContext.createGain()
-    silentOutput.gain.value = 0
-
-    microphoneSource.connect(captureNode)
-    captureNode.connect(silentOutput)
-    silentOutput.connect(audioContext.destination)
     playbackNode.connect(audioContext.destination)
+
+    if (inputMode.value === 'voice') {
+      mediaStream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true,
+          channelCount: 1,
+        },
+        video: false,
+      })
+      microphoneSource = audioContext.createMediaStreamSource(mediaStream)
+      captureNode = new AudioWorkletNode(audioContext, 'pcm16-capture-processor')
+      silentOutput = audioContext.createGain()
+      silentOutput.gain.value = 0
+      microphoneSource.connect(captureNode)
+      captureNode.connect(silentOutput)
+      silentOutput.connect(audioContext.destination)
+    }
 
     playbackNode.port.onmessage = (event: MessageEvent<{ type?: string }>) => {
       if (event.data?.type === 'drained') {
@@ -437,13 +508,15 @@ async function startCall(): Promise<void> {
       }
     }
 
-    captureNode.port.onmessage = (event: MessageEvent<ArrayBuffer>) => {
-      if (
-        microphoneOpen.value &&
-        socket?.readyState === WebSocket.OPEN &&
-        event.data.byteLength > 0
-      ) {
-        socket.send(event.data)
+    if (captureNode) {
+      captureNode.port.onmessage = (event: MessageEvent<ArrayBuffer>) => {
+        if (
+          microphoneOpen.value &&
+          socket?.readyState === WebSocket.OPEN &&
+          event.data.byteLength > 0
+        ) {
+          socket.send(event.data)
+        }
       }
     }
 
@@ -490,12 +563,14 @@ function handleServerMessage(message: ServerMessage): void {
       phase.value = message.phase ?? 'orientation'
       outputSampleRate.value = message.output_sample_rate ?? 24000
       connectionState.value = 'connected'
+      chatInputReady.value = false
       setMicrophone(false)
       break
     case 'status':
       phase.value = message.phase ?? phase.value
       break
     case 'processing':
+      chatInputReady.value = false
       setMicrophone(false)
       break
     case 'transcript':
@@ -513,6 +588,7 @@ function handleServerMessage(message: ServerMessage): void {
       break
     case 'ready_for_input':
       assistantTurnComplete = true
+      chatError.value = ''
       scheduleMicrophoneResume()
       break
     case 'turn':
@@ -548,6 +624,9 @@ function handleServerMessage(message: ServerMessage): void {
       connectionState.value = 'error'
       leaveSocketOpen(false)
       break
+    case 'input_error':
+      chatError.value = message.message ?? tCall('errors.practice')
+      break
   }
 }
 
@@ -560,6 +639,7 @@ function queueAssistantAudio(bytes: ArrayBuffer): void {
   }
 
   assistantTurnComplete = false
+  chatInputReady.value = false
   assistantSpeaking.value = true
   playbackDrained = false
   setMicrophone(false)
@@ -570,16 +650,34 @@ function queueAssistantAudio(bytes: ArrayBuffer): void {
 }
 
 function scheduleMicrophoneResume(): void {
-  if (!playbackDrained || !assistantTurnComplete || ringPlaying.value) return
+  if (!playbackDrained || !assistantTurnComplete || ringPlaying.value) {
+    chatInputReady.value = false
+    return
+  }
 
   assistantSpeaking.value = false
   if (microphoneCooldown !== null) window.clearTimeout(microphoneCooldown)
 
   microphoneCooldown = window.setTimeout(() => {
     if (playbackDrained && !ringPlaying.value && connectionState.value === 'connected') {
-      setMicrophone(true)
+      if (inputMode.value === 'voice') {
+        setMicrophone(true)
+      } else {
+        chatInputReady.value = true
+      }
     }
   }, 350)
+}
+
+function sendChatMessage(): void {
+  const text = chatMessage.value.trim()
+  if (!text || !canSendChat.value || socket?.readyState !== WebSocket.OPEN) return
+
+  assistantTurnComplete = false
+  chatInputReady.value = false
+  chatError.value = ''
+  chatMessage.value = ''
+  socket.send(JSON.stringify({ type: 'text_input', text }))
 }
 
 function stopAssistantAudio(): void {
@@ -591,6 +689,7 @@ function stopAssistantAudio(): void {
 async function playRings(count: number): Promise<void> {
   if (!audioContext || ringPlaying.value) return
   ringPlaying.value = true
+  chatInputReady.value = false
   setMicrophone(false)
 
   for (let index = 0; index < count; index += 1) {
@@ -690,6 +789,9 @@ function resetConversation(): void {
   liveUserTranscript.value = ''
   liveAssistantTranscript.value = ''
   summary.value = null
+  chatMessage.value = ''
+  chatError.value = ''
+  chatInputReady.value = false
   phase.value = 'orientation'
   progress.value = { answered: 0, total: 8 }
   assistantSpeaking.value = false
@@ -712,13 +814,9 @@ function setMicrophone(enabled: boolean): void {
   const wasOpen = microphoneOpen.value
 
   microphoneOpen.value =
-    enabled && connectionState.value === 'connected'
+    enabled && inputMode.value === 'voice' && connectionState.value === 'connected'
 
-  if (
-    wasOpen &&
-    !microphoneOpen.value &&
-    socket?.readyState === WebSocket.OPEN
-  ) {
+  if (wasOpen && !microphoneOpen.value && socket?.readyState === WebSocket.OPEN) {
     socket.send(
       JSON.stringify({
         type: 'audio_stream_end',
@@ -1022,6 +1120,53 @@ onBeforeUnmount(() => {
   font-weight: 800;
 }
 
+.mode-selector {
+  width: min(100%, 460px);
+  margin: 0 0 24px;
+  padding: 0;
+  border: 0;
+}
+
+.mode-selector legend {
+  margin-bottom: 10px;
+  color: var(--cp-text);
+  font-size: 0.875rem;
+  font-weight: 800;
+}
+
+.mode-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.mode-option {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+  padding: 13px;
+  border: 1px solid var(--cp-border);
+  border-radius: 16px;
+  background: var(--cp-card-bg);
+  color: var(--cp-text);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.mode-option.active {
+  border-color: var(--cp-accent);
+  background: var(--cp-soft-bg);
+  box-shadow: 0 0 0 2px var(--cp-shadow);
+}
+
+.mode-option span {
+  color: var(--cp-muted);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
 .primary-action,
 .secondary-action,
 .finish-button,
@@ -1215,6 +1360,68 @@ onBeforeUnmount(() => {
 
 .audio-bars i:nth-child(4) {
   animation-delay: 0.12s !important;
+}
+
+.chat-composer {
+  width: min(100%, 460px);
+  margin-top: 20px;
+  text-align: start;
+}
+
+.chat-composer label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--cp-text);
+  font-size: 0.8125rem;
+  font-weight: 800;
+}
+
+.chat-input-row {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.chat-input-row textarea {
+  min-width: 0;
+  flex: 1;
+  resize: vertical;
+  padding: 11px 13px;
+  border: 1px solid var(--cp-border);
+  border-radius: 14px;
+  background: var(--cp-card-bg);
+  color: var(--cp-text);
+  font: inherit;
+  line-height: 1.45;
+}
+
+.chat-input-row textarea:focus {
+  border-color: var(--cp-accent);
+  outline: 2px solid var(--cp-shadow);
+}
+
+.chat-input-row button {
+  align-self: stretch;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--cp-accent);
+  color: var(--cp-button-text);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.chat-input-row textarea:disabled,
+.chat-input-row button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.chat-error {
+  margin: 8px 0 0;
+  color: #b13d47;
+  font-size: 0.75rem;
 }
 
 .progress-block {
@@ -1545,6 +1752,14 @@ onBeforeUnmount(() => {
 
   .intro-copy {
     font-size: 1rem;
+  }
+
+  .mode-options {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-input-row {
+    flex-direction: column;
   }
 
   .privacy-strip {
