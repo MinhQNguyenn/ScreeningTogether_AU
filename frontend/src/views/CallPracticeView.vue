@@ -416,7 +416,7 @@ async function startCall(): Promise<void> {
 
     audioContext = new AudioContext()
     await audioContext.resume()
-    await audioContext.audioWorklet.addModule('/audio/pcm16-capture-processor.js?v=2')
+    await audioContext.audioWorklet.addModule('/audio/pcm16-capture-processor.js?v=3')
 
     microphoneSource = audioContext.createMediaStreamSource(mediaStream)
     captureNode = new AudioWorkletNode(audioContext, 'pcm16-capture-processor')
@@ -432,6 +432,7 @@ async function startCall(): Promise<void> {
     playbackNode.port.onmessage = (event: MessageEvent<{ type?: string }>) => {
       if (event.data?.type === 'drained') {
         playbackDrained = true
+        assistantSpeaking.value = false
         scheduleMicrophoneResume()
       }
     }
@@ -502,6 +503,18 @@ function handleServerMessage(message: ServerMessage): void {
       if (message.role === 'assistant') liveAssistantTranscript.value = message.text ?? ''
       scrollTranscript()
       break
+    case 'audio_generation_complete':
+      playbackNode?.port.postMessage({ type: 'end-generation' })
+      if (!playbackNode) {
+        playbackDrained = true
+        assistantSpeaking.value = false
+        scheduleMicrophoneResume()
+      }
+      break
+    case 'ready_for_input':
+      assistantTurnComplete = true
+      scheduleMicrophoneResume()
+      break
     case 'turn':
       turns.value.push({
         user: message.user ?? '',
@@ -510,9 +523,6 @@ function handleServerMessage(message: ServerMessage): void {
       })
       liveUserTranscript.value = ''
       liveAssistantTranscript.value = ''
-      assistantTurnComplete = true
-      playbackNode?.port.postMessage({ type: 'end-turn' })
-      if (!playbackNode) scheduleMicrophoneResume()
       scrollTranscript()
       break
     case 'progress':

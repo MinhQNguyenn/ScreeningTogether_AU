@@ -75,9 +75,14 @@ FLOW
    After an in-scope answer or out-of-scope refusal, ask exactly: "Is now still
    a good time to continue?" On a new clear yes, call
    confirm_practitioner_ready; never record it as an intake answer.
-3. INTAKE: Ask exactly the next_question returned by the backend, then stop.
-   Record only a new, explicit answer to the pending field by calling
-   record_practice_answer. Never infer, overwrite, skip or answer for the user.
+3. INTAKE: The backend owns the pending question. After every user turn, call
+   exactly one appropriate tool before speaking. Use record_practice_answer for
+   a new explicit answer to the pending field, correct_practice_answer for an
+   explicit correction to an earlier answer, and repeat_pending_question when
+   the speech is unclear or does not answer the pending question. An explicit
+   refusal to answer the pending question is prefer_not_to_say. Never infer,
+   skip or answer for the user. Never ask an intake question in free speech;
+   speak only the say_exactly value returned by the selected tool.
    Use the opening phrase "Great. To begin, ..." only when the backend first
    enters the intake. Never add it when repeating the age-range question.
 
@@ -105,6 +110,12 @@ INTAKE FIELD RULES
 TURN AND COACHING RULES
 - One intake question per response. A readiness answer, factual question or
   coaching exchange is not an answer to the pending field.
+- If the user clearly corrects an earlier answer, call correct_practice_answer.
+  Do not treat words such as "no" inside a correction as the answer to the
+  current pending question. After the correction, say its returned say_exactly
+  value and continue with the backend's current pending question.
+- If the user's response is unclear, unrelated, or only declines to repeat an
+  unclear response, call repeat_pending_question. Do not move forward.
 - Briefly acknowledge each accepted answer before asking the next question.
   Use only the neutral transition returned by the backend; do not praise,
   judge or repeat sensitive information. If coaching is required, the
@@ -332,6 +343,40 @@ def _answer_transition(field_name: str, answer: str) -> str:
         return "That's okay."
     return TRANSITION_BY_FIELD.get(field_name, "Thank you.")
 
+
+def _completed_intake_message() -> str:
+    return (
+        "Thank you very much. That completes the intake questions. "
+        "Normally there will be a discussion involving a personal address "
+        "and shipping method for the screening kit, but that is all for "
+        "today. Nothing will be assessed or diagnosed in this practice "
+        "session, but you can show the summary to a real practitioner to "
+        "verify this information. Would you like to ask a cervical screening "
+        "question or finish and view your practice summary?"
+    )
+
+
+def _answer_response(
+    result: dict[str, Any],
+    transition: str,
+) -> str:
+    if result["all_required_fields_recorded"]:
+        return _completed_intake_message()
+
+    spoken_parts = [transition] if transition else []
+    if result["coaching_required"]:
+        spoken_parts.extend(
+            [
+                result["coaching_message"],
+                (
+                    "For the sake of this practice call, we'll continue "
+                    "with the remaining questions, shall we."
+                ),
+            ]
+        )
+    spoken_parts.append(result["next_question"])
+    return " ".join(spoken_parts)
+
 LIVE_FUNCTION_DECLARATIONS = [
     {
         "name": "present_orientation",
@@ -364,6 +409,43 @@ LIVE_FUNCTION_DECLARATIONS = [
                 "answer": {"type": "STRING", "enum": ANSWER_VALUES},
             },
             "required": ["field", "answer"],
+        },
+    },
+    {
+        "name": "correct_practice_answer",
+        "description": (
+            "Correct one earlier intake answer only when the user explicitly "
+            "says their previous answer was wrong or supplies a clear "
+            "replacement. This does not answer the current pending question. "
+            "After success, speak only the returned say_exactly value."
+        ),
+        "behavior": "BLOCKING",
+        "parameters": {
+            "type": "OBJECT",
+            "properties": {
+                "field": {"type": "STRING", "enum": PRACTICE_FIELDS},
+                "answer": {"type": "STRING", "enum": ANSWER_VALUES},
+            },
+            "required": ["field", "answer"],
+        },
+    },
+    {
+        "name": "repeat_pending_question",
+        "description": (
+            "Keep the current intake field unchanged when the user's speech "
+            "is unclear, unrelated, or does not answer the pending question. "
+            "After success, speak only the returned say_exactly value."
+        ),
+        "behavior": "BLOCKING",
+        "parameters": {
+            "type": "OBJECT",
+            "properties": {
+                "reason": {
+                    "type": "STRING",
+                    "enum": ["unclear", "not_answered", "out_of_scope"],
+                }
+            },
+            "required": ["reason"],
         },
     },
     {
@@ -535,12 +617,18 @@ class PracticeCallState:
             None,
         )
 
-    def record_answer(self, arguments: dict[str, Any]) -> dict[str, Any]:
+    def pending_question(self) -> str | None:
+        pending_field = self.next_missing_field()
+        return (
+            FIELD_QUESTIONS[pending_field]
+            if pending_field is not None
+            else None
+        )
+
+    @staticmethod
+    def validate_answer(arguments: dict[str, Any]) -> tuple[str, str]:
         field_name = arguments.get("field")
         answer = arguments.get("answer")
-
-        if self.phase != "collecting":
-            raise ValueError("The practice intake is not active.")
 
         if (
             not isinstance(field_name, str)
@@ -549,6 +637,49 @@ class PracticeCallState:
             or answer not in ALLOWED_ANSWERS_BY_FIELD[field_name]
         ):
             raise ValueError("The answer does not match the expected field.")
+
+        return field_name, answer
+
+    def apply_screening_timing_dependency(
+        self,
+        field_name: str,
+        answer: str,
+    ) -> None:
+        if field_name != "previous_screening":
+            return
+
+        if answer in {"no", "never"}:
+            self.answers["last_screening_timing"] = "not_applicable"
+        elif self.answers["last_screening_timing"] == "not_applicable":
+            self.answers["last_screening_timing"] = None
+
+    def answer_result(self, field_name: str, answer: str) -> dict[str, Any]:
+        next_field = self.next_missing_field()
+        self.phase = "collecting" if next_field else "follow_up"
+        coaching_message = COACHING_BY_ANSWER.get((field_name, answer))
+
+        return {
+            "next_field": next_field,
+            "next_question": self.pending_question(),
+            "remaining_fields": sum(
+                value is None for value in self.answers.values()
+            ),
+            "all_required_fields_recorded": next_field is None,
+            "coaching_required": coaching_message is not None,
+            "coaching_message": coaching_message,
+            "continue_simulation": True,
+            "requires_clinician_discussion": (
+                field_name
+                in {"unusual_bleeding", "other_symptoms", "special_follow_up"}
+                and answer == "yes"
+            ),
+        }
+
+    def record_answer(self, arguments: dict[str, Any]) -> dict[str, Any]:
+        if self.phase != "collecting":
+            raise ValueError("The practice intake is not active.")
+
+        field_name, answer = self.validate_answer(arguments)
 
         expected_field = self.next_missing_field()
         if expected_field is None:
@@ -561,42 +692,73 @@ class PracticeCallState:
 
         self.consume_current_user_turn()
         self.answers[field_name] = answer
-        if field_name == "previous_screening" and answer in {"no", "never"}:
-            self.answers["last_screening_timing"] = "not_applicable"
-
-        next_field = self.next_missing_field()
-        self.phase = "collecting" if next_field else "follow_up"
-        remaining = sum(value is None for value in self.answers.values())
-        coaching_message = COACHING_BY_ANSWER.get((field_name, answer))
-        next_question = (
-            FIELD_QUESTIONS[next_field]
-            if next_field is not None
-            else None
-        )
-
-        if next_field is None:
-            instruction = INTAKE_COMPLETE_INSTRUCTION
-        elif coaching_message is not None:
-            instruction = COACHING_INSTRUCTION
-        else:
-            instruction = NEXT_QUESTION_INSTRUCTION
-
-        return {
+        self.apply_screening_timing_dependency(field_name, answer)
+        result = self.answer_result(field_name, answer)
+        result.update({
             "recorded": True,
-            "next_field": next_field,
-            "next_question": next_question,
-            "remaining_fields": remaining,
-            "all_required_fields_recorded": next_field is None,
-            "coaching_required": coaching_message is not None,
-            "coaching_message": coaching_message,
-            "continue_simulation": True,
-            "requires_clinician_discussion": (
-                field_name
-                in {"unusual_bleeding", "other_symptoms", "special_follow_up"}
-                and answer == "yes"
+            "instruction": self.instruction_for_result(result),
+        })
+        return result
+
+    def correct_answer(self, arguments: dict[str, Any]) -> dict[str, Any]:
+        if self.phase != "collecting":
+            raise ValueError("The practice intake is not active.")
+
+        field_name, answer = self.validate_answer(arguments)
+        pending_field = self.next_missing_field()
+        if self.answers[field_name] is None or field_name == pending_field:
+            raise ValueError("Only an earlier recorded answer can be corrected.")
+
+        self.consume_current_user_turn()
+        previous_answer = self.answers[field_name]
+        self.answers[field_name] = answer
+        self.apply_screening_timing_dependency(field_name, answer)
+        self.summary = None
+
+        result = self.answer_result(field_name, answer)
+        result.update(
+            {
+                "corrected": True,
+                "changed": previous_answer != answer,
+                "instruction": self.instruction_for_result(result),
+            }
+        )
+        return result
+
+    def repeat_pending_question(self, arguments: dict[str, Any]) -> dict[str, Any]:
+        if self.phase != "collecting":
+            raise ValueError("The practice intake is not active.")
+
+        reason = arguments.get("reason")
+        if reason not in {"unclear", "not_answered", "out_of_scope"}:
+            raise ValueError("A valid repeat reason is required.")
+
+        pending_question = self.pending_question()
+        if pending_question is None:
+            raise ValueError("There is no pending intake question.")
+
+        self.consume_current_user_turn()
+        prefix = {
+            "unclear": "Sorry, I did not catch that.",
+            "not_answered": "No problem.",
+            "out_of_scope": (
+                "I can only discuss cervical screening during this call."
             ),
-            "instruction": instruction,
+        }[reason]
+        return {
+            "repeated": True,
+            "next_field": self.next_missing_field(),
+            "next_question": pending_question,
+            "say_exactly": f"{prefix} {pending_question}",
         }
+
+    @staticmethod
+    def instruction_for_result(result: dict[str, Any]) -> str:
+        if result["all_required_fields_recorded"]:
+            return INTAKE_COMPLETE_INSTRUCTION
+        if result["coaching_required"]:
+            return COACHING_INSTRUCTION
+        return NEXT_QUESTION_INSTRUCTION
 
     def progress_payload(self) -> dict[str, Any]:
         return {
@@ -810,7 +972,6 @@ class GeminiLivePracticeSession:
             message = await self.websocket.receive()
             if message["type"] == "websocket.disconnect":
                 raise WebSocketDisconnect(message.get("code", 1000))
-
             audio = message.get("bytes")
             if audio is not None:
                 if not self.accepting_audio:
@@ -883,7 +1044,6 @@ class GeminiLivePracticeSession:
             self.accepting_audio = False
             await self._send_json({"type": "processing"})
             await self._handle_tool_calls(response.tool_call.function_calls)
-
         content = response.server_content
         if content is not None:
             if content.interrupted:
@@ -930,11 +1090,22 @@ class GeminiLivePracticeSession:
                         self.accepting_audio = False
                         await self._send_bytes(inline_data.data)
 
+            if content.generation_complete:
+                await self._send_json(
+                    {"type": "audio_generation_complete"}
+                )
+
             if content.turn_complete:
                 turn = self.state.commit_turn()
                 if turn:
                     await self._send_json(turn)
-                    self.accepting_audio = True
+                self.accepting_audio = True
+                await self._send_json(
+                    {
+                        "type": "ready_for_input",
+                        "phase": self.state.phase,
+                    }
+                )
 
         if response.go_away is not None:
             await self._send_json(
@@ -952,7 +1123,15 @@ class GeminiLivePracticeSession:
             try:
                 result = await self._execute_tool(function_call.name, arguments)
             except (ValueError, TypeError) as error:
-                result = {"error": str(error)}
+                logger.info(
+                    "Practice tool rejected: tool=%s, phase=%s, "
+                    "pending_field=%s, error_type=%s",
+                    function_call.name,
+                    self.state.phase,
+                    self.state.next_missing_field(),
+                    type(error).__name__,
+                )
+                result = self._tool_rejection_result()
             except Exception as error:
                 logger.error(
                     "Practice tool failed: tool=%s, error_type=%s",
@@ -973,6 +1152,21 @@ class GeminiLivePracticeSession:
             await self.gemini_session.send_tool_response(
                 function_responses=function_responses
             )
+
+    def _tool_rejection_result(self) -> dict[str, Any]:
+        if self.state.phase == "orientation":
+            spoken_response = "Are you ready to begin?"
+        elif self.state.phase == "practitioner":
+            spoken_response = PRACTITIONER_READINESS_QUESTION
+        elif self.state.phase == "collecting":
+            spoken_response = self.state.pending_question()
+        else:
+            spoken_response = None
+
+        result: dict[str, Any] = {"accepted": False}
+        if spoken_response:
+            result["say_exactly"] = spoken_response
+        return result
 
     async def _execute_tool(
         self,
@@ -1064,38 +1258,34 @@ class GeminiLivePracticeSession:
         if name == "record_practice_answer":
             result = self.state.record_answer(arguments)
             await self._send_json(self.state.progress_payload())
-
-            if result["all_required_fields_recorded"]:
-                spoken_response = (
-                    "Thank you very much. That completes the intake questions."
-                    "Normally there will be a dicussion involving personal address and shiping method for the screening kit. But that is all for today."
-                    "Nothing will be assessed or diagnosed in this practice session, but you can show the summary to a real practitioner to verify this information. "
-                    "Would you like to ask a cervical screening question "
-                    "or finish and view your practice summary?"
+            transition = (
+                ""
+                if result["coaching_required"]
+                else _answer_transition(
+                    arguments["field"],
+                    arguments["answer"],
                 )
-            else:
-                spoken_parts = []
-                if result["coaching_required"]:
-                    spoken_parts.extend(
-                        [
-                            result["coaching_message"],
-                            (
-                                "For the sake of this practice call, "
-                                "we'll continue with the remaining questions, shall we."
-                            ),
-                        ]
-                    )
-                else:
-                    spoken_parts.append(
-                        _answer_transition(
-                            arguments["field"],
-                            arguments["answer"],
-                        )
-                    )
-                spoken_parts.append(result["next_question"])
-                spoken_response = " ".join(spoken_parts)
+            )
+            return {
+                **result,
+                "say_exactly": _answer_response(result, transition),
+            }
 
-            return {"say_exactly": spoken_response}
+        if name == "correct_practice_answer":
+            result = self.state.correct_answer(arguments)
+            await self._send_json(self.state.progress_payload())
+            transition = (
+                "Thanks for correcting that."
+                if result["changed"]
+                else "Thanks, that answer is already recorded."
+            )
+            return {
+                **result,
+                "say_exactly": _answer_response(result, transition),
+            }
+
+        if name == "repeat_pending_question":
+            return self.state.repeat_pending_question(arguments)
 
         if name == "exit_mock_call":
             self.state.phase = "assistant"

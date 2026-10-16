@@ -74,8 +74,9 @@ class Pcm16PlaybackProcessor extends AudioWorkletProcessor {
         return
       }
 
-      if (data?.type === 'end-turn') {
+      if (data?.type === 'end-generation' || data?.type === 'end-turn') {
         this.flushSourceCarry()
+        this.trimTrailingSilence()
         this.turnEnded = true
         this.notifyIfDrained()
         return
@@ -127,6 +128,44 @@ class Pcm16PlaybackProcessor extends AudioWorkletProcessor {
     this.sourcePosition = 0
   }
 
+  trimTrailingSilence() {
+    const silenceThreshold = 0.001
+    const silenceToKeep = Math.round(sampleRate * 0.02)
+    let trailingSilence = 0
+
+    outer: for (let chunkIndex = this.queue.length - 1; chunkIndex >= 0; chunkIndex -= 1) {
+      const chunk = this.queue[chunkIndex]
+      const firstSample = chunkIndex === 0 ? this.queueOffset : 0
+
+      for (let index = chunk.length - 1; index >= firstSample; index -= 1) {
+        if (Math.abs(chunk[index]) > silenceThreshold) break outer
+        trailingSilence += 1
+      }
+    }
+
+    let samplesToRemove = Math.max(0, trailingSilence - silenceToKeep)
+    if (samplesToRemove === 0) return
+
+    this.bufferedSamples -= samplesToRemove
+
+    while (samplesToRemove > 0 && this.queue.length > 0) {
+      const lastIndex = this.queue.length - 1
+      const chunk = this.queue[lastIndex]
+      const firstSample = lastIndex === 0 ? this.queueOffset : 0
+      const available = chunk.length - firstSample
+      const removing = Math.min(samplesToRemove, available)
+
+      if (removing === available) {
+        this.queue.pop()
+        if (this.queue.length === 0) this.queueOffset = 0
+      } else {
+        this.queue[lastIndex] = chunk.slice(0, chunk.length - removing)
+      }
+
+      samplesToRemove -= removing
+    }
+  }
+
   reset() {
     this.queue = []
     this.queueOffset = 0
@@ -153,7 +192,9 @@ class Pcm16PlaybackProcessor extends AudioWorkletProcessor {
     if (!output) return true
     output.fill(0)
 
-    const startThreshold = Math.round(sampleRate * 0.12)
+    // A slightly larger jitter buffer avoids frequent stop/start artefacts
+    // when network audio chunks arrive unevenly.
+    const startThreshold = Math.round(sampleRate * 0.18)
     if (!this.playing) {
       if (this.bufferedSamples >= startThreshold || (this.turnEnded && this.bufferedSamples > 0)) {
         this.playing = true
