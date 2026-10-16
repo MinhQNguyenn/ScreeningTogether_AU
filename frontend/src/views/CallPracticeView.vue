@@ -515,6 +515,7 @@ async function startCall(): Promise<void> {
           socket?.readyState === WebSocket.OPEN &&
           event.data.byteLength > 0
         ) {
+          assistantTurnComplete = false
           socket.send(event.data)
         }
       }
@@ -570,6 +571,7 @@ function handleServerMessage(message: ServerMessage): void {
       phase.value = message.phase ?? phase.value
       break
     case 'processing':
+      assistantTurnComplete = false
       chatInputReady.value = false
       setMicrophone(false)
       break
@@ -612,7 +614,6 @@ function handleServerMessage(message: ServerMessage): void {
       break
     case 'interrupted':
       stopAssistantAudio()
-      liveAssistantTranscript.value = ''
       assistantTurnComplete = true
       scheduleMicrophoneResume()
       break
@@ -638,7 +639,6 @@ function queueAssistantAudio(bytes: ArrayBuffer): void {
     microphoneCooldown = null
   }
 
-  assistantTurnComplete = false
   chatInputReady.value = false
   assistantSpeaking.value = true
   playbackDrained = false
