@@ -18,6 +18,13 @@
       "error": "发生错误",
       "live": "实时通话"
     },
+    "mode": {
+      "title": "选择回应方式",
+      "voice": "语音模式",
+      "voiceDescription": "通过麦克风说话。",
+      "chat": "文字模式",
+      "chatDescription": "在嘈杂环境中输入文字；Luna 仍会用语音回复。"
+    },
     "welcome": {
       "title": "准备好开始练习了吗？",
       "description": "Luna 将模拟后续远程医疗咨询，让您练习可能被问到的问题。本模拟不会实际评估您的资格或订购套件。",
@@ -26,8 +33,10 @@
         "练习回答有关年龄、筛查史和症状的问题。",
         "查看摘要，为真正的远程医疗咨询做好准备。"
       ],
+      "chatStep": "在嘈杂环境中使用文字模式；Luna 仍会朗读回复。",
       "start": "开始练习",
-      "browserNote": "浏览器请求使用麦克风时，请允许访问。"
+      "voiceNote": "浏览器请求使用麦克风时，请允许访问。",
+      "chatNote": "无需麦克风权限。请打开设备声音以收听 Luna。"
     },
     "complete": {
       "eyebrow": "做得很好！",
@@ -44,18 +53,26 @@
       "ringing": "电话正在响铃...",
       "speaking": "{{speaker}}正在说话...",
       "yourTurn": "轮到你说话了",
+      "typeYourTurn": "轮到你输入了",
       "pleaseWait": "请稍候...",
       "ringHelp": "请听电话铃声，并等待对方接听。",
       "speakHelp": "准备好后，请清楚地表达。",
+      "typeHelp": "在下方输入回复，然后选择“发送”。",
       "speakingHelp": "请先聆听，再作回应。轮到你时就可以说话。",
       "continueHelp": "请稍候，让对话继续进行。",
       "ringStatus": "正在播放电话铃声",
       "audioStatus": "正在播放语音",
       "listeningStatus": "麦克风正在收听",
+      "typingStatus": "等待你的消息",
       "pausedStatus": "音频已暂停",
       "questions": "练习问题",
       "finish": "结束通话",
       "leave": "退出练习"
+    },
+    "chat": {
+      "label": "你的回复",
+      "placeholder": "输入回复…",
+      "send": "发送"
     },
     "transcript": {
       "eyebrow": "对话",
@@ -78,7 +95,8 @@
     "scope": {
       "title": "语言提示",
       "description": "本模拟电话使用英语，模拟在澳大利亚联系全科医生咨询宫颈筛查的常见情况。",
-"interpreterLink": "需要口译员？点击此处预约"    },
+      "interpreterLink": "需要口译员？点击此处预约"
+    },
     "download": {
       "title": "电话练习摘要",
       "answers": "你的回答",

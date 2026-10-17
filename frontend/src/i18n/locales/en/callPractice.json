@@ -18,6 +18,13 @@
       "error": "Something went wrong",
       "live": "Live call"
     },
+    "mode": {
+      "title": "Choose how you want to respond",
+      "voice": "Voice mode",
+      "voiceDescription": "Speak through your microphone.",
+      "chat": "Chat mode",
+      "chatDescription": "Type in noisy surroundings; Luna still replies by voice."
+    },
     "welcome": {
       "title": "Ready to practise?",
       "description": "Luna simulates the follow-up telehealth consultation so you can practise the questions you may be asked. This simulation does not assess your eligibility or order a kit.",
@@ -26,8 +33,10 @@
         "Practise answering questions about your age, screening history and symptoms.",
         "Review your summary to prepare for the real telehealth consultation."
       ],
+      "chatStep": "Use text mode in noisy surroundings; Luna will still answer aloud.",
       "start": "Start practice",
-      "browserNote": "Allow your browser to access your microphone when prompted."
+      "voiceNote": "Allow your browser to access your microphone when prompted.",
+      "chatNote": "No microphone access is needed. Keep your device audio on to hear Luna."
     },
     "complete": {
       "eyebrow": "Well done!",
@@ -44,18 +53,26 @@
       "ringing": "The phone is ringing...",
       "speaking": "{{speaker}} is speaking...",
       "yourTurn": "It's your turn to speak",
+      "typeYourTurn": "It's your turn to type",
       "pleaseWait": "Please wait...",
       "ringHelp": "Listen to the phone ringing and wait for the call to be answered.",
       "speakHelp": "Speak clearly when you are ready.",
+      "typeHelp": "Type your response below, then select Send.",
       "speakingHelp": "Listen before responding. You can speak when it is your turn.",
       "continueHelp": "Please wait for the conversation to continue.",
       "ringStatus": "Playing phone ringing sound",
       "audioStatus": "Playing audio",
       "listeningStatus": "Microphone is listening",
+      "typingStatus": "Ready for your message",
       "pausedStatus": "Audio is paused",
       "questions": "Practice questions",
       "finish": "Finish call",
       "leave": "Leave practice"
+    },
+    "chat": {
+      "label": "Your response",
+      "placeholder": "Type your response…",
+      "send": "Send"
     },
     "transcript": {
       "eyebrow": "Conversation",
