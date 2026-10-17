@@ -27,6 +27,19 @@ ORIENTATION_MESSAGE = (
     "practice session. We'll do a fictional call today, so please use "
     "fictional information. Nothing will be ordered. Are you ready to begin?"
 )
+ORIENTATION_EXPLANATION = (
+    "This session lets you practise a fictional telehealth consultation "
+    "about cervical screening self-collection. A fictional practitioner "
+    "will ask questions you may hear in a real call. Nothing will be "
+    "assessed, ordered or saved. Are you ready to begin?"
+)
+ORIENTATION_NOT_READY = (
+    "No problem. I won't start the practice call. Tell me when you're ready, "
+    "or select Leave practice to close this session."
+)
+ORIENTATION_UNCLEAR = (
+    "Sorry, I did not catch that. Are you ready to begin?"
+)
 PRACTITIONER_READINESS_QUESTION = "Is now still a good time to continue?"
 PRACTITIONER_INTRODUCTION = (
     "Hello, I'm calling from Fictional GP about your request for a "
@@ -69,9 +82,12 @@ STYLE, PRIVACY AND SAFETY
 
 FLOW
 1. ORIENTATION: At session start, say only the exact orientation message given
-   by the application. Do not paraphrase, shorten or expand it. Wait if the
-   answer is unclear or negative. On a new, clear affirmative response, call
-   begin_mock_call. Never imitate a ringtone; wait for ringing_complete=true.
+   by the application. Do not paraphrase, shorten or expand it. If the user
+   asks what the session does or what they should be ready for, call
+   handle_orientation_response with reason needs_explanation. For a clear no
+   or not-yet response, use reason not_ready. For unclear speech, use reason
+   unclear. On a new, clear affirmative response, call begin_mock_call. Never
+   imitate a ringtone; wait for ringing_complete=true.
 2. PRACTITIONER INTRODUCTION: After ringing, remain fully in practitioner role
    until exit_mock_call. Do not mention Luna, AI, fiction, practice, simulation
    or the disclaimer. The backend supplies the exact introduction and asks
@@ -407,6 +423,24 @@ LIVE_FUNCTION_DECLARATIONS = [
         "behavior": "BLOCKING",
     },
     {
+        "name": "handle_orientation_response",
+        "description": (
+            "Respond during orientation when the user asks what the practice "
+            "does, says they are not ready, or gives unclear speech."
+        ),
+        "behavior": "BLOCKING",
+        "parameters": {
+            "type": "OBJECT",
+            "properties": {
+                "reason": {
+                    "type": "STRING",
+                    "enum": ["needs_explanation", "not_ready", "unclear"],
+                }
+            },
+            "required": ["reason"],
+        },
+    },
+    {
         "name": "record_practice_answer",
         "description": (
             "Record one non-identifying answer explicitly provided during "
@@ -571,6 +605,10 @@ def _is_clear_affirmative(value: str) -> bool:
         "cannot",
         "stop",
         "wait",
+        "what",
+        "why",
+        "how",
+        "explain",
     }
     if words & negative_words:
         return False
@@ -1275,6 +1313,12 @@ class GeminiLivePracticeSession:
                 }
 
             if (
+                self.state.phase == "orientation"
+                and self.state.orientation_presented
+            ):
+                return {"say_exactly": ORIENTATION_EXPLANATION}
+
+            if (
                 self.state.phase != "orientation"
                 or self.state.orientation_presented
             ):
@@ -1285,6 +1329,23 @@ class GeminiLivePracticeSession:
 
             self.state.orientation_presented = True
             return {"say_exactly": ORIENTATION_MESSAGE}
+
+        if name == "handle_orientation_response":
+            if self.state.phase != "orientation":
+                raise ValueError(
+                    "Orientation responses are only available during orientation."
+                )
+
+            reason = arguments.get("reason")
+            responses = {
+                "needs_explanation": ORIENTATION_EXPLANATION,
+                "not_ready": ORIENTATION_NOT_READY,
+                "unclear": ORIENTATION_UNCLEAR,
+            }
+            if reason not in responses:
+                raise ValueError("A valid orientation response is required.")
+
+            return {"say_exactly": responses[reason]}
 
         if name == "begin_mock_call":
             if self.state.phase == "assistant":
